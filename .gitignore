@@ -1,0 +1,6 @@
+# Ignore lock file
+flake.lock
+
+# Ignore local configurations
+hardware-configuration.nix
+configuration.nix
