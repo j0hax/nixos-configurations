@@ -55,6 +55,7 @@
   programs.java.enable = true;
   programs.adb.enable = true;
   programs.thefuck.enable = true;
+  programs.steam.enable = true;
 
   # Some eyecandy
   programs.bash.promptInit = ''eval "$(starship init bash)"'';
