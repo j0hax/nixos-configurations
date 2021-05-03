@@ -7,5 +7,6 @@
       maintenance = import ./maintenance.nix;
       packages = import ./packages.nix;
       system = import ./system.nix;
+    };
   };
 }
