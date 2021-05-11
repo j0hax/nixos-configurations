@@ -2,6 +2,8 @@
 
 Configurations for my desktop and laptop
 
+### ⚠️ Warning: changes are experimental: this code is messy and subject to change 
+
 ## Deployment
 
 Simply add the flake to your local system flake:
