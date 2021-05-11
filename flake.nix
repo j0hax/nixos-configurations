@@ -28,8 +28,8 @@
       modules = [
         nixos-hardware.nixosModules.lenovo-thinkpad-x230
         nixos-hardware.nixosModules.common-pc-ssd
-        ./host-specific/eldridge/hardware-configuration.nix
-        ./host-specific/eldridge/configuration.nix
+        ./host-specific/kirby/hardware-configuration.nix
+        ./host-specific/kirby/configuration.nix
         ./general/environment.nix
         ./general/maintenance.nix
         ./general/packages.nix
