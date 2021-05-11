@@ -36,6 +36,7 @@
   hardware.pulseaudio.enable = true;
 
   virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enableExtensionPack = true;
 
   # Shell Preferences
   programs.bash.promptInit = ''eval "$(starship init bash)"'';
