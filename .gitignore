@@ -2,5 +2,5 @@
 flake.lock
 
 # Ignore local configurations
-hardware-configuration.nix
-configuration.nix
+#hardware-configuration.nix
+#configuration.nix
