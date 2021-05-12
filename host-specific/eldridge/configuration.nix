@@ -117,7 +117,7 @@
 
   # Monero
   services.monero = {
-    enable = true;
+    #enable = true;
     #dataDir = "/data/monero/";
     rpc.address = "0.0.0.0";
     rpc.restricted = true;
