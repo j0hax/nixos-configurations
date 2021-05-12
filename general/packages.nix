@@ -48,6 +48,7 @@
     unrar
     bastet
     exa
+    libreoffice-qt
   ];
 
   # Certain programs
