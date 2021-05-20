@@ -124,5 +124,8 @@
     extraConfig = "confirm-external-bind = 1";
   };
   
+  # Podcasts
+  services.podgrab.enable = true;
+  
   programs.java.package = pkgs.jdk8;
 }
