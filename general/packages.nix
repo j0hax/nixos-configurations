@@ -41,7 +41,6 @@
     cava
     tty-clock
     plasma-systemmonitor
-    tmux
     python3
     gimp
     wget
@@ -58,6 +57,7 @@
   programs.adb.enable = true;
   programs.thefuck.enable = true;
   programs.steam.enable = true;
+  programs.tmux.enable = true;
 
   # Some eyecandy
   programs.bash.promptInit = ''eval "$(starship init bash)"'';
