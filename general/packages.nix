@@ -41,6 +41,7 @@
     cava
     tty-clock
     plasma-systemmonitor
+    tmux
     python3
     gimp
     wget
