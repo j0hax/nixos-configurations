@@ -29,6 +29,7 @@
     transmission-qt
     black
     beets
+    magic-wormhole
     cool-retro-term
     cmatrix
     htop
