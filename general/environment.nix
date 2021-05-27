@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 {
   users.motd = with config; ''
     Welcome to ${networking.hostName}
@@ -12,8 +12,8 @@
   '';
 
   # Shell Preferences
-  environment.homeBinInPath = true;
-  programs.bash.promptInit = ''eval "$(starship init bash)"'';
+  environment.homeBinInPath = lib.mkDefault true;
+  programs.bash.promptInit = lib.mkDefault ''eval "$(starship init bash)"'';
   programs.thefuck.enable = true;
   environment.shellAliases = { "cat" = "bat"; };
 }

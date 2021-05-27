@@ -1,17 +1,17 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 {
 
   # Use the Zen kernel
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
   
   # Enable Zramswap
-  zramSwap.enable = true;
+  zramSwap.enable = lib.mkDefault true;
 
   # Remote access is critical
   services.openssh.enable = true;
   
   # Auto-Upgrade the system
-  system.autoUpgrade = {
+  system.autoUpgrade = lib.mkDefault {
     enable = true;
     flake = "github:j0hax/nixos-configurations";
   };

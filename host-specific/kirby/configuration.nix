@@ -12,12 +12,6 @@
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
 
-  users.users.johannes = {
-    description = "Johannes Arnold";
-    isNormalUser = true;
-    extraGroups = [ "wheel" "vboxusers" ]; # Enable ‘sudo’ for the user.
-  };
-
   # Enable the Plasma 5 Desktop Environment
   services.xserver.enable = true;
   services.xserver.displayManager.sddm.enable = true;
@@ -32,6 +26,7 @@
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
+  users.users.johannes.extraGroups = [ "vboxusers" ];
   virtualisation.virtualbox.host.enable = true;
   #virtualisation.virtualbox.host.enableExtensionPack = true;
 
