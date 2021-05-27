@@ -3,13 +3,13 @@
 
   # Use the Zen kernel
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
-  
+
   # Enable Zramswap
   zramSwap.enable = lib.mkDefault true;
 
   # Remote access is critical
   services.openssh.enable = true;
-  
+
   # Auto-Upgrade the system
   system.autoUpgrade = lib.mkDefault {
     enable = true;
