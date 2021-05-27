@@ -6,12 +6,6 @@
 
   boot.loader.systemd-boot.consoleMode = "max";
 
-  # Use the Zen kernel
-  boot.kernelPackages = pkgs.linuxPackages_zen;
-  
-  # Enable Zramswap
-  zramSwap.enable = true;
-
   networking.hostName = "kirby"; # Define your hostname.
   networking.networkmanager.enable = true;
 
@@ -40,12 +34,6 @@
 
   virtualisation.virtualbox.host.enable = true;
   #virtualisation.virtualbox.host.enableExtensionPack = true;
-
-  # Shell Preferences
-  programs.bash.promptInit = ''eval "$(starship init bash)"'';
-  programs.thefuck.enable = true;
-  environment.shellAliases = { "cat" = "bat"; };
-  environment.homeBinInPath = true;
 
   # Maintenance
   services.zfs.autoScrub.enable = true;

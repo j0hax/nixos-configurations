@@ -13,4 +13,7 @@
 
   # Shell Preferences
   environment.homeBinInPath = true;
+  programs.bash.promptInit = ''eval "$(starship init bash)"'';
+  programs.thefuck.enable = true;
+  environment.shellAliases = { "cat" = "bat"; };
 }

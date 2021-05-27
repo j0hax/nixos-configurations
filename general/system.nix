@@ -1,5 +1,12 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
+
+  # Use the Zen kernel
+  boot.kernelPackages = pkgs.linuxPackages_zen;
+  
+  # Enable Zramswap
+  zramSwap.enable = true;
+
   # Remote access is critical
   services.openssh.enable = true;
   
