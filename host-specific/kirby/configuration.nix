@@ -39,7 +39,7 @@
   hardware.pulseaudio.enable = true;
 
   virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.host.enableExtensionPack = true;
+  #virtualisation.virtualbox.host.enableExtensionPack = true;
 
   # Shell Preferences
   programs.bash.promptInit = ''eval "$(starship init bash)"'';
@@ -50,26 +50,6 @@
   # Maintenance
   services.zfs.autoScrub.enable = true;
   services.btrfs.autoScrub.enable = true;
- 
-  services.usbmuxd.enable = true;
-  services.usbmuxd.user = "root";
-  services.usbmuxd.group = "root";
-
-  nixpkgs.overlays = [
-    (self: super: {
-      idevicerestore = super.idevicerestore.overrideAttrs (old: {
-        version = "newest";
-        src = super.fetchFromGitHub {
-          owner = "libimobiledevice";
-          repo = "idevicerestore";
-          rev = "4c154e82197039fd0991c69f563706bb17eb13ff";
-          sha256 = "sha256-RLt3lDP3jIDuLgG4eWNc8/bE1kJRXLNGy2+aNIyekuQ=";
-        };
-      });
-    })
-  ];
-
-  environment.systemPackages = with pkgs; [ idevicerestore ];
 
   nix = {
     package = pkgs.nixFlakes;
