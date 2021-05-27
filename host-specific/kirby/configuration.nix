@@ -8,6 +8,9 @@
 
   # Use the Zen kernel
   boot.kernelPackages = pkgs.linuxPackages_zen;
+  
+  # Enable Zramswap
+  zramSwap.enable = true;
 
   networking.hostName = "kirby"; # Define your hostname.
   networking.networkmanager.enable = true;
