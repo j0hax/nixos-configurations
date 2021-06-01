@@ -52,6 +52,7 @@
     libreoffice-qt
     file
     killall
+    ncat
   ];
 
   # Certain programs
