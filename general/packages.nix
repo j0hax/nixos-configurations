@@ -50,6 +50,8 @@
     bastet
     exa
     libreoffice-qt
+    file
+    killall
   ];
 
   # Certain programs
