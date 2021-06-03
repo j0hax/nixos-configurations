@@ -54,6 +54,7 @@
     killall
     ncat
     onefetch
+    tldr
   ];
 
   # Certain programs
