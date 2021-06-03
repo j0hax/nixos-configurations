@@ -53,6 +53,7 @@
     file
     killall
     ncat
+    onefetch
   ];
 
   # Certain programs
