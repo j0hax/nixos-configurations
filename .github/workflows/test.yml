@@ -18,5 +18,3 @@ jobs:
 
     # Run the general flake checks
     - run: nix flake check
-    # Verify that the main program builds
-    - run: nix shell -c echo OK
