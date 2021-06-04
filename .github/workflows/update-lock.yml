@@ -1,7 +1,7 @@
 name: "Lock Updater"
 on:
   schedule:
-    - cron:  '0/10 * * * *'
+    - cron:  '*/10 * * * *'
 jobs:
   tests:
     runs-on: ubuntu-latest
