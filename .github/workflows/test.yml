@@ -16,5 +16,12 @@ jobs:
       env:
         ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
 
+    # Update
+    - run: nix flake update --commit-lock-file
     # Run the general flake checks
     - run: nix flake check
+    # PR
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v3
+    
+    
