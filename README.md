@@ -1,32 +1,6 @@
 # NixOS Configurations
 
-Configurations for my desktop and laptop
-
-### ⚠️ Warning: changes are experimental: this code is messy and subject to change 
-
-## Deployment
-
-Simply add the flake to your local system flake:
-
-```nix
-{
-  inputs = {
-    nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable-small;
-    modules.url = github:j0hax/nixos-configurations/main;
-  };
-  
-  outputs = { self, nixpkgs, modules }: {
-    nixosConfigurations.<name> = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        modules.nixosModules.environment
-        ./hardware-configuration.nix
-        ./configuration.nix
-      ];
-    };
-  };
-}
-```
+> Keep it stateless, stupid.
 
 ## Module Overview
 | Module | Purpose |

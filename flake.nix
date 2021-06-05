@@ -18,7 +18,7 @@
 
     nixosConfigurations.eldridge = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      modules = [
+      modules = with self.outputs.nixosModules; [
         nixos-hardware.nixosModules.common-cpu-intel-sandy-bridge
         nixos-hardware.nixosModules.common-gpu-amd-sea-islands
         nixos-hardware.nixosModules.common-pc-ssd
