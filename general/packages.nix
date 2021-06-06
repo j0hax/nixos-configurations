@@ -55,6 +55,7 @@
     ncat
     onefetch
     tldr
+    wineWowPackages.staging
   ];
 
   # Certain programs
