@@ -14,6 +14,7 @@
       maintenance = import ./general/maintenance.nix;
       desktop-packages = import ./general/packages.nix;
       system = import ./general/system.nix;
+      backups = import ./general/backups.nix;
     };
 
     nixosConfigurations.eldridge = nixpkgs.lib.nixosSystem {
@@ -42,6 +43,7 @@
         environment
         maintenance
         desktop-packages
+        backups
       ];
     };
   };
