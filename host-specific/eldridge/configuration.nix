@@ -114,15 +114,6 @@
   networking.hostId = "bfea96cf"; 
   boot.zfs.extraPools = [ "data" ];
   services.zfs.autoScrub.enable = true;
-
-  # Monero
-  services.monero = {
-    enable = true;
-    dataDir = "/data/monero/";
-    rpc.address = "0.0.0.0";
-    rpc.restricted = true;
-    extraConfig = "confirm-external-bind = 1";
-  };
   
   programs.java.package = pkgs.jdk8;
 }
