@@ -29,6 +29,7 @@
         environment
         maintenance
         desktop-packages
+        backups
       ];
     };
 
