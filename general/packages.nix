@@ -3,60 +3,60 @@
   # Base packages for desktop usage
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    brave
-    okular
-    mpv
-    vscodium
-    firefox
-    kate
-    imagemagick
-    openscad
-    discord
-    youtube-dl
-    prusa-slicer
-    thunderbird
     ark
+    bastet
+    bat
+    beets
+    black
+    brave
+    cava
+    cmatrix
+    cool-retro-term
+    discord
+    exa
+    file
+    firefox
+    gimp
     git
-    spotify
-    solaar
-    logitech-udev-rules
-    yakuake
     gwenview
+    htop
+    imagemagick
     k3b
+    kate
+    killall
+    libreoffice-qt
+    logitech-udev-rules
+    magic-wormhole
+    minecraft
+    mpv
+    ncat
+    neofetch
+    nixpkgs-fmt
+    okular
+    onefetch
+    openscad
+    pipes
+    plasma-systemmonitor
+    prusa-slicer
+    python3
+    restic
+    skype
+    solaar
+    sox
+    spotify
+    starship
     texlive.combined.scheme-full
     texmaker
-    restic
-    transmission-qt
-    black
-    beets
-    magic-wormhole
-    cool-retro-term
-    cmatrix
-    htop
-    neofetch
-    pipes
-    nixpkgs-fmt
-    starship
-    bat
-    minecraft
-    cava
-    tty-clock
-    plasma-systemmonitor
-    python3
-    gimp
-    wget
-    sox
-    unrar
-    bastet
-    exa
-    libreoffice-qt
-    file
-    killall
-    ncat
-    onefetch
+    thunderbird
     tldr
+    transmission-qt
+    tty-clock
+    unrar
+    vscodium
+    wget
     wineWowPackages.staging
-    skype
+    yakuake
+    youtube-dl
   ];
 
   # Certain programs
