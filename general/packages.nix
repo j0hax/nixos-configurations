@@ -56,6 +56,7 @@
     onefetch
     tldr
     wineWowPackages.staging
+    skype
   ];
 
   # Certain programs
