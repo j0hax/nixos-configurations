@@ -54,6 +54,7 @@
     unrar
     vscodium
     wget
+    whatsapp-for-linux
     wineWowPackages.staging
     yakuake
     youtube-dl
