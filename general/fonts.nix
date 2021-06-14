@@ -1,14 +1,18 @@
 { config, lib, pkgs, ... }:
 {
   fonts.fonts = with pkgs; [
-    anonymousPro
     corefonts
     fira
-    fira-code
-    fira-mono
-    inconsolata
     lato
+    league-of-moveable-type
     libertine
+    (nerdfonts.override {
+      fonts = [
+        "Agave"
+        "FiraCode"
+        "Iosevka"
+      ];
+    })
     twitter-color-emoji
     yanone-kaffeesatz
   ];
@@ -16,7 +20,7 @@
   fonts.fontconfig.defaultFonts = lib.mkDefault {
     serif = [ "Linux Libertine" ];
     sansSerif = [ "Fira" ];
-    monospace = [ "Inconsolata" ];
+    monospace = [ "Fira Code" ];
     emoji = [ "Twitter Color Emoji" ];
   };
 }
