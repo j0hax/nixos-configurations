@@ -33,6 +33,9 @@
   # Maintenance
   services.zfs.autoScrub.enable = true;
   services.btrfs.autoScrub.enable = true;
+  
+  # Clight
+  services.clight.enable = true;
 
   nix = {
     package = pkgs.nixFlakes;
