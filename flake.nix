@@ -15,6 +15,7 @@
       desktop-packages = import ./general/packages.nix;
       system = import ./general/system.nix;
       backups = import ./general/backups.nix;
+      fonts = import ./general/fonts.nix;
     };
 
     nixosConfigurations.eldridge = nixpkgs.lib.nixosSystem {
@@ -30,6 +31,7 @@
         maintenance
         desktop-packages
         backups
+        fonts
       ];
     };
 
@@ -45,6 +47,7 @@
         maintenance
         desktop-packages
         backups
+        fonts
       ];
     };
   };
