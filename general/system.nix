@@ -2,7 +2,8 @@
 {
 
   # Use the Zen kernel
-  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
+  # Disabled until #122606 is fixed
+  #boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
 
   # Enable Zramswap
   zramSwap.enable = lib.mkDefault true;
