@@ -4,6 +4,7 @@
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     ark
+    asciinema
     bastet
     bat
     beets
@@ -35,6 +36,7 @@
     okular
     onefetch
     openscad
+    parallel
     pipes
     plasma-systemmonitor
     prusa-slicer
