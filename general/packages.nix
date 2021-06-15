@@ -18,7 +18,6 @@
     firefox
     gimp
     git
-    gnupg
     gwenview
     htop
     imagemagick
@@ -69,6 +68,7 @@
   programs.thefuck.enable = true;
   programs.steam.enable = true;
   programs.tmux.enable = true;
+  programs.gnupg.agent.enable = true;
 
   # Some eyecandy
   programs.bash.promptInit = ''eval "$(starship init bash)"'';
