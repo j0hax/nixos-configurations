@@ -34,8 +34,14 @@
   services.zfs.autoScrub.enable = true;
   services.btrfs.autoScrub.enable = true;
   
-  # Clight
-  services.clight.enable = true;
+  # Location services
+  services.geoclue2.enable = true;
+  
+  # Clight is broken
+  #services.clight.enable = true;
+
+  # Localtime for travelling
+  services.localtime.enable = true;
 
   nix = {
     package = pkgs.nixFlakes;
