@@ -20,4 +20,10 @@
   programs.bash.promptInit = lib.mkDefault ''eval "$(starship init bash)"'';
   programs.thefuck.enable = true;
   environment.shellAliases = { "cat" = "bat"; };
+
+  # Keyboard options
+  services.xserver = lib.mkDefault {
+    layout = "us";
+    xkbVariant = "altgr-intl";
+  };
 }
