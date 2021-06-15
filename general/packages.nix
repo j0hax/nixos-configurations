@@ -12,7 +12,6 @@
     brave
     cava
     cmatrix
-    cool-retro-term
     discord
     exa
     file
