@@ -19,6 +19,7 @@
     firefox
     gimp
     git
+    gnupg
     gwenview
     htop
     imagemagick
