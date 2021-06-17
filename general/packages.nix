@@ -50,6 +50,7 @@
     texmaker
     thunderbird
     tldr
+    tor-browser-bundle-bin
     transmission-qt
     tty-clock
     unrar
