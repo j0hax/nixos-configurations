@@ -9,6 +9,7 @@
     bat
     beets
     black
+    bottom
     brave
     cava
     cmatrix
