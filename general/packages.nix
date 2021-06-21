@@ -71,6 +71,7 @@
   programs.steam.enable = true;
   programs.tmux.enable = true;
   programs.gnupg.agent.enable = true;
+  programs.noisetorch.enable = true;
   
   # Enable firmware updates
   services.fwupd.enable = true;
