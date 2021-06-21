@@ -17,12 +17,9 @@ jobs:
           system-features = nixos-test benchmark big-parallel kvm
     - name: Update lock file
       run: |
-        git config --local user.name "Johannes Arnold"
-        git config --local user.email "johannes.arnold@stud.uni-hannover.de"
+        git config user.name github-actions
+        git config user.email github-actions@github.com
         nix flake update --commit-lock-file
-    # PR
     - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ github.token }}
-        branch: main
+      run: git push
+      
