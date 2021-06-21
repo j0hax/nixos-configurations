@@ -71,6 +71,9 @@
   programs.steam.enable = true;
   programs.tmux.enable = true;
   programs.gnupg.agent.enable = true;
+  
+  # Enable firmware updates
+  services.fwupd.enable = true;
 
   # Some eyecandy
   programs.bash.promptInit = ''eval "$(starship init bash)"'';
