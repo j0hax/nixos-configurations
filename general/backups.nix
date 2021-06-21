@@ -4,6 +4,10 @@
     essentials = {
       repository = "sftp:johannes@eldridge.lan:/data/backups/";
       paths = [ "/home" "/var/lib" ];
+      timerConfig = {
+        OnCalendar = "daily";
+        Persistent = true;
+      };
       extraBackupArgs = [ "--exclude-caches" ];
       pruneOpts = [
         "--keep-daily 7"
