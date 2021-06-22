@@ -20,7 +20,7 @@
   fonts.fontconfig.defaultFonts = lib.mkDefault {
     serif = [ "Linux Libertine" ];
     sansSerif = [ "Fira" ];
-    monospace = [ "Fira Code" ];
+    monospace = [ "Iosevka Term" ];
     emoji = [ "Twitter Color Emoji" ];
   };
 }
