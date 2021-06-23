@@ -22,6 +22,7 @@
     gwenview
     htop
     imagemagick
+    jq
     k3b
     kate
     killall
