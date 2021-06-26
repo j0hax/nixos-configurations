@@ -63,6 +63,7 @@
     wineWowPackages.staging
     yakuake
     youtube-dl
+    ytmdl
   ];
 
   # Certain programs
