@@ -1,18 +1,11 @@
-{ config, lib, pkgs, ... }:
-{
+{ config, lib, pkgs, ... }: {
   fonts.fonts = with pkgs; [
     corefonts
     fira
     lato
     league-of-moveable-type
     libertine
-    (nerdfonts.override {
-      fonts = [
-        "Agave"
-        "FiraCode"
-        "Iosevka"
-      ];
-    })
+    (nerdfonts.override { fonts = [ "Agave" "FiraCode" "Iosevka" ]; })
     twitter-color-emoji
     yanone-kaffeesatz
   ];

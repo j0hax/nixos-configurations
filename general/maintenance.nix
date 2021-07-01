@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   # Keep system clean
   nix.gc.automatic = true;
   nix.autoOptimiseStore = true;

@@ -1,5 +1,4 @@
-{ config, pkgs, lib, ... }:
-{
+{ config, pkgs, lib, ... }: {
 
   # Use the Zen kernel
   # Disabled until #122606 is fixed

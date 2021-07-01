@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   # Base packages for desktop usage
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
@@ -76,11 +75,14 @@
   programs.tmux.enable = true;
   programs.gnupg.agent.enable = true;
   programs.noisetorch.enable = true;
-  
+
   # Enable firmware updates
   services.fwupd.enable = true;
 
   # Some eyecandy
   programs.bash.promptInit = ''eval "$(starship init bash)"'';
-  environment.shellAliases = { "cat" = "bat"; "ls" = "exa"; };
+  environment.shellAliases = {
+    "cat" = "bat";
+    "ls" = "exa";
+  };
 }

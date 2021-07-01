@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+{ config, ... }: {
   services.restic.backups = {
     essentials = {
       repository = "sftp:johannes@eldridge.lan:/data/backups/";

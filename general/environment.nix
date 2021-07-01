@@ -1,5 +1,4 @@
-{ config, pkgs, lib, ... }:
-{
+{ config, pkgs, lib, ... }: {
   users.motd = with config; ''
     Welcome to ${networking.hostName}
 
