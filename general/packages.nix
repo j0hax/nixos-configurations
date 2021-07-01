@@ -7,6 +7,7 @@
     asciinema
     bastet
     bat
+    beats
     beets
     black
     bottom
