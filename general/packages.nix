@@ -35,6 +35,7 @@
     ncat
     neofetch
     nixpkgs-fmt
+    nixpkgs-review
     okular
     onefetch
     openscad
