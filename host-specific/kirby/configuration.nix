@@ -33,6 +33,14 @@
   # Maintenance
   services.zfs.autoScrub.enable = true;
   services.btrfs.autoScrub.enable = true;
+
+  # Encrypted SSD via SD Card
+  boot.initrd.kernelModules = [ "usb_storage" ];
+  boot.initrd.luks.devices."cryptroot" = {
+    keyFileSize = 4096;
+    keyFile = "/dev/mmcblk0";
+    bypassWorkqueues = true;
+  };
   
   # Location services
   services.geoclue2.enable = true;
