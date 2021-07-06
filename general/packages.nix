@@ -4,7 +4,7 @@
   environment.systemPackages = with pkgs; [
     ark
     asciinema
-    bastet
+    bashSnippets
     bat
     beats
     beets
