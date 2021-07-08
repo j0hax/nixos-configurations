@@ -59,6 +59,7 @@
     transmission-qt
     tty-clock
     unrar
+    usbutils
     vscodium
     wget
     whatsapp-for-linux
