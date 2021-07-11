@@ -14,6 +14,9 @@
   documentation.dev.enable = true;
   environment.systemPackages = [ pkgs.posix_man_pages ];
 
+  # Environment variables
+  environment.variables = { DO_NOT_TRACK = "1"; };
+
   # Shell Preferences
   environment.homeBinInPath = lib.mkDefault true;
   programs.bash.promptInit = lib.mkDefault ''eval "$(starship init bash)"'';
