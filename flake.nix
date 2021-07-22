@@ -17,6 +17,7 @@
       backups = import ./general/backups.nix;
       fonts = import ./general/fonts.nix;
       printing = import ./general/printing.nix;
+      tailscale = import ./general/tailscale.nix;
     };
 
     nixosConfigurations.eldridge = nixpkgs.lib.nixosSystem {
@@ -50,6 +51,7 @@
         backups
         fonts
         printing
+        tailscale
       ];
     };
   };
