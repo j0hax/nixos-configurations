@@ -78,6 +78,7 @@
   programs.tmux.enable = true;
   programs.gnupg.agent.enable = true;
   programs.noisetorch.enable = true;
+  programs.iftop.enable = true;
 
   # Enable firmware updates
   services.fwupd.enable = true;
