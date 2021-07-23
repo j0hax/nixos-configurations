@@ -4,13 +4,11 @@
   environment.systemPackages = with pkgs; [
     ark
     asciinema
-    bashSnippets
     bat
     beats
     beets
     black
     bottom
-    brave
     cava
     cmatrix
     discord
@@ -23,7 +21,6 @@
     htop
     imagemagick
     jq
-    k3b
     kate
     killall
     libreoffice-qt
@@ -46,7 +43,6 @@
     python3
     restic
     skype
-    solaar
     sox
     spotify
     starship
@@ -54,7 +50,6 @@
     texlive.combined.scheme-full
     texmaker
     thunderbird
-    tldr
     tor-browser-bundle-bin
     transmission-qt
     tty-clock
@@ -62,7 +57,6 @@
     usbutils
     vscodium
     wget
-    whatsapp-for-linux
     wineWowPackages.staging
     yakuake
     youtube-dl
@@ -77,7 +71,6 @@
   programs.steam.enable = true;
   programs.tmux.enable = true;
   programs.gnupg.agent.enable = true;
-  programs.noisetorch.enable = true;
   programs.iftop.enable = true;
 
   # Enable firmware updates
@@ -86,7 +79,7 @@
   # Some eyecandy
   programs.bash.promptInit = ''eval "$(starship init bash)"'';
   environment.shellAliases = {
-    "cat" = "bat";
-    "ls" = "exa";
+    "cat" = "${pkgs.bat}/bin/cat";
+    "ls" = "${pkgs.exa}/bin/exa";
   };
 }
