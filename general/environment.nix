@@ -19,9 +19,6 @@
 
   # Shell Preferences
   environment.homeBinInPath = lib.mkDefault true;
-  programs.bash.promptInit = lib.mkDefault ''eval "$(starship init bash)"'';
-  programs.thefuck.enable = true;
-  environment.shellAliases = { "cat" = "bat"; };
 
   # Denglisch Locale ;)
   i18n.defaultLocale = "en_US.UTF-8";
