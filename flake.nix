@@ -34,6 +34,7 @@
         desktop-packages
         backups
         fonts
+        tailscale
       ];
     };
 
