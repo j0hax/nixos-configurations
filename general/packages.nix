@@ -79,7 +79,7 @@
   # Some eyecandy
   programs.bash.promptInit = ''eval "$(starship init bash)"'';
   environment.shellAliases = {
-    "cat" = "${pkgs.bat}/bin/cat";
+    "cat" = "${pkgs.bat}/bin/bat";
     "ls" = "${pkgs.exa}/bin/exa";
   };
 }
