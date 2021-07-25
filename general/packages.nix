@@ -74,6 +74,7 @@
   programs.tmux.enable = true;
   programs.gnupg.agent.enable = true;
   programs.iftop.enable = true;
+  programs.tilp2.enable = true;
 
   # Enable firmware updates
   services.fwupd.enable = true;
