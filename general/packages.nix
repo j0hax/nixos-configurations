@@ -42,6 +42,8 @@
     prusa-slicer
     python3
     restic
+    shellcheck
+    shfmt
     skype
     sox
     spotify
