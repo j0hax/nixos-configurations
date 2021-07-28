@@ -30,6 +30,7 @@
     minecraft
     mpv
     ncat
+    neochat
     neofetch
     nixpkgs-fmt
     nixpkgs-review
