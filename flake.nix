@@ -18,6 +18,7 @@
       fonts = import ./general/fonts.nix;
       printing = import ./general/printing.nix;
       tailscale = import ./general/tailscale.nix;
+      clamav = import ./general/clamav.nix;
     };
 
     nixosConfigurations.eldridge = nixpkgs.lib.nixosSystem {
@@ -53,6 +54,7 @@
         fonts
         printing
         tailscale
+        clamav
       ];
     };
   };
