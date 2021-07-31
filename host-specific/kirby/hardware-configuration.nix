@@ -16,6 +16,7 @@
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/5d45abb9-0ca2-46f7-ac39-077f7a461e70";
       fsType = "btrfs";
+      options = [ "compress-force=zstd" ];
     };
 
   boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/817f5193-1dc9-4c89-ba8a-0b264b08836f";
