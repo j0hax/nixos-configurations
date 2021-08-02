@@ -25,11 +25,7 @@
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
-
-  users.users.johannes.extraGroups = [ "vboxusers" ];
-  virtualisation.virtualbox.host.enable = true;
-  #virtualisation.virtualbox.host.enableExtensionPack = true;
-
+ 
   # Maintenance
   services.zfs.autoScrub.enable = true;
   services.btrfs.autoScrub.enable = true;
