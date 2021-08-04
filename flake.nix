@@ -19,7 +19,7 @@
       printing = import ./general/printing.nix;
       tailscale = import ./general/tailscale.nix;
       clamav = import ./general/clamav.nix;
-      virtualisation = import ./general/virtualisation;
+      virtualisation = import ./general/virtualisation.nix;
     };
 
     nixosConfigurations.eldridge = nixpkgs.lib.nixosSystem {
