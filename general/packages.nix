@@ -28,7 +28,6 @@
     logitech-udev-rules
     magic-wormhole
     megatools
-    minecraft
     mpv
     ncat
     neochat
