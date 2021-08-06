@@ -20,6 +20,6 @@
   users.users.johannes = {
     description = "Johannes Arnold";
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "networkmanager" ];
   };
 }
