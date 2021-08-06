@@ -20,6 +20,7 @@
       tailscale = import ./general/tailscale.nix;
       clamav = import ./general/clamav.nix;
       virtualisation = import ./general/virtualisation.nix;
+      gaming = import ./general/gaming.nix;
     };
 
     nixosConfigurations.eldridge = nixpkgs.lib.nixosSystem {
@@ -55,7 +56,7 @@
         fonts
         printing
         tailscale
-        clamav
+        gaming
         virtualisation
       ];
     };
