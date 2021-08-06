@@ -9,6 +9,8 @@
   networking.hostName = "kirby"; # Define your hostname.
   networking.networkmanager.enable = true;
 
+  networking.interfaces.enp0s25.useDHCP = true;
+
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
 
