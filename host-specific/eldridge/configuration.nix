@@ -116,4 +116,7 @@
   services.zfs.autoScrub.enable = true;
   
   programs.java.package = pkgs.jdk8;
+  
+  services.xserver.desktopManager.wallpaper.combineScreens = true;
+  services.fractalart.enable = true;
 }
