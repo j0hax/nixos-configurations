@@ -126,5 +126,5 @@
       output = "HDMI-A-0,DVI-D-0,DVI-D-1";
       primary = true;
     }
-  ]
+  ];
 }
