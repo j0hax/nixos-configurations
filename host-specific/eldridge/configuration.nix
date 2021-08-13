@@ -119,4 +119,12 @@
   
   services.xserver.desktopManager.wallpaper.combineScreens = true;
   services.fractalart.enable = true;
+  
+  # Multi-Monitor configuration
+  services.xserver.xrandrHeads = [
+    {
+      output = "HDMI-A-0,DVI-D-0,DVI-D-1";
+      primary = true;
+    }
+  ]
 }
