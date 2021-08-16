@@ -4,4 +4,7 @@
 
   programs.steam.enable = true;
   programs.gamemode.enable = true;
+
+  # Important for Wine
+  hardware.opengl.driSupport32Bit = true;
 }
