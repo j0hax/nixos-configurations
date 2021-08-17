@@ -9,8 +9,6 @@
   networking.hostName = "kirby"; # Define your hostname.
   networking.networkmanager.enable = true;
 
-  networking.interfaces.enp0s25.useDHCP = true;
-
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
 
@@ -29,7 +27,6 @@
   hardware.pulseaudio.enable = true;
  
   # Maintenance
-  services.zfs.autoScrub.enable = true;
   services.btrfs.autoScrub.enable = true;
 
   # Encrypted SSD via SD Card
