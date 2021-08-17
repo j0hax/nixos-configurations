@@ -55,5 +55,10 @@
       experimental-features = nix-command flakes
     '';
   };
+
+  hardware.trackpoint = {
+    enable = true;
+    speed = 255;
+  };
 }
 
