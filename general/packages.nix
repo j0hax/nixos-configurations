@@ -86,4 +86,5 @@
     "cat" = "${pkgs.bat}/bin/bat";
     "ls" = "${pkgs.exa}/bin/exa";
   };
+  environment.variables."MANPAGER" = "sh -c 'col -bx | bat -l man -p'";
 }
