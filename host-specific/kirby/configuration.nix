@@ -35,6 +35,7 @@
     keyFileSize = 4096;
     keyFile = "/dev/mmcblk0";
     bypassWorkqueues = true;
+    allowDiscards = true;
   };
   
   # Location services
