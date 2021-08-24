@@ -58,6 +58,7 @@
         tailscale
         gaming
         virtualisation
+        ./general/distributed-builds.nix
       ];
     };
   };
