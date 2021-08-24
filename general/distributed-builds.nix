@@ -13,6 +13,7 @@ in {
   '';
   nix.buildMachines = [{
     hostName = "adh";
+    sshUser = "johannes";
     systems = intel;
     supportedFeatures = all;
   }];
