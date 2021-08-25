@@ -2,6 +2,7 @@
 
 let
 
+  server = "100.120.246.92";
   intel = [ "i686-linux" "x86_64-linux" ];
   all = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
 
@@ -12,10 +13,11 @@ in {
     builders-use-substitutes = true
   '';
   nix.buildMachines = [{
-    hostName = "adh";
+    hostName = server;
     sshUser = "johannes";
     systems = intel;
     supportedFeatures = all;
   }];
+  nix.trustedBinaryCaches = [ "http://${server}:5000" ];
 }
 
