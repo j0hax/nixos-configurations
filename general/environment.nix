@@ -15,7 +15,7 @@
   environment.variables = { DO_NOT_TRACK = "1"; };
 
   # Shell Preferences
-  environment.homeBinInPath = lib.mkDefault true;
+  environment.localBinInPath = lib.mkDefault true;
 
   # Denglisch Locale ;)
   i18n.defaultLocale = "en_US.UTF-8";
