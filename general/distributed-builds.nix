@@ -18,6 +18,6 @@ in {
     systems = intel;
     supportedFeatures = all;
   }];
-  nix.trustedBinaryCaches = [ "http://${server}:5000" ];
+  #nix.trustedBinaryCaches = [ "http://${server}:5000" ];
 }
 
