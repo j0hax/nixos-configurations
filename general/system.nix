@@ -28,6 +28,6 @@
   users.users.johannes = {
     description = "Johannes Arnold";
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "dialout" ];
+    extraGroups = [ "wheel" "networkmanager" "dialout" "wireshark" ];
   };
 }

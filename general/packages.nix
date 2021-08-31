@@ -76,6 +76,10 @@
   programs.gnupg.agent.enable = true;
   programs.iftop.enable = true;
   programs.tilp2.enable = true;
+  programs.wireshark = {
+    enable = true;
+    package = pkgs.wireshark-qt;
+  };
 
   # Enable firmware updates
   services.fwupd.enable = true;
