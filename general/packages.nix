@@ -2,6 +2,7 @@
   # Base packages for desktop usage
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
+    archivebox
     arduino
     ark
     asciinema
