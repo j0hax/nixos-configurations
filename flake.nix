@@ -33,7 +33,7 @@
         }) (builtins.attrNames (builtins.readDir dir)));
     in {
       # Include everything from our general folder
-      nixosModules = (modulesFrom ./general);
+      nixosModules = (modulesFrom ./modules);
 
       # Configuration per host
       nixosConfigurations = builtins.listToAttrs (map (host: {
