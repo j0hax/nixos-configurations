@@ -29,7 +29,7 @@
       modulesFrom = dir:
         builtins.listToAttrs (map (file: {
           name = builtins.head (builtins.split "\\." file);
-          value = import (dir + ("/" + file));
+          value = import (dir + "/${file}");
         }) (builtins.attrNames (builtins.readDir dir)));
     in {
       # Include everything from our general folder
