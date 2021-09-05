@@ -1,5 +1,4 @@
-{ config, pkgs, nixos-hardware, ... }:
-{
+{ config, pkgs, nixos-hardware, ... }: {
   imports = [
     ./hardware-configuration.nix
     nixos-hardware.nixosModules.lenovo-thinkpad-x230
@@ -31,7 +30,7 @@
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
- 
+
   # Maintenance
   services.btrfs.autoScrub.enable = true;
 
@@ -43,10 +42,10 @@
     bypassWorkqueues = true;
     allowDiscards = true;
   };
-  
+
   # Location services
   services.geoclue2.enable = true;
-  
+
   # Clight is broken
   #services.clight.enable = true;
 

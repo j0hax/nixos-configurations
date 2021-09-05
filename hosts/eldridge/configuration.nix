@@ -5,13 +5,12 @@
 { config, pkgs, nixos-hardware, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      nixos-hardware.nixosModules.common-cpu-intel-sandy-bridge
-      nixos-hardware.nixosModules.common-gpu-amd-sea-islands
-      nixos-hardware.nixosModules.common-pc-ssd
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    nixos-hardware.nixosModules.common-cpu-intel-sandy-bridge
+    nixos-hardware.nixosModules.common-gpu-amd-sea-islands
+    nixos-hardware.nixosModules.common-pc-ssd
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -43,11 +42,9 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-
   # Enable the Plasma 5 Desktop Environment.
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
-  
 
   # Configure keymap in X11
   # services.xserver.layout = "us";
@@ -113,12 +110,12 @@
 
   # ZFS Configuration
   boot.supportedFilesystems = [ "zfs" ];
-  networking.hostId = "bfea96cf"; 
+  networking.hostId = "bfea96cf";
   boot.zfs.extraPools = [ "data" ];
   services.zfs.autoScrub.enable = true;
-  
+
   programs.java.package = pkgs.jdk8;
-  
+
   services.xserver.desktopManager.wallpaper.combineScreens = true;
   services.fractalart.enable = true;
 }
