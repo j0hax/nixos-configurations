@@ -2,13 +2,15 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, nixos-hardware, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
-#      ./hardware-configuration.nix
-#      "${builtins.fetchurl { url = "https://gist.githubusercontent.com/j0hax/ae14bd0f4f02b2c6ca82c2a9e770013f/raw/xmrig.nix"; }}"
+      ./hardware-configuration.nix
+      nixos-hardware.nixosModules.common-cpu-intel-sandy-bridge
+      nixos-hardware.nixosModules.common-gpu-amd-sea-islands
+      nixos-hardware.nixosModules.common-pc-ssd
     ];
 
   # Use the systemd-boot EFI boot loader.

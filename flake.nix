@@ -13,13 +13,14 @@
       desktopConfig = hostname:
         nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
+          specialArgs.nixos-hardware = self.inputs.nixos-hardware;
           modules = [
             ({ ... }: {
               imports = [
                 # Include host-specific configuration files and all modules
                 (import (./host-specific + "/${hostname}/configuration.nix"))
-                (import
-                  (./host-specific + "/${hostname}/hardware-configuration.nix"))
+                #(import
+                #  (./host-specific + "/${hostname}/hardware-configuration.nix"))
               ] ++ (builtins.attrValues self.nixosModules);
             })
           ];
