@@ -18,9 +18,7 @@
             ({ ... }: {
               imports = [
                 # Include host-specific configuration files and all modules
-                (import (./host-specific + "/${hostname}/configuration.nix"))
-                #(import
-                #  (./host-specific + "/${hostname}/hardware-configuration.nix"))
+                (import (./hosts + "/${hostname}/configuration.nix"))
               ] ++ (builtins.attrValues self.nixosModules);
             })
           ];
@@ -40,6 +38,6 @@
       nixosConfigurations = builtins.listToAttrs (map (host: {
         name = host;
         value = desktopConfig host;
-      }) (builtins.attrNames (builtins.readDir ./host-specific)));
+      }) (builtins.attrNames (builtins.readDir ./hosts)));
     };
 }
