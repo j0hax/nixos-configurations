@@ -9,6 +9,9 @@
 
   outputs = { self, nixpkgs, nixos-hardware }:
     let
+
+      hostsDir = ./hosts;
+
       # Function to create (common) desktop system configuration
       desktopConfig = hostname:
         nixpkgs.lib.nixosSystem {
@@ -18,7 +21,7 @@
             ({ ... }: {
               imports = [
                 # Include host-specific configuration files and all modules
-                (import (./hosts + "/${hostname}/configuration.nix"))
+                (import (hostsDir + "/${hostname}/configuration.nix"))
               ] ++ (builtins.attrValues self.nixosModules);
             })
           ];
@@ -38,6 +41,6 @@
       nixosConfigurations = builtins.listToAttrs (map (host: {
         name = host;
         value = desktopConfig host;
-      }) (builtins.attrNames (builtins.readDir ./hosts)));
+      }) (builtins.attrNames (builtins.readDir hostsDir)));
     };
 }
