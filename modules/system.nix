@@ -4,6 +4,8 @@
   # Disabled until #122606 is fixed
   #boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
 
+  boot.kernelParams = [ "mitigations=off" ];
+
   # Enable Zramswap
   zramSwap.enable = lib.mkDefault true;
 
