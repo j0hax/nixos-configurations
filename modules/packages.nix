@@ -43,6 +43,7 @@
     plasma-systemmonitor
     prusa-slicer
     python3
+    qrcp
     restic
     shellcheck
     shfmt
