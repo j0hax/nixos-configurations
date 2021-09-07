@@ -17,15 +17,7 @@
     enable = true;
     flake = "github:j0hax/nixos-configurations";
   };
-
-  # Shared builds
-  nix.distributedBuilds = true;
-  nix.buildMachines = [{
-    hostName = "adh";
-    systems = [ "i686-linux" "x86_64-linux" ];
-    supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
-  }];
-
+ 
   # Add myself as a user
   users.users.johannes = {
     description = "Johannes Arnold";
