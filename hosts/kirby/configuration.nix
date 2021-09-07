@@ -31,9 +31,6 @@
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
-  # Maintenance
-  services.btrfs.autoScrub.enable = true;
-
   # Encrypted SSD via SD Card
   boot.initrd.kernelModules = [ "usb_storage" ];
   boot.initrd.luks.devices."cryptroot" = {

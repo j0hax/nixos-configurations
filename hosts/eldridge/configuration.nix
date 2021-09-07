@@ -112,7 +112,6 @@
   boot.supportedFilesystems = [ "zfs" ];
   networking.hostId = "bfea96cf";
   boot.zfs.extraPools = [ "data" ];
-  services.zfs.autoScrub.enable = true;
 
   programs.java.package = pkgs.jdk8;
 
