@@ -1,6 +1,6 @@
-# Ignore lock file
-flake.lock
+# Nix output file
+result
 
-# Ignore local configurations
-#hardware-configuration.nix
-#configuration.nix
+# System files
+.*.swp
+.DS_Store
