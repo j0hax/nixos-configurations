@@ -1,10 +1,9 @@
-name: "Lock Updater"
-on:
-  workflow_dispatch:
-  schedule:
-    - cron:  '0 * * * *'
+name: "Continuous Integration"
+on: [push, pull_request]
+env:
+  NIX_SHOW_STATS: 1
 jobs:
-  update:
+  check:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2.3.4
@@ -16,12 +15,5 @@ jobs:
           experimental-features = nix-command flakes
           access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
           system-features = nixos-test benchmark big-parallel kvm
-    - name: Set up git
-      run: |
-        git config user.name github-actions
-        git config user.email github-actions@github.com
-    - name: Update lock file
-      run: nix flake update --commit-lock-file
-    - name: Push changes
-      run: git push
-      
+    - name: Test
+      run: nix flake check --log-format raw -v
