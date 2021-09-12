@@ -7,6 +7,7 @@
     ark
     asciinema
     bat
+    bc
     beats
     beets
     black
