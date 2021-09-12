@@ -1,4 +1,10 @@
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, ... }:
+
+let
+  fsExists = fs:
+    (builtins.any (filesystem: filesystem.fsType == fs)
+      (builtins.attrValues config.fileSystems));
+in {
   # Keep system clean
   nix.gc.automatic = true;
   nix.autoOptimiseStore = true;
@@ -7,10 +13,6 @@
   boot.tmpOnTmpfs = true;
 
   # Auto scrub filesystems that support it
-  services.zfs.autoScrub.enable = lib.mkDefault
-    (builtins.any (filesystem: filesystem.fsType == "zfs")
-      (builtins.attrValues config.fileSystems));
-  services.btrfs.autoScrub.enable = lib.mkDefault
-    (builtins.any (filesystem: filesystem.fsType == "btrfs")
-      (builtins.attrValues config.fileSystems));
+  services.btrfs.autoScrub.enable = lib.mkDefault (fsExists "btrfs");
+  services.zfs.autoScrub.enable = lib.mkDefault (fsExists "zfs");
 }
