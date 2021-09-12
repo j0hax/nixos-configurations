@@ -2,6 +2,7 @@
   fonts.fonts = with pkgs; [
     corefonts
     fira
+    inter
     lato
     league-of-moveable-type
     libertine
@@ -12,7 +13,7 @@
 
   fonts.fontconfig.defaultFonts = lib.mkDefault {
     serif = [ "Linux Libertine" ];
-    sansSerif = [ "Fira" ];
+    sansSerif = [ "Inter" ];
     monospace = [ "Iosevka Term" ];
     emoji = [ "Twitter Color Emoji" ];
   };
