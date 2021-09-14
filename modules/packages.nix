@@ -1,4 +1,12 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+let
+
+  # Quick script to merge PDFs used for Uni
+  merge-pdf = pkgs.writeShellScriptBin "merge-pdf" ''
+    ${pkgs.qpdf}/bin/qpdf --progress --empty --pages $(ls *.pdf | sort -V) -- merged.pdf
+  '';
+
+in {
   # Base packages for desktop usage
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
@@ -30,6 +38,7 @@
     logitech-udev-rules
     magic-wormhole
     megatools
+    merge-pdf
     mpv
     ncat
     neochat
