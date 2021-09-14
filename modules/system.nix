@@ -17,7 +17,7 @@
     enable = true;
     flake = "github:j0hax/nixos-configurations";
   };
- 
+
   # Add myself as a user
   users.users.johannes = {
     description = "Johannes Arnold";
