@@ -14,7 +14,6 @@ in {
     arduino
     ark
     asciinema
-    bat
     bc
     beats
     beets
@@ -23,7 +22,6 @@ in {
     cava
     cmatrix
     discord
-    exa
     file
     firefox
     gimp
@@ -97,10 +95,10 @@ in {
   services.fwupd.enable = true;
 
   # Some eyecandy
-  programs.bash.promptInit = ''eval "$(starship init bash)"'';
+  programs.bash.promptInit = ''eval "$(${pkgs.starship}/bin/starship init bash)"'';
   environment.shellAliases = {
     "cat" = "${pkgs.bat}/bin/bat";
     "ls" = "${pkgs.exa}/bin/exa";
   };
-  environment.variables."MANPAGER" = "sh -c 'col -bx | bat -l man -p'";
+  environment.variables."MANPAGER" = "sh -c 'col -bx | ${pkgs.bat}/bin/bat -l man -p'";
 }
