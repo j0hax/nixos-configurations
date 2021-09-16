@@ -47,7 +47,7 @@
   #services.clight.enable = true;
 
   # Localtime for travelling
-  services.localtime.enable = true;
+  #services.localtime.enable = true;
 
   nix = {
     package = pkgs.nixFlakes;
