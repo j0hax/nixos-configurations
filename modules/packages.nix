@@ -6,6 +6,11 @@ let
     ${pkgs.qpdf}/bin/qpdf --progress --empty --pages $(ls *.pdf | sort -V) -- merged.pdf
   '';
 
+  # Shout out to RR
+  doubledecode = pkgs.writeShellScriptBin "doubledecode" ''
+    echo $1 | base64 -d | base64 -d
+  '';
+
 in {
   # Base packages for desktop usage
   nixpkgs.config.allowUnfree = true;
@@ -22,6 +27,7 @@ in {
     cava
     cmatrix
     discord
+    doubledecode
     file
     firefox
     gimp
