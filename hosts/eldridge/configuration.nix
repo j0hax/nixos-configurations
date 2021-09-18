@@ -112,9 +112,4 @@
   boot.supportedFilesystems = [ "zfs" ];
   networking.hostId = "bfea96cf";
   boot.zfs.extraPools = [ "data" ];
-
-  programs.java.package = pkgs.jdk8;
-
-  services.xserver.desktopManager.wallpaper.combineScreens = true;
-  services.fractalart.enable = true;
 }
