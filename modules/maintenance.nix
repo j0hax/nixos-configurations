@@ -12,6 +12,9 @@ in {
 
   boot.tmpOnTmpfs = true;
 
+  # Enable trim
+  services.fstrim.enable = true;
+
   # Auto scrub filesystems that support it
   services.btrfs.autoScrub.enable = lib.mkDefault (fsExists "btrfs");
   services.zfs.autoScrub.enable = lib.mkDefault (fsExists "zfs");
