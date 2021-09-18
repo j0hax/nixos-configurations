@@ -64,7 +64,6 @@ in {
     skype
     sox
     spotify
-    starship
     taskwarrior
     texlive.combined.scheme-full
     texmaker
