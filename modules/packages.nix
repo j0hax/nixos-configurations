@@ -34,6 +34,7 @@ in {
     git
     gwenview
     htop
+    hydra-check
     imagemagick
     jq
     kate
