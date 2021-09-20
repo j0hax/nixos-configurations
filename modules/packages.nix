@@ -99,15 +99,4 @@ in {
 
   # Enable firmware updates
   services.fwupd.enable = true;
-
-  # Some eyecandy
-  programs.bash.promptInit = ''
-    ${pkgs.taskwarrior}/bin/task next
-    eval "$(${pkgs.starship}/bin/starship init bash)"
-  '';
-  environment.shellAliases = {
-    "cat" = "${pkgs.bat}/bin/bat";
-    "ls" = "${pkgs.exa}/bin/exa";
-  };
-  environment.variables."MANPAGER" = "sh -c 'col -bx | ${pkgs.bat}/bin/bat -l man -p'";
 }
