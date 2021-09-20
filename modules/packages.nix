@@ -50,6 +50,7 @@ in {
     neofetch
     nixpkgs-fmt
     nixpkgs-review
+    octaveFull
     okular
     onefetch
     openscad
