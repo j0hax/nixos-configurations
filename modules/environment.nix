@@ -17,8 +17,11 @@
   # Shell Preferences
   environment.localBinInPath = lib.mkDefault true;
 
-  programs.bash.promptInit = ''
+  environment.interactiveShellInit = ''
     ${pkgs.taskwarrior}/bin/task next
+  '';
+
+  programs.bash.promptInit = ''
     eval "$(${pkgs.starship}/bin/starship init bash)"
   '';
 
