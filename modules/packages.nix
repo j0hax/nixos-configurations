@@ -101,7 +101,10 @@ in {
   services.fwupd.enable = true;
 
   # Some eyecandy
-  programs.bash.promptInit = ''eval "$(${pkgs.starship}/bin/starship init bash)"'';
+  programs.bash.promptInit = ''
+    ${pkgs.taskwarrior}/bin/task next
+    eval "$(${pkgs.starship}/bin/starship init bash)"
+  '';
   environment.shellAliases = {
     "cat" = "${pkgs.bat}/bin/bat";
     "ls" = "${pkgs.exa}/bin/exa";
