@@ -5,5 +5,5 @@
     cue = true;
   };
 
-  boot.initrd.luks.fido2Support = true;
+  environment.systemPackages = with pkgs; [ libfido2 ];
 }
