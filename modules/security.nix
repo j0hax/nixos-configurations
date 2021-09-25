@@ -5,5 +5,7 @@
     cue = true;
   };
 
-  environment.systemPackages = with pkgs; [ libfido2 python3Packages.solo-python ];
+  services.pcscd.enable = true;
+
+  environment.systemPackages = with pkgs; [ libfido2 python3Packages.solo-python yubikey-manager ];
 }
