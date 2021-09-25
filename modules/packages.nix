@@ -40,7 +40,6 @@ in {
     kate
     killall
     libreoffice-qt
-    logitech-udev-rules
     magic-wormhole
     megatools
     merge-pdf
@@ -100,4 +99,7 @@ in {
 
   # Enable firmware updates
   services.fwupd.enable = true;
+
+  # Some smaller hardware tweaks
+  services.udev.packages = with pkgs; [ logitech-udev-rules ];
 }
