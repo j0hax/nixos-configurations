@@ -32,12 +32,20 @@
   hardware.pulseaudio.enable = true;
 
   # Encrypted SSD via SD Card
-  boot.initrd.kernelModules = [ "usb_storage" ];
+  #boot.initrd.kernelModules = [ "usb_storage" ];
   boot.initrd.luks.devices."cryptroot" = {
-    keyFileSize = 4096;
-    keyFile = "/dev/mmcblk0";
+  #  keyFileSize = 4096;
+  #  keyFile = "/dev/mmcblk0";
     bypassWorkqueues = true;
     allowDiscards = true;
+  };
+
+  # New Cryptenroll method
+  environment.etc.crypttab = {
+    enable = true;
+    text = ''
+      cryptroot /dev/sda2 - fido2-device=auto
+    '';
   };
 
   # Location services
