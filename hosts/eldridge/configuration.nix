@@ -112,4 +112,7 @@
   boot.supportedFilesystems = [ "zfs" ];
   networking.hostId = "bfea96cf";
   boot.zfs.extraPools = [ "data" ];
+
+  # Needed for gaming, unfortunately
+  services.logmein-hamachi.enable = true;
 }
