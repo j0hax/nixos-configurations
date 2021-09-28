@@ -21,8 +21,8 @@
         amd_performance_level = "high";
       };
       custom = {
-        start = "${pkgs.libnotify}/bin/notify-send 'GameMode started'";
-        end = "${pkgs.libnotify}/bin/notify-send 'GameMode ended'";
+        start = "${pkgs.libnotify}/bin/notify-send 'GameMode started' -i applications-games";
+        end = "${pkgs.libnotify}/bin/notify-send 'GameMode ended' -i applications-games";
       };
     };
   };
