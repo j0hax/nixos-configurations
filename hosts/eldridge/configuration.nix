@@ -115,9 +115,4 @@
 
   # Needed for gaming, unfortunately
   services.logmein-hamachi.enable = true;
-
-  # 32-Bit Driver for gaming
-  hardware.opengl.extraPackages32 = with pkgs; [
-    driversi686Linux.amdvlk
-  ];
 }
