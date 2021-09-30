@@ -4,6 +4,7 @@
     ballerburg
     quake3e
     minecraft
+    mangohud
     superTuxKart
   ];
 
