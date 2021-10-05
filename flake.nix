@@ -12,9 +12,9 @@
       hostsDir = ./hosts;
 
       # Function to create (common) desktop system configuration
-      desktopConfig = hostname:
+      desktopConfig = { hostname, system ? "x86_64-linux" }:
         nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
+          inherit system;
           specialArgs.nixos-hardware = self.inputs.nixos-hardware;
           modules = [
             ({ ... }: {
@@ -37,9 +37,9 @@
       nixosModules = (modulesFrom ./modules);
 
       # Configuration per host
-      nixosConfigurations = builtins.listToAttrs (map (host: {
-        name = host;
-        value = desktopConfig host;
+      nixosConfigurations = builtins.listToAttrs (map (hostname: {
+        name = hostname;
+        value = desktopConfig { inherit hostname; };
       }) (builtins.attrNames (builtins.readDir hostsDir)));
     };
 }
