@@ -12,7 +12,10 @@
   environment.systemPackages = [ pkgs.posix_man_pages ];
 
   # Environment variables
-  environment.variables = { DO_NOT_TRACK = "1"; };
+  environment.variables = {
+    DO_NOT_TRACK = "1";
+    MOZ_USE_XINPUT2 = "1";
+  };
 
   # Shell Preferences
   environment.localBinInPath = lib.mkDefault true;
