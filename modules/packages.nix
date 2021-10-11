@@ -47,7 +47,7 @@ in {
     ncat
     neochat
     neofetch
-    nixpkgs-fmt
+    nixfmt
     nixpkgs-review
     octaveFull
     okular
