@@ -6,9 +6,14 @@ let
       (lib.attrValues config.fileSystems));
 in {
   # Keep system clean
-  nix.gc.automatic = true;
-  nix.autoOptimiseStore = true;
-  nix.optimise.automatic = true;
+  nix = {
+    gc = {
+      automatic = true;
+      options = "--delete-older-than 3d";
+    };
+    autoOptimiseStore = true;
+    optimise.automatic = true;
+  };
 
   boot.tmpOnTmpfs = true;
 
