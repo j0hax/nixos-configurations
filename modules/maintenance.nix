@@ -3,7 +3,7 @@
 let
   fsExists = fs:
     (builtins.any (filesystem: filesystem.fsType == fs)
-      (builtins.attrValues config.fileSystems));
+      (lib.attrValues config.fileSystems));
 in {
   # Keep system clean
   nix.gc.automatic = true;
