@@ -39,6 +39,8 @@
       nixosModules = (modulesFrom ./modules);
 
       # Configuration per host
-      nixosConfigurations = lib.genAttrs (lib.attrNames (builtins.readDir hostsDir)) (hostname: desktopConfig { inherit hostname; });
+      nixosConfigurations =
+        lib.genAttrs (lib.attrNames (builtins.readDir hostsDir))
+        (hostname: desktopConfig { inherit hostname; });
     };
 }

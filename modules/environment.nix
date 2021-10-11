@@ -33,7 +33,8 @@
     "ls" = "${pkgs.exa}/bin/exa";
   };
 
-  environment.variables."MANPAGER" = "sh -c 'col -bx | ${pkgs.bat}/bin/bat -l man -p'";
+  environment.variables."MANPAGER" =
+    "sh -c 'col -bx | ${pkgs.bat}/bin/bat -l man -p'";
 
   # Denglisch Locale ;)
   i18n.defaultLocale = "en_US.UTF-8";
