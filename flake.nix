@@ -7,42 +7,13 @@
     home-manager.url = "github:nix-community/home-manager";
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager }:
-    let
+  outputs = { self, nixpkgs, nixos-hardware, home-manager }: rec {
+    # Include everything from our general folder
+    nixosModules = lib.jx.modulesFrom ./modules;
 
-      lib = nixpkgs.lib;
+    # Configuration per host
+    nixosConfigurations = lib.jx.configurationsFrom ./hosts;
 
-      hostsDir = ./hosts;
-
-      # Function to create (common) desktop system configuration
-      desktopConfig = { hostname, system ? "x86_64-linux" }:
-        nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs.nixos-hardware = self.inputs.nixos-hardware;
-          modules = [
-            ({ ... }: {
-              imports = [
-                # Include host-specific configuration files and all modules
-                (import (hostsDir + "/${hostname}/configuration.nix"))
-                home-manager.nixosModules.home-manager
-              ] ++ (lib.attrValues self.nixosModules);
-            })
-          ];
-        };
-
-      # Read all modules from a specific folder
-      modulesFrom = dir:
-        lib.listToAttrs (map (file: {
-          name = builtins.head (builtins.split "\\." file);
-          value = import (dir + "/${file}");
-        }) (lib.attrNames (builtins.readDir dir)));
-    in {
-      # Include everything from our general folder
-      nixosModules = (modulesFrom ./modules);
-
-      # Configuration per host
-      nixosConfigurations =
-        lib.genAttrs (lib.attrNames (builtins.readDir hostsDir))
-        (hostname: desktopConfig { inherit hostname; });
-    };
+    lib = { jx = import ./lib { lib = nixpkgs.lib; }; };
+  };
 }
