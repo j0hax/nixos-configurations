@@ -87,7 +87,6 @@ in {
   programs.java.enable = true;
   programs.adb.enable = true;
   programs.thefuck.enable = true;
-  programs.steam.enable = true;
   programs.tmux.enable = true;
   programs.gnupg.agent.enable = true;
   programs.iftop.enable = true;
