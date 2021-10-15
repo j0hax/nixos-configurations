@@ -67,13 +67,13 @@
 
     beets = {
       enable = true;
-      config = {
+      settings = {
         directory = "/data/music/";
         library = "/data/music/library.db";
-        threaded = "yes";
+        threaded = true;
         import = {
-          write = "yes";
-          move = "yes";
+          write = true;
+          move = true;
         };
         plugins = [ "info" "fetchart" "embedart" "lastgenre" "missing" "chroma" "scrub" "discogs" "convert" ];
       };

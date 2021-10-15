@@ -41,6 +41,6 @@
       # Configuration per host
       nixosConfigurations =
         lib.genAttrs (lib.attrNames (builtins.readDir ./hosts))
-        (hostname: desktopConfig { dir = ./hosts + hostname; });
+        (hostname: desktopConfig { dir = ./hosts + "/${hostname}"; });
     };
 }
