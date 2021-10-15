@@ -60,6 +60,15 @@
   programs = {
     jq.enable = true;
 
+    mangohud = {
+      enable = true;
+      enableSessionWide = true;
+      settings = {
+        cpu_temp = 1;
+        gpu_temp = 1;
+      };
+    };
+
     vim = {
       enable = true;
       plugins = with pkgs.vimPlugins; [ vim-nix ];
@@ -78,7 +87,17 @@
           write = true;
           move = true;
         };
-        plugins = [ "info" "fetchart" "embedart" "lastgenre" "missing" "chroma" "scrub" "discogs" "convert" ];
+        plugins = [
+          "info"
+          "fetchart"
+          "embedart"
+          "lastgenre"
+          "missing"
+          "chroma"
+          "scrub"
+          "discogs"
+          "convert"
+        ];
       };
     };
   };
