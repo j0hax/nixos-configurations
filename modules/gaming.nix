@@ -1,12 +1,4 @@
 { config, pkgs, ... }: {
-  environment.systemPackages = with pkgs; [
-    sauerbraten
-    ballerburg
-    quake3e
-    minecraft
-    mangohud
-    superTuxKart
-  ];
 
   #programs.steam.enable = true;
 

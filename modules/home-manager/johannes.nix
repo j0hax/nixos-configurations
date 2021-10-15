@@ -54,6 +54,8 @@
     yakuake
     youtube-dl
     ytmdl
+    ballerburg
+    minecraft
   ];
 
   programs = {
