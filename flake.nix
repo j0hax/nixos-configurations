@@ -4,9 +4,10 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    home-manager.url = "github:nix-community/home-manager";
   };
 
-  outputs = { self, nixpkgs, nixos-hardware }:
+  outputs = { self, nixpkgs, nixos-hardware, home-manager }:
     let
 
       lib = nixpkgs.lib;
@@ -23,6 +24,7 @@
               imports = [
                 # Include host-specific configuration files and all modules
                 (import (hostsDir + "/${hostname}/configuration.nix"))
+                home-manager.nixosModules.home-manager
               ] ++ (lib.attrValues self.nixosModules);
             })
           ];
