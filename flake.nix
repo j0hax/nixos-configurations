@@ -12,10 +12,8 @@
 
       lib = nixpkgs.lib;
 
-      hostsDir = ./hosts;
-
       # Function to create (common) desktop system configuration
-      desktopConfig = { hostname, system ? "x86_64-linux" }:
+      desktopConfig = { dir, system ? "x86_64-linux" }:
         nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs.nixos-hardware = self.inputs.nixos-hardware;
@@ -23,7 +21,7 @@
             ({ ... }: {
               imports = [
                 # Include host-specific configuration files and all modules
-                (import (hostsDir + "/${hostname}/configuration.nix"))
+                (import ("${dir}/configuration.nix"))
                 home-manager.nixosModules.home-manager
               ] ++ (lib.attrValues self.nixosModules);
             })
@@ -42,7 +40,7 @@
 
       # Configuration per host
       nixosConfigurations =
-        lib.genAttrs (lib.attrNames (builtins.readDir hostsDir))
-        (hostname: desktopConfig { inherit hostname; });
+        lib.genAttrs (lib.attrNames (builtins.readDir ./hosts))
+        (hostname: desktopConfig { dir = ./hosts + hostname; });
     };
 }
