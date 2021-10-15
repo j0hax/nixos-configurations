@@ -77,6 +77,13 @@
       '';
     };
 
+    starship = {
+      enable = true;
+      settings = {
+        username.show_always = true;
+      };
+    };
+
     beets = {
       enable = true;
       settings = {

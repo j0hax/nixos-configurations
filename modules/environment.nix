@@ -24,10 +24,6 @@
     ${pkgs.taskwarrior}/bin/task next
   '';
 
-  programs.bash.promptInit = ''
-    eval "$(${pkgs.starship}/bin/starship init bash)"
-  '';
-
   environment.shellAliases = {
     "cat" = "${pkgs.bat}/bin/bat";
     "ls" = "${pkgs.exa}/bin/exa";
