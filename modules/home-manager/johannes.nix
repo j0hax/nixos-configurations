@@ -84,6 +84,10 @@
       };
     };
 
+    taskwarrior = {
+      enable = true;
+    };
+
     beets = {
       enable = true;
       settings = {

@@ -20,10 +20,6 @@
   # Shell Preferences
   environment.localBinInPath = lib.mkDefault true;
 
-  environment.interactiveShellInit = ''
-    ${pkgs.taskwarrior}/bin/task next
-  '';
-
   environment.shellAliases = {
     "cat" = "${pkgs.bat}/bin/bat";
     "ls" = "${pkgs.exa}/bin/exa";
