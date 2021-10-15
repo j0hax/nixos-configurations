@@ -1,85 +1,17 @@
-{ config, pkgs, ... }:
-let
-
-  # Quick script to merge PDFs used for Uni
-  merge-pdf = pkgs.writeShellScriptBin "merge-pdf" ''
-    ${pkgs.qpdf}/bin/qpdf --progress --empty --pages $(ls *.pdf | sort -V) -- merged.pdf
-  '';
-
-  # Shout out to RR
-  doubledecode = pkgs.writeShellScriptBin "doubledecode" ''
-    echo $1 | base64 -d | base64 -d
-  '';
-
-in {
+{ config, pkgs, ... }: {
   # Base packages for desktop usage
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    archivebox
-    arduino
-    ark
-    asciinema
     bc
-    beats
-    beets
-    black
-    bottom
-    cava
-    cmatrix
-    discord
-    doubledecode
     file
-    firefox
-    gimp
     git
-    gwenview
-    htop
-    hydra-check
-    imagemagick
-    jq
-    kate
     killall
-    libreoffice-qt
-    magic-wormhole
-    megatools
-    merge-pdf
-    mpv
-    ncat
-    neochat
-    neofetch
-    nixfmt
-    nixpkgs-review
-    octaveFull
-    okular
-    onefetch
-    openscad
     parallel
-    pipes
-    plasma-systemmonitor
-    prusa-slicer
     python3
-    qrcp
-    restic
-    shellcheck
-    shfmt
-    skype
-    sox
-    spotify
-    taskwarrior
-    texlive.combined.scheme-full
-    texmaker
-    thunderbird
-    tor-browser-bundle-bin
-    transmission-qt
-    tty-clock
     unrar
     usbutils
-    vscodium
     wget
     wineWowPackages.staging
-    yakuake
-    youtube-dl
-    ytmdl
   ];
 
   # Certain programs
