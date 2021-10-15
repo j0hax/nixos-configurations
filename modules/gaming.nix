@@ -8,7 +8,7 @@
     superTuxKart
   ];
 
-  programs.steam.enable = true;
+  #programs.steam.enable = true;
 
   # Configure MangoHud for all Vulkan games
   environment.variables = {
