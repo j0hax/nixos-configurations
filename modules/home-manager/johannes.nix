@@ -17,7 +17,6 @@
     htop
     hydra-check
     imagemagick
-    jq
     kate
     libreoffice-qt
     magic-wormhole
@@ -59,6 +58,8 @@
   ];
 
   programs = {
+    jq.enable = true;
+
     vim = {
       enable = true;
       plugins = with pkgs.vimPlugins; [ vim-nix ];
