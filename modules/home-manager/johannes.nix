@@ -69,6 +69,10 @@
       };
     };
 
+    bash.enable = true;
+
+    atuin.enable = true;
+
     vim = {
       enable = true;
       plugins = with pkgs.vimPlugins; [ vim-nix ];
