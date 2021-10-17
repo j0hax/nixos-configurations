@@ -20,9 +20,6 @@
   # Shell Preferences
   environment.localBinInPath = lib.mkDefault true;
 
-  environment.variables."MANPAGER" =
-    "sh -c 'col -bx | ${pkgs.bat}/bin/bat -l man -p'";
-
   # Denglisch Locale ;)
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = lib.mkDefault {
