@@ -81,6 +81,13 @@
       '';
     };
 
+    bat.enable = true;
+
+    exa = {
+      enable = true;
+      enableAliases = true;
+    };
+
     starship = {
       enable = true;
       settings = {

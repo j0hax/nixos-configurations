@@ -20,11 +20,6 @@
   # Shell Preferences
   environment.localBinInPath = lib.mkDefault true;
 
-  environment.shellAliases = {
-    "cat" = "${pkgs.bat}/bin/bat";
-    "ls" = "${pkgs.exa}/bin/exa";
-  };
-
   environment.variables."MANPAGER" =
     "sh -c 'col -bx | ${pkgs.bat}/bin/bat -l man -p'";
 
