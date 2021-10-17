@@ -75,7 +75,7 @@
 
     vim = {
       enable = true;
-      plugins = with pkgs.vimPlugins; [ vim-nix ];
+      plugins = with pkgs.vimPlugins; [ vim-nix YouCompleteMe vim-gitgutter delimitMate vim-sensible vim-lastplace ];
       extraConfig = ''
         set number
       '';
