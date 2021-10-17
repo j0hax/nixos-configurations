@@ -17,7 +17,6 @@
     htop
     hydra-check
     imagemagick
-    jq
     kate
     libreoffice-qt
     magic-wormhole
@@ -54,15 +53,50 @@
     yakuake
     youtube-dl
     ytmdl
+    ballerburg
+    minecraft
   ];
 
   programs = {
+    jq.enable = true;
+
+    mangohud = {
+      enable = true;
+      enableSessionWide = true;
+      settings = {
+        cpu_temp = 1;
+        gpu_temp = 1;
+      };
+    };
+
+    bash.enable = true;
+
+    atuin.enable = true;
+
     vim = {
       enable = true;
       plugins = with pkgs.vimPlugins; [ vim-nix ];
       extraConfig = ''
         set number
       '';
+    };
+
+    bat.enable = true;
+
+    exa = {
+      enable = true;
+      enableAliases = true;
+    };
+
+    starship = {
+      enable = true;
+      settings = {
+        username.show_always = true;
+      };
+    };
+
+    taskwarrior = {
+      enable = true;
     };
 
     beets = {
@@ -75,7 +109,17 @@
           write = true;
           move = true;
         };
-        plugins = [ "info" "fetchart" "embedart" "lastgenre" "missing" "chroma" "scrub" "discogs" "convert" ];
+        plugins = [
+          "info"
+          "fetchart"
+          "embedart"
+          "lastgenre"
+          "missing"
+          "chroma"
+          "scrub"
+          "discogs"
+          "convert"
+        ];
       };
     };
   };

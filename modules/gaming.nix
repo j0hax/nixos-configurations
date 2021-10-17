@@ -1,20 +1,6 @@
 { config, pkgs, ... }: {
-  environment.systemPackages = with pkgs; [
-    sauerbraten
-    ballerburg
-    quake3e
-    minecraft
-    mangohud
-    superTuxKart
-  ];
 
   #programs.steam.enable = true;
-
-  # Configure MangoHud for all Vulkan games
-  environment.variables = {
-    MANGOHUD = "1";
-    MANGOHUD_CONFIG = "cpu_temp,gpu_temp";
-  };
 
   programs.gamemode = {
     enable = true;
