@@ -12,6 +12,9 @@
   # Remote access is critical
   services.openssh.enable = true;
 
+  # Save power, even on desktop devices
+  services.auto-cpufreq.enable = true;
+
   # Auto-Upgrade the system
   system.autoUpgrade = lib.mkDefault {
     enable = true;

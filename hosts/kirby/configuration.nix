@@ -51,6 +51,9 @@
   # Location services
   services.geoclue2.enable = true;
 
+  # Disable tlp
+  services.tlp.enable = false;
+
   # Clight is broken
   #services.clight.enable = true;
 
