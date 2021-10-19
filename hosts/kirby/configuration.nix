@@ -51,6 +51,12 @@
   # Location services
   services.geoclue2.enable = true;
 
+  # Automatically turn on Backlight
+  services.tp-auto-kbbl ={
+    enable = true;
+    device = "/dev/input/event1";
+  };
+
   # Disable tlp
   services.tlp.enable = false;
 
