@@ -25,8 +25,8 @@
   # Encrypted SSD via SD Card
   #boot.initrd.kernelModules = [ "usb_storage" ];
   boot.initrd.luks.devices."cryptroot" = {
-  #  keyFileSize = 4096;
-  #  keyFile = "/dev/mmcblk0";
+    #  keyFileSize = 4096;
+    #  keyFile = "/dev/mmcblk0";
     bypassWorkqueues = true;
     allowDiscards = true;
   };
@@ -43,7 +43,7 @@
   services.geoclue2.enable = true;
 
   # Automatically turn on Backlight
-  services.tp-auto-kbbl ={
+  services.tp-auto-kbbl = {
     enable = true;
     device = "/dev/input/event1";
   };

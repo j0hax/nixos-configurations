@@ -77,7 +77,14 @@
 
     vim = {
       enable = true;
-      plugins = with pkgs.vimPlugins; [ vim-nix YouCompleteMe vim-gitgutter delimitMate vim-sensible vim-lastplace ];
+      plugins = with pkgs.vimPlugins; [
+        vim-nix
+        YouCompleteMe
+        vim-gitgutter
+        delimitMate
+        vim-sensible
+        vim-lastplace
+      ];
       extraConfig = ''
         set number
       '';
@@ -92,14 +99,10 @@
 
     starship = {
       enable = true;
-      settings = {
-        username.show_always = true;
-      };
+      settings = { username.show_always = true; };
     };
 
-    taskwarrior = {
-      enable = true;
-    };
+    taskwarrior = { enable = true; };
 
     beets = {
       enable = true;
