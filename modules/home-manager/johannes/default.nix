@@ -1,6 +1,8 @@
 { pkgs, ... }: {
   programs.home-manager.enable = true;
 
+  home.file.".face.icon".source = ./profile.jpg;
+
   home.packages = with pkgs; [
     arduino
     ark
