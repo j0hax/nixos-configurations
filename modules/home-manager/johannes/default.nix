@@ -101,7 +101,7 @@
 
     starship = {
       enable = true;
-      settings = { username.show_always = true; };
+      settings = { username.show_always = true; battery.disabled = true; };
     };
 
     taskwarrior = { enable = true; };
@@ -129,5 +129,11 @@
         ];
       };
     };
+  };
+
+  # Keyboard configuration
+  home.keyboard = {
+    layout = "us";
+    variant = "altgr-intl";
   };
 }
