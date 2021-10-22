@@ -73,6 +73,12 @@
       };
     };
 
+    rofi = {
+      enable = true;
+    };
+
+    kitty.enable = true;
+
     bash.enable = true;
 
     atuin.enable = true;
