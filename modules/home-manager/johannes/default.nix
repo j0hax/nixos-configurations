@@ -101,7 +101,11 @@
 
     starship = {
       enable = true;
-      settings = { username.show_always = true; battery.disabled = true; };
+      settings = {
+        username.show_always = true;
+        battery.disabled = true;
+        status.disabled = false;
+      };
     };
 
     taskwarrior = { enable = true; };
