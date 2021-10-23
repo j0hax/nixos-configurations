@@ -73,9 +73,7 @@
       };
     };
 
-    rofi = {
-      enable = true;
-    };
+    rofi = { enable = true; };
 
     kitty.enable = true;
 
@@ -114,6 +112,13 @@
       };
     };
 
+    alacritty = {
+      enable = true;
+      settings = {
+        background_opacity = 0.9;
+      };
+    };
+
     taskwarrior = { enable = true; };
 
     beets = {
@@ -137,6 +142,29 @@
           "discogs"
           "convert"
         ];
+      };
+    };
+  };
+
+  wayland.windowManager.sway = {
+    enable = true;
+    config = {
+      #window.border = 0;
+      modifier = "Mod4";
+      terminal = "alacritty";
+      input."*" = {
+        xkb_layout = "us";
+        xkb_variant = "altgr-intl";
+      };
+      output."*" =
+        let
+          randomBg = "find ~/Pictures/Wallpapers/ | shuf -n 1";
+        in {
+        bg = "\`${randomBg}\` fill";
+      };
+      gaps = {
+        outer = 15;
+        inner = 10;
       };
     };
   };
