@@ -119,6 +119,8 @@
       };
     };
 
+    broot.enable = true;
+
     taskwarrior = { enable = true; };
 
     beets = {
