@@ -35,7 +35,7 @@
     okular
     onefetch
     openscad
-    pipes
+    pipes-rs
     plasma-systemmonitor
     prusa-slicer
     qrcp
