@@ -59,6 +59,7 @@
     ytmdl
     ballerburg
     minecraft
+    ripgrep
   ];
 
   programs = {
@@ -80,6 +81,11 @@
     bash.enable = true;
 
     atuin.enable = true;
+
+    fzf = {
+      enable = true;
+      defaultOptions = [ "--preview 'bat --style=numbers --color=always {}'" ];
+    };
 
     vim = {
       enable = true;
