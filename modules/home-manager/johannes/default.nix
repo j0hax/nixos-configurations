@@ -35,6 +35,7 @@
     okular
     onefetch
     openscad
+    pandoc
     pipes-rs
     plasma-systemmonitor
     prusa-slicer
