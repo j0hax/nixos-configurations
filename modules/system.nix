@@ -27,4 +27,13 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "dialout" "docker" "wireshark" ];
   };
+
+  # DNS over TLS
+  networking = {
+    nameservers = [ "127.0.0.1" "::1" ];
+    dhcpcd.extraConfig = "nohook resolv.conf";
+    networkmanager.dns = "none";
+  };
+
+  services.stubby.enable = true;
 }
