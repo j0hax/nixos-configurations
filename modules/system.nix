@@ -12,6 +12,12 @@
   # Remote access is critical
   services.openssh.enable = true;
 
+  # Enable Uptime monitoring
+  services.tuptime = {
+    enable = true;
+    timer.enable = true;
+  };
+
   # Save power, even on desktop devices
   services.auto-cpufreq.enable = true;
 
