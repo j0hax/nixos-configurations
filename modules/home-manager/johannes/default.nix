@@ -62,6 +62,7 @@
     ballerburg
     minecraft
     ripgrep
+    ventoy-bin
   ];
 
   programs = {
