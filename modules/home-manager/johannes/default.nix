@@ -131,6 +131,11 @@
       };
     };
 
+    git = {
+      enable = true;
+      delta.enable = true;
+    };
+
     broot.enable = true;
 
     taskwarrior = { enable = true; };
