@@ -65,6 +65,8 @@
     ventoy-bin
   ];
 
+  home.shellAliases = { cat = "${pkgs.bat}/bin/bat"; };
+
   programs = {
     jq.enable = true;
 
