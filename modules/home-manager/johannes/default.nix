@@ -146,6 +146,8 @@
         directory = "/data/music/";
         library = "/data/music/library.db";
         threaded = true;
+        bell = true;
+        from_scratch = true;
         import = {
           write = true;
           move = true;
@@ -161,6 +163,9 @@
           "discogs"
           "convert"
         ];
+        fetchart = {
+          enforce_ratio = true;
+        };
       };
     };
   };
