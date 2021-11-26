@@ -57,7 +57,7 @@
     usbutils
     vscodium
     yakuake
-    youtube-dl
+    yt-dlp
     ytmdl
     ballerburg
     minecraft
