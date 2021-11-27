@@ -62,6 +62,8 @@
     ballerburg
     minecraft
     ripgrep
+    hyperfine
+    hexyl
     ventoy-bin
   ];
 
