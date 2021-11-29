@@ -65,6 +65,7 @@
     hyperfine
     hexyl
     ventoy-bin
+    simplescreenrecorder
   ];
 
   home.shellAliases = { cat = "${pkgs.bat}/bin/bat"; };
