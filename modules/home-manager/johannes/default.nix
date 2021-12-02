@@ -32,7 +32,6 @@
     neofetch
     nixfmt
     nixpkgs-review
-    octaveFull
     okular
     onefetch
     openscad
