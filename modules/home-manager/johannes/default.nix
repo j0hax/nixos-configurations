@@ -44,6 +44,7 @@
     shfmt
     skype
     sox
+    silicon
     spotify
     taskwarrior
     texlive.combined.scheme-full
