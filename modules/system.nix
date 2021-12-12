@@ -1,9 +1,7 @@
 { config, pkgs, lib, ... }: {
 
-  # Use the Zen kernel
-  # Disabled until #122606 is fixed
-  #boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
-  #boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+  # Use a kernel tuned to desktop workloads
+  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
 
   boot.kernelParams = [ "mitigations=off" ];
 
