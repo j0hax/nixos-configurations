@@ -66,6 +66,9 @@
     hexyl
     ventoy-bin
     simplescreenrecorder
+    (writeShellScriptBin "cut-video" ''
+      exec ${pkgs.ffmpeg}/bin/ffmpeg -y -i "$1" -ss $2 -to $3 $(mktemp -t cut_XXX.mp4)
+    '')
   ];
 
   home.shellAliases = { cat = "${pkgs.bat}/bin/bat"; };
