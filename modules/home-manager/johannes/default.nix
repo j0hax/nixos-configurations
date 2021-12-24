@@ -65,6 +65,7 @@
     hyperfine
     hexyl
     ventoy-bin
+    speedcrunch
     simplescreenrecorder
     (writeShellScriptBin "cut-video" ''
       exec ${pkgs.ffmpeg}/bin/ffmpeg -y -i "$1" -ss $2 -to $3 $(mktemp -t cut_XXX.mp4)
