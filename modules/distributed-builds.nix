@@ -17,6 +17,7 @@ in {
     sshUser = "johannes";
     systems = intel;
     supportedFeatures = all;
+    maxJobs = 4;
   }];
   #nix.trustedBinaryCaches = [ "http://${server}:5000" ];
 }
