@@ -116,6 +116,7 @@
       extraConfig = ''
         set number
         set tabstop=4
+        highlight Comment cterm=italic gui=italic
       '';
     };
 
