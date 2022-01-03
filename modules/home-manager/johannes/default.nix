@@ -45,6 +45,7 @@
     skype
     sox
     silicon
+    sshuttle
     spotify
     taskwarrior
     texlive.combined.scheme-full
