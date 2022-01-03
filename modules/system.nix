@@ -40,5 +40,8 @@
     networkmanager.dns = "none";
   };
 
-  services.stubby.enable = true;
+  services.stubby = {
+    enable = true;
+    settings = pkgs.stubby.passthru.settingsExample;
+  };
 }
