@@ -12,5 +12,7 @@
     libfido2
     python3Packages.solo-python
     yubikey-manager
+    chkrootkit
+    lynis
   ];
 }
