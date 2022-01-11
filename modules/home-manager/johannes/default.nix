@@ -72,7 +72,9 @@
       exec ${pkgs.ffmpeg}/bin/ffmpeg -y -i "$1" -ss $2 -to $3 $(mktemp -t cut_XXX.mp4)
     '')
     (writeShellScriptBin "merge-pdf" ''
-      exec ${pkgs.pdftk}/bin/pdftk $@ cat output $(mktemp -t merged_XXX.pdf)
+      file=$(mktemp -t merged_XXX.pdf)
+      ${pkgs.pdftk}/bin/pdftk $@ cat output $file
+      echo "Written to $file"
     '')
   ];
 
