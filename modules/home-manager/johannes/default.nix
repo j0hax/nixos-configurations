@@ -105,11 +105,13 @@
       defaultOptions = [ "--preview 'bat --style=numbers --color=always {}'" ];
     };
 
-    vim = {
+    neovim = {
       enable = true;
+      viAlias = true;
+      vimAlias = true;
+      coc.enable = true;
       plugins = with pkgs.vimPlugins; [
         vim-nix
-        YouCompleteMe
         vim-gitgutter
         delimitMate
         vim-sensible
@@ -118,6 +120,7 @@
       extraConfig = ''
         set number
         set tabstop=4
+        set mouse=a
         highlight Comment cterm=italic gui=italic
       '';
     };
