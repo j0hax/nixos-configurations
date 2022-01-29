@@ -39,7 +39,15 @@
     pipes-rs
     plasma-systemmonitor
     prusa-slicer
-    qrcp
+    (qrcp.overrideAttrs (oldAttrs: rec {
+      patches = [
+        (fetchpatch {
+          name = "env-variable-port.patch";
+          url = "https://patch-diff.githubusercontent.com/raw/claudiodangelis/qrcp/pull/222.patch";
+          sha256 = "sha256-+JkvmSv7sjmQC46dkcKOZjqjryte2uggXIy63v+vTFQ=";
+        })
+      ];
+    }))
     shellcheck
     shfmt
     skype
