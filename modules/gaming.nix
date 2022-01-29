@@ -1,9 +1,9 @@
-{ config, pkgs, ... }: {
+{ config, lib, pkgs, ... }: {
 
-  programs.steam.enable = true;
+  programs.steam.enable = lib.mkDefault true;
 
   programs.gamemode = {
-    enable = true;
+    enable = lib.mkDefault true;
     settings = {
       general = { renice = 20; };
       gpu = {
@@ -21,5 +21,5 @@
   };
 
   # Important for Wine
-  hardware.opengl.driSupport32Bit = true;
+  hardware.opengl.driSupport32Bit = lib.mkDefault true;
 }

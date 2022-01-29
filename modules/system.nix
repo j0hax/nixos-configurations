@@ -9,16 +9,16 @@
   zramSwap.enable = lib.mkDefault true;
 
   # Remote access is critical
-  services.openssh.enable = true;
+  services.openssh.enable = lib.mkDefault true;
 
   # Enable Uptime monitoring
   services.tuptime = {
-    enable = true;
-    timer.enable = true;
+    enable = lib.mkDefault true;
+    timer.enable = lib.mkDefault true;
   };
 
   # Save power, even on desktop devices
-  services.auto-cpufreq.enable = true;
+  services.auto-cpufreq.enable = lib.mkDefault true;
 
   # Auto-Upgrade the system
   system.autoUpgrade = lib.mkDefault {
@@ -29,7 +29,7 @@
   # Add myself as a user
   users.users.johannes = {
     description = "Johannes Arnold";
-    isNormalUser = true;
+    isNormalUser = lib.mkDefault true;
     extraGroups = [ "wheel" "networkmanager" "dialout" "docker" "wireshark" ];
   };
 
@@ -41,7 +41,7 @@
   };
 
   services.stubby = {
-    enable = true;
+    enable = lib.mkDefault true;
     settings = pkgs.stubby.passthru.settingsExample;
   };
 }

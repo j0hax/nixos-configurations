@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 
 let
 
@@ -8,7 +8,7 @@ let
 
 in {
 
-  nix.distributedBuilds = true;
+  nix.distributedBuilds = lib.mkDefault true;
   nix.extraOptions = ''
     builders-use-substitutes = true
   '';

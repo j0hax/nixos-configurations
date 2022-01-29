@@ -1,7 +1,7 @@
-{ pkgs, ... }: {
-  programs.home-manager.enable = true;
+{ pkgs, lib, ... }: {
+  programs.home-manager.enable = lib.mkDefault true;
 
-  xsession.enable = true;
+  xsession.enable = lib.mkDefault true;
 
   home.file.".face.icon".source = ./profile.jpg;
 
@@ -89,35 +89,35 @@
   home.shellAliases = { cat = "${pkgs.bat}/bin/bat"; };
 
   programs = {
-    jq.enable = true;
+    jq.enable = lib.mkDefault true;
 
     mangohud = {
-      enable = true;
-      enableSessionWide = true;
+      enable = lib.mkDefault true;
+      enableSessionWide = lib.mkDefault true;
       settings = {
         cpu_temp = 1;
         gpu_temp = 1;
       };
     };
 
-    rofi = { enable = true; };
+    rofi = { enable = lib.mkDefault true; };
 
-    kitty.enable = true;
+    kitty.enable = lib.mkDefault true;
 
-    bash.enable = true;
+    bash.enable = lib.mkDefault true;
 
-    atuin.enable = true;
+    atuin.enable = lib.mkDefault true;
 
     fzf = {
-      enable = true;
+      enable = lib.mkDefault true;
       defaultOptions = [ "--preview 'bat --style=numbers --color=always {}'" ];
     };
 
     neovim = {
-      enable = true;
-      viAlias = true;
-      vimAlias = true;
-      coc.enable = true;
+      enable = lib.mkDefault true;
+      viAlias = lib.mkDefault true;
+      vimAlias = lib.mkDefault true;
+      coc.enable = lib.mkDefault true;
       plugins = with pkgs.vimPlugins; [
         vim-nix
         vim-gitgutter
@@ -133,49 +133,49 @@
       '';
     };
 
-    bat.enable = true;
+    bat.enable = lib.mkDefault true;
 
     exa = {
-      enable = true;
-      enableAliases = true;
+      enable = lib.mkDefault true;
+      enableAliases = lib.mkDefault true;
     };
 
     starship = {
-      enable = true;
+      enable = lib.mkDefault true;
       settings = {
-        username.show_always = true;
-        battery.disabled = true;
+        username.show_always = lib.mkDefault true;
+        battery.disabled = lib.mkDefault true;
         status.disabled = false;
       };
     };
 
     alacritty = {
-      enable = true;
+      enable = lib.mkDefault true;
       settings = {
         background_opacity = 0.9;
       };
     };
 
     git = {
-      enable = true;
-      delta.enable = true;
+      enable = lib.mkDefault true;
+      delta.enable = lib.mkDefault true;
     };
 
-    broot.enable = true;
+    broot.enable = lib.mkDefault true;
 
-    taskwarrior = { enable = true; };
+    taskwarrior = { enable = lib.mkDefault true; };
 
     beets = {
-      enable = true;
+      enable = lib.mkDefault true;
       settings = {
         directory = "/data/music/";
         library = "/data/music/library.db";
-        threaded = true;
-        bell = true;
-        from_scratch = true;
+        threaded = lib.mkDefault true;
+        bell = lib.mkDefault true;
+        from_scratch = lib.mkDefault true;
         import = {
-          write = true;
-          move = true;
+          write = lib.mkDefault true;
+          move = lib.mkDefault true;
         };
         plugins = [
           "info"
@@ -189,14 +189,14 @@
           "convert"
         ];
         fetchart = {
-          enforce_ratio = true;
+          enforce_ratio = lib.mkDefault true;
         };
       };
     };
   };
 
   wayland.windowManager.sway = {
-    enable = true;
+    enable = lib.mkDefault true;
     config = {
       #window.border = 0;
       modifier = "Mod4";

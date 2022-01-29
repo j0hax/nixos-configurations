@@ -8,17 +8,17 @@ in {
   # Keep system clean
   nix = {
     gc = {
-      automatic = true;
+      automatic = lib.mkDefault true;
       options = "--delete-older-than 3d";
     };
-    settings.auto-optimise-store = true;
-    optimise.automatic = true;
+    settings.auto-optimise-store = lib.mkDefault true;
+    optimise.automatic = lib.mkDefault true;
   };
 
-  boot.tmpOnTmpfs = true;
+  boot.tmpOnTmpfs = lib.mkDefault true;
 
   # Enable trim
-  services.fstrim.enable = true;
+  services.fstrim.enable = lib.mkDefault true;
 
   # Auto scrub filesystems that support it
   services.btrfs.autoScrub.enable = lib.mkDefault (fsExists "btrfs");

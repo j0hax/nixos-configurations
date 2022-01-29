@@ -8,7 +8,7 @@
   '';
 
   # Enable developer man pages
-  documentation.dev.enable = true;
+  documentation.dev.enable = lib.mkDefault true;
   environment.systemPackages = [ pkgs.posix_man_pages ];
 
   # Environment variables

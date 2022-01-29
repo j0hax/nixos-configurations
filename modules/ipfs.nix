@@ -1,12 +1,12 @@
-{ config, ... }:
+{ config, lib, ... }:
 {
   # IPFS is cool
   services.ipfs = {
-    enable = true;
+    enable = lib.mkDefault true;
     user = "johannes";
-    autoMount = true;
-    startWhenNeeded = true;
-    localDiscovery = true;
-    enableGC = true;
+    autoMount = lib.mkDefault true;
+    startWhenNeeded = lib.mkDefault true;
+    localDiscovery = lib.mkDefault true;
+    enableGC = lib.mkDefault true;
   };
 }

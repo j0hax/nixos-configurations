@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, lib, pkgs, ... }: {
   # Base packages for desktop usage
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
@@ -16,21 +16,21 @@
   ];
 
   # Certain programs
-  programs.vim.defaultEditor = true;
-  programs.java.enable = true;
-  programs.adb.enable = true;
-  programs.thefuck.enable = true;
-  programs.tmux.enable = true;
-  programs.gnupg.agent.enable = true;
-  programs.iftop.enable = true;
-  programs.tilp2.enable = true;
+  programs.vim.defaultEditor = lib.mkDefault true;
+  programs.java.enable = lib.mkDefault true;
+  programs.adb.enable = lib.mkDefault true;
+  programs.thefuck.enable = lib.mkDefault true;
+  programs.tmux.enable = lib.mkDefault true;
+  programs.gnupg.agent.enable = lib.mkDefault true;
+  programs.iftop.enable = lib.mkDefault true;
+  programs.tilp2.enable = lib.mkDefault true;
   programs.wireshark = {
-    enable = true;
+    enable = lib.mkDefault true;
     package = pkgs.wireshark-qt;
   };
 
   # Enable firmware updates
-  services.fwupd.enable = true;
+  services.fwupd.enable = lib.mkDefault true;
 
   # Some smaller hardware tweaks
   services.udev.packages = with pkgs; [ logitech-udev-rules ];

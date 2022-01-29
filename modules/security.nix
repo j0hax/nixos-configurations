@@ -1,12 +1,12 @@
 { config, pkgs, lib, ... }: {
   security.pam.u2f = {
-    enable = true;
-    cue = true;
+    enable = lib.mkDefault true;
+    cue = lib.mkDefault true;
   };
 
-  services.pcscd.enable = true;
+  services.pcscd.enable = lib.mkDefault true;
 
-  services.opensnitch.enable = true;
+  services.opensnitch.enable = lib.mkDefault true;
 
   networking.firewall = {
     enable = lib.mkDefault true;
