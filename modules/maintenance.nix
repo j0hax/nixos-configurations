@@ -11,7 +11,7 @@ in {
       automatic = true;
       options = "--delete-older-than 3d";
     };
-    autoOptimiseStore = true;
+    settings.auto-optimise-store = true;
     optimise.automatic = true;
   };
 
