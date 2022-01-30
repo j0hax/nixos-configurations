@@ -23,6 +23,7 @@
     hydra-check
     imagemagick
     kate
+    kronometer
     libreoffice-qt
     magic-wormhole
     megatools
