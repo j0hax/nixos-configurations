@@ -23,7 +23,6 @@
   programs.tmux.enable = lib.mkDefault true;
   programs.gnupg.agent.enable = lib.mkDefault true;
   programs.iftop.enable = lib.mkDefault true;
-  programs.tilp2.enable = lib.mkDefault true;
   programs.wireshark = {
     enable = lib.mkDefault true;
     package = pkgs.wireshark-qt;
