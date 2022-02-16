@@ -98,6 +98,7 @@
   };
 
   # ZFS Configuration
+  boot.kernelPackages = pkgs.linuxPackages_xanmod;
   boot.supportedFilesystems = [ "zfs" ];
   networking.hostId = "bfea96cf";
   boot.zfs.extraPools = [ "data" ];
