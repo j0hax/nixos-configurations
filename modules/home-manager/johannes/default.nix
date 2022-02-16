@@ -18,7 +18,7 @@
     firefox
     gimp
     gwenview
-    hashcat
+    filelight
     htop
     hydra-check
     imagemagick
