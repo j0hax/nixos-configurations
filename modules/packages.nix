@@ -13,6 +13,7 @@
     usbutils
     wget
     wineWowPackages.staging
+    scrub
   ];
 
   # Certain programs
