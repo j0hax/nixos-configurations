@@ -33,6 +33,11 @@
     extraGroups = [ "wheel" "networkmanager" "dialout" "docker" "wireshark" ];
   };
 
+  ## Networking
+
+  # iOS Tethering
+  services.usbmuxd.enable = true;
+
   # DNS over TLS
   networking = {
     nameservers = [ "127.0.0.1" "::1" ];
