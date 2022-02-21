@@ -92,6 +92,8 @@
   programs = {
     jq.enable = lib.mkDefault true;
 
+    go.enable = lib.mkDefault true;
+
     mangohud = {
       enable = lib.mkDefault true;
       enableSessionWide = lib.mkDefault true;

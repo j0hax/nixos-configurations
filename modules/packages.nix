@@ -5,7 +5,6 @@
     bc
     file
     git
-    go
     killall
     parallel
     python3
