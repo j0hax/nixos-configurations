@@ -36,7 +36,6 @@
     okular
     onefetch
     openscad
-    pandoc
     pipes-rs
     plasma-systemmonitor
     prusa-slicer
@@ -93,6 +92,8 @@
     jq.enable = lib.mkDefault true;
 
     go.enable = lib.mkDefault true;
+
+    pandoc.enable = lib.mkDefault true;
 
     mangohud = {
       enable = lib.mkDefault true;
