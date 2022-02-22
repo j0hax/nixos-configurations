@@ -56,7 +56,7 @@
     sshuttle
     spotify
     taskwarrior
-    texlive.combined.scheme-full
+    tectonic
     texmaker
     thunderbird
     tor-browser-bundle-bin
