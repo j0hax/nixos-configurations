@@ -63,6 +63,7 @@
     transmission-qt
     tty-clock
     unrar
+    tdesktop
     usbutils
     vscodium
     yakuake
