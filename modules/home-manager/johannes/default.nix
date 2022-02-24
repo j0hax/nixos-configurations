@@ -65,6 +65,7 @@
     unrar
     tdesktop
     usbutils
+    scanmem
     vscodium
     yakuake
     yt-dlp
