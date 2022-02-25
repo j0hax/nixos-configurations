@@ -86,6 +86,18 @@
         exec ffmpeg -y -i "$1" -ss "$2" -to "$3" "$(mktemp -t cut_XXX.mp4)"
       '';
     })
+
+    # Simple tool to generate PDFs of source code
+    (writeShellApplication {
+      name = "codepdf";
+      runtimeInputs = [ enscript ghostscript wkhtmltopdf ];
+      text = ''
+        bn=$(basename "$1")
+        tmp=$(mktemp -t "XXX_$bn")
+        iconv -f utf-8 -t iso-8859-1 "$1" -o "$tmp"
+        enscript -q -G --color --line-numbers --highlight "$tmp" -o - | ps2pdf - code.pdf
+      '';
+    })
   ];
 
   home.shellAliases = { cat = "${pkgs.bat}/bin/bat"; };
