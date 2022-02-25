@@ -43,7 +43,8 @@
       patches = [
         (fetchpatch {
           name = "env-variable-port.patch";
-          url = "https://patch-diff.githubusercontent.com/raw/claudiodangelis/qrcp/pull/222.patch";
+          url =
+            "https://patch-diff.githubusercontent.com/raw/claudiodangelis/qrcp/pull/222.patch";
           sha256 = "sha256-+JkvmSv7sjmQC46dkcKOZjqjryte2uggXIy63v+vTFQ=";
         })
       ];
@@ -78,14 +79,13 @@
     ventoy-bin
     speedcrunch
     simplescreenrecorder
-    (writeShellScriptBin "cut-video" ''
-      exec ${pkgs.ffmpeg}/bin/ffmpeg -y -i "$1" -ss $2 -to $3 $(mktemp -t cut_XXX.mp4)
-    '')
-    (writeShellScriptBin "merge-pdf" ''
-      file=$(mktemp -t merged_XXX.pdf)
-      ${pkgs.pdftk}/bin/pdftk $@ cat output $file
-      echo "Written to $file"
-    '')
+    (writeShellApplication {
+      name = "cut-video";
+      runtimeInputs = [ ffmpeg ];
+      text = ''
+        exec ffmpeg -y -i "$1" -ss "$2" -to "$3" "$(mktemp -t cut_XXX.mp4)"
+      '';
+    })
   ];
 
   home.shellAliases = { cat = "${pkgs.bat}/bin/bat"; };
@@ -157,9 +157,7 @@
 
     alacritty = {
       enable = lib.mkDefault true;
-      settings = {
-        background_opacity = 0.9;
-      };
+      settings = { background_opacity = 0.9; };
     };
 
     git = {
@@ -194,9 +192,7 @@
           "discogs"
           "convert"
         ];
-        fetchart = {
-          enforce_ratio = lib.mkDefault true;
-        };
+        fetchart = { enforce_ratio = lib.mkDefault true; };
       };
     };
   };
@@ -211,12 +207,8 @@
         xkb_layout = "us";
         xkb_variant = "altgr-intl";
       };
-      output."*" =
-        let
-          randomBg = "find ~/Pictures/Wallpapers/ | shuf -n 1";
-        in {
-        bg = "\`${randomBg}\` fill";
-      };
+      output."*" = let randomBg = "find ~/Pictures/Wallpapers/ | shuf -n 1";
+      in { bg = "`${randomBg}` fill"; };
       gaps = {
         outer = 15;
         inner = 10;
