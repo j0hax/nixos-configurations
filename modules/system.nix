@@ -26,6 +26,10 @@
     flake = "github:j0hax/nixos-configurations";
   };
 
+  # Use ZSH as the use shell
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
+
   # Add myself as a user
   users.users.johannes = {
     description = "Johannes Arnold";

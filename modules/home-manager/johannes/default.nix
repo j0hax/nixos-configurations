@@ -122,7 +122,11 @@
 
     kitty.enable = lib.mkDefault true;
 
-    bash.enable = lib.mkDefault true;
+    zsh = lib.mkDefault {
+      enable = true;
+      enableCompletion = true;
+      autocd = true;
+    };
 
     atuin.enable = lib.mkDefault true;
 
