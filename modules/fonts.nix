@@ -9,6 +9,7 @@
     (nerdfonts.override { fonts = [ "Agave" "FiraCode" "Iosevka" ]; })
     twitter-color-emoji
     yanone-kaffeesatz
+    inriafonts
   ];
 
   fonts.fontconfig.defaultFonts = lib.mkDefault {
