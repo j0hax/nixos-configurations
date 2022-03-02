@@ -13,6 +13,7 @@
     wget
     wineWowPackages.staging
     scrub
+    age
   ];
 
   # Certain programs
