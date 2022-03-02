@@ -28,7 +28,7 @@
     magic-wormhole
     megatools
     mpv
-    ncat
+    nmap
     neochat
     neofetch
     nixfmt
@@ -160,15 +160,6 @@
     exa = {
       enable = lib.mkDefault true;
       enableAliases = lib.mkDefault true;
-    };
-
-    starship = {
-      enable = lib.mkDefault true;
-      settings = {
-        username.show_always = lib.mkDefault true;
-        battery.disabled = lib.mkDefault true;
-        status.disabled = false;
-      };
     };
 
     alacritty = {
