@@ -51,7 +51,7 @@
     }))
     shellcheck
     shfmt
-    skype
+    skypeforlinux
     sox
     silicon
     sshuttle
