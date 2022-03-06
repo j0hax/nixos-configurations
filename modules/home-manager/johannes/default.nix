@@ -164,7 +164,7 @@
 
     alacritty = {
       enable = lib.mkDefault true;
-      settings = { background_opacity = 0.9; };
+      settings = { window.opacity = 0.9; };
     };
 
     git = {
