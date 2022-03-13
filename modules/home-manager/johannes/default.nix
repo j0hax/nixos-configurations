@@ -110,8 +110,6 @@
 
     rofi = { enable = lib.mkDefault true; };
 
-    kitty.enable = lib.mkDefault true;
-
     zsh = lib.mkDefault {
       enable = true;
       enableCompletion = true;
