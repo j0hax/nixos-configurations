@@ -202,8 +202,7 @@
         xkb_layout = "us";
         xkb_variant = "altgr-intl";
       };
-      output."*" = let randomBg = "find ~/Pictures/Wallpapers/ | shuf -n 1";
-      in { bg = "`${randomBg}` fill"; };
+      output."*".bg = "#3a6ea5 solid_color";
       gaps = {
         outer = 15;
         inner = 10;
