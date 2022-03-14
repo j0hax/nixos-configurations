@@ -150,11 +150,6 @@
       enableAliases = lib.mkDefault true;
     };
 
-    alacritty = {
-      enable = lib.mkDefault true;
-      settings = { window.opacity = 0.9; };
-    };
-
     git = {
       enable = lib.mkDefault true;
       delta.enable = lib.mkDefault true;
@@ -190,6 +185,18 @@
         fetchart = { enforce_ratio = lib.mkDefault true; };
       };
     };
+
+    foot = {
+      enable = true;
+      server.enable = true;
+      settings = {
+        main = {
+          pad = "16x16 center";
+          font = "Iosevka:size=8";
+        };
+        mouse = { hide-when-typing = "yes"; };
+      };
+    };
   };
 
   wayland.windowManager.sway = {
@@ -197,7 +204,7 @@
     config = {
       #window.border = 0;
       modifier = "Mod4";
-      terminal = "alacritty";
+      terminal = "footclient";
       input."*" = {
         xkb_layout = "us";
         xkb_variant = "altgr-intl";
