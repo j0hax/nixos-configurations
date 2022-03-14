@@ -28,6 +28,7 @@
     magic-wormhole
     megatools
     mpv
+    (ffmpeg-full.override { rav1e = rav1e; })
     nmap
     neochat
     neofetch
