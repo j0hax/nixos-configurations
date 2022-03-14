@@ -90,7 +90,10 @@
     })
   ];
 
-  home.shellAliases = { cat = "${pkgs.bat}/bin/bat"; };
+  home.shellAliases = {
+    cat = "${pkgs.bat}/bin/bat";
+    zathura = "zathura --fork";
+  };
 
   programs = {
     jq.enable = lib.mkDefault true;
@@ -197,6 +200,8 @@
         mouse = { hide-when-typing = "yes"; };
       };
     };
+
+    zathura.enable = true;
   };
 
   wayland.windowManager.sway = {
