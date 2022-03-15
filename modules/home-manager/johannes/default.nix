@@ -195,8 +195,9 @@
       server.enable = true;
       settings = {
         main = {
+          term = "xterm-256color";
           pad = "16x16 center";
-          font = "Iosevka:size=8";
+          font = "Iosevka:size=10";
         };
         mouse = { hide-when-typing = "yes"; };
       };
@@ -209,7 +210,7 @@
     enable = lib.mkDefault true;
     config = {
       #window.border = 0;
-      modifier = "Mod4";
+      modifier = "Mod1";
       terminal = "footclient";
       input."*" = {
         xkb_layout = "us";
