@@ -8,6 +8,7 @@
   home.packages = with pkgs; [
     arduino
     ark
+    anki
     asciinema
     beats
     black
