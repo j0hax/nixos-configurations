@@ -28,7 +28,7 @@
     libreoffice-qt
     magic-wormhole
     megatools
-    (ffmpeg-full.override { rav1e = rav1e; })
+    ffmpeg-full
     nmap
     neochat
     neofetch
