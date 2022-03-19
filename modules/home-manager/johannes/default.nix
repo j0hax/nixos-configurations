@@ -28,7 +28,6 @@
     libreoffice-qt
     magic-wormhole
     megatools
-    mpv
     (ffmpeg-full.override { rav1e = rav1e; })
     nmap
     neochat
@@ -202,6 +201,15 @@
         };
         mouse = { hide-when-typing = "yes"; };
       };
+    };
+
+    mpv = {
+      enable = true;
+      config = {
+        interpolation = true;
+        video-sync = "display-resample";
+      };
+      defaultProfiles = [ "gpu-hq" ];
     };
 
     zathura.enable = true;
