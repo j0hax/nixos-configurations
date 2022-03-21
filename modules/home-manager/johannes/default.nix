@@ -208,6 +208,7 @@
       config = {
         interpolation = true;
         video-sync = "display-resample";
+        save-position-on-quit = true;
       };
       defaultProfiles = [ "gpu-hq" ];
     };
