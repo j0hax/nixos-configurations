@@ -77,6 +77,13 @@
         exec ffmpeg -y -i "$1" -ss "$2" -to "$3" "$(mktemp -t cut_XXX.mp4)"
       '';
     })
+    
+    (writeShellApplication {
+      name = "rename-random";
+      text = ''
+        find -type f -print0 | while read -d $'\0' i; do mv -f "$i" "$(mktemp XXXXXXXXXXXXXXXX."${i##*.}")"; done
+      '';
+    })
 
     # Simple tool to generate PDFs of source code
     (writeShellApplication {
