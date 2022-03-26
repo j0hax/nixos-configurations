@@ -147,6 +147,18 @@
       '';
     };
 
+    aria2 = {
+      enable = true;
+      settings = {
+        summary-interval = 0;
+        check-integrity = true;
+        continue = true;
+        max-connection-per-server = 16;
+        disk-cache = "128M";
+        file-allocation = "falloc";
+      };
+    };
+
     bat.enable = lib.mkDefault true;
 
     exa = {
