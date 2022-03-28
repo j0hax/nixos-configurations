@@ -223,6 +223,7 @@
         interpolation = true;
         tscale = "oversample";
         video-sync = "display-resample";
+        sub-auto = "fuzzy";
         save-position-on-quit = true;
       };
       defaultProfiles = [ "gpu-hq" ];
