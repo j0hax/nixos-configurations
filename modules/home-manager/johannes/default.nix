@@ -202,6 +202,8 @@
       };
     };
 
+    obs-studio.enable = true;
+
     foot = {
       enable = true;
       server.enable = true;
