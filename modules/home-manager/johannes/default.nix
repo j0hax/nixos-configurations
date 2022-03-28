@@ -221,6 +221,7 @@
       enable = true;
       config = {
         interpolation = true;
+        tscale = "oversample";
         video-sync = "display-resample";
         save-position-on-quit = true;
       };
