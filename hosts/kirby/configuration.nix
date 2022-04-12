@@ -14,6 +14,10 @@
   networking.hostName = "kirby"; # Define your hostname.
   networking.networkmanager.enable = true;
 
+  # Use iwd
+  networking.wireless.iwd.enable = true;
+  networking.networkmanager.wifi.backend = "iwd";
+
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
 
