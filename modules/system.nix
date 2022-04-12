@@ -2,6 +2,7 @@
 
   # Use a kernel tuned to desktop workloads
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
+  boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
 
   boot.kernelParams = [ "mitigations=off" ];
 
