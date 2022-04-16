@@ -47,6 +47,7 @@
     silicon
     sshuttle
     spotify
+    pmbootstrap
     taskwarrior
     tectonic
     texmaker
