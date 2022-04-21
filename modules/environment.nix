@@ -8,7 +8,10 @@
   '';
 
   # Enable developer man pages
-  documentation.dev.enable = lib.mkDefault true;
+  documentation = lib.mkDefault {
+    dev.enable = true;
+    man.generateCaches = true;
+  };
   environment.systemPackages = [ pkgs.posix_man_pages ];
 
   # Environment variables
