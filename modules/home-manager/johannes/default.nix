@@ -212,7 +212,7 @@
         main = {
           term = "xterm-256color";
           pad = "16x16 center";
-          font = "Iosevka:size=10";
+          font = "Iosevka:size=8";
         };
         mouse = { hide-when-typing = "yes"; };
       };
