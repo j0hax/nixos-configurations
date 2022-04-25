@@ -6,6 +6,9 @@
 
   boot.kernelParams = [ "mitigations=off" ];
 
+  # Enable common filesystems
+  boot.supportedFilesystems = [ "ntfs" ];
+
   # Enable Zramswap
   zramSwap.enable = lib.mkDefault true;
 
