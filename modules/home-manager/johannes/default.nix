@@ -169,6 +169,8 @@
 
     git = {
       enable = lib.mkDefault true;
+      package = pkgs.gitAndTools.gitFull;
+      lfs.enable = lib.mkDefault true;
       delta.enable = lib.mkDefault true;
     };
 
