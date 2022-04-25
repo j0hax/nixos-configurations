@@ -4,3 +4,6 @@ result
 # System files
 .*.swp
 .DS_Store
+
+# Passwords
+secrets/
