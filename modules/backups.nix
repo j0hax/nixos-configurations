@@ -1,9 +1,21 @@
-{ config, ... }: {
+{ config, ... }:
+let
+  mainRepo = "/var/backups";
+  passwordFile = "/etc/nixos/secrets/restic-password";
+in {
+  environment.variables = {
+    RESTIC_REPOSITORY = mainRepo;
+    RESTIC_PASSWORD_FILE = passwordFile;
+  };
   services.restic.backups = {
-    home = {
-      repository = "/run/media/johannes/Backups";
-      paths = [ "/home" "/root" ];
-      passwordFile = "/etc/nixos/secrets/restic-password";
+    local = let user = "johannes";
+    in {
+      repository = mainRepo;
+      initialize = true;
+      inherit user;
+      paths = [ "/home/${user}/Documents" ];
+      extraBackupArgs = [ "--tag service" ];
+      inherit passwordFile;
     };
   };
 }
