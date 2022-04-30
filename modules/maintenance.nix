@@ -15,7 +15,9 @@ in {
     optimise.automatic = lib.mkDefault true;
   };
 
+  # Explicitly use tmpfs to save disk writes
   boot.tmpOnTmpfs = lib.mkDefault true;
+  environment.variables.TMPDIR = "/tmp";
 
   # Enable trim
   services.fstrim.enable = lib.mkDefault true;
