@@ -1,3 +1,1 @@
-{ config, ... }: {
-  services.davfs2.enable = true;
-}
+{ config, ... }: { services.davfs2.enable = true; }

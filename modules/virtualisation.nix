@@ -9,7 +9,11 @@
     kernelParams = [ "intel_iommu=on" "intel_iommu=on" ];
   };
 
-  environment.systemPackages = with pkgs; [ virt-manager lazydocker docker-compose ];
+  environment.systemPackages = with pkgs; [
+    virt-manager
+    lazydocker
+    docker-compose
+  ];
 
   virtualisation.docker = {
     enable = lib.mkDefault true;
