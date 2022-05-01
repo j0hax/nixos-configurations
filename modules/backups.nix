@@ -26,9 +26,9 @@ in {
       repository = mainRepo;
       initialize = true;
       inherit user;
-      paths = [ "/home/${user}/Documents" ];
+      paths = [ "/home" ];
       inherit pruneOpts;
-      extraBackupArgs = [ autoTag ];
+      extraBackupArgs = [ autoTag "--exclude-caches" ];
       inherit passwordFile;
     };
   };
