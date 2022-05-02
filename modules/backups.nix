@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 let
   mainRepo = "/var/backups";
 
@@ -10,22 +10,22 @@ let
   pruneOpts =
     [ "--keep-daily 7" "--keep-weekly 4" "--keep-monthly 12" autoTag ];
 in {
-  # Save some typing ;)
-  environment.variables = {
-    RESTIC_REPOSITORY = mainRepo;
-    RESTIC_PASSWORD_FILE = passwordFile;
+  environment = {
+    systemPackages = [ pkgs.restic ];
+
+    # Save some typing ;)
+    variables = {
+      RESTIC_REPOSITORY = mainRepo;
+      RESTIC_PASSWORD_FILE = passwordFile;
+    };
   };
 
-  services.restic.backups = {
-    local = let user = "johannes";
-    in {
-      repository = mainRepo;
-      initialize = true;
-      inherit user;
-      paths = [ "/home" ];
-      inherit pruneOpts;
-      extraBackupArgs = [ autoTag "--exclude-caches" ];
-      inherit passwordFile;
-    };
+  services.restic.backups.local = {
+    repository = mainRepo;
+    initialize = true;
+    paths = [ "/home" ];
+    inherit pruneOpts;
+    extraBackupArgs = [ autoTag "--exclude-caches" ];
+    inherit passwordFile;
   };
 }

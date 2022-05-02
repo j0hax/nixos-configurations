@@ -42,7 +42,6 @@
     prusa-slicer
     shellcheck
     shfmt
-    restic
     skypeforlinux
     sox
     silicon
