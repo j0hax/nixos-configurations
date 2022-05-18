@@ -1,5 +1,6 @@
 { pkgs, lib, config, ... }: {
   security.rtkit.enable = lib.mkDefault true;
+  hardware.pulseaudio.enable = false;
   services.pipewire = {
     enable = lib.mkDefault true;
     alsa.enable = lib.mkDefault true;

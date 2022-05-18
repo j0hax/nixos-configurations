@@ -7,7 +7,6 @@
 
   home.packages = with pkgs; [
     arduino
-    ark
     anki
     asciinema
     beats
@@ -18,27 +17,20 @@
     discord
     firefox
     gimp
-    gwenview
-    filelight
     htop
     hydra-check
     imagemagick
-    kate
-    kronometer
     libreoffice-qt
     magic-wormhole
     megatools
     ffmpeg-full
     nmap
-    neochat
     neofetch
     nixfmt
     nixpkgs-review
-    okular
     onefetch
     openscad
     pipes-rs
-    plasma-systemmonitor
     prusa-slicer
     shellcheck
     shfmt
@@ -53,14 +45,12 @@
     texmaker
     thunderbird
     tor-browser-bundle-bin
-    transmission-qt
     tty-clock
     unrar
     tdesktop
     usbutils
     scanmem
     vscodium
-    yakuake
     yt-dlp
     ytmdl
     ballerburg
@@ -70,7 +60,6 @@
     hexyl
     ventoy-bin
     speedcrunch
-    simplescreenrecorder
     (writeShellApplication {
       name = "cut-video";
       runtimeInputs = [ ffmpeg ];
@@ -90,6 +79,13 @@
         enscript -q -G --color --line-numbers --highlight "$tmp" -o - | ps2pdf - code.pdf
       '';
     })
+
+    # Gnome Apps to try out
+    wike
+    gnome-solanum
+    shortwave
+    foliate
+    gnome-feeds
   ];
 
   home.shellAliases = {
@@ -258,4 +254,7 @@
     layout = "us";
     variant = "altgr-intl";
   };
+
+  # Extra variables
+  home.sessionVariables = { MOZ_USE_XINPUT2 = "1"; MOZ_ENABLE_WAYLAND = 1; };
 }
