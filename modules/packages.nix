@@ -22,7 +22,6 @@
   programs.adb.enable = lib.mkDefault true;
   programs.thefuck.enable = lib.mkDefault true;
   programs.tmux.enable = lib.mkDefault true;
-  programs.partition-manager.enable = lib.mkDefault true;
   programs.gnupg.agent.enable = lib.mkDefault true;
   programs.iftop.enable = lib.mkDefault true;
   programs.iotop.enable = lib.mkDefault true;

@@ -7,7 +7,6 @@
 
   home.packages = with pkgs; [
     arduino
-    ark
     anki
     asciinema
     beats
@@ -18,27 +17,20 @@
     discord
     firefox
     gimp
-    gwenview
-    filelight
     htop
     hydra-check
     imagemagick
-    kate
-    kronometer
     libreoffice-qt
     magic-wormhole
     megatools
     ffmpeg-full
     nmap
-    neochat
     neofetch
     nixfmt
     nixpkgs-review
-    okular
     onefetch
     openscad
     pipes-rs
-    plasma-systemmonitor
     prusa-slicer
     shellcheck
     shfmt
@@ -60,7 +52,6 @@
     usbutils
     scanmem
     vscodium
-    yakuake
     yt-dlp
     ytmdl
     ballerburg
@@ -258,4 +249,7 @@
     layout = "us";
     variant = "altgr-intl";
   };
+
+  # Extra variables
+  home.sessionVariables = { MOZ_USE_XINPUT2 = "1"; };
 }
