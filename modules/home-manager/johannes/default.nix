@@ -45,7 +45,6 @@
     texmaker
     thunderbird
     tor-browser-bundle-bin
-    transmission-qt
     tty-clock
     unrar
     tdesktop
@@ -61,7 +60,6 @@
     hexyl
     ventoy-bin
     speedcrunch
-    simplescreenrecorder
     (writeShellApplication {
       name = "cut-video";
       runtimeInputs = [ ffmpeg ];
@@ -81,6 +79,13 @@
         enscript -q -G --color --line-numbers --highlight "$tmp" -o - | ps2pdf - code.pdf
       '';
     })
+
+    # Gnome Apps to try out
+    wike
+    gnome-solanum
+    shortwave
+    foliate
+    gnome-feeds
   ];
 
   home.shellAliases = {
@@ -251,5 +256,5 @@
   };
 
   # Extra variables
-  home.sessionVariables = { MOZ_USE_XINPUT2 = "1"; };
+  home.sessionVariables = { MOZ_USE_XINPUT2 = "1"; MOZ_ENABLE_WAYLAND = 1; };
 }
