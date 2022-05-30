@@ -1,10 +1,6 @@
 { config, pkgs, lib, ... }: {
   users.motd = with config; ''
     Welcome to ${networking.hostName}!
-
-    OS:      NixOS ${system.nixos.release} (${system.nixos.codeName})
-    Version: ${system.nixos.version}
-    Kernel:  ${boot.kernelPackages.kernel.version}
   '';
 
   # Enable developer man pages
