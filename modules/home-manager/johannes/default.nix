@@ -60,6 +60,7 @@
     hexyl
     ventoy-bin
     speedcrunch
+    whatsapp-for-linux
     (writeShellApplication {
       name = "cut-video";
       runtimeInputs = [ ffmpeg ];
