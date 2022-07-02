@@ -210,7 +210,7 @@
 
     foot = {
       enable = true;
-      server.enable = true;
+      server.enable = false;
       settings = {
         main = {
           term = "xterm-256color";
@@ -249,7 +249,7 @@
     config = {
       #window.border = 0;
       modifier = "Mod1";
-      terminal = "footclient";
+      terminal = "foot";
       input."*" = {
         xkb_layout = "us";
         xkb_variant = "altgr-intl";
