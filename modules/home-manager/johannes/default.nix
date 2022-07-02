@@ -1,4 +1,6 @@
 { pkgs, lib, ... }: {
+  home.stateVersion = "22.11";
+
   programs.home-manager.enable = lib.mkDefault true;
 
   xsession.enable = lib.mkDefault true;
@@ -18,6 +20,8 @@
     firefox
     gimp
     htop
+    logisim-evolution
+    qrcp
     hydra-check
     imagemagick
     libreoffice-qt
@@ -215,6 +219,14 @@
         };
         mouse = { hide-when-typing = "yes"; };
       };
+    };
+
+    texlive = {
+      enable = true;
+      extraPackages = tpkgs: {
+      inherit (tpkgs) scheme-full;
+    };
+
     };
 
     mpv = {
