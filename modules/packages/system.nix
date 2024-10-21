@@ -34,6 +34,8 @@ in
       defaultEditor = true;
       vimAlias = true;
     };
+    
+    flashrom.enable = true;
   };
 
   environment.systemPackages = with pkgs; [

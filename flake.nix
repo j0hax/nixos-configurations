@@ -27,21 +27,26 @@
           ];
           networking.hostName = name;
         }
-        agenix.nixosModules.default
         ./hosts/${name}
         ./modules/services
         ./modules/packages
         ./modules/system
         ./modules/user/johannes
+      ];
 
+      agenixModules = system: [
+        agenix.nixosModules.default
+        {
+          environment.systemPackages = [ agenix.packages.${system}.default ];
+        }
       ];
 
       # Define a system with common and extra modules
       mkSystem =
         name: cfg:
-        nixpkgs.lib.nixosSystem {
+        nixpkgs.lib.nixosSystem rec {
           system = cfg.system or "x86_64-linux";
-          modules = (commonModules name) ++ (cfg.modules or [ ]);
+          modules = (commonModules name) ++ (agenixModules system) ++ (cfg.modules or [ ]);
           specialArgs = inputs;
         };
 

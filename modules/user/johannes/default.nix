@@ -13,8 +13,7 @@
       "video"
       "libvirtd"
     ];
-    packages = with pkgs; [
-      firefox
+    packages = with pkgs; [ 
       go
       rclone
     ];

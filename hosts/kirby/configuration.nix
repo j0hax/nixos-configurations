@@ -14,8 +14,12 @@
   ];
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  #boot.loader.systemd-boot.enable = true;
+  #boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.forcei686 = true;
+  boot.loader.grub.forceInstall = true;
 
   boot.supportedFilesystems = [ "bacachefs" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -72,26 +76,16 @@
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "24.05"; # Did you read the comment?
 
-  boot.kernel.sysctl = {
-    "fs.file-max" = 524288;
-  };
-  systemd.extraConfig = "DefaultLimitNOFILE = 4096";
   nix.settings.system-features = [
     "big-parallel"
     "gccarch-ivybridge"
   ];
-  /*
-    nixpkgs.hostPlatform = {
+
+/*
+  nixpkgs.hostPlatform = {
       gcc.arch = "ivybridge";
       gcc.tune = "ivybridge";
       system = "x86_64-linux";
     };
-  */
-  /*
-     nixpkgs.overlays = [
-       (final: prev: {
-         libuv = /home/johannes/nixpkgs/pkgs/development/libraries/libuv/default.nix;
-       })
-     ];
-  */
+*/
 }

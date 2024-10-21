@@ -8,5 +8,6 @@
   imports = [
     ./restic.nix
     ./system.nix
+    ./clamav.nix
   ];
 }
