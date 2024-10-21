@@ -1,76 +1,97 @@
-{ config, pkgs, nixos-hardware, ... }: {
+# Edit this configuration file to define what should be installed on
+# your system. Help is available in the configuration.nix(5) man page, on
+# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    nixos-hardware.nixosModules.lenovo-thinkpad-x230
-    nixos-hardware.nixosModules.common-pc-ssd
   ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.loader.systemd-boot.consoleMode = "max";
+  boot.supportedFilesystems = [ "bacachefs" ];
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  #boot.plymouth.enable = true;
 
   networking.hostName = "kirby"; # Define your hostname.
-  networking.networkmanager.enable = true;
-
-  # Use iwd
-  networking.wireless.iwd.enable = true;
-  networking.networkmanager.wifi.backend = "iwd";
+  # Pick only one of the below networking options.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
 
-  services.xserver.displayManager.autoLogin = {
-    enable = true;
-    user = "johannes";
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
+  # Enable touchpad support (enabled default in most desktopManager).
+  # services.libinput.enable = true;
+
+  # List services that you want to enable:
+
+  # Enable the OpenSSH daemon.
+  services.openssh.enable = true;
+
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
+
+  # Copy the NixOS configuration file and link it from the resulting system
+  # (/run/current-system/configuration.nix). This is useful in case you
+  # accidentally delete configuration.nix.
+  #system.copySystemConfiguration = true;
+
+  # This option defines the first version of NixOS you have installed on this particular machine,
+  # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
+  #
+  # Most users should NEVER change this value after the initial install, for any reason,
+  # even if you've upgraded your system to a new NixOS release.
+  #
+  # This value does NOT affect the Nixpkgs version your packages and OS are pulled from,
+  # so changing it will NOT upgrade your system - see https://nixos.org/manual/nixos/stable/#sec-upgrading for how
+  # to actually do that.
+  #
+  # This value being lower than the current NixOS release does NOT mean your system is
+  # out of date, out of support, or vulnerable.
+  #
+  # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
+  # and migrated your data accordingly.
+  #
+  # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
+  system.stateVersion = "24.05"; # Did you read the comment?
+
+  boot.kernel.sysctl = {
+    "fs.file-max" = 524288;
   };
-
-  # Encrypted SSD via SD Card
-  #boot.initrd.kernelModules = [ "usb_storage" ];
-  boot.initrd.luks.devices."cryptroot" = {
-    #  keyFileSize = 4096;
-    #  keyFile = "/dev/mmcblk0";
-    bypassWorkqueues = true;
-    allowDiscards = true;
-  };
-
-  # New Cryptenroll method
-  environment.etc.crypttab = {
-    enable = true;
-    text = ''
-      cryptroot /dev/sda2 - fido2-device=auto
-    '';
-  };
-
-  # Location services
-  services.geoclue2.enable = true;
-
-  # Automatically turn on Backlight
-  services.tp-auto-kbbl = {
-    enable = true;
-    device = "/dev/input/event1";
-  };
-
-  # Disable tlp
-  services.tlp.enable = false;
-
-  # Clight is broken
-  #services.clight.enable = true;
-
-  # Localtime for travelling
-  #services.localtime.enable = true;
-
-  nix = {
-    package = pkgs.nixFlakes;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-  };
-
-  hardware.trackpoint = {
-    enable = true;
-    speed = 255;
-  };
+  systemd.extraConfig = "DefaultLimitNOFILE = 4096";
+  nix.settings.system-features = [
+    "big-parallel"
+    "gccarch-ivybridge"
+  ];
+  /*
+    nixpkgs.hostPlatform = {
+      gcc.arch = "ivybridge";
+      gcc.tune = "ivybridge";
+      system = "x86_64-linux";
+    };
+  */
+  /*
+     nixpkgs.overlays = [
+       (final: prev: {
+         libuv = /home/johannes/nixpkgs/pkgs/development/libraries/libuv/default.nix;
+       })
+     ];
+  */
 }
-

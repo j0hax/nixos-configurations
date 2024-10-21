@@ -2,45 +2,76 @@
   description = "Johannes' NixOS Configurations";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    home-manager.url = "github:nix-community/home-manager";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    agenix.url = "github:ryantm/agenix";
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager }:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      agenix,
+      nixos-hardware,
+      ...
+    }@inputs:
     let
+      forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed;
 
-      lib = nixpkgs.lib;
-
-      # Function to create (common) desktop system configuration
-      desktopConfig = { dir, system ? "x86_64-linux" }:
-        nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs.nixos-hardware = self.inputs.nixos-hardware;
-          modules = [
-            ({ ... }: {
-              imports = [
-                # Include host-specific configuration files and all modules
-                (import ("${dir}/configuration.nix"))
-                home-manager.nixosModules.home-manager
-              ] ++ (lib.attrValues self.nixosModules);
-            })
+      # Bundle of common modules, including nix flakes
+      commonModules = name: [
+        {
+          nix.settings.experimental-features = [
+            "nix-command"
+            "flakes"
           ];
+          networking.hostName = name;
+        }
+        agenix.nixosModules.default
+        ./hosts/${name}
+        ./modules/services
+        ./modules/packages
+        ./modules/system
+        ./modules/user/johannes
+
+      ];
+
+      # Define a system with common and extra modules
+      mkSystem =
+        name: cfg:
+        nixpkgs.lib.nixosSystem {
+          system = cfg.system or "x86_64-linux";
+          modules = (commonModules name) ++ (cfg.modules or [ ]);
+          specialArgs = inputs;
         };
 
+      systems = {
+
+        # ThinkPad
+        kirby = {
+          modules = [
+            nixos-hardware.nixosModules.lenovo-thinkpad-x230
+            nixos-hardware.nixosModules.common-pc-laptop-ssd
+            ./modules/desktop
+          ];
+        };
+      };
+
       # Read all modules from a specific folder
-      modulesFrom = dir:
-        lib.listToAttrs (map (file: {
-          name = builtins.head (builtins.split "\\." file);
-          value = import (dir + "/${file}");
-        }) (lib.attrNames (builtins.readDir dir)));
-    in {
+      modulesFrom =
+        dir:
+        nixpkgs.lib.listToAttrs (
+          map (file: {
+            name = builtins.head (builtins.split "\\." file);
+            value = import (dir + "/${file}");
+          }) (nixpkgs.lib.attrNames (builtins.readDir dir))
+        );
+    in
+    {
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
+
       # Include everything from our general folder
       nixosModules = (modulesFrom ./modules);
-
-      # Configuration per host
-      nixosConfigurations =
-        lib.genAttrs (lib.attrNames (builtins.readDir ./hosts))
-        (hostname: desktopConfig { dir = ./hosts + "/${hostname}"; });
+      nixosConfigurations = nixpkgs.lib.mapAttrs mkSystem systems;
     };
 }
