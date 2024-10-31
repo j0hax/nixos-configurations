@@ -60,7 +60,14 @@
             ./modules/desktop
           ];
         };
-      };
+
+	clay = {
+          modules = [
+            nixos-hardware.nixosModules.common-pc-laptop-ssd
+            ./modules/desktop
+          ];
+        };
+};
 
       # Read all modules from a specific folder
       modulesFrom =
