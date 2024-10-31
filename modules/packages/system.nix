@@ -14,6 +14,7 @@ in
 {
   # Kinda cringe :(
   nixpkgs.config.allowUnfree = true;
+  hardware.enableAllFirmware = true;
 
   # Useful system-wide tools to enable
   programs = {
