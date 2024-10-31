@@ -13,11 +13,12 @@
       "video"
       "libvirtd"
     ];
-    packages = with pkgs; [ 
+    packages = with pkgs; [
       go
       rclone
     ];
   };
 
+  # Enable decryption of Secrets with my key
   age.identityPaths = [ "${config.users.users.johannes.home}/.ssh/id_ed25519" ];
 }

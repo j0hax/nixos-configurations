@@ -8,7 +8,7 @@
 
   nix.settings = {
     post-build-hook = pkgs.writeShellScript "testhook" ''
-    	/home/johannes/Projects/ncc/ncc put
+      /home/johannes/Projects/ncc/ncc put
     '';
   };
 }

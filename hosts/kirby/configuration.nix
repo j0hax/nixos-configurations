@@ -81,11 +81,11 @@
     "gccarch-ivybridge"
   ];
 
-/*
-  nixpkgs.hostPlatform = {
-      gcc.arch = "ivybridge";
-      gcc.tune = "ivybridge";
-      system = "x86_64-linux";
-    };
-*/
+  /*
+    nixpkgs.hostPlatform = {
+        gcc.arch = "ivybridge";
+        gcc.tune = "ivybridge";
+        system = "x86_64-linux";
+      };
+  */
 }
