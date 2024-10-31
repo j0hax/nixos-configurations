@@ -16,8 +16,14 @@
   ];
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
+  #boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  # Using grub because this mac has a cursed EFI
+  boot.loader.grub = {
+    efiSupport = true;
+    device = "nodev";
+  };
 
   # Bcachefs
   boot = {
@@ -30,7 +36,9 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
-  networking.enableB43Firmware = true;
+  #networking.enableB43Firmware = true;
+  boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
+  boot.kernelModules = [ "wl" ];
 
   # Set your time zone.
   # time.timeZone = "Europe/Amsterdam";
@@ -127,7 +135,4 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "24.11"; # Did you read the comment?
-
-  # Facetime
-  boot.extraModulePackages = with config.boot.kernelPackages; [ facetimehd ];
 }
