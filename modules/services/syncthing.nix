@@ -10,9 +10,6 @@
       enable = true;
       openDefaultPorts = true;
       relay.enable = true;
-
-      user = "johannes";
-      dataDir = "/home/johannes/Sync";
     };
   };
 
