@@ -36,9 +36,7 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
-  #networking.enableB43Firmware = true;
-  boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
-  boot.kernelModules = [ "wl" ];
+  services.mbpfan.aggressive = false;
 
   # Set your time zone.
   # time.timeZone = "Europe/Amsterdam";
