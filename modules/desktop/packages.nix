@@ -20,6 +20,7 @@
     ausweisapp.enable = true;
     thunderbird.enable = true;
     firefox.enable = true;
+    steam.enable = true;
     appimage = {
       enable = true;
       binfmt = true;
