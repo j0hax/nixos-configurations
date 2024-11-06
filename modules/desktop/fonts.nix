@@ -11,7 +11,7 @@
         inter
         libertinus
         iosevka
-	montserrat
+        montserrat
       ]
       ++ builtins.map (v: iosevka-bin.override { variant = v; }) [
         ""
