@@ -1,17 +1,26 @@
 { pkgs, config, ... }:
 {
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
   # Pipewire
-  hardware.pulseaudio.enable = false;
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
+  hardware = {
+    pulseaudio.enable = false;
+    keyboard.qmk.enable = true;
   };
 
-  services.udisks2.enable = true;
-  services.usbmuxd.enable = true;
-  hardware.keyboard.qmk.enable = true;
+  services = {
+    # Pipewire
+    pipewire = {
+      enable = true;
+      pulse.enable = true;
+    };
+
+    # Device I/O
+    udisks2.enable = true;
+    usbmuxd.enable = true;
+
+    # Localisation for night mode
+    geoclue2.enable = true;
+
+    # Enable CUPS to print documents.
+    printing.enable = true;
+  };
 }
