@@ -13,10 +13,6 @@
       "video"
       "libvirtd"
     ];
-    packages = with pkgs; [
-      go
-      rclone
-    ];
   };
 
   # Enable decryption of Secrets with my key

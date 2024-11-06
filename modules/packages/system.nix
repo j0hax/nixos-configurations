@@ -40,13 +40,12 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    nixfmt-rfc-style
     ripgrep
     nix-output-monitor
     tree
     yt-dlp
+    rclone
 
-    pass
     pwsafe
 
     fraunhofer
