@@ -35,7 +35,7 @@ in
       defaultEditor = true;
       vimAlias = true;
     };
-
+    ccache.enable = true;
     flashrom.enable = true;
   };
 
