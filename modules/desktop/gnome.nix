@@ -16,7 +16,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    gnome-boxes
     transmission_4-gtk
+    gnome-network-displays
   ];
 }
