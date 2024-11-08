@@ -46,6 +46,7 @@ in
     yt-dlp
     rclone
 
+    bc
     pwsafe
 
     fraunhofer
