@@ -45,7 +45,7 @@ in
     tree
     yt-dlp
     rclone
-
+    mat2
     bc
     pwsafe
 
