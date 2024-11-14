@@ -1,15 +1,8 @@
 {
-  config,
   pkgs,
-  ...
 }:
 let
-  fraunhofer = (
-    pkgs.ffmpeg.override {
-      withUnfree = true;
-      withFdkAac = true;
-    }
-  );
+  ffmpeg-package = pkgs.ffmpeg-full;
 in
 {
   # Kinda cringe :(
@@ -49,7 +42,7 @@ in
     bc
     pwsafe
 
-    fraunhofer
-    (beets.override { ffmpeg = fraunhofer; })
+    ffmpeg-package
+    (beets.override { ffmpeg = ffmpeg-package; })
   ];
 }
