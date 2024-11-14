@@ -1,5 +1,7 @@
 {
   pkgs,
+  config,
+  ...
 }:
 let
   ffmpeg-package = pkgs.ffmpeg-full;
