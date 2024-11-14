@@ -1,7 +1,5 @@
 {
-  config,
-  pkgs,
-  ...
+  pkgs
 }:
 {
 
@@ -11,6 +9,8 @@
 
     # Best editor???
     helix
+
+    nil # Nix LSP
 
     # Go Stuff
     go
