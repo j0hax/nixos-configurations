@@ -27,11 +27,11 @@
           ];
           networking.hostName = name;
         }
-        ./hosts/${name}
-        ./modules/services
-        ./modules/packages
-        ./modules/system
-        ./modules/user/johannes
+        ./hosts/${name}/configuration.nix # Host-Specific configuration from /etc/nixos
+        ./modules/services                # Common system services
+        ./modules/packages                # Common packages
+        ./modules/system                  # Common system settings
+        ./modules/user                    # User configuration
       ];
 
       agenixModules = system: [
