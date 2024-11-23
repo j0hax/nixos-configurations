@@ -17,9 +17,9 @@
     udisks2.enable = true;
     usbmuxd.enable = true;
 
-    # Localisation for night mode
-    geoclue2.enable = true;
-
+    # Automatic timezone
+    tzupdate.enable = true;
+    
     # Enable CUPS to print documents.
     printing.enable = true;
   };
