@@ -13,6 +13,7 @@
     tectonic
     handbrake
     chromium
+    signal-desktop
   ];
 
   programs = {
