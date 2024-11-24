@@ -1,6 +1,5 @@
 {
   pkgs,
-  config,
   ...
 }:
 let
@@ -43,7 +42,7 @@ in
     mat2
     bc
     pwsafe
-
+    file
     ffmpeg-package
     (beets.override { ffmpeg = ffmpeg-package; })
   ];
