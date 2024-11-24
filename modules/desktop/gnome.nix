@@ -10,8 +10,9 @@
   };
 
   # Remove the following Gnome apps
-  environment.gnome.excludePackages =
-    (with pkgs; [
+  environment.gnome.excludePackages = (
+    with pkgs;
+    [
       gnome-photos
       gnome-tour
       gedit
@@ -27,7 +28,8 @@
       iagno # go game
       hitori # sudoku game
       atomix # puzzle game
-    ]);
+    ]
+  );
 
   programs.kdeconnect = {
     enable = true;

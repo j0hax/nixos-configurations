@@ -28,10 +28,10 @@
           networking.hostName = name;
         }
         ./hosts/${name}/configuration.nix # Host-Specific configuration from /etc/nixos
-        ./modules/services                # Common system services
-        ./modules/packages                # Common packages
-        ./modules/system                  # Common system settings
-        ./modules/user                    # User configuration
+        ./modules/services # Common system services
+        ./modules/packages # Common packages
+        ./modules/system # Common system settings
+        ./modules/user # User configuration
       ];
 
       agenixModules = system: [

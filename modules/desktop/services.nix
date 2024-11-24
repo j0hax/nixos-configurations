@@ -19,7 +19,7 @@
 
     # Automatic timezone
     tzupdate.enable = true;
-    
+
     # Enable CUPS to print documents.
     printing.enable = true;
   };
