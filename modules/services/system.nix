@@ -1,11 +1,12 @@
 {
-  pkgs,
-  config,
   ...
 }:
 {
   # Generally useful services.
-  services.locate.enable = true;
-  services.fwupd.enable = true;
-  services.openssh.enable = true;
+  services = {
+    locate.enable = true;
+    fwupd.enable = true;
+    openssh.enable = true;
+    tuptime.enable = true;
+  };
 }
