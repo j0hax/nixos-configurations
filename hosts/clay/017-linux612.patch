@@ -1,0 +1,31 @@
+From 5575c6342f62f56b361480c97367b09c011bcc65 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Joan=20Bruguera=20Mic=C3=B3?= <joanbrugueram@gmail.com>
+Date: Thu, 3 Oct 2024 22:21:36 +0000
+Subject: [PATCH] Tentative patch for broadcom-wl 6.30.223.271 driver for Linux
+ 6.12-rc2
+
+Just a trivial fix for 5f60d5f6bbc1 ("move asm/unaligned.h to
+linux/unaligned.h").
+---
+ src/wl/sys/wl_linux.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/src/wl/sys/wl_linux.c b/src/wl/sys/wl_linux.c
+index e4614fb..5ddbc4d 100644
+--- a/src/wl/sys/wl_linux.c
++++ b/src/wl/sys/wl_linux.c
+@@ -56,7 +56,11 @@
+ #include <asm/irq.h>
+ #include <asm/pgtable.h>
+ #include <asm/uaccess.h>
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 12, 0)
++#include <linux/unaligned.h>
++#else
+ #include <asm/unaligned.h>
++#endif
+ 
+ #include <proto/802.1d.h>
+ 
+-- 
+2.46.2
+

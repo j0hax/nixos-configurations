@@ -1,6 +1,5 @@
 {
   pkgs,
-  config,
   ...
 }:
 {
@@ -8,8 +7,8 @@
   environment.systemPackages = with pkgs; [
     nixfmt-rfc-style
     ripgrep
+    silicon
 
-    # Best editor???
     helix
 
     nil # Nix LSP
@@ -19,5 +18,9 @@
     delve
     gopls
     hugo
+	
+    # Python Stuff
+    python3
+    python3Packages.python-lsp-server
   ];
 }
