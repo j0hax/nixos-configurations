@@ -49,5 +49,6 @@
     eyedropper
     shortwave
     video-trimmer
+    gnomeExtensions.caffeine
   ];
 }

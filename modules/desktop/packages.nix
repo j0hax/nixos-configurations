@@ -14,12 +14,20 @@
     handbrake
     chromium
     signal-desktop
+
+    /* Although we use PipeWire,
+       this is still needed for userspace
+       configuration, especially for loading
+       RAOP modules.
+    */
+    pulseaudio
+    pavucontrol
   ];
 
   programs = {
     localsend.enable = true;
     ausweisapp.enable = true;
-    thunderbird.enable = true;
+    #thunderbird.enable = true;
     firefox.enable = true;
     steam.enable = true;
     appimage = {

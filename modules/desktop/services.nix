@@ -11,6 +11,17 @@
     pipewire = {
       enable = true;
       pulse.enable = true;
+      raopOpenFirewall = true;
+
+      # AirPlay Configuration
+      extraConfig.pipewire."10-airplay" = {
+        context.modules = [
+          {
+            "name" = "libpipewire-module-raop-discover";
+            "args" = { };
+          }
+        ];
+      };
     };
 
     # Device I/O
