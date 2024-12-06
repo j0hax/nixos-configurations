@@ -14,6 +14,7 @@
     handbrake
     chromium
     signal-desktop
+    kepubify
 
     /* Although we use PipeWire,
        this is still needed for userspace
