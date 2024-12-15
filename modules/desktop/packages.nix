@@ -15,6 +15,7 @@
     chromium
     signal-desktop
     kepubify
+    xournalpp
 
     /* Although we use PipeWire,
        this is still needed for userspace
