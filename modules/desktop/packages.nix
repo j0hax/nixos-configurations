@@ -16,6 +16,7 @@
     signal-desktop
     kepubify
     xournalpp
+    qidi-slicer-bin
 
     /* Although we use PipeWire,
        this is still needed for userspace
