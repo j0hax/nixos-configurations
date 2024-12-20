@@ -49,5 +49,8 @@
     shortwave
     video-trimmer
     gnomeExtensions.caffeine
+    flare-signal
+    televido
+    varia
   ];
 }
