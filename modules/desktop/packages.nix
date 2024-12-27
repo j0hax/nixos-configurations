@@ -25,6 +25,8 @@
     */
     pulseaudio
     pavucontrol
+
+    libva-utils
   ];
 
   programs = {
