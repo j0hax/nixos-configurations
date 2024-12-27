@@ -12,6 +12,7 @@
       "wheel"
       "video"
       "libvirtd"
+      "dialout"
     ];
   };
 
