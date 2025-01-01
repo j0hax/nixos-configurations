@@ -1,6 +1,5 @@
 {
   config,
-  pkgs,
   ...
 }:
 {
@@ -26,6 +25,7 @@
       extraBackupArgs = [
         "--tag nix"
         "--one-file-system"
+        "--exclude-larger-than 1G"
       ];
 
       paths = [
@@ -35,14 +35,17 @@
 
       exclude = [
         "/home/*/.cache"
-        "/home/*/Downloads"
+        "/home/*/Downloads"        
       ];
 
       pruneOpts = [
         "--keep-daily 7"
-        "--keep-weekly 5"
+        "--keep-weekly 4"
         "--keep-monthly 12"
         "--keep-yearly 10"
+        "--repack-uncompressed"
+        "--compression max"
+        "--max-unused 0"
       ];
     };
   };
