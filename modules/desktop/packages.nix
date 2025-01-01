@@ -32,7 +32,7 @@
   programs = {
     localsend.enable = true;
     ausweisapp.enable = true;
-    #thunderbird.enable = true;
+    thunderbird.enable = true;
     firefox.enable = true;
     steam.enable = true;
     appimage = {
