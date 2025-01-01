@@ -12,6 +12,7 @@
     helix
 
     nil # Nix LSP
+    taplo # TOML tool
 
     # Go Stuff
     go
