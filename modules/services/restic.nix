@@ -22,6 +22,16 @@
 
       inhibitsSleep = true;
 
+      # https://github.com/NixOS/nixpkgs/issues/196547
+      backupPrepareCommand = ''
+        while ! /run/current-system/sw/bin/ping -c 1 1.0.0.1; do
+          echo "Waiting for internet connection..."
+          sleep 60
+        done
+
+        echo "Internet is up, uploading backups!"
+      '';
+
       extraBackupArgs = [
         "--tag nix"
         "--one-file-system"
@@ -35,7 +45,7 @@
 
       exclude = [
         "/home/*/.cache"
-        "/home/*/Downloads"        
+        "/home/*/Downloads"
       ];
 
       pruneOpts = [
