@@ -18,10 +18,11 @@
     xournalpp
     qidi-slicer-bin
 
-    /* Although we use PipeWire,
-       this is still needed for userspace
-       configuration, especially for loading
-       RAOP modules.
+    /*
+      Although we use PipeWire,
+      this is still needed for userspace
+      configuration, especially for loading
+      RAOP modules.
     */
     pulseaudio
     pavucontrol

@@ -1,13 +1,10 @@
-{ pkgs, config, ... }:
+{ ... }:
 {
-  # Pipewire
-  hardware = {
-    pulseaudio.enable = false;
-    keyboard.qmk.enable = true;
-  };
+  hardware.keyboard.qmk.enable = true;
 
   services = {
-    # Pipewire
+    # Audio
+    pulseaudio.enable = false;
     pipewire = {
       enable = true;
       pulse.enable = true;
