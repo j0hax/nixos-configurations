@@ -13,6 +13,7 @@
       "video"
       "libvirtd"
       "dialout"
+      "adbusers"
     ];
   };
 
