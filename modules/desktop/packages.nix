@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   ...
 }:
@@ -36,6 +35,7 @@
     thunderbird.enable = true;
     firefox.enable = true;
     steam.enable = true;
+    adb.enable = true;
     appimage = {
       enable = true;
       binfmt = true;
