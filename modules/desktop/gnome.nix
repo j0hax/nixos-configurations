@@ -52,5 +52,6 @@
     flare-signal
     televido
     varia
+    bottles
   ];
 }
