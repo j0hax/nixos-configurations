@@ -12,7 +12,6 @@
     tectonic
     handbrake
     chromium
-    signal-desktop
     kepubify
     xournalpp
     qidi-slicer-bin

@@ -50,7 +50,6 @@
     video-trimmer
     gnomeExtensions.caffeine
     flare-signal
-    televido
     varia
     bottles
   ];
