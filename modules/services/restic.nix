@@ -44,8 +44,17 @@
       ];
 
       exclude = [
+        # Most likely not needed
         "/home/*/.cache"
         "/home/*/Downloads"
+
+        # Generally large/media files
+        "*.mkv"
+        "*.mp4"
+        "*.part"
+        "*.iso"
+        "*.img"
+        "*.qcow2"
       ];
 
       pruneOpts = [
