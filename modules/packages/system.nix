@@ -46,5 +46,6 @@ in
     ffmpeg-package
     (beets.override { ffmpeg = ffmpeg-package; })
     ncdu
+    pv
   ];
 }
