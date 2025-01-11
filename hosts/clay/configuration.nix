@@ -14,14 +14,16 @@
   ];
 
   # Use the systemd-boot EFI boot loader.
-  #boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Using grub because this mac has a cursed EFI
-  boot.loader.grub = {
-    efiSupport = true;
-    device = "nodev";
-  };
+  /*
+    boot.loader.grub = {
+      efiSupport = true;
+      device = "nodev";
+    };
+  */
 
   # Bcachefs
   boot = {
@@ -132,7 +134,15 @@
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "24.11"; # Did you read the comment?
 
-  hardware.sensor.iio.enable = true;
+  fileSystems."/boot" = {
+    options = [
+      "uid=0"
+      "gid=0"
+      "fmask=0077"
+      "dmask=0077"
+    ];
+  };
 
+  hardware.sensor.iio.enable = true;
   powerManagement.powertop.enable = true;
 }
