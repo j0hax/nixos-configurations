@@ -1,6 +1,4 @@
 {
-  config,
-  pkgs,
   ...
 }:
 {
@@ -8,12 +6,11 @@
     ./maintenance.nix
     ./networking.nix
     ./tmpfs.nix
+    ./kernel.nix
   ];
 
   # Does NOT work with bcachefs yet...
   #boot.initrd.systemd.enable = true;
-
-  boot.kernelParams = [ "mitigations=off" ];
 
   system.switch = {
     enable = false;

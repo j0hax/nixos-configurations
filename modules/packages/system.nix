@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   ...
 }:
 let
@@ -34,6 +35,8 @@ in
   };
 
   environment.systemPackages = with pkgs; [
+    config.boot.kernelPackages.perf
+  
     ripgrep
     nix-output-monitor
     tree

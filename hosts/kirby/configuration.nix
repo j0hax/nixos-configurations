@@ -21,8 +21,8 @@
   boot.loader.grub.forcei686 = true;
   boot.loader.grub.forceInstall = true;
 
-  boot.supportedFilesystems = [ "bacachefs" ];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  #boot.supportedFilesystems = [ "bacachefs" ];
+  #boot.kernelPackages = pkgs.linuxPackages_latest;
   #boot.plymouth.enable = true;
 
   networking.hostName = "kirby"; # Define your hostname.

@@ -25,11 +25,11 @@
     };
   */
 
-  # Bcachefs
-  boot = {
+  # Bcachefs --- now in /modules/system/kernel.nix
+  /*boot = {
     supportedFilesystems = [ "bcachefs" ];
     kernelPackages = pkgs.linuxPackages_latest;
-  };
+  };*/
 
   networking.hostName = "clay"; # Define your hostname.
   # Pick only one of the below networking options.
