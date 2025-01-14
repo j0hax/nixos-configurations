@@ -52,5 +52,6 @@
     flare-signal
     varia
     bottles
+    gnome-2048
   ];
 }
