@@ -15,6 +15,7 @@
     kepubify
     xournalpp
     qidi-slicer-bin
+    openscad-unstable
 
     /*
       Although we use PipeWire,
