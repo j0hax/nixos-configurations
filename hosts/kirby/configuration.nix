@@ -31,7 +31,7 @@
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
-  time.timeZone = "Europe/Amsterdam";
+  #time.timeZone = "Europe/Amsterdam";
 
   nix.settings.experimental-features = [
     "nix-command"
