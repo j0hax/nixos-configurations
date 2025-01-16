@@ -7,6 +7,7 @@
     ./networking.nix
     ./tmpfs.nix
     ./kernel.nix
+    ./virtualisation.nix
   ];
 
   # Does NOT work with bcachefs yet...
