@@ -8,6 +8,7 @@
     ./tmpfs.nix
     ./kernel.nix
     ./virtualisation.nix
+    ./containers.nix
   ];
 
   # Does NOT work with bcachefs yet...
