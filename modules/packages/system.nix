@@ -37,6 +37,7 @@ in
   environment.systemPackages = with pkgs; [
     config.boot.kernelPackages.perf
   
+    uutils-coreutils-noprefix
     ripgrep
     nix-output-monitor
     tree
