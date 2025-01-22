@@ -16,6 +16,7 @@
     xournalpp
     qidi-slicer-bin
     openscad-unstable
+    monero-gui
 
     /*
       Although we use PipeWire,
