@@ -1,21 +1,24 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }:
 {
-  # Add Bcachefs support
-  boot.supportedFilesystems = [ "bcachefs" ];
+  boot = {
+    # Use the very latest release candidate
+    kernelPackages = pkgs.linuxPackages_testing;
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-    
-  # Custom Kernel Parameters
-  boot.kernelParams = [ "mitigations=off" ];
+    # Add Bcachefs support
+    supportedFilesystems = [ "bcachefs" ];
 
-  # Linux Kernel Modules
-  boot.extraModulePackages = with config.boot.kernelPackages; [
-    v4l2loopback # USB Video
-    perf # Performance Counting
-  ];
+    # Custom Kernel Parameters
+    kernelParams = [ "mitigations=off" ];
 
+    # Linux Kernel Modules
+    extraModulePackages = with config.boot.kernelPackages; [
+      v4l2loopback # USB Video
+      perf # Performance Counting
+    ];
+  };
 }
