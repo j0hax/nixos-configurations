@@ -51,5 +51,6 @@ in
     (beets.override { ffmpeg = ffmpeg-package; })
     ncdu
     pv
+    wget
   ];
 }
