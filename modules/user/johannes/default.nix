@@ -14,6 +14,7 @@
       "libvirtd"
       "dialout"
       "adbusers"
+      "pcap"
     ];
   };
 

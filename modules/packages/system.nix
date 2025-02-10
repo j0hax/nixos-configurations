@@ -16,6 +16,7 @@ in
     htop.enable = true;
     iotop.enable = true;
     iftop.enable = true;
+    tcpdump.enable = true;
     tmux.enable = true;
     git = {
       enable = true;
