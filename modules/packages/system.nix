@@ -54,5 +54,6 @@ in
     ncdu
     pv
     wget
+    usbutils
   ];
 }
