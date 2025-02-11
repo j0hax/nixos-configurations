@@ -16,20 +16,16 @@
 
   environment.systemPackages = with pkgs; [
     transmission_4-gtk
-
-    # Extra gnome apps
     gnome-network-displays
     impression # Bootable Drive Tool
     gnome-decoder # QR Code Generator
     metadata-cleaner
     gnome-obfuscate
-    junction
     eyedropper
     shortwave
     video-trimmer
-    gnomeExtensions.caffeine
     flare-signal
-    varia
+    #varia
     bottles
     gnome-2048
   ];
