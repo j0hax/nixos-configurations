@@ -1,8 +1,6 @@
 name: "Lock Updater"
 on:
   workflow_dispatch:
-  schedule:
-    - cron:  '0 * * * *'
 jobs:
   update:
     runs-on: ubuntu-latest
