@@ -28,5 +28,6 @@
     #varia
     bottles
     gnome-2048
+    gnome-firmware
   ];
 }
