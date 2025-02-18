@@ -7,7 +7,7 @@
 {
   boot = {
     # Use the very latest release candidate
-    kernelPackages = lib.mkDefault pkgs.linuxPackages_testing;
+    kernelPackages = pkgs.linuxPackages_testing;
 
     # Add Bcachefs support
     supportedFilesystems = [ "bcachefs" ];
