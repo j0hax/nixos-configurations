@@ -50,7 +50,6 @@ in
     pwsafe
     file
     ffmpeg-package
-    (beets.override { ffmpeg = ffmpeg-package; })
     ncdu
     pv
     wget
