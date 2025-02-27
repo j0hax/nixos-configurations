@@ -20,13 +20,6 @@
 
       # Bundle of common modules, including nix flakes
       commonModules = name: [
-        {
-          nix.settings.experimental-features = [
-            "nix-command"
-            "flakes"
-          ];
-          networking.hostName = name;
-        }
         ./hosts/${name}/configuration.nix # Host-Specific configuration from /etc/nixos
         ./modules/services # Common system services
         ./modules/packages # Common packages
