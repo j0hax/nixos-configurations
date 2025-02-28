@@ -4,10 +4,24 @@
   lib,
   ...
 }:
+let
+  # Definitely required: Tux Logo
+  bootlogo = {
+    name = "logo-config";
+    patch = null;
+    extraConfig = ''
+      LOGO y
+      FRAMEBUFFER_CONSOLE_DEFERRED_TAKEOVER n
+    '';
+  };
+in
 {
   boot = {
     # Use the very latest release candidate
-    kernelPackages = pkgs.linuxPackages_testing;
+    # Note: lib.mkDefault = lib.mkOverride 1000
+    kernelPackages = lib.mkOverride 1001 pkgs.linuxPackages_testing;
+
+    kernelPatches = [ bootlogo ];
 
     # Add Bcachefs support
     supportedFilesystems = [ "bcachefs" ];
