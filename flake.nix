@@ -51,6 +51,7 @@
             nixos-hardware.nixosModules.lenovo-thinkpad-x230
             nixos-hardware.nixosModules.common-pc-laptop-ssd
             ./modules/desktop
+            ./modules/user/johannes
           ];
         };
 
@@ -58,6 +59,7 @@
           modules = [
             nixos-hardware.nixosModules.common-pc-laptop-ssd
             ./modules/desktop
+            ./modules/user/johannes
           ];
         };
       };
