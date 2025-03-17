@@ -36,6 +36,7 @@
         "--tag nix"
         "--one-file-system"
         "--exclude-larger-than 1G"
+        "--verbose"
       ];
 
       paths = [
