@@ -37,4 +37,6 @@
   };
 
   services.fstrim.enable = true;
+
+  environment.memoryAllocator.provider = "mimalloc";
 }
