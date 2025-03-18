@@ -19,7 +19,7 @@ in
   boot = {
     # Use the very latest release candidate
     # Note: lib.mkDefault = lib.mkOverride 1000
-    kernelPackages = lib.mkOverride 1001 pkgs.linuxPackages_testing;
+    kernelPackages = lib.mkOverride 999 pkgs.linuxPackages_testing;
 
     kernelPatches = [ bootlogo ];
 
