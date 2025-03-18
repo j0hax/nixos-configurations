@@ -17,6 +17,7 @@
     qidi-slicer-bin
     openscad-unstable
     monero-gui
+    speedtest-cli
 
     /*
       Although we use PipeWire,
