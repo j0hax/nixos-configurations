@@ -40,6 +40,9 @@ in
     config.boot.kernelPackages.perf
 
     uutils-coreutils-noprefix
+    uutils-diffutils
+    uutils-findutils
+
     ripgrep
     nix-output-monitor
     tree
