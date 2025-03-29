@@ -8,7 +8,7 @@
     nixfmt-rfc-style
     ripgrep
     silicon
-
+    gcc
     helix
 
     # LSPs and tools
@@ -19,6 +19,7 @@
     texlab
     marksman
     markdown-oxide
+    lldb
 
     # Go Stuff
     go
@@ -29,5 +30,12 @@
     # Python Stuff
     python3
     python3Packages.python-lsp-server
+
+    # Rust Stuff
+    rustc
+    cargo
+    rust-analyzer
+    rustfmt
+    clippy
   ];
 }
