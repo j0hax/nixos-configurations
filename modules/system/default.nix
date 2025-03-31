@@ -38,5 +38,6 @@
 
   services.fstrim.enable = true;
 
-  environment.memoryAllocator.provider = "mimalloc";
+  # Causes problems with Firefox/Thunderbird
+  #environment.memoryAllocator.provider = "mimalloc";
 }
