@@ -62,6 +62,14 @@
             ./modules/user/johannes
           ];
         };
+
+        
+        aptenodytes = {
+          modules = [
+            nixos-hardware.nixosModules.tuxedo-infinitybook-pro14-gen9-intel
+            ./modules/desktop
+          ];
+        };
       };
 
       # Read all modules from a specific folder

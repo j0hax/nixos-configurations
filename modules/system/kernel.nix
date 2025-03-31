@@ -21,8 +21,6 @@ in
     # Note: lib.mkDefault = lib.mkOverride 1000
     kernelPackages = lib.mkOverride 999 pkgs.linuxPackages_testing;
 
-    kernelPatches = [ bootlogo ];
-
     # Add Bcachefs support
     supportedFilesystems = [ "bcachefs" ];
 
