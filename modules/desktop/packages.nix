@@ -18,6 +18,8 @@
     openscad-unstable
     monero-gui
     speedtest-cli
+    imagemagick
+    bitwarden-desktop
 
     /*
       Although we use PipeWire,
