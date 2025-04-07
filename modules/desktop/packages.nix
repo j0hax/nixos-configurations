@@ -20,6 +20,7 @@
     speedtest-cli
     imagemagick
     bitwarden-desktop
+    signal-desktop
 
     /*
       Although we use PipeWire,

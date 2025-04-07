@@ -125,5 +125,7 @@
   services.homed.enable = true;
 
 nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+hardware.i2c.enable = true;
 }
 

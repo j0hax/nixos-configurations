@@ -68,6 +68,7 @@
           modules = [
             nixos-hardware.nixosModules.tuxedo-infinitybook-pro14-gen9-intel
             ./modules/desktop
+            ./modules/work
           ];
         };
       };

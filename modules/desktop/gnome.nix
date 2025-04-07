@@ -24,7 +24,7 @@
     eyedropper
     shortwave
     video-trimmer
-    flare-signal
+    #flare-signal # buggy for now
     #varia
     bottles
     gnome-2048

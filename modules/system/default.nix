@@ -9,6 +9,7 @@
     ./kernel.nix
     ./virtualisation.nix
     ./containers.nix
+    ./documentation.nix
   ];
 
   # Does NOT work with bcachefs yet...
