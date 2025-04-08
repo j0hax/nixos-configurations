@@ -124,5 +124,11 @@
 
   networking.hostId = "8425e349";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  # ZFS stuff
+  services.zfs = {
+    trim.enable = true;
+    autoScrub.enable = true;
+  };
 }
 
