@@ -8,24 +8,43 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "uas" "sd_mod" "sdhci_pci" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" "sdhci_pci" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/75749b5b-5151-42d9-9eaa-b4515d1de919";
-      fsType = "btrfs";
+    { device = "zpool/root";
+      fsType = "zfs";
+      options = [ "zfsutil" ];
+    };
+
+  fileSystems."/nix" =
+    { device = "zpool/nix";
+      fsType = "zfs";
+      options = [ "zfsutil" ];
+    };
+
+  fileSystems."/var" =
+    { device = "zpool/var";
+      fsType = "zfs";
+      options = [ "zfsutil" ];
+    };
+
+  fileSystems."/home" =
+    { device = "zpool/home";
+      fsType = "zfs";
+      options = [ "zfsutil" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/F4B7-A80A";
+    { device = "/dev/disk/by-uuid/1E09-F4DF";
       fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
+      options = [ "fmask=0022" "dmask=0022" ];
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/ff358f08-a189-4fbd-8dbf-8b8e3d34a7a4"; }
+    [ { device = "/dev/disk/by-id/nvme-Samsung_SSD_980_500GB_S78GNL0XC25290D-part2"; randomEncryption = true; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

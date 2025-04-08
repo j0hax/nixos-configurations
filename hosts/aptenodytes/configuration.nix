@@ -51,7 +51,7 @@
   # services.printing.enable = true;
 
   # Enable sound.
-  # hardware.pulseaudio.enable = true;
+  # services.pulseaudio.enable = true;
   # OR
   # services.pipewire = {
   #   enable = true;
@@ -120,12 +120,9 @@
   # and migrated your data accordingly.
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "25.05"; # Did you read the comment?
 
-  services.homed.enable = true;
-
-nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-hardware.i2c.enable = true;
+  networking.hostId = "8425e349";
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
 
