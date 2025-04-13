@@ -8,6 +8,7 @@
     #./greetd.nix
     #./sway.nix
     ./gnome.nix
+    #./cosmic.nix
 
     ./services.nix
     ./packages.nix
