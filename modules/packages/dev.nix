@@ -37,5 +37,8 @@
     rust-analyzer
     rustfmt
     clippy
+
+    # CI Testing
+    act
   ];
 }
