@@ -21,6 +21,7 @@
     imagemagick
     bitwarden-desktop
     signal-desktop
+    mindustry-wayland
 
     /*
       Although we use PipeWire,
