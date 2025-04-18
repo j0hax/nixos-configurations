@@ -14,7 +14,7 @@
     chromium
     kepubify
     xournalpp
-    qidi-slicer-bin
+    prusa-slicer
     openscad-unstable
     monero-gui
     speedtest-cli
