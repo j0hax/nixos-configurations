@@ -48,6 +48,7 @@ in
     tree
     yt-dlp
     rclone
+    restic
     mat2
     bc
     pwsafe
