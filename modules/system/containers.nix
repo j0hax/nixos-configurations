@@ -1,10 +1,5 @@
 { pkgs, ... }:
 {
-
-  /*
-  Due to compatability reasons (act)
-  I am switching from podman to docker...
-
   # Enable common container config files in /etc/containers
   virtualisation.containers.enable = true;
   virtualisation = {
@@ -20,14 +15,4 @@
     podman-tui
     podman-compose
   ];
-
-  */
-
-  virtualisation.docker = {
-    enable = true;
-    rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
-  };
 }
