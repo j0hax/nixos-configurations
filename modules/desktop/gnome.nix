@@ -31,5 +31,6 @@
     gnome-firmware
     gnome-solanum
     helvum
+    foliate
   ];
 }
