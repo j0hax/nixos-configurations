@@ -131,5 +131,16 @@
     autoScrub.enable = true;
     autoSnapshot.enable = true;
   };
+
+  # Display Brightness
+  hardware.sensor.iio.enable = true;
+
+  # Tuxedo
+  hardware.tuxedo-rs = {
+    enable = true;
+    tailor-gui.enable = true;
+  };
+
+  #boot.extraModulePackages = with config.boot.kernelPackages; [ yt6801 ];
 }
 
