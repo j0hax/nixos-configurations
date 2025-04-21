@@ -20,5 +20,6 @@
     linux-manual
     man-pages
     man-pages-posix
+    pinfo
   ];
 }

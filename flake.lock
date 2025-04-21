@@ -66,16 +66,16 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1744633460,
-        "narHash": "sha256-fbWE4Xpw6eH0Q6in+ymNuDwTkqmFmtxcQEmtRuKDTTk=",
-        "owner": "NixOS",
+        "lastModified": 1745057700,
+        "narHash": "sha256-mpJfLJlmT6EDWaiVP7VjvLObAEG33gtm5BX8HW6JyWs=",
+        "owner": "j0hax",
         "repo": "nixos-hardware",
-        "rev": "9a049b4a421076d27fee3eec664a18b2066824cb",
+        "rev": "9ecdceb5c4389945fcf02b2cef2d67b8cf1ec493",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "master",
+        "owner": "j0hax",
+        "ref": "tuxedo-infinitybook-maintenance",
         "repo": "nixos-hardware",
         "type": "github"
       }

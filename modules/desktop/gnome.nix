@@ -32,5 +32,6 @@
     gnome-solanum
     helvum
     foliate
+    dosage-tracker
   ];
 }

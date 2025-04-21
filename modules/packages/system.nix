@@ -58,5 +58,6 @@ in
     pv
     wget
     usbutils
+    pciutils
   ];
 }
