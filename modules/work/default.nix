@@ -7,5 +7,6 @@
     zulip
     kemai
     drawio
+    shell-gpt
   ];
 }
