@@ -9,4 +9,10 @@
     drawio
     shell-gpt
   ];
+
+  # Add banner
+  services.xserver.displayManager.gdm.banner = ''
+    Johannes Arnold
+    jarnold@b1-systems.de
+  '';
 }
