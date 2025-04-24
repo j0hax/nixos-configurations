@@ -15,4 +15,7 @@
     Johannes Arnold
     jarnold@b1-systems.de
   '';
+
+  # Filter Mic for meetings
+  programs.noisetorch.enable = true;
 }
