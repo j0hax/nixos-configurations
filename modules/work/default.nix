@@ -8,6 +8,8 @@
     kemai
     drawio
     shell-gpt
+    gopass
+    teams-for-linux
   ];
 
   # Add banner
