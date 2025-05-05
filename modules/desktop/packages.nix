@@ -65,6 +65,16 @@
         };
       };
     };
+
+    obs-studio = {
+      enable = true;
+      plugins = with pkgs.obs-studio-plugins; [
+        obs-backgroundremoval
+        obs-pipewire-audio-capture
+        input-overlay
+        obs-vaapi
+      ];
+    };
     steam.enable = true;
     adb.enable = true;
     appimage = {
