@@ -2,7 +2,7 @@
   description = "Johannes' NixOS Configurations";
 
   inputs = {
-    nixos-hardware.url = "github:j0hax/nixos-hardware/tuxedo-infinitybook-maintenance";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     agenix.url = "github:ryantm/agenix";
   };
