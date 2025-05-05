@@ -22,6 +22,7 @@
     bitwarden-desktop
     signal-desktop
     mindustry-wayland
+    freecad-wayland
 
     /*
       Although we use PipeWire,
