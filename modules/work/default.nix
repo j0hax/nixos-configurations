@@ -10,6 +10,7 @@
     shell-gpt
     gopass
     teams-for-linux
+    zoom-us
   ];
 
   # Add banner
