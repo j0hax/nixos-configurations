@@ -43,6 +43,7 @@ in
     uutils-diffutils
     uutils-findutils
 
+    lsof
     ripgrep
     nix-output-monitor
     tree
