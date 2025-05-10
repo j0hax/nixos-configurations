@@ -22,7 +22,10 @@ in
     kernelPackages = lib.mkOverride 999 pkgs.linuxPackages_testing;
 
     # Add Bcachefs support
-    supportedFilesystems = [ "bcachefs" ];
+    supportedFilesystems = {
+      bcachefs = true;
+      btrfs  = true;
+    };
 
     # Custom Kernel Parameters
     kernelParams = [ "mitigations=off" ];
