@@ -142,5 +142,15 @@
   };
 
   #boot.extraModulePackages = with config.boot.kernelPackages; [ yt6801 ];
+
+  nix.settings.system-features = [ "gccarch-meteorlake" ];
+
+  /*
+  nixpkgs.hostPlatform = {
+    gcc.arch = "meteorlake";
+    gcc.tune = "meteorlake";
+    system = "x86_64-linux";
+  };
+  */
 }
 
