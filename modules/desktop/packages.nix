@@ -40,9 +40,10 @@
     localsend.enable = true;
     ausweisapp.enable = true;
     thunderbird.enable = true;
+    chromium.enable = true;
     firefox = {
       enable = true;
-      package = pkgs.librewolf;
+      #package = pkgs.librewolf;
       policies = {
         DisableTelemetry = true;
         DisableFirefoxStudies = true;
