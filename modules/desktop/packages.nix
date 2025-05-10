@@ -34,6 +34,9 @@
     pavucontrol
 
     libva-utils
+
+    kicad
+    prismlauncher
   ];
 
   programs = {
