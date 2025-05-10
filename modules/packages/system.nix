@@ -44,6 +44,7 @@ in
     uutils-diffutils
     uutils-findutils
 
+    pstree
     lsof
     ripgrep
     nix-output-monitor
