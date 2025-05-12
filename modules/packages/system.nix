@@ -62,5 +62,6 @@ in
     wget
     usbutils
     pciutils
+    smartmontools
   ];
 }
