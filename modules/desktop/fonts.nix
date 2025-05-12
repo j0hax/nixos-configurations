@@ -12,6 +12,7 @@
         libertinus
         iosevka
         montserrat
+        paratype-pt-sans
       ]
       ++ builtins.map (v: iosevka-bin.override { variant = v; }) [
         ""
