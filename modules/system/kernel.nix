@@ -36,4 +36,10 @@ in
       perf # Performance Counting
     ];
   };
+
+  # Scheduler for slow block devices
+  hardware.block.scheduler = {
+    "mmcblk[0-9]*" = "mq-deadline";
+    "sd[a-z]*" = "mq-deadline";
+  };
 }
