@@ -33,5 +33,22 @@
 
       delta.enable = true;
     };
+
+    helix = {
+      enable = true;
+      defaultEditor = true;
+      settings = {
+        theme = "base16_terminal";
+        editor = {
+          cursorline = true;
+          rulers = [ 80 132 ];
+          bufferline = "always";
+          popup-border = "all";
+          inline-diagnostics = {
+            cursor-line = "hint";
+          };
+        };
+      };
+    };
   };
 }
