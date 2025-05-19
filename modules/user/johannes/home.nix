@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -34,6 +34,11 @@
       delta.enable = true;
     };
 
+    fish = {
+      enable = true;
+      functions.fish_greeting = "${lib.getExe pkgs.fortune-kind}";
+    };
+    
     helix = {
       enable = true;
       defaultEditor = true;
