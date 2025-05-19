@@ -17,4 +17,21 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  programs = {
+    git = {
+      enable = true;
+      package = pkgs.gitFull;
+      
+      userName = "Johannes Arnold";
+      userEmail = "jarnold@b1-systems.de";
+      signing = {
+        format = "openpgp";
+        key = "F4CA40CF51CFB63F33EB0FCC91192A6AA8C42BFA";
+        signByDefault = true;
+      };
+
+      delta.enable = true;
+    };
+  };
 }
