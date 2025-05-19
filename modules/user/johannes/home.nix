@@ -55,5 +55,22 @@
         };
       };
     };
+
+    mpv = {
+      enable = true;
+      config = {
+        save-position-on-quit="yes";
+        profile="gpu-hq";
+        vo="gpu-next";
+        hwdec="auto";
+        slang="en";
+        cache="yes";
+        #cache-secs=10";
+        demuxer-hysteresis-secs="10";
+        #Interpolation
+        video-sync="display-resample";
+        interpolation="yes";
+      };
+    };
   };
 }
