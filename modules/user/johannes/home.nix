@@ -23,6 +23,9 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  # Hyprland is a whole beast in itself.
+  imports = [ ./hyprland.nix ];
+
   programs = {
     git = {
       enable = true;
