@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -22,7 +27,7 @@
     git = {
       enable = true;
       package = pkgs.gitFull;
-      
+
       userName = "Johannes Arnold";
       userEmail = "jarnold@b1-systems.de";
       signing = {
@@ -38,7 +43,7 @@
       enable = true;
       functions.fish_greeting = "${lib.getExe pkgs.fortune-kind}";
     };
-    
+
     helix = {
       enable = true;
       defaultEditor = true;
@@ -46,7 +51,10 @@
         theme = "base16_terminal";
         editor = {
           cursorline = true;
-          rulers = [ 80 132 ];
+          rulers = [
+            80
+            132
+          ];
           bufferline = "always";
           popup-border = "all";
           inline-diagnostics = {
@@ -59,17 +67,17 @@
     mpv = {
       enable = true;
       config = {
-        save-position-on-quit="yes";
-        profile="gpu-hq";
-        vo="gpu-next";
-        hwdec="auto";
-        slang="en";
-        cache="yes";
+        save-position-on-quit = "yes";
+        profile = "gpu-hq";
+        vo = "gpu-next";
+        hwdec = "auto";
+        slang = "en";
+        cache = "yes";
         #cache-secs=10";
-        demuxer-hysteresis-secs="10";
+        demuxer-hysteresis-secs = "10";
         #Interpolation
-        video-sync="display-resample";
-        interpolation="yes";
+        video-sync = "display-resample";
+        interpolation = "yes";
       };
     };
   };
