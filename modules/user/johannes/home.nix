@@ -77,6 +77,33 @@
           };
         };
       };
+      languages = {
+        language = [
+          {
+            name = "salt";
+            scope = "source.yaml.salt";
+            injection-regex = "sls";
+            block-comment-tokens = [
+              {
+                start = "{{";
+                end = "}}";
+              }
+              {
+                start = "{%";
+                end = "%}";
+              }
+              {
+                start = "{#";
+                end = "#}";
+              }
+            ];
+            file-types = [ "sls" ];
+            grammar = "yaml";
+            indent = { tab-width = 2; unit = "  "; };
+            language-servers = ["salt-lint"];
+          }
+        ];
+      };
     };
 
     mpv = {
