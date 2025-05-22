@@ -1,4 +1,4 @@
-{ lib, pkgs }:
+{ lib, pkgs, ... }:
 {
   programs = {
     foot = {
@@ -19,14 +19,6 @@
     tofi.enable = true;
 
     waybar.enable = true;
-  };
-
-  home.pointerCursor = {
-    gtk.enable = true;
-    # x11.enable = true;
-    package = pkgs.bibata-cursors;
-    name = "Bibata-Modern-Classic";
-    size = 12;
   };
 
   wayland.windowManager.hyprland = {

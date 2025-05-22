@@ -26,6 +26,15 @@
   # Hyprland is a whole beast in itself.
   imports = [ ./hyprland.nix ];
 
+  gtk.enable = true;
+  home.pointerCursor = {
+    gtk.enable = true;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Classic";
+
+    size = 24;
+  };
+
   programs = {
     git = {
       enable = true;
