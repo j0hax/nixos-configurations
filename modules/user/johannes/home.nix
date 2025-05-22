@@ -33,13 +33,25 @@
 
       userName = "Johannes Arnold";
       userEmail = "jarnold@b1-systems.de";
+
+      extraConfig = {
+        push.autoSetupRemote = true;
+        init.defaultBranch = "main";
+      };
+
       signing = {
         format = "openpgp";
         key = "F4CA40CF51CFB63F33EB0FCC91192A6AA8C42BFA";
         signByDefault = true;
       };
 
-      delta.enable = true;
+      delta = {
+        enable = true;
+        options = {
+          mode = "diff-so-fancy";
+          side-by-side = true;
+        };
+      };
     };
 
     fish = {
