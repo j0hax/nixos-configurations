@@ -9,6 +9,7 @@
     #./sway.nix
     ./gnome.nix
     #./cosmic.nix
+    #./plasma.nix
 
     ./services.nix
     ./packages.nix
@@ -16,6 +17,6 @@
   ];
 
   # Performance tweaks
-  services.dbus.implementation = "broker";
+  #services.dbus.implementation = "broker";
   security.rtkit.enable = true;
 }
