@@ -16,6 +16,9 @@
     ./fonts.nix
   ];
 
+  # Further configuration in Home-Manager
+  programs.hyprland.enable = true;
+
   # Performance tweaks
   #services.dbus.implementation = "broker";
   security.rtkit.enable = true;
