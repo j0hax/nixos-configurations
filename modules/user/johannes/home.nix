@@ -63,6 +63,8 @@
       };
     };
 
+    gpg.enable = true;
+
     fish = {
       enable = true;
       functions.fish_greeting = "${lib.getExe pkgs.fortune-kind}";
