@@ -20,6 +20,8 @@ in
     # Use the very latest release candidate
     # Note: lib.mkDefault = lib.mkOverride 1000
     kernelPackages = lib.mkOverride 999 pkgs.linuxPackages_testing;
+    
+    initrd.systemd.enable = true;
 
     # Add Bcachefs support
     supportedFilesystems = {
