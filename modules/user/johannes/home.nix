@@ -86,6 +86,8 @@
           inline-diagnostics = {
             cursor-line = "hint";
           };
+
+          soft-wrap.enable = true;
         };
       };
       languages = {
