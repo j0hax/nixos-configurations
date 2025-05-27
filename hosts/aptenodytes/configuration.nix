@@ -143,6 +143,21 @@
 
   #boot.extraModulePackages = with config.boot.kernelPackages; [ yt6801 ];
 
+  services.udev.extraRules = ''
+    SUBSYSTEM=="platform", KERNEL=="tuxedo_keyboard", ATTR{charging_profile/charging_profile}="stationary"
+  '';
+
+  /*
+  hardware.tuxedo-drivers = {
+  enable = true;
+  settings = {
+    charging-profile = "stationary";
+    charging-priority = "performance";
+    fn-lock = true;
+  };
+};
+*/
+
   nix.settings.system-features = [ "gccarch-meteorlake" ];
 
   /*
