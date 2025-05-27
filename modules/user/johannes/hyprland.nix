@@ -62,6 +62,7 @@
           "$mod, J, togglesplit"
           "$mod, P, pseudo"
           "$mod, SPACE, togglefloating"
+          "$mod SHIFT, P, exec, ${lib.getExe pkgs.grim} -g $(${lib.getExe pkgs.slurp})"
         ]
         ++ (
           # workspaces
@@ -83,6 +84,17 @@
       bindl = [
         ", switch:on:Lid Switch, exec, hyprctl keyword monitor eDP-1, disable"
         ", switch:off:Lid Switch, exec, hyprctl keyword monitor eDP-1, enable"
+      ];
+    };
+  };
+
+  services.hyprpaper = {
+    enable = true;
+    settings = {
+      ipc = "on";
+      preload = [ "~/B1/nixos-b1-artwork/nix-wallpaper-nineish-b1.png" ];
+      wallpaper = [
+        ", ~/B1/nixos-b1-artwork/nix-wallpaper-nineish-b1.png"
       ];
     };
   };

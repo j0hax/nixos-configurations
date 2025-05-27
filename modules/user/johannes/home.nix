@@ -23,15 +23,17 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  # Hyprland is a whole beast in itself.
-  imports = [ ./hyprland.nix ];
+  imports = [
+    ./packages.nix
+    # Hyprland is a whole beast in itself.
+    ./hyprland.nix
+  ];
 
   gtk.enable = true;
   home.pointerCursor = {
     gtk.enable = true;
     package = pkgs.bibata-cursors;
     name = "Bibata-Modern-Classic";
-
     size = 24;
   };
 
