@@ -74,7 +74,7 @@
       enable = true;
       defaultEditor = true;
       settings = {
-        theme = "base16_terminal";
+        theme = "gruvbox";
         editor = {
           cursorline = true;
           rulers = [
@@ -112,8 +112,11 @@
             ];
             file-types = [ "sls" ];
             grammar = "yaml";
-            indent = { tab-width = 2; unit = "  "; };
-            language-servers = ["salt-lint"];
+            indent = {
+              tab-width = 2;
+              unit = "  ";
+            };
+            language-servers = [ "salt-lint" ];
           }
         ];
       };
