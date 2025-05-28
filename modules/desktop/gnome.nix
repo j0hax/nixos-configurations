@@ -33,5 +33,6 @@
     helvum
     foliate
     dosage-tracker
+    deja-dup
   ];
 }
