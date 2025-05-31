@@ -3,6 +3,7 @@
   home.packages = with pkgs; [
     wl-clipboard
     gimp3
+    sshuttle
   ];
 
   programs.obs-studio = {
