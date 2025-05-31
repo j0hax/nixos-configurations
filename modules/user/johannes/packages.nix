@@ -2,6 +2,7 @@
 {
   home.packages = with pkgs; [
     wl-clipboard
+    gimp3
   ];
 
   programs.obs-studio = {
