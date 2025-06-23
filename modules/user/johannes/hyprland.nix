@@ -89,7 +89,7 @@
   };
 
   services.hyprpaper = {
-    enable = true;
+    #enable = true;
     settings = {
       ipc = "on";
       preload = [ "~/B1/nixos-b1-artwork/nix-wallpaper-nineish-b1.png" ];
