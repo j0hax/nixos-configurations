@@ -25,11 +25,6 @@
     ];
   };
 
-  system.switch = {
-    enable = false;
-    enableNg = true;
-  };
-
   zramSwap = {
     enable = true;
     algorithm = "zstd";
