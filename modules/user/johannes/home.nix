@@ -29,12 +29,23 @@
     ./hyprland.nix
   ];
 
-  gtk.enable = true;
-  home.pointerCursor = {
-    gtk.enable = true;
-    package = pkgs.bibata-cursors;
-    name = "Bibata-Modern-Classic";
-    size = 24;
+  # Set GNOME keyboard layout
+  dconf.settings = {
+    "org/gnome/desktop/input-sources" = {
+      show-all-sources = true;
+      sources = [
+        (lib.hm.gvariant.mkTuple [
+          "xkb"
+          "eu"
+        ])
+      ];
+      xkb-options = "";
+    };
+
+    "org/gnome/desktop/interface" = {
+      accent-color = "green";
+      color-scheme = "prefer-dark";
+    };
   };
 
   programs = {
@@ -70,6 +81,21 @@
     fish = {
       enable = true;
       functions.fish_greeting = "${lib.getExe pkgs.fortune-kind}";
+    };
+
+    firefox = {
+      enable = true;
+      policies = {
+        DisableTelemetry = true;
+        DisableFirefoxStudies = true;
+        DontCheckDefaultBrowser = true;
+        DisablePocket = true;
+        NoDefaultBookmarks = true;
+
+        # Disable Sponsors
+        FirefoxSuggest.SponsoredSuggestions = false;
+        FirefoxHome.SponsoredTopSites = false;
+      };
     };
 
     helix = {
