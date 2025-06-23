@@ -4,6 +4,13 @@
     wl-clipboard
     gimp3
     sshuttle
+    aria2
+    inkscape
+    openscad-unstable
+    typst
+    typstyle
+    shellcheck
+    shellfmt
   ];
 
   programs.obs-studio = {

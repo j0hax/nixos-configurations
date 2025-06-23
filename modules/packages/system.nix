@@ -63,5 +63,11 @@ in
     usbutils
     pciutils
     smartmontools
+
+    (writeShellScriptBin "cleanup-zfs-snapshots" ''
+      for snapshot in $(zfs list -H -o name -t snapshot); do
+        sudo zfs destroy -v "$snapshot"
+      done
+    '')
   ];
 }
