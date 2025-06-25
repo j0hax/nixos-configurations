@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  self,
   ...
 }:
 let
@@ -64,10 +65,17 @@ in
     pciutils
     smartmontools
 
+    geoipWithDatabase
+
     (writeShellScriptBin "cleanup-zfs-snapshots" ''
       for snapshot in $(zfs list -H -o name -t snapshot); do
         sudo zfs destroy -v "$snapshot"
       done
+    '')
+
+    (writeShellScriptBin "update-rebuild" ''
+      nix flake update --flake ${self.outPath} --commit-lock-file
+       ${lib.getExe pkgs.sudo} ${lib.getExe pkgs.bash} -c 'nixos-rebuild switch --flake ${self.outPath} |& ${lib.getExe pkgs.nom}'
     '')
   ];
 }
