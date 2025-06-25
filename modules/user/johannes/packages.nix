@@ -7,10 +7,14 @@
     aria2
     inkscape
     openscad-unstable
+    godot
+
     typst
     typstyle
+    tinymist
+    
     shellcheck
-    shellfmt
+    shfmt
   ];
 
   programs.obs-studio = {
