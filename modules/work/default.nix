@@ -14,7 +14,7 @@
   ];
 
   # Add banner
-  services.xserver.displayManager.gdm.banner = ''
+  services.displayManager.gdm.banner = ''
     Johannes Arnold
     jarnold@b1-systems.de
   '';
