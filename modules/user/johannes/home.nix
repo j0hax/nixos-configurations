@@ -48,6 +48,17 @@
     };
   };
 
+  services = {
+    spotifyd = {
+      enable = true;
+      settings = {
+        no_audio_cache = true;
+        audio_format = "F32";
+        bitrate = 320;
+      };
+    };
+  };
+
   programs = {
     git = {
       enable = true;
