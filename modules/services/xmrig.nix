@@ -13,6 +13,10 @@
           pass = config.networking.hostName;
         }
       ];
+      cpu-priority = 0;
+      memory-pool = true;
+      pause-on-battery = true;
+      pause-on-active = true;
     };
   };
 }
