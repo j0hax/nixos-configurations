@@ -36,6 +36,7 @@ in
     ccache.enable = true;
     flashrom.enable = true;
     gnupg.agent.enable = true;
+    mosh.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
