@@ -7,17 +7,28 @@
     pulseaudio.enable = false;
     pipewire = {
       enable = true;
-      pulse.enable = true;
+      #pulse.enable = true;
+      audio.enable = true;
       raopOpenFirewall = true;
 
-      # AirPlay Configuration
-      extraConfig.pipewire."10-airplay" = {
-        context.modules = [
-          {
-            "name" = "libpipewire-module-raop-discover";
-            "args" = { };
-          }
-        ];
+      extraConfig.pipewire = {
+        # AirPlay and Zeroconf Configuration
+        "10-zeroconf" = {
+          context.modules = [
+            {
+              "name" = "libpipewire-module-raop-discover";
+              "args" = { };
+            }
+            {
+              "name" = "module-zeroconf-discover";
+              "args" = { };
+            }
+            {
+              "name" = "module-zeroconf-publish";
+              "args" = { };
+            }
+          ];
+        };
       };
     };
 
