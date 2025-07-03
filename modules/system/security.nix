@@ -1,7 +1,8 @@
 { pkgs, lib, ... }:
 {
-  environment.wordlist = {
-    enable = true;
-    lists = lib.readDir (pkgs.wordlists);
+  # Swap sudo for sudo-rs
+  security = {
+    sudo.enable = false;
+    sudo-rs.enable = true;
   };
 }

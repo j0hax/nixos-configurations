@@ -11,6 +11,7 @@
     ./containers.nix
     ./documentation.nix
     ./locale.nix
+    ./security.nix
   ];
 
   nix.settings = {
