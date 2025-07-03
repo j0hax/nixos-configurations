@@ -97,6 +97,13 @@
       '';
     };
 
+    starship = {
+      enable = true;
+      settings = {
+        line_break.disabled = true;
+      };
+    };
+
     firefox = {
       enable = true;
       policies = {
