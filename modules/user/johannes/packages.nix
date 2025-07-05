@@ -13,17 +13,17 @@
     typst
     typstyle
     tinymist
-    
+
     shellcheck
     shfmt
   ];
 
   programs = {
-  taskwarrior = {
-    enable = true;
-    package = pkgs.taskwarrior3;
-  };
-  obs-studio = {
+    taskwarrior = {
+      enable = true;
+      package = pkgs.taskwarrior3;
+    };
+    obs-studio = {
       enable = true;
       plugins = with pkgs.obs-studio-plugins; [
         obs-backgroundremoval

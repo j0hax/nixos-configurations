@@ -20,13 +20,13 @@ in
     # Use the very latest release candidate
     # Note: lib.mkDefault = lib.mkOverride 1000
     kernelPackages = lib.mkOverride 999 pkgs.linuxPackages_testing;
-    
+
     initrd.systemd.enable = true;
 
     # Add Bcachefs support
     supportedFilesystems = {
       bcachefs = true;
-      btrfs  = true;
+      btrfs = true;
     };
 
     # Custom Kernel Parameters
@@ -40,8 +40,10 @@ in
   };
 
   # Scheduler for slow block devices
-  /*hardware.block.scheduler = {
-    "mmcblk[0-9]*" = "mq-deadline";
-    "sd[a-z]*" = "mq-deadline";
-  };*/
+  /*
+    hardware.block.scheduler = {
+      "mmcblk[0-9]*" = "mq-deadline";
+      "sd[a-z]*" = "mq-deadline";
+    };
+  */
 }

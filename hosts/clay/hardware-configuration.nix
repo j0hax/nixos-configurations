@@ -31,7 +31,13 @@
   fileSystems."/" = {
     device = "UUID=07291684-a576-485d-b664-681abdf6dee5";
     fsType = "bcachefs";
-    options = [ "fsck" "fix_errors" "encrypted" "compression=lz4" "background_compression=zstd:15" ];
+    options = [
+      "fsck"
+      "fix_errors"
+      "encrypted"
+      "compression=lz4"
+      "background_compression=zstd:15"
+    ];
   };
 
   fileSystems."/boot" = {

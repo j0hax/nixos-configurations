@@ -2,13 +2,18 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -17,7 +22,7 @@
   networking.hostName = "aptenodytes"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
   # time.timeZone = "Europe/Amsterdam";
@@ -37,11 +42,9 @@
   # Enable the X11 windowing system.
   #services.xserver.enable = true;
 
-
   # Enable the GNOME Desktop Environment.
   #services.xserver.displayManager.gdm.enable = true;
   #services.xserver.desktopManager.gnome.enable = true;
-  
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -123,7 +126,10 @@
   system.stateVersion = "25.05"; # Did you read the comment?
 
   networking.hostId = "8425e349";
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # ZFS stuff
   services.zfs = {
@@ -148,24 +154,23 @@
   '';
 
   /*
-  hardware.tuxedo-drivers = {
-  enable = true;
-  settings = {
-    charging-profile = "stationary";
-    charging-priority = "performance";
-    fn-lock = true;
-  };
-};
-*/
+      hardware.tuxedo-drivers = {
+      enable = true;
+      settings = {
+        charging-profile = "stationary";
+        charging-priority = "performance";
+        fn-lock = true;
+      };
+    };
+  */
 
   nix.settings.system-features = [ "gccarch-meteorlake" ];
 
   /*
-  nixpkgs.hostPlatform = {
-    gcc.arch = "meteorlake";
-    gcc.tune = "meteorlake";
-    system = "x86_64-linux";
-  };
+    nixpkgs.hostPlatform = {
+      gcc.arch = "meteorlake";
+      gcc.tune = "meteorlake";
+      system = "x86_64-linux";
+    };
   */
 }
-

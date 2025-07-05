@@ -1,8 +1,12 @@
-{ ... }: {
+{ ... }:
+{
   # US-American English as a language,
   # but with normal units and German money/phones/dates/adresses
 
-  i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" "de_DE.UTF-8/UTF-8"];
+  i18n.supportedLocales = [
+    "en_US.UTF-8/UTF-8"
+    "de_DE.UTF-8/UTF-8"
+  ];
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
