@@ -105,6 +105,12 @@
       enable = true;
       settings = {
         line_break.disabled = true;
+        time = {
+          disabled = false;
+          format = "[\\[$time\\]]($style)";
+          time_format = "%R";
+        };
+        right_format = "$time";
       };
     };
 
