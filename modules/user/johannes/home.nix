@@ -51,8 +51,12 @@
   services = {
     spotifyd = {
       enable = true;
-      settings = {
-        no_audio_cache = true;
+      settings.global = {
+        no_audio_cache = false;
+        backend = "pulseaudio";
+        initial_volume = 30;
+        
+        # Maximum quality settings:
         audio_format = "F32";
         bitrate = 320;
       };
