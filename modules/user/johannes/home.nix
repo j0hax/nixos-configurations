@@ -49,13 +49,14 @@
   };
 
   services = {
+    ssh-agent.enable = true;
     spotifyd = {
       enable = true;
       settings.global = {
         no_audio_cache = false;
         backend = "pulseaudio";
         initial_volume = 30;
-        
+
         # Maximum quality settings:
         audio_format = "F32";
         bitrate = 320;
@@ -202,6 +203,7 @@
       enable = true;
       settings = {
         output = "\"%(uploader)s/%(title)s [%(id)s].%(ext)s\"";
+        paths = "temp:/tmp/yt-dlp";
         embed-thumbnail = true;
         embed-metadata = true;
         embed-subs = true;
