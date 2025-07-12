@@ -10,7 +10,7 @@
     ./virtualisation.nix
     ./containers.nix
     ./documentation.nix
-    ./locale.nix
+    ./environment.nix
     ./security.nix
   ];
 
