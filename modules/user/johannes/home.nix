@@ -197,5 +197,17 @@
         interpolation = "yes";
       };
     };
+
+    yt-dlp = {
+      enable = true;
+      settings = {
+        output = "\"%(uploader)s/%(title)s [%(id)s].%(ext)s\"";
+        embed-thumbnail = true;
+        embed-metadata = true;
+        embed-subs = true;
+        sub-langs = "all";
+        sponsorblock-remove = "sponsor";
+      };
+    };
   };
 }
