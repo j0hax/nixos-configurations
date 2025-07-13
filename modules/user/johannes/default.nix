@@ -16,11 +16,6 @@
       "adbusers"
       "pcap"
     ];
-
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMotsR5BpofWuzmITfavGYN/+EjpEoPHgdRjCKCpbxkp jarnold@b1-systems.de"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKF6GqhZ0tmv16cwg7JKGb+cnWXqVE23xy+wBhA67Iwo jka.one"
-    ];
   };
 
   home-manager.users.johannes = import ./home.nix;
