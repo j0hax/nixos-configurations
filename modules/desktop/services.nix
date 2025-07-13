@@ -42,5 +42,10 @@
 
     # Enable CUPS to print documents.
     printing.enable = true;
+
+    services.mullvad-vpn = {
+      enable = true;
+      enableExcludeWrapper = true;
+    };
   };
 }

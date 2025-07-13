@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }:
 {
@@ -15,6 +16,13 @@
     ./packages.nix
     ./fonts.nix
   ];
+
+  # Use NetworkManager for desktop configurations
+  networking.networkmanager = lib.mkDefault {
+    enable = true;
+    wifi.backend = "iwd";
+    #dns = "systemd-resolved";
+  };
 
   # Further configuration in Home-Manager
   programs.hyprland.enable = true;
