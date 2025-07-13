@@ -25,6 +25,7 @@
 
       # Bundle of common modules, including nix flakes
       commonModules = name: [
+        { networking.hostName = name; } # Set the hostname.
         ./hosts/${name}/configuration.nix # Host-Specific configuration from /etc/nixos
         ./modules/services # Common system services
         ./modules/packages # Common packages
@@ -76,6 +77,11 @@
             ./modules/work
           ];
         };
+        skylab = {
+          system = "aarch64-linux";
+          modules = [ ./modules/user/johannes ];
+        };
+
       };
 
       # Read all modules from a specific folder
