@@ -1,9 +1,10 @@
 {
+  lib,
   ...
 }:
 {
   # Generally useful services.
-  services = {
+  services = lib.mkDefault {
     locate.enable = true;
     fwupd.enable = true;
     openssh.enable = true;
