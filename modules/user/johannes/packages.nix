@@ -23,14 +23,16 @@
       enable = true;
       package = pkgs.taskwarrior3;
     };
-    obs-studio = {
-      enable = true;
-      plugins = with pkgs.obs-studio-plugins; [
-        obs-backgroundremoval
-        obs-pipewire-audio-capture
-        input-overlay
-        obs-vaapi
-      ];
-    };
+    /*
+      obs-studio = {
+        enable = true;
+        plugins = with pkgs.obs-studio-plugins; [
+          #obs-backgroundremoval
+          obs-pipewire-audio-capture
+          input-overlay
+          obs-vaapi
+        ];
+      };
+    */
   };
 }
