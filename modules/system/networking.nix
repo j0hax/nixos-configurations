@@ -13,7 +13,7 @@
   networking.networkmanager = {
     enable = true;
     wifi.backend = "iwd";
-    dns = "systemd-resolved";
+    #dns = "systemd-resolved";
   };
 
   /*
@@ -27,6 +27,10 @@
     "149.112.112.112"
   ];
 
+  /* Disabled for now:
+    "Red Hat does not recommend using [systemd-resolvd] for production."
+
+  
   services.resolved = {
     enable = true;
     dnssec = "true";
@@ -39,6 +43,7 @@
     ];
     domains = [ "~." ];
   };
+  */
 
   environment.systemPackages = [ pkgs.dnsutils ];
 }
