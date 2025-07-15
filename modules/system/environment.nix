@@ -20,8 +20,4 @@
   # The best keyboard layout you have never heard of
   #services.xserver.layout = "eu";
   # Now managed by Home-Manager
-
-  environment.shellAliases = {
-    sshconfig = "$\{EDITOR:-vim\} ~/.ssh/config";
-  };
 }
