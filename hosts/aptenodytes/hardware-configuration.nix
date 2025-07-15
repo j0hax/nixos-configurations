@@ -27,31 +27,28 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "zpool/root";
-    fsType = "zfs";
-    options = [ "zfsutil" ];
+    device = "/dev/disk/by-uuid/deac1731-6310-479f-8c3b-d8b09db319b2";
+    fsType = "btrfs";
+    options = [ "subvol=root" ];
   };
+
+  boot.initrd.luks.devices."crypted".device =
+    "/dev/disk/by-uuid/32f3e283-082e-496d-a2c9-d893f282f2a6";
 
   fileSystems."/nix" = {
-    device = "zpool/nix";
-    fsType = "zfs";
-    options = [ "zfsutil" ];
-  };
-
-  fileSystems."/var" = {
-    device = "zpool/var";
-    fsType = "zfs";
-    options = [ "zfsutil" ];
+    device = "/dev/disk/by-uuid/deac1731-6310-479f-8c3b-d8b09db319b2";
+    fsType = "btrfs";
+    options = [ "subvol=nix" ];
   };
 
   fileSystems."/home" = {
-    device = "zpool/home";
-    fsType = "zfs";
-    options = [ "zfsutil" ];
+    device = "/dev/disk/by-uuid/deac1731-6310-479f-8c3b-d8b09db319b2";
+    fsType = "btrfs";
+    options = [ "subvol=home" ];
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/1E09-F4DF";
+    device = "/dev/disk/by-uuid/BE02-832A";
     fsType = "vfat";
     options = [
       "fmask=0022"
@@ -61,17 +58,10 @@
 
   swapDevices = [
     {
-      device = "/dev/disk/by-id/nvme-Samsung_SSD_980_500GB_S78GNL0XC25290D-part2";
+      device = "/dev/disk/by-partuuid/b6a6199a-0c1d-4aec-b42e-afacf1ca8017";
       randomEncryption = true;
     }
   ];
-
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

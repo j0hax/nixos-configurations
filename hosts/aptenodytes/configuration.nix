@@ -19,10 +19,13 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "aptenodytes"; # Define your hostname.
+  # Use latest kernel.
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+  # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
   # Set your time zone.
   # time.timeZone = "Europe/Amsterdam";
@@ -125,23 +128,12 @@
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "25.05"; # Did you read the comment?
 
-  networking.hostId = "8425e349";
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  # TPM settings
+  security.tpm2.enable = true;
+  security.tpm2.pkcs11.enable = true; # expose /run/current-system/sw/lib/libtpm2_pkcs11.so
+  security.tpm2.tctiEnvironment.enable = true; # TPM2TOOLS_TCTI and TPM2_PKCS11_TCTI env variables
+  users.users.johannes.extraGroups = [ "tss" ]; # tss group has access to TPM devices
 
-  # ZFS stuff
-  services.zfs = {
-    trim.enable = true;
-    autoScrub.enable = true;
-    autoSnapshot.enable = true;
-  };
-
-  # Display Brightness
-  hardware.sensor.iio.enable = true;
-
-  # Tuxedo
   hardware.tuxedo-rs = {
     enable = true;
     tailor-gui.enable = true;
@@ -152,25 +144,4 @@
   services.udev.extraRules = ''
     SUBSYSTEM=="platform", KERNEL=="tuxedo_keyboard", ATTR{charging_profile/charging_profile}="stationary"
   '';
-
-  /*
-      hardware.tuxedo-drivers = {
-      enable = true;
-      settings = {
-        charging-profile = "stationary";
-        charging-priority = "performance";
-        fn-lock = true;
-      };
-    };
-  */
-
-  nix.settings.system-features = [ "gccarch-meteorlake" ];
-
-  /*
-    nixpkgs.hostPlatform = {
-      gcc.arch = "meteorlake";
-      gcc.tune = "meteorlake";
-      system = "x86_64-linux";
-    };
-  */
 }
