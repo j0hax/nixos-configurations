@@ -15,14 +15,13 @@
     kepubify
     xournalpp
     prusa-slicer
-    #openscad-unstable
+    openscad-unstable
     monero-gui
     speedtest-cli
     imagemagick
     bitwarden-desktop
     signal-desktop
     mindustry-wayland
-    freecad-wayland
 
     /*
       Although we use PipeWire,
@@ -34,9 +33,6 @@
     pavucontrol
 
     libva-utils
-
-    kicad
-    prismlauncher
   ];
 
   programs = {
