@@ -12,6 +12,7 @@
     helix
     yq
     jq
+    yamlfmt
 
     # LSPs and tools
     nil
