@@ -10,8 +10,13 @@
   users.users.root.hashedPassword = "!";
 
   # Disable password login for SSH
-  settings = {
+  services.openssh.settings = {
     PasswordAuthentication = false;
     KbdInteractiveAuthentication = false;
+  };
+
+  services.fail2ban = {
+    enable = true;
+    bantime-increment.enable = true;
   };
 }
