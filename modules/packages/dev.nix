@@ -10,6 +10,8 @@
     silicon
     gcc
     helix
+    yq
+    jq
 
     # LSPs and tools
     nil
