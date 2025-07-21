@@ -138,4 +138,19 @@
       interface = "enp1s0";
     };
   };
+
+  environment.systemPackages = [ pkgs.rclone ];
+
+  fileSystems."/media/nextcloud" = {
+    device = "nextcloud:media";
+    fsType = "rclone";
+    options = [
+      "nodev"
+      "nofail"
+      "allow_other"
+      "args2env"
+      "config=/home/johannes/.config/rclone/rclone.conf"
+      "vfs-cache-mode=full"
+    ];
+  };
 }

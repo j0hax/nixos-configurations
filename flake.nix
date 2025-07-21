@@ -79,7 +79,10 @@
         };
         skylab = {
           system = "aarch64-linux";
-          modules = [ ./modules/user/johannes ];
+          modules = [
+            ./modules/user/johannes
+            ./modules/jellyfin.nix
+          ];
         };
 
       };
