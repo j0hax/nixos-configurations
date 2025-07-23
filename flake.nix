@@ -83,6 +83,7 @@
             ./modules/user/johannes
             ./modules/server/jellyfin.nix
             ./modules/server/glance.nix
+            ./modules/server/audiobookshelf.nix
           ];
         };
 
