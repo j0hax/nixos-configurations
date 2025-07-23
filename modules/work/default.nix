@@ -8,6 +8,7 @@
     gopass
     teams-for-linux
     zoom-us
+    pwgen
   ];
 
   # Add banner
