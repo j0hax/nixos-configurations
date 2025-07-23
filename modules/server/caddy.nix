@@ -1,18 +1,12 @@
 { lib, config, ... }:
 {
-  services.caddy = lib.mkDefault {
+  services.caddy = {
     enable = true;
     email = "johannes@rnold.online";
-    globalConfig = ''
-      encode zstd gzip
-      header {
-        X-Clacks-Overhead GNU Ozzy Osbourne
-      }
-    '';
 
     # Remove www subdomain
-    virtualHosts."www.${config.networking.fqdn}".extraConfig = ''
-      redir https://example.com{uri}
+    virtualHosts."www.${config.networking.domain}".extraConfig = ''
+      redir https://${config.networking.domain}{uri}
     '';
   };
 

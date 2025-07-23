@@ -17,9 +17,13 @@ in
 {
   imports = [ ./caddy.nix ];
 
-  services.caddy.virtualHosts."dash.jka.one".extraConfig = ''
-    reverse_proxy 127.0.0.1:${toString port}
-  '';
+  services.caddy.virtualHosts."dash.jka.one" = {
+    serverAliases = [ "start.jka.one" ];
+    extraConfig = ''
+      reverse_proxy 127.0.0.1:${toString port}
+        encode zstd gzip
+    '';
+  };
 
   services.glance = {
     enable = true;
