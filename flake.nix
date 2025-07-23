@@ -84,6 +84,7 @@
             ./modules/server/jellyfin.nix
             ./modules/server/glance.nix
             ./modules/server/audiobookshelf.nix
+            ./modules/server/navidrome.nix
           ];
         };
 
