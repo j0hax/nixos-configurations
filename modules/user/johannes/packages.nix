@@ -34,5 +34,17 @@
         ];
       };
     */
+    beets = {
+      enable = true;
+      settings = {
+        directory = "/media/nextcloud/Music/";
+        import = {
+          move = true;
+          from_scratch = true;
+        };
+        
+        plugins = [ "fetchart" "embedart" "lastgenre" "scrub" "missing" ];
+      };
+    };
   };
 }
