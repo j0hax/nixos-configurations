@@ -151,7 +151,9 @@
       "allow_other"
       "args2env"
       "config=/home/johannes/.config/rclone/rclone.conf"
-      "vfs-cache-mode=full"
+      "vfs_cache_mode=full"
+      "cache_dir=/var/cache/rclone"
+      "vfs_cache_min_free_space=10G"
     ];
   };
 }
