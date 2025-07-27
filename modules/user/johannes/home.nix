@@ -203,7 +203,8 @@
       enable = true;
       settings = {
         output = "\"%(uploader)s/%(title)s [%(id)s].%(ext)s\"";
-        paths = "temp:/tmp/yt-dlp";
+        download-archive = "\"yt-dlp_archive.dat\"";
+        paths = "temp:/var/tmp/yt-dlp"; #"temp:/tmp/yt-dlp";
         embed-thumbnail = true;
         embed-metadata = true;
         embed-subs = true;
