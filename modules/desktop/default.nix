@@ -24,6 +24,17 @@
     #dns = "systemd-resolved";
   };
 
+  # Limit how many resources Nix can eat up
+  nix = {
+    settings = {
+      cores = 8;
+      
+    max-jobs = 2;
+    };
+    daemonIOSchedClass = "idle";
+    daemonCPUSchedPolicy = "idle";
+  };
+
   # Further configuration in Home-Manager
   programs.hyprland.enable = true;
 

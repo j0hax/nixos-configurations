@@ -26,6 +26,8 @@
     ];
   };
 
+  systemd.services.nix-daemon.serviceConfig = { MemoryHigh = "50%"; MemoryMax = "55%"; };
+
   zramSwap = {
     enable = true;
     algorithm = "zstd";
