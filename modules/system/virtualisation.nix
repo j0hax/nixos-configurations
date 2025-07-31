@@ -1,6 +1,5 @@
 { pkgs, config, ... }:
 {
-
   virtualisation = {
     libvirtd = {
       enable = true;
@@ -24,4 +23,7 @@
   };
 
   programs.virt-manager.enable = true;
+
+  # Allow network traffic from VMs
+  networking.firewall.trustedInterfaces = config.virtualisation.libvirtd.allowedBridges;
 }
