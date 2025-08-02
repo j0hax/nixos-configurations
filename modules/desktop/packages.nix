@@ -31,6 +31,7 @@
     */
     pulseaudio
     pavucontrol
+    kdePackages.kdenlive
 
     libva-utils
   ];
@@ -46,6 +47,8 @@
       enable = true;
       binfmt = true;
     };
+
+    obs-studio.enable = true;
   };
 
   # Enable Logitech devices
