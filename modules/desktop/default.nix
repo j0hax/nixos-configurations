@@ -17,6 +17,15 @@
     ./fonts.nix
   ];
 
+  # Use a pretty boot screen
+  boot = {
+    loader = {
+      timeout = 0;
+      systemd-boot.consoleMode = "auto";
+    };
+    plymouth.enable = true;
+  };
+
   # Use NetworkManager for desktop configurations
   networking.networkmanager = lib.mkDefault {
     enable = true;
