@@ -6,6 +6,7 @@
     reverse_proxy ${config.services.wastebin.settings.WASTEBIN_ADDRESS_PORT}
     encode zstd gzip
     header X-Robots-Tag "noindex, nofollow"
+    cache
   '';
 
 
