@@ -37,8 +37,8 @@
   nix = {
     settings = {
       cores = 8;
-      
-    max-jobs = 2;
+
+      max-jobs = 2;
     };
     daemonIOSchedClass = "idle";
     daemonCPUSchedPolicy = "idle";

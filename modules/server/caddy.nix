@@ -1,4 +1,9 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 {
   services.caddy = {
     enable = true;
@@ -10,15 +15,16 @@
     };
 
     # Remove www subdomain
-    /*virtualHosts."www.*".extraConfig = ''
-      handle {
-        redir https://{host[4:]}{uri}
-      }
-    '';
+    /*
+      virtualHosts."www.*".extraConfig = ''
+        handle {
+          redir https://{host[4:]}{uri}
+        }
+      '';
 
-      TODO: Map virtualhosts attrs, filter by www.*, redirect to them
+        TODO: Map virtualhosts attrs, filter by www.*, redirect to them
     */
-    
+
     globalConfig = ''
       cache {
         ttl 1h

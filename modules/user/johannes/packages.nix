@@ -42,8 +42,14 @@
           move = true;
           from_scratch = true;
         };
-        
-        plugins = [ "fetchart" "embedart" "lastgenre" "scrub" "missing" ];
+
+        plugins = [
+          "fetchart"
+          "embedart"
+          "lastgenre"
+          "scrub"
+          "missing"
+        ];
       };
     };
   };

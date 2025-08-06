@@ -1,7 +1,8 @@
 { ... }:
 let
   port = 6268;
-in {
+in
+{
   imports = [ ./caddy.nix ];
 
   services.caddy.virtualHosts."audio.jka.one".extraConfig = ''

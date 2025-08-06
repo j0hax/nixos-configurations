@@ -9,21 +9,21 @@
     cache
   '';
 
-
-  /*services.microbin = {
-    enable = true;
-    settings = {
-      MICROBIN_PORT = 2345;
-      # Plattdeutsch
-      MICROBIN_TITLE = "De Tünn";
-      MICROBIN_ENABLE_BURN_AFTER = true;
-      MICROBIN_ENABLE_READONLY = true;
-      MICROBIN_ENCRYPTION_CLIENT_SIDE = true;
-      MICROBIN_ENCRYPTION_SERVER_SIDE = true;
-      MICROBIN_HASH_IDS = true;
-      MICROBIN_FOOTER_TEXT = "<b><i>Tünn</i></b> (n): low german for bin.";
+  /*
+    services.microbin = {
+      enable = true;
+      settings = {
+        MICROBIN_PORT = 2345;
+        # Plattdeutsch
+        MICROBIN_TITLE = "De Tünn";
+        MICROBIN_ENABLE_BURN_AFTER = true;
+        MICROBIN_ENABLE_READONLY = true;
+        MICROBIN_ENCRYPTION_CLIENT_SIDE = true;
+        MICROBIN_ENCRYPTION_SERVER_SIDE = true;
+        MICROBIN_HASH_IDS = true;
+        MICROBIN_FOOTER_TEXT = "<b><i>Tünn</i></b> (n): low german for bin.";
+      };
     };
-  };
   */
 
   services.wastebin = {

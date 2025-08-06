@@ -159,7 +159,7 @@
 
   # Yay wedding
   services.caddy.virtualHosts."clara-und-johannes.de" = {
-    serverAliases = ["www.clara-und-johannes.de"];
+    serverAliases = [ "www.clara-und-johannes.de" ];
     extraConfig = ''
       root * /srv/http/clara-und-johannes.de
       encode zstd gzip
