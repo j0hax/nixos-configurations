@@ -75,6 +75,8 @@
       extraConfig = {
         push.autoSetupRemote = true;
         init.defaultBranch = "main";
+        credential.helper = "/etc/profiles/per-user/johannes/bin/git-credential-libsecret";
+        maintenance.enable = true;
       };
 
       signing = {
