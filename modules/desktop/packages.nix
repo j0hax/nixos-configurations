@@ -7,7 +7,7 @@
   environment.systemPackages = with pkgs; [
     mpv
     libreoffice
-    #texlive.combined.scheme-full
+    texlive.combined.scheme-full
     texmaker
     tectonic
     handbrake
