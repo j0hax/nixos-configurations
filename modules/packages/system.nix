@@ -68,15 +68,28 @@ in
 
     geoipWithDatabase
 
-    (writeShellScriptBin "cleanup-zfs-snapshots" ''
-      for snapshot in $(zfs list -H -o name -t snapshot); do
-        sudo zfs destroy -v "$snapshot"
-      done
-    '')
-
     (writeShellScriptBin "update-rebuild" ''
       nix flake update --flake ${self.outPath} --commit-lock-file
        ${lib.getExe pkgs.sudo} ${lib.getExe pkgs.bash} -c 'nixos-rebuild switch --flake ${self.outPath} |& ${lib.getExe pkgs.nom}'
+    '')
+
+    (writeShellScriptBin "mkcache" ''
+      if [ -n "$1" ]; then
+        dest="$1/CACHEDIR.TAG"
+      else
+        dest="$(pwd)/CACHEDIR.TAG"
+      fi
+
+      dest=$(realpath $dest)
+      
+      cat <<EOF > $dest
+      Signature: 8a477f597d28d172789f06886806bc55
+      # This file is a cache directory tag created by mkcache $dest.
+      # For information about cache directory tags, see:
+      #	http://www.brynosaurus.com/cachedir/
+      EOF
+
+      echo "Created \"$dest\""
     '')
   ];
 }
