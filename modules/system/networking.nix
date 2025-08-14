@@ -28,5 +28,7 @@
     };
   */
 
-  environment.systemPackages = [ pkgs.dnsutils ];
+  networking.wireguard.enable = true;
+
+  environment.systemPackages = with pkgs; [ dnsutils wireguard-tools ];
 }
