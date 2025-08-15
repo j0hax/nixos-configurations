@@ -157,14 +157,26 @@
     ];
   };
 
-  # Yay wedding
-  services.caddy.virtualHosts."clara-und-johannes.de" = {
-    serverAliases = [ "www.clara-und-johannes.de" ];
-    extraConfig = ''
-      root * /srv/http/clara-und-johannes.de
-      encode zstd gzip
-      file_server
-      cache
-    '';
+  services.caddy.virtualHosts = {
+    # Yay wedding
+    "clara-und-johannes.de" = {
+      serverAliases = [ "www.clara-und-johannes.de" ];
+      extraConfig = ''
+        root * /srv/http/clara-und-johannes.de
+        encode zstd gzip
+        file_server
+        cache
+      '';
+    };
+
+    "johannes.contact" = {
+      extraConfig = ''
+        root * /srv/http/johannes.contact
+        encode zstd gzip
+        file_server
+        cache
+        try_files johannes.vcf
+      '';
+    };
   };
 }

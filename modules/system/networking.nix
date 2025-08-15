@@ -30,5 +30,8 @@
 
   networking.wireguard.enable = true;
 
-  environment.systemPackages = with pkgs; [ dnsutils wireguard-tools ];
+  environment.systemPackages = with pkgs; [
+    dnsutils
+    wireguard-tools
+  ];
 }
