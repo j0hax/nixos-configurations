@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 let
   domain = config.networking.domain;
   matrixDomain = "matrix.${config.networking.domain}";
@@ -9,8 +9,8 @@ in
 
   services.caddy.virtualHosts = {
     ${domain} = {
-      serverAliases = [ "${domain}:8448" ];
       extraConfig = ''
+        # Handle requests for delegation
         handle /.well-known/* {
           header /.well-known/matrix/* Content-Type application/json
           header /.well-known/matrix/* Access-Control-Allow-Origin *
@@ -29,16 +29,18 @@ in
       extraConfig = ''
         reverse_proxy /_matrix/* 127.0.0.1:${port}
         reverse_proxy /_synapse/client/* 127.0.0.1${port}
+
+        # Headers set for performance and privacy
         encode zstd gzip
         header X-Robots-Tag "noindex, nofollow"
+        cache
+
+        # Serve Element Web Interface
+        root * ${pkgs.element-web}
+        file_server
       '';
     };
 
-  };
-
-  networking.firewall = {
-    allowedTCPPorts = [ 8448 ];
-    allowedUDPPorts = [ 8448 ];
   };
 
   services.matrix-tuwunel = {
