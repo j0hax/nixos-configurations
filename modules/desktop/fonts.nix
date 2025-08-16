@@ -20,6 +20,10 @@
         junicode
         font-awesome
 
+        # Utilitarian
+        atkinson-hyperlegible-next
+        atkinson-hyperlegible-mono
+
         # Frisia
         montserrat
         gyre-fonts
