@@ -85,8 +85,8 @@
             ./modules/server/glance.nix
             ./modules/server/bin.nix
             ./modules/server/navidrome.nix
-            ./modules/server/ttyd.nix
             ./modules/server/matrix.nix
+            ./modules/server/wireguard.nix
           ];
         };
 
