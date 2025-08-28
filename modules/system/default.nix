@@ -7,7 +7,7 @@
     ./networking.nix
     ./tmpfs.nix
     ./kernel.nix
-    ./virtualisation.nix
+    #./virtualisation.nix
     ./containers.nix
     ./documentation.nix
     ./environment.nix
