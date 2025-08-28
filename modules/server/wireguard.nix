@@ -8,8 +8,10 @@ in
   # networking.nat.externalInterface = "enp1s0";
   # networking.nat.internalInterfaces = [ "wg0" ];
   networking.firewall.allowedUDPPorts = [ 51820 ];
-  boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
-
+  boot.kernel.sysctl= {
+  "net.ipv4.ip_forward" = 1;
+  "net.ipv4.tcp_congestion_control"="bbr";
+};
   /*
     networking.wg-quick.interfaces = {
       wg0 = {
