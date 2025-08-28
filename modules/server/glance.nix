@@ -265,6 +265,7 @@ in
                     "meshtastic/firmware"
                     "Ralim/IronOS"
                     "glanceapp/glance"
+                    "merge/skulls"
                   ];
                 }
               ];
