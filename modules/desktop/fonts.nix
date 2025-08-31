@@ -19,6 +19,7 @@
         gentium
         junicode
         font-awesome
+        vt323
 
         # Utilitarian
         atkinson-hyperlegible-next
