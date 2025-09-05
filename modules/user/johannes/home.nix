@@ -72,6 +72,15 @@
       userName = "Johannes Arnold";
       userEmail = "jarnold@b1-systems.de";
 
+      aliases = {
+        afp = "!git commit -a --amend --no-edit && git push --force";
+        diff-staged = "diff --cached";
+        last = "log -1 HEAD --stat";
+        ac = "commit -a";
+        acm = "commit -a -m";
+        d = "diff";
+      };
+
       extraConfig = {
         push.autoSetupRemote = true;
         init.defaultBranch = "main";
