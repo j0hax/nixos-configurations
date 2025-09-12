@@ -32,6 +32,8 @@
     pulseaudio
     pavucontrol
     kdePackages.kdenlive
+    virt-viewer
+    discord
 
     libva-utils
   ];

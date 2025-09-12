@@ -52,5 +52,5 @@
   security.rtkit.enable = true;
 
   # Required for controlling monitors
-  hardware.i2c.enable =  true;
+  hardware.i2c.enable = true;
 }
