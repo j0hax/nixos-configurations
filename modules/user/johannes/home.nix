@@ -79,6 +79,7 @@
         ac = "commit -a";
         acm = "commit -a -m";
         d = "diff";
+        pa = "push --all";
       };
 
       extraConfig = {
