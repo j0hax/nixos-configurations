@@ -8,10 +8,10 @@ in
   # networking.nat.externalInterface = "enp1s0";
   # networking.nat.internalInterfaces = [ "wg0" ];
   networking.firewall.allowedUDPPorts = [ 51820 ];
-  boot.kernel.sysctl= {
-  "net.ipv4.ip_forward" = 1;
-  "net.ipv4.tcp_congestion_control"="bbr";
-};
+  boot.kernel.sysctl = {
+    "net.ipv4.ip_forward" = 1;
+    "net.ipv4.tcp_congestion_control" = "bbr";
+  };
   /*
     networking.wg-quick.interfaces = {
       wg0 = {
@@ -47,8 +47,8 @@ in
           allowedIPs = [ "10.0.0.2/32" ];
         }
         {
-          name = "gruenaucam";
-          publicKey = "B0R6dJt7NGpM6IsUJy77MXtikU/F8cJwAtt4zkzyVXc=";
+          name = "webcam";
+          publicKey = "zZWEMegtMvP9taLRtHXyRwQtfOUv9oooRG/06f1Be2U=";
           allowedIPs = [ "10.0.0.3/32" ];
         }
         {
