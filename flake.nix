@@ -75,7 +75,7 @@
             ./modules/desktop
             ./modules/user/johannes
             ./modules/work
-	    ./modules/system/virtualisation.nix
+            ./modules/system/virtualisation.nix
           ];
         };
         skylab = {
@@ -88,6 +88,7 @@
             ./modules/server/navidrome.nix
             ./modules/server/matrix.nix
             ./modules/server/wireguard.nix
+            ./modules/server/ntfy.nix
           ];
         };
 
