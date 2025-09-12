@@ -15,6 +15,7 @@
       "dialout"
       "adbusers"
       "pcap"
+      "lp"
     ];
   };
 
