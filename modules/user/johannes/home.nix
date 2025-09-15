@@ -83,7 +83,19 @@
       };
 
       extraConfig = {
+        checkout.workers = -1;
         push.autoSetupRemote = true;
+        fetch = {
+          prune = true;
+          pruneTags = true;
+        };
+
+        pull = {
+          # Possibly dangerous
+          #rebase = true;
+          autostash = true;
+        };
+        
         init.defaultBranch = "main";
         credential.helper = "/etc/profiles/per-user/johannes/bin/git-credential-libsecret";
         maintenance.enable = true;
