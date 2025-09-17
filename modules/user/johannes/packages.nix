@@ -19,6 +19,8 @@
   ];
 
   programs = {
+    bat.enable = true;
+    
     taskwarrior = {
       enable = true;
       package = pkgs.taskwarrior3;

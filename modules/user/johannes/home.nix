@@ -64,6 +64,10 @@
     };
   };
 
+  home.shellAliases = {
+    cat = "bat --paging=never";
+  };
+  
   programs = {
     git = {
       enable = true;
