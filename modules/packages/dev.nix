@@ -23,6 +23,8 @@
     marksman
     markdown-oxide
     lldb
+    shfmt
+    shellcheck
 
     # Go Stuff
     go
