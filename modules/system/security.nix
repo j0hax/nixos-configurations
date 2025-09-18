@@ -1,9 +1,10 @@
 { pkgs, lib, ... }:
 {
-  # Swap sudo for sudo-rs
+  # Swap sudo for run0
   security = {
     sudo.enable = false;
-    sudo-rs.enable = true;
+    #sudo-rs.enable = true;
+    polkit.enable = true;
   };
 
   # Disable root user
@@ -11,6 +12,8 @@
 
   # Disable password login for SSH
   services.openssh = {
+    startWhenNeeded = true;
+    ports = [ 484 ]; # Because 22^2, get it?
     settings = {
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;
@@ -22,6 +25,12 @@
       │ will be prosecuted to the full extent of the law.                        │
       └──────────────────────────────────────────────────────────────────────────┘
     '';
+  };
+
+  services.endlessh-go = {
+    enable = true;
+    openFirewall = true;
+    port = 22;
   };
 
   services.fail2ban = {
