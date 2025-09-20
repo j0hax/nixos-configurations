@@ -21,7 +21,6 @@
     imagemagick
     bitwarden-desktop
     signal-desktop
-    mindustry-wayland
 
     /*
       Although we use PipeWire,
@@ -33,7 +32,6 @@
     pavucontrol
     kdePackages.kdenlive
     virt-viewer
-    discord
 
     libva-utils
   ];
@@ -43,7 +41,6 @@
     ausweisapp.enable = true;
     thunderbird.enable = true;
     chromium.enable = true;
-    steam.enable = true;
     adb.enable = true;
     appimage = {
       enable = true;
