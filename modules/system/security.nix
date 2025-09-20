@@ -7,6 +7,14 @@
     polkit.enable = true;
   };
 
+  environment.systemPackages = [
+    (pkgs.writeShellScriptBin "sudo" ''
+      echo '[Warning] sudo has been replaced with run0.'
+      shift
+      ${pkgs.systemd}/bin/run0 $@
+    '')
+  ];
+
   # Disable root user
   users.users.root.hashedPassword = "!";
 
