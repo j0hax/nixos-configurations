@@ -1,4 +1,4 @@
-{ pkgs, ...}:
+{ pkgs, ... }:
 {
   programs = {
     steam.enable = true;
@@ -9,12 +9,12 @@
     discord
     mumble
     frozen-bubble
-    supertux
-    supertuxkart
-    urban-terror
+    superTux
+    superTuxKart
+    urbanterror
     xonotic
     sauerbraten
     beyond-all-reason
-    
+
   ];
 }

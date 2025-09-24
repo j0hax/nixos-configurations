@@ -76,6 +76,7 @@
             ./modules/user/johannes
             ./modules/work
             ./modules/system/virtualisation.nix
+            ./modules/desktop/gaming.nix
           ];
         };
         skylab = {

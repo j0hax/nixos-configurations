@@ -67,7 +67,7 @@
   home.shellAliases = {
     cat = "bat --paging=never";
   };
-  
+
   programs = {
     git = {
       enable = true;
@@ -99,7 +99,7 @@
           #rebase = true;
           autostash = true;
         };
-        
+
         init.defaultBranch = "main";
         credential.helper = "/etc/profiles/per-user/johannes/bin/git-credential-libsecret";
         maintenance.enable = true;
