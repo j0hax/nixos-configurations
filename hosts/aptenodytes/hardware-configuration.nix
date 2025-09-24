@@ -32,8 +32,10 @@
     options = [ "subvol=root" ];
   };
 
-  boot.initrd.luks.devices."crypted".device =
-    "/dev/disk/by-uuid/32f3e283-082e-496d-a2c9-d893f282f2a6";
+  boot.initrd.luks.devices."crypted" = {
+    device = "/dev/disk/by-uuid/32f3e283-082e-496d-a2c9-d893f282f2a6";
+    allowDiscards = true;
+  };
 
   fileSystems."/nix" = {
     device = "/dev/disk/by-uuid/deac1731-6310-479f-8c3b-d8b09db319b2";
@@ -59,7 +61,10 @@
   swapDevices = [
     {
       device = "/dev/disk/by-partuuid/b6a6199a-0c1d-4aec-b42e-afacf1ca8017";
-      randomEncryption = true;
+      randomEncryption = {
+        enable = true;
+        allowDiscards = true;
+      };
     }
   ];
 
