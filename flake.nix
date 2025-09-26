@@ -90,6 +90,7 @@
             ./modules/server/matrix.nix
             ./modules/server/wireguard.nix
             ./modules/server/ntfy.nix
+            ./modules/server/uptime.nix
           ];
         };
 
