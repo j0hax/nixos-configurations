@@ -48,7 +48,7 @@ in
     settings = {
       global = {
         server_name = domain;
-        allow_registration = true;
+        allow_registration = false;
         trusted_servers = [
           "matrix.org"
           "matrix.uni-hannover.de"
