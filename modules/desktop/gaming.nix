@@ -15,6 +15,6 @@
     xonotic
     sauerbraten
     beyond-all-reason
-
+    prismlauncher
   ];
 }
