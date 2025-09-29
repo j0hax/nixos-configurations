@@ -67,7 +67,7 @@ in
               widgets = [
                 {
                   type = "weather";
-                  location = "Hannover, Germany";
+                  location = "Badenstedt, Germany";
                   hour-format = "24h";
                 }
               ];
