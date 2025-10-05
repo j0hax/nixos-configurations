@@ -45,7 +45,10 @@ in
           }
           {
             PublicKey = "x9NBa/ywMCPa0fRIb7o86msAHOiGFzri/dLADG3Qnnw=";
-            AllowedIPs = [ "10.0.0.5/32" "192.168.1.0/24" ];
+            AllowedIPs = [
+              "10.0.0.5/32"
+              "192.168.1.0/24"
+            ];
           }
         ];
       };

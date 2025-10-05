@@ -2,7 +2,8 @@
 let
   hostname = "uptime.jka.one";
   port = "5372";
-in {
+in
+{
   imports = [ ./caddy.nix ];
 
   services.caddy.virtualHosts.${hostname}.extraConfig = ''
