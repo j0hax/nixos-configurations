@@ -30,7 +30,7 @@
   networking.networkmanager = lib.mkDefault {
     enable = true;
     wifi.backend = "iwd";
-    #dns = "systemd-resolved";
+    dns = "systemd-resolved";
   };
 
   # Limit how many resources Nix can eat up
@@ -45,7 +45,8 @@
   };
 
   # Further configuration in Home-Manager
-  programs.hyprland.enable = true;
+  # programs.hyprland.enable = true;
+  programs.niri.enable = true;
 
   # Performance tweaks
   #services.dbus.implementation = "broker";

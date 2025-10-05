@@ -25,8 +25,6 @@
 
   imports = [
     ./packages.nix
-    # Hyprland is a whole beast in itself.
-    ./hyprland.nix
   ];
 
   # Set GNOME keyboard layout
@@ -239,6 +237,11 @@
         sub-langs = "all";
         sponsorblock-remove = "sponsor";
       };
+    };
+
+    mangohud = {
+      enable = true;
+      enableSessionWide = true;
     };
   };
 }
