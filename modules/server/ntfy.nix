@@ -18,7 +18,12 @@ in
       base-url = "https://${hostname}";
       listen-http = ":${toString port}";
       behind-proxy = true;
-      # auth-default-access = "deny-all";
+
+      # Private server by default, but allow push notifications
+      auth-default-access = "deny-all";
+      auth-access = [
+        "*:up*:write-only"
+      ];
 
       # E-Mail Settings
       smtp-server-listen = ":25";
