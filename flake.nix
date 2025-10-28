@@ -85,12 +85,13 @@
             ./modules/user/johannes
             ./modules/server/jellyfin.nix
             ./modules/server/glance.nix
-            ./modules/server/bin.nix
-            ./modules/server/navidrome.nix
+            # ./modules/server/bin.nix
+            # ./modules/server/navidrome.nix
             ./modules/server/matrix.nix
             ./modules/server/wireguard.nix
             ./modules/server/ntfy.nix
-            ./modules/server/uptime.nix
+            # ./modules/server/uptime.nix
+            # ./modules/server/minecraft.nix
           ];
         };
 
