@@ -11,7 +11,7 @@
 
     package = pkgs.caddy.withPlugins {
       plugins = [ "github.com/caddyserver/cache-handler@v0.16.0" ];
-      hash = "sha256-kBOl7QvHUMSpc9d+jy3srU6gTsN2phnJZu4UhiFPKkc=";
+      hash = "sha256-PNurykiyLYJhktPvYK+Y0i150mLVEzSpxwSGhNRdxFg=";
     };
 
     # Remove www subdomain
