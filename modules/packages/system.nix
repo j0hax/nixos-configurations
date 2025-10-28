@@ -46,6 +46,7 @@ in
     uutils-diffutils
     uutils-findutils
 
+    qrencode
     pstree
     lsof
     ripgrep
