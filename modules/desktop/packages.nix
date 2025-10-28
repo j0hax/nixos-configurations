@@ -15,8 +15,6 @@
     kepubify
     xournalpp
     prusa-slicer
-    openscad-unstable
-    monero-gui
     speedtest-cli
     imagemagick
     bitwarden-desktop
