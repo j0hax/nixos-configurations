@@ -5,11 +5,21 @@
   ...
 }:
 let
-  port = 5267;
-  addr = "wg.jka.one";
+  # Custom routing table number for the VPN
+  Table = 666;
+
+  # Function to repeatedly create a peer with an IP Address
+  mkPeer = PublicKey: AllowedIPs: {
+    inherit PublicKey;
+    inherit AllowedIPs;
+    PresharedKeyFile = "/etc/wireguard/preshared.key";
+  };
 in
 {
-  networking.firewall.allowedUDPPorts = [ 51820 ];
+  networking.firewall.allowedUDPPorts = [
+    51820
+    51821
+  ];
 
   # Needed to prevent conflichts with systemd-network
   networking.useNetworkd = true;
@@ -18,31 +28,20 @@ in
   systemd.network = {
     enable = true;
     netdevs = {
-      "50-wg0" = {
+      "private" = {
         netdevConfig = {
           Kind = "wireguard";
           Name = "wg0";
         };
-
         wireguardConfig = {
           PrivateKeyFile = "/etc/wireguard/privatekey";
           ListenPort = 51820;
-          RouteTable = "main"; # wg-quick creates routing entries automatically but we must use use this option in systemd.
+          RouteTable = Table;
         };
-
         wireguardPeers = [
-          {
-            PublicKey = "hyLhDEyI9Dxialfyc13Fs4j/ef1K+aTQ5tnu/wnXCEA=";
-            AllowedIPs = [ "10.0.0.2/32" ];
-          }
-          {
-            PublicKey = "zZWEMegtMvP9taLRtHXyRwQtfOUv9oooRG/06f1Be2U=";
-            AllowedIPs = [ "10.0.0.3/32" ];
-          }
-          {
-            PublicKey = "X0kSkNPm071xtB2Ez9wqNf8bvWSifu0fUHtolIrrIhU=";
-            AllowedIPs = [ "10.0.0.4/32" ];
-          }
+          (mkPeer "hyLhDEyI9Dxialfyc13Fs4j/ef1K+aTQ5tnu/wnXCEA=" [ "10.0.0.2/32" ])
+          (mkPeer "zZWEMegtMvP9taLRtHXyRwQtfOUv9oooRG/06f1Be2U=" [ "10.0.0.3/32" ])
+          (mkPeer "X0kSkNPm071xtB2Ez9wqNf8bvWSifu0fUHtolIrrIhU=" [ "10.0.0.4/32" ])
           {
             PublicKey = "x9NBa/ywMCPa0fRIb7o86msAHOiGFzri/dLADG3Qnnw=";
             AllowedIPs = [
@@ -50,17 +49,67 @@ in
               "192.168.1.0/24"
             ];
           }
+          (mkPeer "3mojRZjAIMLyQr9JYi4qKKBGVM01fA8aqbtAjYx3xjY=" [ "10.0.0.6/32" ])
+          (mkPeer "VWFc52Zjk2q2tkHFGPsL421QoW18r+cb66rbYmCtE0g=" [ "10.0.0.7/32" ])
+        ];
+      };
+
+      "family" = {
+        netdevConfig = {
+          Kind = "wireguard";
+          Name = "wg1";
+        };
+        wireguardConfig = {
+          PrivateKeyFile = "/etc/wireguard/privatekey.wg1";
+          ListenPort = 51821;
+          RouteTable = Table;
+        };
+        wireguardPeers = [
+          # Exit node
+          (mkPeer "pNxRbzc1J0gaieUhQoPPfEyYjbl0qMZEhbVtR14bpSs=" [
+            "10.0.1.2/32"
+            "0.0.0.0/0"
+          ])
+          (mkPeer "qM0Aqm4KqEcMRQ6B7cDKfCWCPM2iX7Rm+urb2JhT2zc=" ["10.0.1.3/32"])
         ];
       };
     };
 
-    networks."wg0" = {
-      matchConfig.Name = "wg0";
-      address = [ "10.0.0.1/24" ];
-      networkConfig = {
-        IPMasquerade = "both";
-        IPv4Forwarding = true;
-        IPv6Forwarding = true;
+    networks = {
+      "private" = {
+        matchConfig.Name = "wg0";
+        address = [ "10.0.0.1/24" ];
+        networkConfig = {
+          IPMasquerade = "both";
+          IPv4Forwarding = true;
+          IPv6Forwarding = true;
+        };
+      };
+
+      "family" = {
+        matchConfig.Name = "wg1";
+        address = [ "10.0.1.1/24" ];
+        networkConfig = {
+          IPMasquerade = "both";
+          IPv4Forwarding = true;
+          IPv6Forwarding = true;
+        };
+
+        routingPolicyRules = [
+          {
+            From = "10.0.1.0/24";
+            inherit Table;
+          }
+        ];
+
+        # Route anything originating from the VPN Network to the VPN Gateway
+        routes = [
+          {
+            Destination = "0.0.0.0/0";
+            Gateway = "10.0.1.2";
+            inherit Table;
+          }
+        ];
       };
     };
   };
