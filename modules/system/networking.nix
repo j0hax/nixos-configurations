@@ -15,25 +15,15 @@
 
     # Use nftables instead of iptables
     nftables.enable = true;
+    
+    wireguard.enable = true;
   };
 
-  /*
-    Disabled for now:
-      "Red Hat does not recommend using [systemd-resolvd] for production."
-
-    services.resolved = {
-      enable = true;
-      dnssec = "true";
-      dnsovertls = "opportunistic";
-      fallbackDns = [
-        "9.9.9.9#dns.quad9.net"
-        "149.112.112.112#dns.quad9.net"
-      ];
-      domains = [ "~." ];
-    };
-  */
-
-  networking.wireguard.enable = true;
+  services.resolved = {
+    enable = true;
+    dnsovertls = "opportunistic";
+    domains = [ "~." ];
+  };
 
   environment.systemPackages = with pkgs; [
     dnsutils
