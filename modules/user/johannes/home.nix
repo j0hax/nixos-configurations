@@ -238,10 +238,5 @@
         sponsorblock-remove = "sponsor";
       };
     };
-
-    mangohud = {
-      enable = true;
-      enableSessionWide = true;
-    };
-  };
+   };
 }
