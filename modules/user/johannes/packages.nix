@@ -13,6 +13,8 @@
     typst
     typstyle
     tinymist
+    just
+    pandoc
 
     shellcheck
     shfmt
