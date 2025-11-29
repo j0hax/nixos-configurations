@@ -28,23 +28,23 @@
   ];
 
   # Set GNOME keyboard layout
-  dconf.settings = {
-    "org/gnome/desktop/input-sources" = {
-      show-all-sources = true;
-      sources = [
-        (lib.hm.gvariant.mkTuple [
-          "xkb"
-          "eu"
-        ])
-      ];
-      xkb-options = "";
-    };
+  # dconf.settings = {
+  #   "org/gnome/desktop/input-sources" = {
+  #     show-all-sources = true;
+  #     sources = [
+  #       (lib.hm.gvariant.mkTuple [
+  #         "xkb"
+  #         "eu"
+  #       ])
+  #     ];
+  #     xkb-options = "";
+  #   };
 
-    "org/gnome/desktop/interface" = {
-      accent-color = "green";
-      color-scheme = "prefer-dark";
-    };
-  };
+  #   "org/gnome/desktop/interface" = {
+  #     accent-color = "green";
+  #     color-scheme = "prefer-dark";
+  #   };
+  # };
 
   services = {
     ssh-agent.enable = true;
@@ -94,7 +94,7 @@
 
         pull = {
           # Possibly dangerous
-          #rebase = true;
+          rebase = true;
           autostash = true;
         };
 
@@ -144,6 +144,9 @@
     firefox = {
       enable = true;
       policies = {
+        BlockAboutConfig = true;
+        CaptivePortal = true;
+
         DisableTelemetry = true;
         DisableFirefoxStudies = true;
         DontCheckDefaultBrowser = true;
@@ -152,7 +155,11 @@
 
         # Disable Sponsors
         FirefoxSuggest.SponsoredSuggestions = false;
-        FirefoxHome.SponsoredTopSites = false;
+        FirefoxHome = {
+          SponsoredTopSites = false;
+          SponsoredPocket = false;
+          SponsoredStories = false;
+        };
       };
     };
 
@@ -167,6 +174,18 @@
             80
             132
           ];
+          indent-guides = {
+            render = true;
+            skip-levels = 1;
+          };
+          whitespace.characters = {
+            space = "·";
+            nbsp = "⍽";
+            nnbsp = "␣";
+            tab = "→";
+            newline = "⏎";
+            tabpad = "·";
+          };
           bufferline = "always";
           popup-border = "all";
           inline-diagnostics = {
@@ -238,5 +257,5 @@
         sponsorblock-remove = "sponsor";
       };
     };
-   };
+  };
 }
