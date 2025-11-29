@@ -8,9 +8,9 @@
   imports = [
     #./greetd.nix
     #./sway.nix
-    ./gnome.nix
+    #./gnome.nix
     #./cosmic.nix
-    #./plasma.nix
+    ./plasma.nix
 
     ./services.nix
     ./packages.nix
@@ -30,7 +30,7 @@
   networking.networkmanager = lib.mkDefault {
     enable = true;
     wifi.backend = "iwd";
-    dns = "systemd-resolved";
+    # dns = "systemd-resolved";
   };
 
   # Limit how many resources Nix can eat up

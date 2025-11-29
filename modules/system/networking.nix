@@ -15,12 +15,12 @@
 
     # Use nftables instead of iptables
     nftables.enable = true;
-    
+
     wireguard.enable = true;
   };
 
   services.resolved = {
-    enable = true;
+    enable = false;
     dnsovertls = "opportunistic";
     domains = [ "~." ];
   };
