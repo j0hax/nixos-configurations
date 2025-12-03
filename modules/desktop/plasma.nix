@@ -14,5 +14,14 @@
     desktopManager.plasma6.enable = true;
   };
 
-  environment.systemPackages = with pkgs.kdePackages; [ yakuake ];
+  environment.systemPackages = with pkgs.kdePackages; [
+    yakuake
+    kcalc
+    kclock
+    ksystemlog
+    kcolorchooser
+    kolourpaint
+  ];
+
+  programs.kdeconnect.enable = true;
 }
