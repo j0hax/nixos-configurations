@@ -8,7 +8,7 @@
     mindustry-wayland
     discord
     mumble
-    frozen-bubble
+    # frozen-bubble
     superTux
     superTuxKart
     urbanterror
