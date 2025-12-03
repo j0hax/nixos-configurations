@@ -18,6 +18,7 @@
     speedtest-cli
     imagemagick
     bitwarden-desktop
+    spotify
     signal-desktop
 
     /*
@@ -30,7 +31,7 @@
     pavucontrol
     kdePackages.kdenlive
     virt-viewer
-
+    languagetool
     libva-utils
   ];
 
