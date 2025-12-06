@@ -34,7 +34,7 @@ in
 
     # Linux Kernel Modules
     extraModulePackages = with config.boot.kernelPackages; [
-      v4l2loopback # USB Video
+      # v4l2loopback # USB Video
       perf # Performance Counting
     ];
   };
@@ -46,4 +46,12 @@ in
       "sd[a-z]*" = "mq-deadline";
     };
   */
+
+  # Enable kmscon
+  # Usefor for the desktop as well as VPS
+  services.kmscon = {
+    enable = true;
+    hwRender = true;
+    fonts = [ { name = "Iosevka Term"; package = pkgs.iosevka-bin; } ];
+  };
 }
