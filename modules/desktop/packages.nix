@@ -33,6 +33,8 @@
     virt-viewer
     languagetool
     libva-utils
+    pdfpc
+    gnome-network-displays
   ];
 
   programs = {
