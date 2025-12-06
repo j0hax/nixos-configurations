@@ -30,7 +30,7 @@ in
     };
 
     # Custom Kernel Parameters
-    kernelParams = [ "mitigations=off" ];
+    kernelParams = [ "mitigations=off" "kernel.task_delayacct=1" ];
 
     # Linux Kernel Modules
     extraModulePackages = with config.boot.kernelPackages; [
