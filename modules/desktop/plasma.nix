@@ -21,7 +21,9 @@
     ksystemlog
     kcolorchooser
     kolourpaint
-  ];
+  ] ++ (with pkgs; [
+    transmission_4-qt
+  ]);
 
   programs.kdeconnect.enable = true;
 }
