@@ -30,7 +30,10 @@ in
     };
 
     # Custom Kernel Parameters
-    kernelParams = [ "mitigations=off" "kernel.task_delayacct=1" ];
+    kernelParams = [
+      "mitigations=off"
+      "kernel.task_delayacct=1"
+    ];
 
     # Linux Kernel Modules
     extraModulePackages = with config.boot.kernelPackages; [
@@ -52,6 +55,11 @@ in
   services.kmscon = {
     enable = true;
     hwRender = true;
-    fonts = [ { name = "Iosevka Term"; package = pkgs.iosevka-bin; } ];
+    fonts = [
+      {
+        name = "Iosevka Term";
+        package = pkgs.iosevka-bin;
+      }
+    ];
   };
 }
