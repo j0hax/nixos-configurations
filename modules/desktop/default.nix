@@ -11,6 +11,7 @@
     #./gnome.nix
     #./cosmic.nix
     ./plasma.nix
+    ./niri.nix
 
     ./services.nix
     ./packages.nix
