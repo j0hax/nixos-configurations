@@ -20,6 +20,7 @@
     bitwarden-desktop
     spotify
     signal-desktop
+    backgroundremover
     /*
       Although we use PipeWire,
       this is still needed for userspace
