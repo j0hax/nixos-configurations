@@ -20,15 +20,14 @@
     bitwarden-desktop
     spotify
     signal-desktop
-
     /*
       Although we use PipeWire,
       this is still needed for userspace
       configuration, especially for loading
-      RAOP modules.
+      RAOP modules:
+      pulseaudio
+      pavucontrol
     */
-    pulseaudio
-    pavucontrol
     kdePackages.kdenlive
     virt-viewer
     languagetool
