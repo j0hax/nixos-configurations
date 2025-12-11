@@ -22,7 +22,8 @@
   nix = {
     gc = {
       automatic = true;
-      options = "--delete-older-than 7d";
+      options = "--delete-older-than 2d";
+      dates = [ "01:00" "13:00" ];
     };
     optimise.automatic = true;
   };
