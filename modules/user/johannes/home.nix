@@ -196,7 +196,18 @@
         };
       };
       languages = {
+        language-server = {
+          harper-ls = {
+            command = "harper-ls";
+            args = [ "--stdio" ];
+          };
+        };
+
         language = [
+          {
+            name = "markdown";
+            language-servers = ["marksman" "markdown-oxide" "harper-ls"];
+          }
           {
             name = "salt";
             scope = "source.yaml.salt";

@@ -25,6 +25,7 @@
     lldb
     shfmt
     shellcheck
+    harper
 
     # Go Stuff
     go
