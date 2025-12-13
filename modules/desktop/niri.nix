@@ -32,6 +32,8 @@
   environment.systemPackages = with pkgs; [
     ghostty
     fuzzel
+    xwayland-satellite
+    posy-cursors
     noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     quickshell
     (python3.withPackages (pyPkgs: with pyPkgs; [ pygobject3 ]))
