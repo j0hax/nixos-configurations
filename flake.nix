@@ -4,7 +4,6 @@
   inputs = {
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    agenix.url = "github:ryantm/agenix";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -19,7 +18,6 @@
     {
       self,
       nixpkgs,
-      agenix,
       nixos-hardware,
       home-manager,
       noctalia,
@@ -38,19 +36,12 @@
         ./modules/user # User configuration
       ];
 
-      agenixModules = system: [
-        agenix.nixosModules.default
-        {
-          environment.systemPackages = [ agenix.packages.${system}.default ];
-        }
-      ];
-
       # Define a system with common and extra modules
       mkSystem =
         name: cfg:
         nixpkgs.lib.nixosSystem rec {
           system = cfg.system or "x86_64-linux";
-          modules = (commonModules name) ++ (agenixModules system) ++ (cfg.modules or [ ]);
+          modules = (commonModules name) ++ (cfg.modules or [ ]);
           specialArgs = inputs;
         };
 
