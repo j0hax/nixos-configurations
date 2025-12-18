@@ -19,8 +19,6 @@
       self,
       nixpkgs,
       nixos-hardware,
-      home-manager,
-      noctalia,
       ...
     }@inputs:
     let
