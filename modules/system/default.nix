@@ -34,7 +34,7 @@
 
   services = {
     fstrim.enable = true;
-    
+
     # Replace ppd and tlp with tuned
     power-profiles-daemon.enable = lib.mkDefault false;
     tlp.enable = false;

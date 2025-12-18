@@ -20,7 +20,7 @@
         TODO: Map virtualhosts attrs, filter by www.*, redirect to them
     */
 
- };
+  };
 
   networking.firewall = {
     allowedTCPPorts = [

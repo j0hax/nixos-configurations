@@ -31,7 +31,7 @@
   networking.networkmanager = lib.mkDefault {
     enable = true;
     wifi.backend = "iwd";
-    # dns = "systemd-resolved";
+    dns = "systemd-resolved";
   };
 
   # Limit how many resources Nix can eat up

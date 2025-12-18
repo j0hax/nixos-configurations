@@ -206,7 +206,11 @@
         language = [
           {
             name = "markdown";
-            language-servers = ["marksman" "markdown-oxide" "harper-ls"];
+            language-servers = [
+              "marksman"
+              "markdown-oxide"
+              "harper-ls"
+            ];
           }
           {
             name = "salt";
