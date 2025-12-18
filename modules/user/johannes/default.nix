@@ -22,6 +22,6 @@
   home-manager.users.johannes = import ./home.nix;
 
   # Enable decryption of Secrets with my key
-  age.identityPaths = [ "${config.users.users.johannes.home}/.ssh/id_ed25519" ];
+  # age.identityPaths = [ "${config.users.users.johannes.home}/.ssh/id_ed25519" ];
 
 }
