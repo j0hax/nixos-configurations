@@ -1,7 +1,8 @@
 {
   pkgs,
-  noctalia,
   lib,
+  inputs,
+  noctalia,
   ...
 }:
 {
@@ -17,43 +18,32 @@
     };
   */
 
-  programs.niri.enable = true;
+  programs = {
+    niri.enable = true;
+  };
 
   # Handle power and lid switch
   services.logind.settings.Login = {
     HandleLidSwitch = "ignore";
   };
 
+  networking.networkmanager.enable = true;
+  hardware.bluetooth.enable = true;
+  
   services.upower = {
     enable = true;
-    ignoreLid = true;
+    # ignoreLid = true;
   };
 
   environment.systemPackages = with pkgs; [
     ghostty
-    fuzzel
+    ddcutil
     xwayland-satellite
     posy-cursors
     noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     quickshell
-    (python3.withPackages (pyPkgs: with pyPkgs; [ pygobject3 ]))
+    kdlfmt
+    libnotify
   ];
 
-  services.gnome.evolution-data-server.enable = true;
-
-  # https://docs.noctalia.dev/getting-started/nixos/#calendar-events-support
-
-  environment.sessionVariables = {
-    GI_TYPELIB_PATH = lib.makeSearchPath "lib/girepository-1.0" (
-      with pkgs;
-      [
-        evolution-data-server
-        libical
-        glib.out
-        libsoup_3
-        json-glib
-        gobject-introspection
-      ]
-    );
-  };
 }

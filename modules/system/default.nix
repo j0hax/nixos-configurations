@@ -1,4 +1,5 @@
 {
+  lib,
   ...
 }:
 {
@@ -26,17 +27,26 @@
     ];
   };
 
-  systemd.services.nix-daemon.serviceConfig = {
-    MemoryHigh = "50%";
-    MemoryMax = "55%";
-  };
-
   zramSwap = {
     enable = true;
     algorithm = "zstd";
   };
 
-  services.fstrim.enable = true;
+  services = {
+    fstrim.enable = true;
+    
+    # Replace ppd and tlp with tuned
+    power-profiles-daemon.enable = lib.mkDefault false;
+    tlp.enable = false;
+
+    tuned = {
+      enable = true;
+      ppdSupport = true;
+      settings = {
+        dynamic_tuning = true;
+      };
+    };
+  };
 
   # Causes problems with Firefox/Thunderbird
   #environment.memoryAllocator.provider = "mimalloc";
