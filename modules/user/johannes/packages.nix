@@ -1,25 +1,5 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs; [
-    wl-clipboard
-    logseq
-    gimp3
-    sshuttle
-    aria2
-    inkscape
-    openscad-unstable
-    godot
-
-    typst
-    typstyle
-    tinymist
-    just
-    pandoc
-
-    shellcheck
-    shfmt
-  ];
-
   programs = {
     bat.enable = true;
 
