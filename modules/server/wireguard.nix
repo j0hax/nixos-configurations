@@ -18,7 +18,6 @@ in
 {
   networking.firewall.allowedUDPPorts = [
     51820
-    51821
   ];
 
   # Needed to prevent conflichts with systemd-network
@@ -36,7 +35,6 @@ in
         wireguardConfig = {
           PrivateKeyFile = "/etc/wireguard/privatekey";
           ListenPort = 51820;
-          RouteTable = Table;
         };
         wireguardPeers = [
           (mkPeer "hyLhDEyI9Dxialfyc13Fs4j/ef1K+aTQ5tnu/wnXCEA=" [ "10.0.0.2/32" ])
@@ -53,26 +51,6 @@ in
           (mkPeer "VWFc52Zjk2q2tkHFGPsL421QoW18r+cb66rbYmCtE0g=" [ "10.0.0.7/32" ])
         ];
       };
-
-      "family" = {
-        netdevConfig = {
-          Kind = "wireguard";
-          Name = "wg1";
-        };
-        wireguardConfig = {
-          PrivateKeyFile = "/etc/wireguard/privatekey.wg1";
-          ListenPort = 51821;
-          RouteTable = Table;
-        };
-        wireguardPeers = [
-          # Exit node
-          (mkPeer "pNxRbzc1J0gaieUhQoPPfEyYjbl0qMZEhbVtR14bpSs=" [
-            "10.0.1.2/32"
-            "0.0.0.0/0"
-          ])
-          (mkPeer "qM0Aqm4KqEcMRQ6B7cDKfCWCPM2iX7Rm+urb2JhT2zc=" ["10.0.1.3/32"])
-        ];
-      };
     };
 
     networks = {
@@ -84,32 +62,6 @@ in
           IPv4Forwarding = true;
           IPv6Forwarding = true;
         };
-      };
-
-      "family" = {
-        matchConfig.Name = "wg1";
-        address = [ "10.0.1.1/24" ];
-        networkConfig = {
-          IPMasquerade = "both";
-          IPv4Forwarding = true;
-          IPv6Forwarding = true;
-        };
-
-        routingPolicyRules = [
-          {
-            From = "10.0.1.0/24";
-            inherit Table;
-          }
-        ];
-
-        # Route anything originating from the VPN Network to the VPN Gateway
-        routes = [
-          {
-            Destination = "0.0.0.0/0";
-            Gateway = "10.0.1.2";
-            inherit Table;
-          }
-        ];
       };
     };
   };
