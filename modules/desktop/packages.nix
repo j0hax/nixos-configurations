@@ -16,6 +16,7 @@
     xournalpp
     prusa-slicer
     speedtest-cli
+    mat2
     imagemagick
     bitwarden-desktop
     spotify
