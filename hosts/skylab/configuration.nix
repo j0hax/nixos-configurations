@@ -165,7 +165,6 @@
         root * /srv/http/clara-und-johannes.de
         encode zstd gzip
         file_server
-        cache
       '';
     };
 
@@ -174,7 +173,6 @@
         root * /srv/http/johannes.contact
         encode zstd gzip
         file_server
-        cache
         try_files johannes.vcf
       '';
     };

@@ -9,11 +9,6 @@
     enable = true;
     email = "johannes@rnold.online";
 
-    package = pkgs.caddy.withPlugins {
-      plugins = [ "github.com/caddyserver/cache-handler@v0.16.0" ];
-      hash = "sha256-PNurykiyLYJhktPvYK+Y0i150mLVEzSpxwSGhNRdxFg=";
-    };
-
     # Remove www subdomain
     /*
       virtualHosts."www.*".extraConfig = ''
@@ -25,12 +20,7 @@
         TODO: Map virtualhosts attrs, filter by www.*, redirect to them
     */
 
-    globalConfig = ''
-      cache {
-        ttl 1h
-      }
-    '';
-  };
+ };
 
   networking.firewall = {
     allowedTCPPorts = [

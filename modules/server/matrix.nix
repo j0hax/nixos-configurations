@@ -33,7 +33,6 @@ in
         # Headers set for performance and privacy
         encode zstd gzip
         header X-Robots-Tag "noindex, nofollow"
-        cache
 
         # Serve Element Web Interface
         root * ${pkgs.element-web}
