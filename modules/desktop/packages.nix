@@ -22,6 +22,18 @@
     spotify
     signal-desktop
     backgroundremover
+    openscad-unstable
+    aria2
+    inkscape
+    pandoc
+    just
+    typst
+    typstyle
+    tinymist
+    shellcheck
+    shfmt
+    wl-clipboard
+    unzip
     /*
       Although we use PipeWire,
       this is still needed for userspace
@@ -48,7 +60,7 @@
       enable = true;
       binfmt = true;
     };
-
+    wireshark.enable = true;
     obs-studio.enable = true;
   };
 
