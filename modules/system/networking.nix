@@ -20,7 +20,7 @@
   };
 
   services.resolved = {
-    enable = false;
+    enable = true;
     dnsovertls = "opportunistic";
     domains = [ "~." ];
   };
