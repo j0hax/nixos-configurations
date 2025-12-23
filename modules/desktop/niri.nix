@@ -46,6 +46,7 @@
     # Select GNOME apps
     nautilus
     papers
+    loupe
   ];
 
 }
