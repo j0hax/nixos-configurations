@@ -34,9 +34,9 @@
   services.gnome.gnome-keyring.enable = true;
 
   # Handle power and lid switch
-  services.logind.settings.Login = {
-    HandleLidSwitch = "ignore";
-  };
+  # services.logind.settings.Login = {
+  # HandleLidSwitch = "ignore";
+  # };
 
   networking.networkmanager.enable = true;
   hardware.bluetooth.enable = true;
