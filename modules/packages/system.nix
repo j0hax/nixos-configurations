@@ -41,8 +41,6 @@ lib.mkDefault {
   };
 
   environment.systemPackages = with pkgs; [
-    config.boot.kernelPackages.perf
-
     uutils-coreutils-noprefix
     uutils-diffutils
     uutils-findutils

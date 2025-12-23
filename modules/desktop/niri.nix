@@ -3,8 +3,7 @@
   lib,
   noctalia,
   ...
-}:
-lib.mkDefault {
+}: {
   services.greetd = {
     enable = true;
     settings = {
