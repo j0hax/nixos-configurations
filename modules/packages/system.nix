@@ -2,12 +2,13 @@
   pkgs,
   config,
   self,
+  lib,
   ...
 }:
 let
   ffmpeg-package = pkgs.ffmpeg-full;
 in
-{
+lib.mkDefault {
   # Kinda cringe :(
   nixpkgs.config.allowUnfree = true;
   hardware.enableAllFirmware = true;
