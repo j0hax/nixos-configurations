@@ -34,7 +34,7 @@
 
     # Device I/O
     udisks2.enable = true;
-    usbmuxd.enable = true;
+    # usbmuxd.enable = true;
 
     # Automatic timezone
     #tzupdate.enable = true;
