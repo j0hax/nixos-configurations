@@ -27,8 +27,11 @@
           font = "Iosevka:size=16";
         };
       };
-      };
+    };
+    seahorse.enable = true;
   };
+
+  services.gnome.gnome-keyring.enable = true;
 
   # Handle power and lid switch
   services.logind.settings.Login = {
