@@ -3,7 +3,8 @@
   lib,
   noctalia,
   ...
-}: {
+}:
+{
   services.greetd = {
     enable = true;
     settings = {

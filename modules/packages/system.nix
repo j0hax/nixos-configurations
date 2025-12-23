@@ -1,6 +1,5 @@
 {
   pkgs,
-  config,
   self,
   lib,
   ...
@@ -8,13 +7,13 @@
 let
   ffmpeg-package = pkgs.ffmpeg-full;
 in
-lib.mkDefault {
+{
   # Kinda cringe :(
   nixpkgs.config.allowUnfree = true;
   hardware.enableAllFirmware = true;
 
   # Useful system-wide tools to enable
-  programs = {
+  programs = lib.mkDefault {
     htop.enable = true;
     iotop.enable = true;
     iftop.enable = true;
@@ -45,6 +44,7 @@ lib.mkDefault {
     uutils-diffutils
     uutils-findutils
 
+    backrest
     qrencode
     pstree
     lsof
