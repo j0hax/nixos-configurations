@@ -5,17 +5,14 @@
   ...
 }:
 {
-  /*
-    services.greetd = {
+    services.greetd = lib.mkDefault {
       enable = true;
       settings = {
         default_session = {
           command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --asterisks --cmd niri";
-          user = "greeter";
         };
       };
     };
-  */
 
   programs = {
     niri.enable = true;
