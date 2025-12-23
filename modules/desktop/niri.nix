@@ -5,11 +5,11 @@
   ...
 }:
 {
-    services.greetd = lib.mkDefault {
+    services.greetd = {
       enable = true;
       settings = {
         default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --asterisks --cmd niri";
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --asterisks --cmd niri-session";
         };
       };
     };
@@ -28,19 +28,10 @@
   };
 
   services.gnome.gnome-keyring.enable = true;
-
-  # Handle power and lid switch
-  # services.logind.settings.Login = {
-  # HandleLidSwitch = "ignore";
-  # };
+  services.upower.enable = true;
 
   networking.networkmanager.enable = true;
   hardware.bluetooth.enable = true;
-
-  services.upower = {
-    enable = true;
-    # ignoreLid = true;
-  };
 
   environment.systemPackages = with pkgs; [
     ddcutil
@@ -50,6 +41,11 @@
     quickshell
     kdlfmt
     libnotify
+    swww
+
+    # Select GNOME apps
+    nautilus
+    papers
   ];
 
 }
