@@ -20,6 +20,14 @@
 
   programs = {
     niri.enable = true;
+    foot = {
+      enable = true;
+      settings = {
+        main = {
+          font = "Iosevka:size=16";
+        };
+      };
+      };
   };
 
   # Handle power and lid switch
@@ -36,7 +44,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    ghostty
     ddcutil
     xwayland-satellite
     posy-cursors
