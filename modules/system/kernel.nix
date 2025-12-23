@@ -53,7 +53,7 @@ in
   # Enable kmscon
   # Usefor for the desktop as well as VPS
   services.kmscon = {
-    enable = true;
+    # enable = true;
     hwRender = true;
     fonts = [
       {
