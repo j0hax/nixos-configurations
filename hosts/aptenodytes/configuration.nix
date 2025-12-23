@@ -167,5 +167,9 @@
 
   # May help if FFmpeg/VAAPI/QSV init fails (esp. on Arc with i915):
   hardware.enableRedistributableFirmware = true;
-  boot.kernelParams = [ "i915.enable_guc=3" "i915.force_probe=!7d55" "xe.force_probe=7d55"];
+  boot.kernelParams = [
+    "i915.enable_guc=3"
+    "i915.force_probe=!7d55"
+    "xe.force_probe=7d55"
+  ];
 }
