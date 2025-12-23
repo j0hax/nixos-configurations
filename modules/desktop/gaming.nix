@@ -16,5 +16,6 @@
     sauerbraten
     beyond-all-reason
     prismlauncher
+    lutris
   ];
 }
