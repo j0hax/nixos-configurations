@@ -1,6 +1,4 @@
 {
-  pkgs,
-  config,
   lib,
   ...
 }:
@@ -10,7 +8,7 @@
     #./sway.nix
     #./gnome.nix
     #./cosmic.nix
-    ./plasma.nix
+    # ./plasma.nix
     ./niri.nix
 
     ./services.nix
@@ -45,11 +43,6 @@
     daemonCPUSchedPolicy = "idle";
   };
 
-  # Further configuration in Home-Manager
-  # programs.hyprland.enable = true;
-  programs.niri.enable = true;
-
-  # Performance tweaks
   #services.dbus.implementation = "broker";
   security.rtkit.enable = true;
 
