@@ -44,6 +44,7 @@ in
     uutils-diffutils
     uutils-findutils
 
+    killall
     backrest
     qrencode
     pstree
