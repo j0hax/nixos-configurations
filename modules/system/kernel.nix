@@ -36,8 +36,7 @@ in
     ];
 
     # Linux Kernel Modules
-    extraModulePackages = with config.boot.kernelPackages; [
-      # v4l2loopback # USB Video
+    extraModulePackages = with pkgs; [
       perf # Performance Counting
     ];
   };
