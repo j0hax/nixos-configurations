@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   noctalia,
   ...
 }:
@@ -27,12 +26,17 @@
     seahorse.enable = true;
   };
 
-  services.gnome.gnome-keyring.enable = true;
+  # Polkit authentication
   security.soteria.enable = true;
-  services.upower.enable = true;
 
+  # Recommended services for Noctalia
+  services.upower.enable = true;
+  services.gnome.gnome-keyring.enable = true;
   networking.networkmanager.enable = true;
   hardware.bluetooth.enable = true;
+
+  # Required for Nautilus to fully function
+  services.gvfs.enable = true;
 
   environment.systemPackages = with pkgs; [
     ddcutil
@@ -48,6 +52,8 @@
     nautilus
     papers
     loupe
+    file-roller
+    adwaita-icon-theme
   ];
 
 }
