@@ -17,5 +17,7 @@
     beyond-all-reason
     prismlauncher
     lutris
+    mangohud
+    mangojuice
   ];
 }
