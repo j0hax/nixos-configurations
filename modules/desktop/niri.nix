@@ -28,6 +28,7 @@
   };
 
   services.gnome.gnome-keyring.enable = true;
+  security.soteria.enable = true;
   services.upower.enable = true;
 
   networking.networkmanager.enable = true;
