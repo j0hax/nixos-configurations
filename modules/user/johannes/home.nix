@@ -71,20 +71,22 @@
       enable = true;
       package = pkgs.gitFull;
 
-      userName = "Johannes Arnold";
-      userEmail = "jarnold@b1-systems.de";
+      settings = {
+        user = {
+          name = "Johannes Arnold";
+          email = "jarnold@b1-systems.de";
+        };
 
-      aliases = {
-        afp = "!git commit -a --amend --no-edit && git push --force";
-        diff-staged = "diff --cached";
-        last = "log -1 HEAD --stat";
-        ac = "commit -a";
-        acm = "commit -a -m";
-        d = "diff";
-        pa = "push --all";
-      };
+        alias = {
+          afp = "!git commit -a --amend --no-edit && git push --force";
+          diff-staged = "diff --cached";
+          last = "log -1 HEAD --stat";
+          ac = "commit -a";
+          acm = "commit -a -m";
+          d = "diff";
+          pa = "push --all";
+        };
 
-      extraConfig = {
         checkout.workers = -1;
         push.autoSetupRemote = true;
         fetch = {
@@ -101,20 +103,21 @@
         init.defaultBranch = "main";
         credential.helper = "/etc/profiles/per-user/johannes/bin/git-credential-libsecret";
         maintenance.enable = true;
-      };
 
-      signing = {
-        format = "openpgp";
-        key = "F4CA40CF51CFB63F33EB0FCC91192A6AA8C42BFA";
-        signByDefault = true;
-      };
-
-      delta = {
-        enable = true;
-        options = {
-          mode = "diff-so-fancy";
-          side-by-side = true;
+        signing = {
+          format = "openpgp";
+          key = "F4CA40CF51CFB63F33EB0FCC91192A6AA8C42BFA";
+          signByDefault = true;
         };
+      };
+    };
+
+    delta = {
+      enable = true;
+      enableGitIntegration = true;
+      options = {
+        mode = "diff-so-fancy";
+        side-by-side = true;
       };
     };
 
