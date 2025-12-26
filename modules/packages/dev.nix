@@ -26,6 +26,7 @@
     shfmt
     shellcheck
     harper
+    vscode-css-languageserver
 
     # Go Stuff
     go
