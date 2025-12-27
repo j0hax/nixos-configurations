@@ -54,6 +54,11 @@
     loupe
     file-roller
     adwaita-icon-theme
+
+    (writeShellScriptBin "noctalia-restart" ''
+      kill $(pgrep quickshell)
+      noctalia-shell > /dev/null & disown
+    '')
   ];
 
 }
