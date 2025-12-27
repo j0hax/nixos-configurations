@@ -18,6 +18,5 @@
     prismlauncher
     lutris
     mangohud
-    mangojuice
   ];
 }
