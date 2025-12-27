@@ -25,8 +25,11 @@
     domains = [ "~." ];
   };
 
+  programs.arp-scan.enable = true;
+
   environment.systemPackages = with pkgs; [
     dnsutils
     wireguard-tools
+    nmap
   ];
 }
