@@ -13,8 +13,8 @@
       "2620:fe::9"
     ];
 
-    # Use nftables instead of iptables
-    nftables.enable = true;
+    # Use nftables instead of iptables?
+    # nftables.enable = true;
 
     wireguard.enable = true;
   };
