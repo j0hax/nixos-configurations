@@ -54,6 +54,7 @@
     loupe
     file-roller
     adwaita-icon-theme
+    transmission_4-gtk
 
     (writeShellScriptBin "noctalia-restart" ''
       kill $(pgrep quickshell)
