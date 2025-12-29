@@ -86,6 +86,7 @@
             ./modules/server/ntfy.nix
             # ./modules/server/uptime.nix
             # ./modules/server/minecraft.nix
+            ./modules/server/xmpp.nix
           ];
         };
 
