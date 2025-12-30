@@ -85,6 +85,7 @@ in
     modules = {
       http_files = true;
 
+      motd = true;
       admin_adhoc = true;
       welcome = true;
       announce = true;
