@@ -111,8 +111,8 @@ in
 
     muc = [
       {
-        domain = "muc.xmpp.${domain}";
-        restrictRoomCreation = false;
+        domain = "conference.xmpp.${domain}";
+        restrictRoomCreation = "local";
       }
     ];
 
