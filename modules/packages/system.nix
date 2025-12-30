@@ -66,6 +66,8 @@ in
     usbutils
     pciutils
     smartmontools
+    e2fsprogs
+    sqlite
 
     geoipWithDatabase
 
