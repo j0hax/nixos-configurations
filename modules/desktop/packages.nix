@@ -48,6 +48,7 @@
     libva-utils
     pdfpc
     gnome-network-displays
+    dino
   ];
 
   programs = {
