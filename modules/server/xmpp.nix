@@ -84,8 +84,7 @@ in
     c2sRequireEncryption = true;
     modules = {
       http_files = true;
-      vcard = true;
-
+      bosh = true;
       motd = true;
       admin_adhoc = true;
       welcome = true;
