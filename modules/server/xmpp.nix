@@ -21,8 +21,8 @@ in
     certs."${domain}" = {
       extraDomainNames = [
         "xmpp.${domain}"
-        "muc.xmpp.${domain}"
-        "upload.xmpp.${domain}"
+        "conference.${domain}"
+        "upload.${domain}"
       ];
       group = config.services.caddy.group;
       postRun = ''
@@ -94,7 +94,7 @@ in
       watchregistrations = true;
     };
     extraModules = [ "csi_simple" ];
-    
+
     xmppComplianceSuite = true;
 
     ssl = {
@@ -113,7 +113,7 @@ in
 
     muc = [
       {
-        domain = "conference.xmpp.${domain}";
+        domain = "conference.${domain}";
         restrictRoomCreation = "local";
       }
     ];
@@ -127,7 +127,7 @@ in
     '';
 
     httpFileShare = {
-      domain = "upload.xmpp.${domain}";
+      domain = "upload.${domain}";
       http_host = domain;
     };
   };
