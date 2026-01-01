@@ -2,8 +2,12 @@
   description = "Johannes' NixOS Configurations";
 
   inputs = {
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -19,6 +23,7 @@
       self,
       nixpkgs,
       nixos-hardware,
+      sops-nix,
       ...
     }@inputs:
     let
@@ -32,6 +37,11 @@
         ./modules/packages # Common packages
         ./modules/system # Common system settings
         ./modules/user # User configuration
+        sops-nix.nixosModules.sops
+        {
+          sops.defaultSopsFile = ./secrets.yaml;
+          sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+        }
       ];
 
       # Define a system with common and extra modules

@@ -1,0 +1,11 @@
+keys:
+  - &johannes age12l2t5nxx8fp2fqkz7cql7w9uht0jgjh03377f2k3wac25whalymq869y6m
+  - &aptenodytes age1qg495qk96dq8gekf5uxnv8fxdlljaq57uulrcshuwfe93zqnvp6qlamcrc
+  - &skylab age10xe92n8usl6mseaq82xmy7ym0ku764drkz6czezkt2eq95mgupaseet220
+creation_rules:
+  - path_regex: secrets.yaml
+    key_groups:
+    - age:
+      - *johannes
+      - *aptenodytes
+      - *skylab

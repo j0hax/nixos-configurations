@@ -69,6 +69,9 @@ in
     e2fsprogs
     sqlite
 
+    age
+    sops
+
     geoipWithDatabase
 
     (writeShellScriptBin "update-rebuild" ''
