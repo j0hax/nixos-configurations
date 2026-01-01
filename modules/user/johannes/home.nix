@@ -49,7 +49,7 @@
   services = {
     ssh-agent.enable = true;
     spotifyd = {
-      enable = true;
+      # enable = true;
       settings.global = {
         no_audio_cache = false;
         backend = "pulseaudio";
