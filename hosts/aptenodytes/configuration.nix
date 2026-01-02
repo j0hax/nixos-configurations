@@ -139,6 +139,8 @@
     tailor-gui.enable = true;
   };
 
+  fileSystems."/".options = [ "compress=zstd" ];
+
   #boot.extraModulePackages = with config.boot.kernelPackages; [ yt6801 ];
 
   services.udev.extraRules = ''

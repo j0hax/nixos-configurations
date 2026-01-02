@@ -142,6 +142,8 @@
 
   environment.systemPackages = [ pkgs.rclone ];
 
+  fileSystems."/".options = [ "compress=zstd" ];
+
   fileSystems."/media/nextcloud" = {
     device = "nextcloud:media";
     fsType = "rclone";
