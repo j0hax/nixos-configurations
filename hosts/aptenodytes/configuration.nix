@@ -139,7 +139,16 @@
     tailor-gui.enable = true;
   };
 
+  boot.initrd.luks.devices."crypted".allowDiscards = true;
   fileSystems."/".options = [ "compress=zstd" ];
+
+  swapDevices = [{
+    device = "/dev/disk/by-partuuid/b6a6199a-0c1d-4aec-b42e-afacf1ca8017";
+    randomEncryption = {
+      enable = true;
+      allowDiscards = true;
+    };
+  }];
 
   #boot.extraModulePackages = with config.boot.kernelPackages; [ yt6801 ];
 
