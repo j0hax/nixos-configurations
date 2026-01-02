@@ -18,8 +18,6 @@
     "xhci_pci"
     "thunderbolt"
     "nvme"
-    "usb_storage"
-    "sd_mod"
     "sdhci_pci"
   ];
   boot.initrd.kernelModules = [ ];
@@ -27,24 +25,22 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/deac1731-6310-479f-8c3b-d8b09db319b2";
+    device = "/dev/mapper/crypted";
     fsType = "btrfs";
     options = [ "subvol=root" ];
   };
 
-  boot.initrd.luks.devices."crypted" = {
-    device = "/dev/disk/by-uuid/32f3e283-082e-496d-a2c9-d893f282f2a6";
-    allowDiscards = true;
-  };
+  boot.initrd.luks.devices."crypted".device =
+    "/dev/disk/by-uuid/32f3e283-082e-496d-a2c9-d893f282f2a6";
 
   fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/deac1731-6310-479f-8c3b-d8b09db319b2";
+    device = "/dev/mapper/crypted";
     fsType = "btrfs";
     options = [ "subvol=nix" ];
   };
 
   fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/deac1731-6310-479f-8c3b-d8b09db319b2";
+    device = "/dev/mapper/crypted";
     fsType = "btrfs";
     options = [ "subvol=home" ];
   };
@@ -59,15 +55,10 @@
   };
 
   swapDevices = [
-    {
-      device = "/dev/disk/by-partuuid/b6a6199a-0c1d-4aec-b42e-afacf1ca8017";
-      randomEncryption = {
-        enable = true;
-        allowDiscards = true;
-      };
-    }
+    { device = "/dev/mapper/dev-disk-byx2dpartuuid-b6a6199ax2d0c1dx2d4aecx2db42ex2dafacf1ca8017"; }
   ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.cpu.intel.npu.enable = true;
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
