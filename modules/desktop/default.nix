@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   ...
 }:
 {
@@ -22,7 +23,15 @@
       timeout = 0;
       systemd-boot.consoleMode = "auto";
     };
-    plymouth.enable = true;
+    plymouth = {
+      enable = true;
+      theme = "tribar";
+    };
+
+    kernelParams = [
+      "quiet"
+      "splash"
+    ];
   };
 
   # Use NetworkManager for desktop configurations
