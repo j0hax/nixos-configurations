@@ -51,12 +51,35 @@ in
     };
   };
 
-  services.caddy.virtualHosts."http://${domain}" = {
-    serverAliases = [ "http://*.fiducit.net" ];
-    extraConfig = ''
-      root /.well-known/* /var/lib/acme/acme-challenge/
-      file_server
-    '';
+  services.caddy.virtualHosts = {
+    # Unencrypted HTTPS Server on :80 is required for ACME challenges
+    # All other queries are redirected to HTTPS
+    "http://${domain}" = {
+      serverAliases = [ "http://*.fiducit.net" ];
+      extraConfig = ''
+        handle_path /.well-known/* {
+          root * /var/lib/acme/acme-challenge/
+          file_server
+        }
+
+        handle {
+          redir https://${domain}/conversejs
+        }
+      '';
+    };
+
+    # Serve HTTPS
+    "https://${domain}" = {
+      extraConfig = ''
+        # Redirect regular queries to Converse.js
+        redir / /conversejs
+
+        # Use our custom ACME certificates as a reverse proxy endpoint
+        tls ${sslCertDir}/fullchain.pem ${sslCertDir}/key.pem
+        encode zstd gzip
+        reverse_proxy 127.0.0.1:5280
+      '';
+    };
   };
 
   networking.firewall =
@@ -116,6 +139,11 @@ in
 
   services.prosody = {
     enable = true;
+
+    package = pkgs.prosody.override {
+      withCommunityModules = [ "conversejs" ];
+    };
+
     admins = [
       "johannes@${domain}"
     ];
@@ -137,6 +165,7 @@ in
     extraModules = [
       "csi_simple"
       "turn_external"
+      "conversejs"
     ];
 
     xmppComplianceSuite = true;
