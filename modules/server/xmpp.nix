@@ -141,7 +141,13 @@ in
     enable = true;
 
     package = pkgs.prosody.override {
-      withCommunityModules = [ "conversejs" ];
+      withCommunityModules = [
+        "conversejs"
+        # Recommended by conversations.im
+        "sasl2"
+        "sasl2_bind2"
+      ];
+
     };
 
     admins = [
@@ -165,7 +171,6 @@ in
     extraModules = [
       "csi_simple"
       "turn_external"
-      "conversejs"
     ];
 
     xmppComplianceSuite = true;
