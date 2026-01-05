@@ -230,6 +230,7 @@ in
       domain = "upload.${domain}";
       http_host = domain;
       expires_after = "never";
+      size_limit = 32 * 1024 * 1024;
     };
   };
 
