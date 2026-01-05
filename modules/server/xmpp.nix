@@ -143,9 +143,15 @@ in
     package = pkgs.prosody.override {
       withCommunityModules = [
         "conversejs"
-        # Recommended by conversations.im
+        # Recommended by conversations.im and Monal
+        # https://github.com/monal-im/Monal/wiki/Considerations-for-XMPP-server-admins
         "sasl2"
         "sasl2_bind2"
+        "sasl_ssdp"
+        "sasl2_fast"
+        "sasl_ssdp"
+        "csi_battery_saver"
+        "muc_notifications"
       ];
 
     };
@@ -169,7 +175,7 @@ in
       watchregistrations = true;
     };
     extraModules = [
-      "csi_simple"
+      # "csi_simple"
       "turn_external"
     ];
 
@@ -212,6 +218,9 @@ in
       archive_expires_after = "never"
       muc_log_presences = true
       muc_log_expires_after = "never"
+
+      -- Recommended by Monal dev
+      smacks_max_queue_size = 4000
       
 
       limits = {
