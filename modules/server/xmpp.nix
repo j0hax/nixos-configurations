@@ -205,8 +205,14 @@ in
       storage = "sql"
       sql = {
         driver = "SQLite3";
-        database = "prosody.sqlite"; -- The database name to use. For SQLite3 this the database filename (relative to the data storage directory).
+        database = "prosody.sqlite";
       }
+
+      -- Keep messages
+      archive_expires_after = "never"
+      muc_log_presences = true
+      muc_log_expires_after = "never"
+      
 
       limits = {
         c2s = {
@@ -223,6 +229,7 @@ in
     httpFileShare = {
       domain = "upload.${domain}";
       http_host = domain;
+      expires_after = "never";
     };
   };
 
