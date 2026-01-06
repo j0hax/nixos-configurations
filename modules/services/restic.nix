@@ -13,14 +13,15 @@
   };
 
   services.restic.backups = {
-    hourly = {
+    daily = {
       repositoryFile = config.sops.secrets."restic/repository".path;
       passwordFile = config.sops.secrets."restic/password".path;
       rcloneConfigFile = config.sops.secrets.restic_rclone.path;
       
       timerConfig = {
-        OnCalendar = "hourly";
-        Persistent = true;
+        OnCalendar = "daily";
+        RandomizedDelaySec = "1h";
+        persistent = "true";
       };
 
       inhibitsSleep = true;
@@ -50,8 +51,9 @@
 
       exclude = [
         # Most likely not needed
-        "/home/*/.cache"
-        "/home/*/Downloads"
+        "/home/*/.cache/"
+        "/home/*/Downloads/"
+        "/home/*/.local/"
 
         # Generally large/media files
         "*.mkv"
