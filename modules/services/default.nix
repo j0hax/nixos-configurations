@@ -4,7 +4,7 @@
 {
   imports = [
     # Backups are performed offline
-    #./restic.nix
+    ./restic.nix
     ./system.nix
   ];
 }

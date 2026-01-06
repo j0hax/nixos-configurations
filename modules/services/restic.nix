@@ -1,20 +1,23 @@
 {
   config,
+  sops,
+  lib,
   ...
 }:
 {
-  age.secrets = {
-    "restic/env".file = ../secrets/restic/env.age;
-    "restic/repo".file = ../secrets/restic/repo.age;
-    "restic/password".file = ../secrets/restic/password.age;
+  sops.secrets."restic/repository" = {};
+  sops.secrets."restic/password" = {};
+  sops.secrets.restic_rclone = {
+    sopsFile = ../../secrets/restic_rclone.ini;
+    format = "ini";
   };
 
   services.restic.backups = {
     hourly = {
-      environmentFile = config.age.secrets."restic/env".path;
-      repositoryFile = config.age.secrets."restic/repo".path;
-      passwordFile = config.age.secrets."restic/password".path;
-
+      repositoryFile = config.sops.secrets."restic/repository".path;
+      passwordFile = config.sops.secrets."restic/password".path;
+      rcloneConfigFile = config.sops.secrets.restic_rclone.path;
+      
       timerConfig = {
         OnCalendar = "hourly";
         Persistent = true;
@@ -42,6 +45,7 @@
       paths = [
         "/home"
         "/etc"
+        "/var"
       ];
 
       exclude = [

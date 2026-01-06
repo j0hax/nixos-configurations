@@ -3,7 +3,7 @@ keys:
   - &aptenodytes age1qg495qk96dq8gekf5uxnv8fxdlljaq57uulrcshuwfe93zqnvp6qlamcrc
   - &skylab age10xe92n8usl6mseaq82xmy7ym0ku764drkz6czezkt2eq95mgupaseet220
 creation_rules:
-  - path_regex: secrets.yaml
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
     - age:
       - *johannes
