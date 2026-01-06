@@ -25,6 +25,7 @@
       };
 
       inhibitsSleep = true;
+      runCheck = true;
 
       # https://github.com/NixOS/nixpkgs/issues/196547
       backupPrepareCommand = ''
@@ -39,7 +40,6 @@
       extraBackupArgs = [
         "--tag nix"
         "--one-file-system"
-        "--exclude-larger-than 1G"
         "--verbose"
       ];
 
@@ -66,11 +66,10 @@
 
       pruneOpts = [
         "--keep-daily 7"
-        "--keep-weekly 4"
+        "--keep-weekly 5"
         "--keep-monthly 12"
         "--keep-yearly 10"
         "--repack-uncompressed"
-        "--compression max"
         "--max-unused 0"
       ];
     };
