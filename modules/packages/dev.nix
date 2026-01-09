@@ -14,6 +14,7 @@
     yq
     jq
     yamlfmt
+    cloc
 
     # LSPs and tools
     nil
