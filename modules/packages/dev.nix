@@ -9,6 +9,7 @@
     ripgrep
     # silicon
     gcc
+    gnumake
     helix
     yq
     jq
