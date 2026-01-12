@@ -11,7 +11,6 @@
         # Generally nice
         inter
         libertinus
-        #iosevka
         crimson-pro
         eb-garamond
         libre-caslon

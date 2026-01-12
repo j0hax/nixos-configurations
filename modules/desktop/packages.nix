@@ -49,6 +49,7 @@
     pdfpc
     gnome-network-displays
     dino
+    android-tools
   ];
 
   programs = {
@@ -56,7 +57,6 @@
     ausweisapp.enable = true;
     thunderbird.enable = true;
     chromium.enable = true;
-    adb.enable = true;
     appimage = {
       enable = true;
       binfmt = true;

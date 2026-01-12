@@ -5,7 +5,7 @@
 {
 
   environment.systemPackages = with pkgs; [
-    nixfmt-rfc-style
+    nixfmt
     ripgrep
     # silicon
     gcc
