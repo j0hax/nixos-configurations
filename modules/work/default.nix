@@ -9,6 +9,7 @@
     teams-for-linux
     zoom-us
     pwgen
+    awscli2
   ];
 
   # Add banner
