@@ -10,6 +10,7 @@
     zoom-us
     pwgen
     awscli2
+    rustdesk
   ];
 
   # Add banner
