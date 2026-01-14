@@ -156,6 +156,12 @@
         DisablePocket = true;
         NoDefaultBookmarks = true;
 
+        # Disable unecessary features
+        PasswordManagerEnabled = false;
+        GenerativeAI = {
+          Enabled = false;
+        };
+
         # Disable Sponsors
         FirefoxSuggest.SponsoredSuggestions = false;
         FirefoxHome = {
