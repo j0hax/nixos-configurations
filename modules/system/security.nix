@@ -1,18 +1,10 @@
 { pkgs, lib, ... }:
 {
-  # Swap sudo for run0
   security = {
     sudo.enable = false;
-    #sudo-rs.enable = true;
+    sudo-rs.enable = true;
     polkit.enable = true;
   };
-
-  environment.systemPackages = [
-    (pkgs.writeShellScriptBin "sudo" ''
-      echo '[Warning] sudo has been replaced with run0.'
-      ${pkgs.systemd}/bin/run0 $@
-    '')
-  ];
 
   # Disable root user
   users.users.root.hashedPassword = "!";
