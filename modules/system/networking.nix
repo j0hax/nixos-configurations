@@ -21,8 +21,10 @@
 
   services.resolved = {
     enable = true;
-    dnsovertls = "opportunistic";
-    domains = [ "~." ];
+    settings.Resolve = {
+      DNSOverTLS = "opportunistic";
+      Domains = [ "~." ];
+    };
   };
 
   programs.arp-scan.enable = true;
