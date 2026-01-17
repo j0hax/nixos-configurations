@@ -48,6 +48,7 @@
         "Curly"
         "CurlySlab"
         "Etoile"
+        "SGr-IosevkaTerm"
       ];
 
     fontconfig = {
