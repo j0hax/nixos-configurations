@@ -152,11 +152,42 @@
     }
   ];
 
+  services.btrbk = {
+    instances."home" = {
+      onCalendar = "hourly";
+      settings = {
+        snapshot_preserve_min = "1w";
+        snapshot_preserve = "4w";
+        volume = {
+          "/" = {
+            snapshot_dir = "/snapshots";
+            subvolume = "home";
+          };
+        };
+      };
+    };
+  };
+  # Btrbk does not create snapshot directories automatically, so create one here.
+  systemd.tmpfiles.rules = [
+    "d /snapshots 0755 root root"
+  ];
+
   #boot.extraModulePackages = with config.boot.kernelPackages; [ yt6801 ];
 
-  services.udev.extraRules = ''
-    SUBSYSTEM=="platform", KERNEL=="tuxedo_keyboard", ATTR{charging_profile/charging_profile}="stationary"
-  '';
+  hardware.tuxedo-drivers.enable = lib.mkForce false;
+  /*
+  hardware.tuxedo-drivers.settings = {
+    charging-priority = "performance";
+    charging-profile = "stationary";
+    fn-lock = true;
+  };
+  */
+
+  /*
+    services.udev.extraRules = ''
+      SUBSYSTEM=="platform", KERNEL=="tuxedo_keyboard", ATTR{charging_profile/charging_profile}="stationary"
+    '';
+  */
 
   # # from https://wiki.nixos.org/wiki/Intel_Graphics
   hardware.graphics = {
