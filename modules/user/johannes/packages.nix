@@ -36,5 +36,25 @@
         ];
       };
     };
+
+    foot = {
+      enable = true;
+      server.enable = true;
+      settings = {
+        main = {
+          include = "~/.config/foot/themes/noctalia";
+          font = "Iosevka Term:size=12";
+          pad = "12x12 center";
+        };
+        bell = {
+          notify = true;
+          visual = true;
+        };
+        cursor = {
+          style = "underline";
+          blink = true;
+        };
+      };
+    };
   };
 }
