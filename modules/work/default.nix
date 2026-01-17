@@ -21,4 +21,5 @@
 
   # Filter Mic for meetings
   programs.noisetorch.enable = true;
+  programs.openvpn3.enable = true;
 }
