@@ -143,6 +143,7 @@ in
     package = pkgs.prosody.override {
       withCommunityModules = [
         "conversejs"
+        "pubsub_serverinfo"
         # Recommended by conversations.im and Monal
         # https://github.com/monal-im/Monal/wiki/Considerations-for-XMPP-server-admins
         "sasl2"
@@ -175,8 +176,8 @@ in
       watchregistrations = true;
     };
     extraModules = [
-      # "csi_simple"
       "turn_external"
+      "pubsub"
     ];
 
     xmppComplianceSuite = true;
@@ -193,8 +194,11 @@ in
         domain = "${domain}";
         enabled = true;
         extraConfig = ''
-          -- c2s_direct_tls_ports = { 5223 }
-          -- s2s_direct_tls_ports = { 5270 }
+          Component "pubsub.${domain}" "pubsub"
+          add_permissions = {
+            ["prosody:registered"] = { "pubsub:create-node" }
+          }
+
           Include "${config.sops.templates."turn-config.lua".path}"
         '';
       };
@@ -221,7 +225,6 @@ in
 
       -- Recommended by Monal dev
       smacks_max_queue_size = 4000
-      
 
       limits = {
         c2s = {
