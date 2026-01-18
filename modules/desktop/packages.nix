@@ -52,6 +52,12 @@
     android-tools
   ];
 
+  # Run Windows programs natively
+  boot.binfmt.emulatedSystems = [
+    "x86_64-windows"
+    "i686-windows" # Optional: for 32-bit Windows
+  ];
+
   programs = {
     localsend.enable = true;
     ausweisapp.enable = true;
