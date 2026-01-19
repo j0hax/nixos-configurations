@@ -1,6 +1,9 @@
 { ... }:
 {
-  hardware.keyboard.qmk.enable = true;
+  hardware = {
+    keyboard.qmk.enable = true;
+    sane.enable = true;
+  };
 
   services = {
     # Audio
@@ -42,6 +45,7 @@
 
     # Enable CUPS to print documents.
     printing.enable = true;
+    saned.enable = true;
 
     mullvad-vpn = {
       enable = true;
