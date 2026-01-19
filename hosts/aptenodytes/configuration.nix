@@ -176,11 +176,11 @@
 
   hardware.tuxedo-drivers.enable = lib.mkForce false;
   /*
-  hardware.tuxedo-drivers.settings = {
-    charging-priority = "performance";
-    charging-profile = "stationary";
-    fn-lock = true;
-  };
+    hardware.tuxedo-drivers.settings = {
+      charging-priority = "performance";
+      charging-profile = "stationary";
+      fn-lock = true;
+    };
   */
 
   /*
