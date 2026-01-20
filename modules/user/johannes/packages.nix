@@ -3,6 +3,8 @@
   programs = {
     bat.enable = true;
 
+    numbat.enable = true;
+
     taskwarrior = {
       enable = true;
       package = pkgs.taskwarrior3;
