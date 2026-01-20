@@ -142,7 +142,10 @@
 
   environment.systemPackages = [ pkgs.rclone ];
 
-  fileSystems."/".options = [ "compress=zstd" ];
+  fileSystems."/".options = [
+    "compress=zstd"
+    "autodefrag"
+  ];
 
   fileSystems."/media/nextcloud" = {
     device = "nextcloud:media";

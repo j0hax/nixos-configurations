@@ -140,7 +140,10 @@
   };
 
   boot.initrd.luks.devices."crypted".allowDiscards = true;
-  fileSystems."/".options = [ "compress=zstd" ];
+  fileSystems."/".options = [
+    "compress=zstd"
+    "autodefrag"
+  ];
 
   swapDevices = [
     {
