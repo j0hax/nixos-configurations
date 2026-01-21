@@ -41,7 +41,7 @@ in
 
   environment.systemPackages = with pkgs; [
     uutils-coreutils-noprefix
-    uutils-diffutils
+    # uutils-diffutils
     uutils-findutils
 
     killall
