@@ -11,6 +11,7 @@
     pwgen
     awscli2
     rustdesk
+    squashfsTools
   ];
 
   # Add banner
