@@ -13,14 +13,14 @@
   };
 
   services.restic.backups = {
-    daily = {
+    nextcloud = {
       repositoryFile = config.sops.secrets."restic/repository".path;
       passwordFile = config.sops.secrets."restic/password".path;
       rcloneConfigFile = config.sops.secrets.restic_rclone.path;
 
       timerConfig = {
         OnCalendar = "daily";
-        RandomizedDelaySec = "1h";
+        RandomizedDelaySec = "6h";
         persistent = "true";
       };
 
