@@ -156,8 +156,8 @@
     instances."home" = {
       onCalendar = "hourly";
       settings = {
-        snapshot_preserve_min = "1w";
-        snapshot_preserve = "4w";
+        snapshot_preserve_min = "1d";
+        snapshot_preserve = "1w";
         volume = {
           "/" = {
             snapshot_dir = "/snapshots";
@@ -172,24 +172,13 @@
     "d /snapshots 0755 root root"
   ];
 
-  #boot.extraModulePackages = with config.boot.kernelPackages; [ yt6801 ];
+  hardware.tuxedo-drivers.settings = {
+    charging-priority = "performance";
+    charging-profile = "stationary";
+    fn-lock = true;
+  };
 
-  hardware.tuxedo-drivers.enable = lib.mkForce false;
-  /*
-    hardware.tuxedo-drivers.settings = {
-      charging-priority = "performance";
-      charging-profile = "stationary";
-      fn-lock = true;
-    };
-  */
-
-  /*
-    services.udev.extraRules = ''
-      SUBSYSTEM=="platform", KERNEL=="tuxedo_keyboard", ATTR{charging_profile/charging_profile}="stationary"
-    '';
-  */
-
-  # # from https://wiki.nixos.org/wiki/Intel_Graphics
+  # from https://wiki.nixos.org/wiki/Intel_Graphics
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
