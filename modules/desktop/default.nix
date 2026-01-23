@@ -21,7 +21,7 @@
   boot = {
     loader = {
       timeout = 0;
-      systemd-boot.consoleMode = "auto";
+      systemd-boot.consoleMode = "max";
     };
     plymouth = {
       enable = true;
