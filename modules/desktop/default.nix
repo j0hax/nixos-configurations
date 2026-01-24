@@ -21,7 +21,11 @@
   boot = {
     loader = {
       timeout = 0;
-      systemd-boot.consoleMode = "max";
+      systemd-boot = {
+        consoleMode = "max";
+        memtest86.enable = true;
+        netbootxyz.enable = true;
+      };
     };
     plymouth = {
       enable = true;
