@@ -33,6 +33,7 @@
     shellcheck
     shfmt
     wl-clipboard
+    calibre
     unzip
     /*
       Although we use PipeWire,
