@@ -63,7 +63,7 @@
   };
 
   home.shellAliases = {
-    cat = "bat --paging=never";
+    cat = "bat";
   };
 
   programs = {

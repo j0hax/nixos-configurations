@@ -1,7 +1,13 @@
 { pkgs, ... }:
 {
   programs = {
-    bat.enable = true;
+    bat = {
+      enable = true;
+      config = {
+        style = "plain";
+        paging = "never";
+      };
+    };
 
     numbat.enable = true;
 
