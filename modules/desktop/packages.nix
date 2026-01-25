@@ -43,7 +43,7 @@
       pulseaudio
       pavucontrol
     */
-    kdePackages.kdenlive
+    # kdePackages.kdenlive
     virt-viewer
     languagetool
     libva-utils
@@ -70,6 +70,7 @@
     };
     wireshark.enable = true;
     obs-studio.enable = true;
+    wavemon.enable = true;
   };
 
   # Enable Logitech devices
