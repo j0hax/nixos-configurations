@@ -142,6 +142,7 @@
   boot.initrd.luks.devices."crypted".allowDiscards = true;
   fileSystems."/".options = [ "compress=zstd" ];
 
+  systemd.sleep.extraConfig = "AllowHibernation=no";
   swapDevices = [
     {
       device = "/dev/disk/by-partuuid/b6a6199a-0c1d-4aec-b42e-afacf1ca8017";
