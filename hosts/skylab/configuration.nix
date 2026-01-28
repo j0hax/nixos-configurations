@@ -169,7 +169,7 @@
     };
 
     "/mnt/media" = {
-      device = "media";
+      device = "media:";
       fsType = "rclone";
       options = [
         "allow_other"
