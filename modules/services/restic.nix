@@ -7,8 +7,8 @@
 {
   sops.secrets."restic/repository" = { };
   sops.secrets."restic/password" = { };
-  sops.secrets.restic_rclone = {
-    sopsFile = ../../secrets/restic_rclone.ini;
+  sops.secrets.rclone = {
+    sopsFile = ../../secrets/rclone-system.ini;
     format = "ini";
   };
 
@@ -16,7 +16,7 @@
     storagebox = {
       repositoryFile = config.sops.secrets."restic/repository".path;
       passwordFile = config.sops.secrets."restic/password".path;
-      rcloneConfigFile = config.sops.secrets.restic_rclone.path;
+      rcloneConfigFile = config.sops.secrets.rclone.path;
 
       timerConfig = {
         OnCalendar = "daily";
