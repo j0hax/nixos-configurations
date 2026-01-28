@@ -13,7 +13,7 @@
   };
 
   services.restic.backups = {
-    nextcloud = {
+    storagebox = {
       repositoryFile = config.sops.secrets."restic/repository".path;
       passwordFile = config.sops.secrets."restic/password".path;
       rcloneConfigFile = config.sops.secrets.restic_rclone.path;
