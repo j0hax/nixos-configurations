@@ -20,7 +20,7 @@
   # Use a pretty boot screen
   boot = {
     loader = {
-      timeout = 0;
+      timeout = 1;
       systemd-boot = {
         consoleMode = "max";
         memtest86.enable = true;
