@@ -10,7 +10,7 @@
     texlive.combined.scheme-full
     texmaker
     tectonic
-    handbrake
+    # handbrake
     chromium
     kepubify
     xournalpp
