@@ -271,8 +271,9 @@
     yt-dlp = {
       enable = true;
       settings = {
-        output = "\"%(uploader)s/%(title)s [%(id)s].%(ext)s\"";
-        download-archive = "\"yt-dlp_archive.dat\"";
+        # output = "\"%(uploader)s/%(title)s [%(id)s].%(ext)s\"";
+        output = "\"%(title)s [%(id)s].%(ext)s\"";
+        download-archive = "\"archive.dat\"";
         paths = "temp:/var/tmp/yt-dlp"; # "temp:/tmp/yt-dlp";
         embed-thumbnail = true;
         embed-metadata = true;
