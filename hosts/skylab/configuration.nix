@@ -153,6 +153,7 @@
   };
 
   fileSystems = {
+    /*
     "/media/nextcloud" = {
       device = "nextcloud:media";
       fsType = "rclone";
@@ -167,6 +168,7 @@
         "vfs_cache_min_free_space=10G"
       ];
     };
+    */
 
     "/mnt/media" = {
       device = "media:";
