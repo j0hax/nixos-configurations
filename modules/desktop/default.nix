@@ -41,7 +41,11 @@
   # Use NetworkManager for desktop configurations
   networking.networkmanager = lib.mkDefault {
     enable = true;
-    wifi.backend = "iwd";
+    wifi = {
+      backend = "iwd";
+      macAddress = "stable-ssid";
+    };
+    ethernet.macAddress = "stable";
     dns = "systemd-resolved";
   };
 
