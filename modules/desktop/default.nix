@@ -20,17 +20,14 @@
   # Use a pretty boot screen
   boot = {
     loader = {
-      timeout = 1;
+      timeout = 0;
       systemd-boot = {
         consoleMode = "max";
         memtest86.enable = true;
         netbootxyz.enable = true;
       };
     };
-    plymouth = {
-      enable = true;
-      theme = "tribar";
-    };
+    plymouth.enable = true;
 
     kernelParams = [
       "quiet"
