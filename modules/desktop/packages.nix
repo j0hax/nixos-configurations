@@ -34,6 +34,7 @@
     shfmt
     wl-clipboard
     calibre
+    gramps
     unzip
     /*
       Although we use PipeWire,
