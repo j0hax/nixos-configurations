@@ -53,6 +53,8 @@
           include = "~/.config/foot/themes/noctalia";
           font = "Iosevka Term:size=12";
           pad = "12x12 center";
+          # Compatability
+          term = "xterm-256color";
         };
         bell = {
           notify = true;
