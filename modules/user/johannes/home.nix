@@ -1,5 +1,6 @@
 {
   config,
+  osConfig,
   pkgs,
   lib,
   ...
@@ -27,24 +28,24 @@
     ./packages.nix
   ];
 
-  # Set GNOME keyboard layout
-  # dconf.settings = {
-  #   "org/gnome/desktop/input-sources" = {
-  #     show-all-sources = true;
-  #     sources = [
-  #       (lib.hm.gvariant.mkTuple [
-  #         "xkb"
-  #         "eu"
-  #       ])
-  #     ];
-  #     xkb-options = "";
-  #   };
+  # Set GNOME keyboard layouy
+  dconf.settings = lib.mkIf (osConfig.services.desktopManager.gnome.enable) {
+    "org/gnome/desktop/input-sources" = {
+      show-all-sources = true;
+      sources = [
+        (lib.hm.gvariant.mkTuple [
+          "xkb"
+          "eu"
+        ])
+      ];
+      xkb-options = "";
+    };
 
-  #   "org/gnome/desktop/interface" = {
-  #     accent-color = "green";
-  #     color-scheme = "prefer-dark";
-  #   };
-  # };
+    "org/gnome/desktop/interface" = {
+      accent-color = "green";
+      color-scheme = "prefer-dark";
+    };
+  };
 
   services = {
     ssh-agent.enable = true;
@@ -64,6 +65,7 @@
 
   home.shellAliases = {
     cat = "bat";
+    ls = "eza";
   };
 
   programs = {
