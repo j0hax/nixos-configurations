@@ -11,6 +11,8 @@
 
     numbat.enable = true;
 
+    eza.enable = true;
+
     taskwarrior = {
       enable = true;
       package = pkgs.taskwarrior3;
