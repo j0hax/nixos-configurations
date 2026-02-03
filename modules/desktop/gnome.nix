@@ -13,6 +13,10 @@
     package = pkgs.gnomeExtensions.gsconnect;
   };
 
+services.xrdp.enable = true;
+services.xrdp.defaultWindowManager = "${pkgs.gnome-session}/bin/gnome-session"; # gnome wayland session
+
+  
   # Enable the GNOME RDP components
   services.gnome.gnome-remote-desktop.enable = true;
 
