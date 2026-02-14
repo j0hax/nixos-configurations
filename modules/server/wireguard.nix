@@ -25,8 +25,17 @@ in
     51820
   ];
 
+  # Private DNS Server
+  services.adguardhome = {
+    enable = true;
+    openFirewall = true;
+    host = "10.0.0.1";
+    port = 3000;
+  };
+
   # Needed to prevent conflichts with systemd-network
   networking.useNetworkd = true;
+  networking.firewall.trustedInterfaces = [ "wg0" ];
 
   # Wireguard Server with systemd-networkd
   systemd.network = {
