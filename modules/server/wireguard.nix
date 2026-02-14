@@ -63,6 +63,7 @@ in
           }
           (mkPeer "3mojRZjAIMLyQr9JYi4qKKBGVM01fA8aqbtAjYx3xjY=" [ "10.0.0.6/32" ])
           (mkPeer "VWFc52Zjk2q2tkHFGPsL421QoW18r+cb66rbYmCtE0g=" [ "10.0.0.7/32" ])
+          (mkPeer "YNTQglZC2rj5WbuDirubtmBCTT9XbXiCIhvZL/r+phk=" [ "10.0.0.8/32" ])
         ];
       };
     };
