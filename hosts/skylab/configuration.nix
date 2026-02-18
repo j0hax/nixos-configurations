@@ -20,7 +20,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # networking.hostName = "nixos"; # Define your hostname.
   networking.domain = "jka.one";

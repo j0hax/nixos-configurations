@@ -19,13 +19,14 @@ in
   boot = {
     # Use the very latest release candidate
     # Note: lib.mkDefault = lib.mkOverride 1000
-    kernelPackages = lib.mkOverride 999 pkgs.linuxPackages_testing;
+    # kernelPackages = lib.mkOverride 999 pkgs.linuxPackages_testing;
+    kernelPackages = lib.mkDefault pkgs.linuxPackages_6_18;
 
     initrd.systemd.enable = true;
 
     # Add Bcachefs support
     supportedFilesystems = {
-      bcachefs = true;
+      # bcachefs = true;
       btrfs = true;
     };
 
