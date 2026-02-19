@@ -14,6 +14,8 @@
       "-L" # print build logs
     ];
     allowReboot = false;
+    runGarbageCollection = true;
+    
   };
 
   # Prevent boot from filling up
