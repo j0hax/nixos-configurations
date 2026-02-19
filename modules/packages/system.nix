@@ -4,9 +4,6 @@
   lib,
   ...
 }:
-let
-  ffmpeg-package = pkgs.ffmpeg-full;
-in
 {
   # Kinda cringe :(
   nixpkgs.config.allowUnfree = true;
@@ -34,9 +31,9 @@ in
       vimAlias = true;
     };
     ccache.enable = true;
-    flashrom.enable = true;
+    # flashrom.enable = true;
     gnupg.agent.enable = true;
-    mosh.enable = true;
+    # mosh.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
@@ -45,21 +42,14 @@ in
     uutils-findutils
 
     killall
-    backrest
-    qrencode
     pstree
     lsof
     ripgrep
     nix-output-monitor
     tree
-    yt-dlp
     rclone
-    restic
-    mat2
     bc
-    pwsafe
     file
-    ffmpeg-package
     ncdu
     pv
     wget

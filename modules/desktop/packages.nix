@@ -30,6 +30,7 @@
     typst
     typstyle
     tinymist
+    pwsafe
     shellcheck
     shfmt
     wl-clipboard
