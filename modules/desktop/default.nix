@@ -17,8 +17,11 @@
     ./fonts.nix
   ];
 
-  # Use a pretty boot screen
   boot = {
+    # Use a tweaked Kernel by default
+    kernelPackages = pkgs.linuxPackages_zen;
+
+    # Use a pretty boot screen
     loader = {
       timeout = 0;
       systemd-boot = {
