@@ -5,6 +5,7 @@
   lib,
   ...
 }:
+
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -49,19 +50,7 @@
 
   services = {
     ssh-agent.enable = true;
-    spotifyd = {
-      # enable = true;
-      settings.global = {
-        no_audio_cache = false;
-        backend = "pulseaudio";
-        initial_volume = 30;
-
-        # Maximum quality settings:
-        audio_format = "F32";
-        bitrate = 320;
       };
-    };
-  };
 
   home.shellAliases = {
     cat = "bat";
@@ -145,33 +134,6 @@
       };
     };
 
-    firefox = {
-      enable = true;
-      policies = {
-        BlockAboutConfig = true;
-        CaptivePortal = true;
-
-        DisableTelemetry = true;
-        DisableFirefoxStudies = true;
-        DontCheckDefaultBrowser = true;
-        DisablePocket = true;
-        NoDefaultBookmarks = true;
-
-        # Disable unecessary features
-        PasswordManagerEnabled = false;
-        GenerativeAI = {
-          Enabled = false;
-        };
-
-        # Disable Sponsors
-        FirefoxSuggest.SponsoredSuggestions = false;
-        FirefoxHome = {
-          SponsoredTopSites = false;
-          SponsoredPocket = false;
-          SponsoredStories = false;
-        };
-      };
-    };
 
     helix = {
       enable = true;
@@ -252,36 +214,5 @@
       };
     };
 
-    mpv = {
-      enable = true;
-      config = {
-        save-position-on-quit = "yes";
-        profile = "gpu-hq";
-        vo = "gpu-next";
-        hwdec = "auto";
-        slang = "en";
-        cache = "yes";
-        #cache-secs=10";
-        demuxer-hysteresis-secs = "10";
-        #Interpolation
-        video-sync = "display-resample";
-        interpolation = "yes";
-      };
-    };
-
-    yt-dlp = {
-      enable = true;
-      settings = {
-        # output = "\"%(uploader)s/%(title)s [%(id)s].%(ext)s\"";
-        output = "\"%(title)s [%(id)s].%(ext)s\"";
-        download-archive = "\"archive.dat\"";
-        paths = "temp:/var/tmp/yt-dlp"; # "temp:/tmp/yt-dlp";
-        embed-thumbnail = true;
-        embed-metadata = true;
-        embed-subs = true;
-        sub-langs = "all";
-        sponsorblock-remove = "sponsor";
-      };
-    };
   };
 }
