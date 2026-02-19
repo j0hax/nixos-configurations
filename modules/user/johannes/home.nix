@@ -129,7 +129,6 @@
       enable = true;
       functions.fish_greeting = ''
         ${lib.getExe pkgs.fortune-kind}
-        ${lib.getExe config.programs.taskwarrior.package} ready limit:5
       '';
     };
 
