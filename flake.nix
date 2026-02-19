@@ -34,8 +34,7 @@
         { networking.hostName = name; } # Set the hostname.
         ./hosts/${name}/configuration.nix # Host-Specific configuration from /etc/nixos
         ./modules/services # Common system services
-        ./modules/packages # Common packages
-        ./modules/system # Common system settings
+        ./modules/system # Common system settings and packages
         ./modules/user # User configuration
         sops-nix.nixosModules.sops
         {

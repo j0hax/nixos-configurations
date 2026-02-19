@@ -9,6 +9,7 @@
     ./tmpfs.nix
     ./kernel.nix
     #./virtualisation.nix
+    ./packages.nix
     ./containers.nix
     ./documentation.nix
     ./environment.nix
@@ -25,6 +26,13 @@
       "nix-command"
       "flakes"
     ];
+  };
+
+  # Essential tool for helping
+  programs.nh = {
+    enable = true;
+    flake = "/etc/nixos";
+    clean.enable = true;
   };
 
   zramSwap = {

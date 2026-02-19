@@ -21,6 +21,7 @@
   # Prevent boot from filling up
   boot.loader.grub.configurationLimit = 5;
 
+  /* Now done by `nh` command!
   nix = {
     gc = {
       automatic = true;
@@ -28,4 +29,5 @@
     };
     optimise.automatic = true;
   };
+  */
 }
