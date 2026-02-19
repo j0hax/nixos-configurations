@@ -50,7 +50,7 @@
 
   services = {
     ssh-agent.enable = true;
-      };
+  };
 
   home.shellAliases = {
     cat = "bat";
@@ -133,7 +133,6 @@
         right_format = "$time";
       };
     };
-
 
     helix = {
       enable = true;

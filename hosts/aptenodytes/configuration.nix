@@ -174,11 +174,11 @@
   ];
 
   /*
-  hardware.tuxedo-drivers.settings = {
-    charging-priority = "performance";
-    charging-profile = "stationary";
-    fn-lock = true;
-  };
+    hardware.tuxedo-drivers.settings = {
+      charging-priority = "performance";
+      charging-profile = "stationary";
+      fn-lock = true;
+    };
   */
 
   # from https://wiki.nixos.org/wiki/Intel_Graphics

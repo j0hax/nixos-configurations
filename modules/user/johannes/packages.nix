@@ -91,7 +91,7 @@ in
         sponsorblock-remove = "sponsor";
       };
     };
-    
+
     beets = {
       enable = true;
       settings = {
