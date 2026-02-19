@@ -14,6 +14,7 @@
 
     ./services.nix
     ./packages.nix
+    ./dev.nix
     ./fonts.nix
   ];
 
