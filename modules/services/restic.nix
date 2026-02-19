@@ -71,6 +71,7 @@
         "--keep-yearly 10"
         "--repack-uncompressed"
         "--max-unused 0"
+        "--keep-tag keep"
       ];
     };
   };
