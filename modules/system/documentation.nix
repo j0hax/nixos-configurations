@@ -17,7 +17,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    linux-manual
+    # linux-manual
     man-pages
     man-pages-posix
     pinfo
