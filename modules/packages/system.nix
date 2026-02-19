@@ -64,11 +64,6 @@
 
     geoipWithDatabase
 
-    (writeShellScriptBin "update-rebuild" ''
-      nix flake update --flake ${self.outPath} --commit-lock-file
-       ${lib.getExe pkgs.sudo} ${lib.getExe pkgs.bash} -c 'nixos-rebuild switch --flake ${self.outPath} |& ${lib.getExe pkgs.nom}'
-    '')
-
     (writeShellScriptBin "mkcache" ''
       if [ -n "$1" ]; then
         dest="$1/CACHEDIR.TAG"
