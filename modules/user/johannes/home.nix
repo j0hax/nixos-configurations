@@ -56,8 +56,20 @@
       clock-show-weekday = false;
     };
 
+    "org/gnome/desktop/datetime" = {
+      automatic-timezone = true;
+    };
+
+    "org/gnome/desktop/calendar" = {
+      show-weekdate = true;
+    };
+
     "org/gnome/system/location" = {
       enabled = true;
+    };
+
+    "org/gnome/Console" = {
+      transparency = true;
     };
   };
 
