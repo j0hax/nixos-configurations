@@ -29,8 +29,8 @@
     ./packages.nix
   ];
 
-  # Set GNOME keyboard layouy
   dconf.settings = lib.mkIf (osConfig.services.desktopManager.gnome.enable) {
+    # Set GNOME keyboard layout
     "org/gnome/desktop/input-sources" = {
       show-all-sources = true;
       sources = [
@@ -42,9 +42,22 @@
       xkb-options = "";
     };
 
+    # For gaming on the go
+    "org/gnome/desktop/peripherals/touchpad" = {
+      disable-while-typing = false;
+    };
+
+    # Vanilla tweaks
     "org/gnome/desktop/interface" = {
       accent-color = "green";
       color-scheme = "prefer-dark";
+      clock-show-seconds = true;
+      clock-show-date = false;
+      clock-show-weekday = false;
+    };
+
+    "org/gnome/system/location" = {
+      enabled = true;
     };
   };
 
