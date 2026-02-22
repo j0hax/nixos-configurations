@@ -29,6 +29,8 @@
     ./packages.nix
   ];
 
+  home.sessionVariables.MANPAGER="bat -plman";
+
   dconf.settings = lib.mkIf (osConfig.services.desktopManager.gnome.enable) {
     # Set GNOME keyboard layout
     "org/gnome/desktop/input-sources" = {
@@ -54,6 +56,24 @@
       clock-show-seconds = true;
       clock-show-date = false;
       clock-show-weekday = false;
+    };
+
+    "org/gnome/mutter" = {
+      experimental-features = [
+        "scale-monitor-framebuffer"
+        "kms-modifiers"
+        "autoclose-xwayland"
+        "variable-refresh-rate"
+        "xwayland-native-scaling"
+      ];
+    };
+
+    "org/gnome/settings-daemon/plugins/color" = {
+      night-light-schedule-automatic = true;
+    };
+
+    "org/gnome/settings-daemon/plugins/housekeeping" = {
+      donation-reminder-enabled = false;
     };
 
     "org/gnome/desktop/datetime" = {
