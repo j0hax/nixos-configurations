@@ -9,7 +9,7 @@
     discord
     mumble
     # frozen-bubble
-    superTux
+    # superTux
     superTuxKart
     urbanterror
     xonotic

@@ -93,7 +93,7 @@ in
     };
 
     beets = {
-      enable = true;
+      enable = false;
       settings = {
         directory = "/media/nextcloud/Music/";
         import = {

@@ -34,7 +34,7 @@
     shellcheck
     shfmt
     wl-clipboard
-    calibre
+    # calibre
     gramps
     unzip
     /*

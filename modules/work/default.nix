@@ -4,7 +4,7 @@
     zulip
     kemai
     drawio
-    shell-gpt
+    # shell-gpt
     gopass
     teams-for-linux
     zoom-us
