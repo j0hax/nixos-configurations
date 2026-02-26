@@ -46,6 +46,7 @@ in {
       Peers = [
         "quic://bode.theender.net:42269"
         "tls://91.98.126.143:32000"
+        "tls://ygg.mkg20001.io:443"
       ];
     };
   };
