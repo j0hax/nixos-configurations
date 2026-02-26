@@ -45,7 +45,7 @@ in {
       ];
       Peers = [
         "quic://bode.theender.net:42269"
-        "quic://ip6.fvm.mywire.org:443?key=000000000143db657d1d6f80b5066dd109a4cb31f7dc6cb5d56050fffb014217"
+        "tls://91.98.126.143:32000"
       ];
     };
   };
