@@ -51,5 +51,7 @@
       enable = true;
       enableExcludeWrapper = true;
     };
+
+    yggdrasil.settings.peers = [ "quic://skylab.jka.one:1234" ];
   };
 }
