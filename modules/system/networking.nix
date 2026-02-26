@@ -3,7 +3,8 @@
   pkgs,
   ...
 }:
-{
+  let yggdrasilPort = 1234;
+in {
 
   networking = {
     nameservers = [
@@ -40,8 +41,16 @@
     persistentKeys = true;
     settings = {
       Listen = [
-        "quic://0.0.0.0:1234"
+        "quic://0.0.0.0:${toString yggdrasilPort}"
+      ];
+      Peers = [
+        "quic://bode.theender.net:42269"
+        "quic://ip6.fvm.mywire.org:443?key=000000000143db657d1d6f80b5066dd109a4cb31f7dc6cb5d56050fffb014217"
       ];
     };
+  };
+
+  networking.firewall = {
+    allowedUDPPorts = [ yggdrasilPort ];
   };
 }
