@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }:
   let yggdrasilPort = 1234;
@@ -42,8 +43,9 @@ in {
     settings = {
       Listen = [
         "quic://0.0.0.0:${toString yggdrasilPort}"
+        "tls://0.0.0.0:${toString yggdrasilPort}"
       ];
-      Peers = [
+      Peers = lib.mkDefault [
         "quic://bode.theender.net:42269"
         "tls://91.98.126.143:32000"
         "tls://ygg.mkg20001.io:443"
@@ -53,5 +55,6 @@ in {
 
   networking.firewall = {
     allowedUDPPorts = [ yggdrasilPort ];
+    allowedTCPPorts = [ yggdrasilPort ];
   };
 }
