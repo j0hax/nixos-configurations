@@ -34,4 +34,14 @@
     wireguard-tools
     nmap
   ];
+
+  services.yggdrasil = {
+    enable = true;
+    persistentKeys = true;
+    settings = {
+      Listen = [
+        "quic://0.0.0.0:1234"
+      ];
+    };
+  };
 }
