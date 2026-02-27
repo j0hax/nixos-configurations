@@ -46,7 +46,8 @@ in {
         "tls://0.0.0.0:${toString yggdrasilPort}"
       ];
       Peers = lib.mkDefault [
-        "quic://bode.theender.net:42269"
+        "quic://ygg1.mk16.de:1339?key=0000000087ee9949eeab56bd430ee8f324cad55abf3993ed9b9be63ce693e18a"
+        "quic://ygg2.mk16.de:1339?key=000000d80a2d7b3126ea65c8c08fc751088c491a5cdd47eff11c86fa1e4644ae"
         "tls://91.98.126.143:32000"
         "tls://ygg.mkg20001.io:443"
       ];
