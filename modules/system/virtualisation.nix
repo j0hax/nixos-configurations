@@ -15,6 +15,8 @@
 
   programs.virt-manager.enable = true;
 
+  environment.systemPackages = with pkgs; [ guestfs-tools ];
+
   # Allow network traffic from VMs
   networking.firewall.trustedInterfaces = config.virtualisation.libvirtd.allowedBridges;
   # boot.kernel.sysctl."net.ipv4.ip_forwarding" = true;
