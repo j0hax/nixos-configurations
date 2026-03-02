@@ -49,7 +49,6 @@
     gnome-solanum # Pomodoro timer
     helvum # Patchbay
     foliate # E-Reader
-    deja-dup # Backup tool
     fractal # Matrix messenger
   ];
 }
