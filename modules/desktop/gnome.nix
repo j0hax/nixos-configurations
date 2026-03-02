@@ -50,5 +50,7 @@
     helvum # Patchbay
     foliate # E-Reader
     fractal # Matrix messenger
+    alpaca # Ollama Frontend
+    gradia # Screenshot annotation
   ];
 }
