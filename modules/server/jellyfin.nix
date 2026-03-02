@@ -1,7 +1,8 @@
 { ... }:
 let
   domainBase = "jka.one";
-in {
+in
+{
   imports = [ ./caddy.nix ];
 
   services.caddy.virtualHosts."jellyfin.${domainBase}" = {

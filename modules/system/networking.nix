@@ -4,8 +4,10 @@
   lib,
   ...
 }:
-  let yggdrasilPort = 1234;
-in {
+let
+  yggdrasilPort = 1234;
+in
+{
 
   networking = {
     nameservers = [
