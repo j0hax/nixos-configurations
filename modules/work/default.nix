@@ -1,5 +1,11 @@
 { pkgs, lib, ... }:
 {
+  # Add banner
+  services.displayManager.gdm.banner = ''
+    Johannes Arnold
+    jarnold@b1-systems.de
+  '';
+
   environment.systemPackages = with pkgs; [
     zulip
     kemai
@@ -14,13 +20,13 @@
     squashfsTools
   ];
 
-  # Add banner
-  services.displayManager.gdm.banner = ''
-    Johannes Arnold
-    jarnold@b1-systems.de
-  '';
+  programs = {
+    noisetorch.enable = true;
+    openvpn3.enable = true;
+  };
 
-  # Filter Mic for meetings
-  programs.noisetorch.enable = true;
-  programs.openvpn3.enable = true;
+  security.pki.certificateFiles = [
+    ./DigiCertGlobalRootG2.crt.pem
+    ./RapidSSLTLSRSACAG1.crt.pem
+  ];
 }
