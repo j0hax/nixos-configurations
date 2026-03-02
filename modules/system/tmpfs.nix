@@ -1,10 +1,10 @@
 {
-  config,
-  pkgs,
-  lib,
   ...
 }:
 {
-  boot.tmp.cleanOnBoot = true;
-  boot.tmp.useTmpfs = true;
+  boot.tmp = {
+    cleanOnBoot = true;
+    useTmpfs = true;
+    tmpfsHugeMemoryPages = "always";
+  };
 }
