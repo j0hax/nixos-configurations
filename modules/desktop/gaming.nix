@@ -9,8 +9,8 @@
     discord
     mumble
     # frozen-bubble
-    # superTux
-    superTuxKart
+    supertux
+    supertuxkart
     urbanterror
     xonotic
     sauerbraten
