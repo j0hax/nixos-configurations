@@ -113,7 +113,7 @@ in
 
     foot = {
       enable = true;
-      server.enable = true;
+      # server.enable = true;
       settings = {
         main = {
           include = "~/.config/foot/themes/noctalia";
