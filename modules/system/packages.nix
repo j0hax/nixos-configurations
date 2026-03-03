@@ -59,6 +59,7 @@
     smartmontools
     e2fsprogs
     sqlite
+    sysstat
 
     age
     sops
