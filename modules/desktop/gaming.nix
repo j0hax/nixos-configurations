@@ -6,7 +6,7 @@
 
   environment.systemPackages = with pkgs; [
     mindustry-wayland
-    discord
+    # discord
     mumble
     # frozen-bubble
     supertux
