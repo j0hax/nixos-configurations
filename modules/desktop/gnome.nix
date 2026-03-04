@@ -47,7 +47,8 @@
     gnome-2048
     gnome-firmware
     gnome-solanum # Pomodoro timer
-    helvum # Patchbay
+    # helvum # Patchbay
+    crosspipe
     foliate # E-Reader
     fractal # Matrix messenger
     alpaca # Ollama Frontend
