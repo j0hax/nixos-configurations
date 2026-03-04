@@ -10,7 +10,7 @@
 }:
 
 let
-  yggPort = 12345;
+  yggPort = 1234;
 in
 {
   imports = [
