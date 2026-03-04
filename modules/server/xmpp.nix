@@ -154,7 +154,13 @@ in
         "csi_battery_saver"
         "muc_notifications"
       ];
-
+      withExtraLuaPackages =
+        p: with p; [
+          luaevent
+          luabitop
+          luaunbound
+          readline
+        ];
     };
 
     admins = [
