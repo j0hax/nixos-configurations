@@ -201,6 +201,8 @@ in
         domain = "${domain}";
         enabled = true;
         extraConfig = ''
+          pubsub_serverinfo_service = "pubsub.${domain}"
+
           Component "pubsub.${domain}" "pubsub"
           add_permissions = {
             ["prosody:registered"] = { "pubsub:create-node" }
