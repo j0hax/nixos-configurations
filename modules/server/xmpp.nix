@@ -143,6 +143,7 @@ in
     package = pkgs.prosody.override {
       withCommunityModules = [
         "conversejs"
+        "unified_push"
         "pubsub_serverinfo"
         # Recommended by conversations.im and Monal
         # https://github.com/monal-im/Monal/wiki/Considerations-for-XMPP-server-admins
