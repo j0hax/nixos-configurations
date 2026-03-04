@@ -9,6 +9,9 @@
   ...
 }:
 
+let
+  yggPort = 12345;
+in
 {
   imports = [
     # Include the results of the hardware scan.
@@ -182,6 +185,34 @@
         "vfs_cache_min_free_space=10G"
       ];
     };
+  };
+
+  # Public Yggdrasil peer
+  services.yggdrasil.settings = {
+
+    # Configure our this node to listen on TCP and UDP
+    Listen = [
+      "tcp://0.0.0.0:${toString yggPort}"
+      "quic://0.0.0.0:${toString yggPort}"
+    ];
+
+    # This VPS is located in southeast Germany, so we peer it with neighboring
+    # Yggdrasil nodes. We use TCP to reduce overhead, as it is implemented in the
+    # Kernel, unlike QUIC, which is good for general/mobile uses.
+    Peers = [
+      # Germany/Nuremberg
+      "tcp://ygg1.mk16.de:1337?key=0000000087ee9949eeab56bd430ee8f324cad55abf3993ed9b9be63ce693e18a"
+      "tcp://ygg2.mk16.de:1337?key=000000d80a2d7b3126ea65c8c08fc751088c491a5cdd47eff11c86fa1e4644ae"
+
+      # Czechia
+      "tls://[2a03:3b40:fe:ab::1]:993"
+    ];
+  };
+
+  # open the respective firewall ports for the above Yggdrasil configurations
+  networking.firewall = {
+    allowedUDPPorts = [ yggPort ];
+    allowedTCPPorts = [ yggPort ];
   };
 
   services.caddy.virtualHosts = {
