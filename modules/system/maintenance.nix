@@ -2,10 +2,11 @@
   config,
   pkgs,
   self,
+  lib,
   ...
 }:
 {
-  system.autoUpgrade = {
+  system.autoUpgrade = lib.mkDefault {
     enable = true;
     flake = self.outPath;
     flags = [

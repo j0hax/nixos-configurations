@@ -6,6 +6,9 @@
     jarnold@b1-systems.de
   '';
 
+  # Disable automatic updates for work laptops
+  system.autoUpgrade.enable = false;
+
   environment.systemPackages = with pkgs; [
     zulip
     kemai
