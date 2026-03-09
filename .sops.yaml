@@ -2,6 +2,7 @@ keys:
   - &johannes age12l2t5nxx8fp2fqkz7cql7w9uht0jgjh03377f2k3wac25whalymq869y6m
   - &aptenodytes age1qg495qk96dq8gekf5uxnv8fxdlljaq57uulrcshuwfe93zqnvp6qlamcrc
   - &skylab age10xe92n8usl6mseaq82xmy7ym0ku764drkz6czezkt2eq95mgupaseet220
+  - &kneippweg age175jtrqchwh2xkn5f8anhfv3whjdtccg3std4x2xdf8hhhzj5wuesakf9zn
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
@@ -9,3 +10,4 @@ creation_rules:
       - *johannes
       - *aptenodytes
       - *skylab
+      - *kneippweg
