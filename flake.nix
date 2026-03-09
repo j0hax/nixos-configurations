@@ -82,6 +82,11 @@
             ./modules/desktop/gaming.nix
           ];
         };
+        kneippweg = {
+          modules = [
+            ./modules/user/johannes
+          ];
+        };
         skylab = {
           system = "aarch64-linux";
           modules = [
