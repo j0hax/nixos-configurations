@@ -1,7 +1,7 @@
 {
   config,
   pkgs,
-  inputs,
+  self,
   lib,
   ...
 }:
@@ -10,7 +10,7 @@
   # https://wiki.nixos.org/wiki/Automatic_system_upgrades
   system.autoUpgrade = lib.mkDefault {
     enable = true;
-    flake = inputs.self.outPath;
+    flake = self.outPath;
     allowReboot = false;
     runGarbageCollection = true;
 
