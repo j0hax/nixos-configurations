@@ -1,19 +1,16 @@
 {
   config,
   pkgs,
-  self,
+  inputs,
   lib,
   ...
 }:
 {
+
+  # https://wiki.nixos.org/wiki/Automatic_system_upgrades
   system.autoUpgrade = lib.mkDefault {
     enable = true;
-    flake = self.outPath;
-    flags = [
-      "--update-input"
-      "nixpkgs"
-      "-L" # print build logs
-    ];
+    flake = inputs.self.outPath;
     allowReboot = false;
     runGarbageCollection = true;
 
