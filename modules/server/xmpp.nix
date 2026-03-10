@@ -235,6 +235,10 @@ in
       -- Recommended by Monal dev
       smacks_max_queue_size = 4000
 
+      conversejs_tags = {
+        [[<script src="https://cdn.conversejs.org/3rdparty/libsignal-protocol.min.js"></script>]];
+      }
+
       limits = {
         c2s = {
           rate = "3kb/s";
