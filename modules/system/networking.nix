@@ -45,5 +45,6 @@ in
     settings.Peers = [
       "quic://skylab.jka.one:1234"
     ];
+    openMulticastPort = true;
   };
 }
