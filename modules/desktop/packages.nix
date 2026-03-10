@@ -12,6 +12,7 @@
     tectonic
     # handbrake
     chromium
+    gimp
     kepubify
     xournalpp
     prusa-slicer
