@@ -29,7 +29,7 @@
     ./packages.nix
   ];
 
-  home.sessionVariables.MANPAGER = "bat -plman";
+  home.sessionVariables.MANPAGER = "${lib.getExe pkgs.bat} -plman --paging=always";
 
   dconf.settings = lib.mkIf (osConfig.services.desktopManager.gnome.enable) {
     # Set GNOME keyboard layout
