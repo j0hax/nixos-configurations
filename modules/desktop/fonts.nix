@@ -19,7 +19,6 @@
         junicode
         font-awesome
         vt323
-        input-fonts
 
         # Utilitarian
         atkinson-hyperlegible-next
