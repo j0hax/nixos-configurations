@@ -84,6 +84,7 @@
         };
         kneippweg = {
           modules = [
+            nixos-hardware.nixosModules.common-pc-laptop-ssd
             ./modules/user/johannes
           ];
         };
