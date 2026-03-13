@@ -11,12 +11,11 @@
       j0hax = "9c4e91c2-43f5-4e0b-bd04-77962492e817";
     };
     serverProperties = {
-      difficulty = 2;
+      difficulty = "normal";
       gamemode = "survival";
       max-players = 69;
-      motd = "\u00a7eIrgendwas\u00a7f mit\u00a79 Pinguinen";
-      white-list = true;
+      motd = "\\u00A7fIrg\\u00A78en\\u00A7adw\\u00A7fas \\u00A7rmit \\u00A79B\\u00A7e1\\u00A7rnguinen";
     };
-    jvmOpts = "-Xms2048M -Xmx4096M";
+    jvmOpts = "-Xms4096M -Xmx6114M";
   };
 }

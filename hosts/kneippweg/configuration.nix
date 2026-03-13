@@ -126,6 +126,7 @@
     Peers = [
       "quic://skylab.jka.one:1234"
       "tls://helium.avevad.com:1337"
+      "tls://ygg.mkg20001.io:443"
     ];
   };
 

@@ -86,6 +86,7 @@
           modules = [
             nixos-hardware.nixosModules.common-pc-laptop-ssd
             ./modules/user/johannes
+            ./modules/server/minecraft.nix
           ];
         };
         skylab = {
