@@ -47,4 +47,34 @@ in
     ];
     openMulticastPort = true;
   };
+
+  systemd = {
+    services.yggdrasil-watchdog =
+      let
+        yggdrasilCheck = pkgs.writeShellScript "yggdrasil-check.sh" ''
+          TARGET="ygg.jka.one"
+
+          if ! ${pkgs.iputils}/bin/ping -c 3 -W 30 $TARGET > /dev/null; then
+            echo "Yggdrasil connectivity lost, restarting..."
+            ${pkgs.systemd}/bin/systemctl restart yggdrasil.service
+          fi
+        '';
+      in
+      {
+        description = "Restart Yggdrasil if connectivity fails";
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart = yggdrasilCheck;
+        };
+      };
+
+    timers.yggdrasil-watchdog = {
+      wantedBy = [ "timers.target" ];
+      timerConfig = {
+        OnBootSec = "2min";
+        OnUnitActiveSec = "2min";
+        Unit = "yggdrasil-watchdog.service";
+      };
+    };
+  };
 }
