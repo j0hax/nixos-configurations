@@ -11,7 +11,7 @@
   system.autoUpgrade = lib.mkDefault {
     enable = true;
     flake = self.outPath;
-    allowReboot = false;
+    allowReboot = true;
     runGarbageCollection = true;
 
   };
