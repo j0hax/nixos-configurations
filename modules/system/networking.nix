@@ -44,7 +44,7 @@ in
     persistentKeys = true;
     settings.Peers = [
       "quic://skylab.jka.one:1234"
-      "quic://fvm.mywire.org:443"
+      "quic://fvm.mywire.org:443?key=000000000143db657d1d6f80b5066dd109a4cb31f7dc6cb5d56050fffb014217"
     ];
     openMulticastPort = true;
   };
