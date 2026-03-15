@@ -112,7 +112,7 @@ in
     };
 
     foot = {
-      enable = true;
+      enable = isGraphical;
       # server.enable = true;
       settings = {
         main = {
