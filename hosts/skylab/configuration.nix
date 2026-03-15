@@ -25,7 +25,7 @@ in
   # Use latest kernel.
   # boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # networking.hostName = "nixos"; # Define your hostname.
+  # networking.hostName = "skylab"; # Define your hostname.
   networking.domain = "jka.one";
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -131,12 +131,20 @@ in
   services.smartd.enable = false;
 
   networking = {
-    interfaces.enp1s0.ipv6.addresses = [
-      {
-        address = "2a01:4f8:1c17:70c2::1";
-        prefixLength = 64;
-      }
-    ];
+    interfaces.enp1s0 = {
+      ipv4.addresses = [
+        {
+          address = "188.245.167.251";
+          prefixLength = 32;
+        }
+      ];
+      ipv6.addresses = [
+        {
+          address = "2a01:4f8:1c17:70c2::1";
+          prefixLength = 64;
+        }
+      ];
+    };
     defaultGateway6 = {
       address = "fe80::1";
       interface = "enp1s0";
