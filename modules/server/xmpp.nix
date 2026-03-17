@@ -151,6 +151,7 @@ in
         "sasl2_bind2"
         "sasl_ssdp"
         "sasl2_fast"
+        "sasl2_sm"
         "sasl_ssdp"
         "csi_battery_saver"
         "muc_notifications"
