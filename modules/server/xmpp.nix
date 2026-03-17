@@ -26,10 +26,13 @@ in
 
     defaults.webroot = "/var/lib/acme/acme-challenge/";
     certs."${domain}" = {
+      # TODO: These subdomains are hardcoded, maybe switch to a wildcard cert
+      # in the future.
       extraDomainNames = [
         "xmpp.${domain}"
         "conference.${domain}"
         "upload.${domain}"
+        "pubsub.${domain}"
         "turn.${domain}"
       ];
       group = config.services.caddy.group;
