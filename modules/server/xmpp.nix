@@ -57,26 +57,26 @@ in
     "http://${domain}" = {
       serverAliases = [ "http://*.fiducit.net" ];
       extraConfig = ''
-        handle_path /.well-known/* {
+        handle /.well-known/* {
           root * /var/lib/acme/acme-challenge/
           file_server
         }
 
         handle {
-          redir https://${domain}/conversejs
+          redir https://${domain}{uri}
         }
       '';
     };
 
-    # Serve HTTPS
     "https://${domain}" = {
       extraConfig = ''
-        # Redirect regular queries to Converse.js
-        redir / /conversejs
-
         # Use our custom ACME certificates as a reverse proxy endpoint
         tls ${sslCertDir}/fullchain.pem ${sslCertDir}/key.pem
         encode zstd gzip
+
+        # Strip the Converse.js-specific path on BOSH
+        rewrite * /conversejs{uri}
+
         reverse_proxy 127.0.0.1:5280
       '';
     };
