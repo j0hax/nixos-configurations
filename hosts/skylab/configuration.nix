@@ -132,12 +132,12 @@ in
 
   networking = {
     interfaces.enp1s0 = {
-      ipv4.addresses = [
-        {
-          address = "188.245.167.251";
-          prefixLength = 32;
-        }
-      ];
+      # ipv4.addresses = [
+      #   {
+      #     address = "188.245.167.251";
+      #     prefixLength = 32;
+      #   }
+      # ];
       ipv6.addresses = [
         {
           address = "2a01:4f8:1c17:70c2::1";
