@@ -184,7 +184,6 @@ in
     };
     extraModules = [
       "turn_external"
-      "pubsub"
     ];
 
     xmppComplianceSuite = true;
