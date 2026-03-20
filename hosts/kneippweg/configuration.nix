@@ -133,4 +133,19 @@
     ];
   };
 
+  services.node-red = {
+    enable = true;
+    openFirewall = true;
+    withNpmAndGcc = true;
+  };
+
+  systemd.services.node-red.path = with pkgs; [
+      git
+      bash
+    ];
+
+  services.ollama = {
+    enable = true;
+    loadModels = ["llama3.2:1b"];
+  };
 }
