@@ -151,7 +151,7 @@ in
     };
   };
 
-  environment.systemPackages = [ pkgs.rclone ];
+  environment.systemPackages = with pkgs; [ rclone yt-dlp ];
 
   fileSystems."/".options = [
     "compress=zstd"
