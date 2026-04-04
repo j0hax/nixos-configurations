@@ -44,7 +44,7 @@
   networking.networkmanager = lib.mkDefault {
     enable = true;
     wifi = {
-      backend = "iwd";
+      # backend = "iwd";
       macAddress = "stable-ssid";
     };
     ethernet.macAddress = "stable";
