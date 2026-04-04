@@ -142,6 +142,7 @@ in
     package = pkgs.prosody.override {
       withCommunityModules = [
         "conversejs"
+        "s2s_v6mesh"
         "unified_push"
         "pubsub_serverinfo"
         # Recommended by conversations.im and Monal
@@ -254,7 +255,7 @@ in
       domain = "upload.${domain}";
       http_host = domain;
       expires_after = "never";
-      size_limit = 32 * 1024 * 1024;
+      size_limit = 1024 * 1024 * 1024;
     };
   };
 
