@@ -19,6 +19,8 @@
     ];
   };
 
+  nix.settings.trusted-users = [ "johannes" ];
+
   home-manager.users.johannes = import ./home.nix;
 
   # Enable decryption of Secrets with my key
