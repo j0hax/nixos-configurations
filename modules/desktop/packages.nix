@@ -23,6 +23,7 @@
     spotify
     signal-desktop
     backgroundremover
+    # rembg
     openscad-unstable
     aria2
     inkscape
