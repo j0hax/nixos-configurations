@@ -140,12 +140,12 @@
   };
 
   systemd.services.node-red.path = with pkgs; [
-      git
-      bash
-    ];
+    git
+    bash
+  ];
 
   services.ollama = {
     enable = true;
-    loadModels = ["llama3.2:1b"];
+    loadModels = [ "llama3.2:1b" ];
   };
 }
