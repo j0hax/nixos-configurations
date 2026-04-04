@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 {
   hardware = {
     keyboard.qmk.enable = true;
@@ -53,5 +53,21 @@
     };
 
     yggdrasil.settings.peers = [ "quic://skylab.jka.one:1234" ];
+  };
+
+  # Workaround to split-tunnel Yggdrasil when Mullvad is running
+  networking.nftables = lib.mkDefault {
+    enable = true;
+    tables.yggdrasil = {
+      enable = true;
+      name = "yggdrasil-mullvad";
+      family = "ip6";
+      content = ''
+        chain output {
+          type filter hook output priority 0; policy accept;
+          ip6 saddr 200::/7 ip6 daddr 200::/7 ct mark set 0x00000f41 meta mark set 0x6d6f6c65
+        }
+      '';
+    };
   };
 }
