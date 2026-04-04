@@ -95,6 +95,7 @@
 
   services = {
     ssh-agent.enable = true;
+    gpg-agent.enable = true;
   };
 
   home.shellAliases = {
@@ -106,6 +107,12 @@
     git = {
       enable = true;
       package = pkgs.gitFull;
+
+      signing = {
+        format = "openpgp";
+        key = "F4CA40CF51CFB63F33EB0FCC91192A6AA8C42BFA";
+        signByDefault = true;
+      };
 
       settings = {
         user = {
@@ -140,11 +147,13 @@
         credential.helper = "/etc/profiles/per-user/johannes/bin/git-credential-libsecret";
         maintenance.enable = true;
 
-        signing = {
-          format = "openpgp";
-          key = "F4CA40CF51CFB63F33EB0FCC91192A6AA8C42BFA";
-          signByDefault = true;
-        };
+        /*
+          settings = {
+            user.signingkey = "F4CA40CF51CFB63F33EB0FCC91192A6AA8C42BFA";
+            commit.gpgsign = true;
+          };
+        */
+
       };
     };
 
