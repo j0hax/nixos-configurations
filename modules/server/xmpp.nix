@@ -12,66 +12,65 @@ let
   # turnSecret = config.sops.placeholder."turn/auth-secret";
 in
 {
-  imports = [ ./caddy.nix ];
-  sops.secrets."turn/auth-secret" = {
-    owner = "turnserver";
-    mode = "0444";
-  };
+  imports = [
+    ./caddy.nix
+    ./acme.nix
+  ];
+
+  sops.secrets =
+    let
+      sopsFile = ../../secrets/xmpp.yaml;
+    in
+    {
+      "turn/auth-secret" = {
+        inherit sopsFile;
+        owner = "turnserver";
+        mode = "0444";
+      };
+
+      "ldap/rootdn" = {
+        inherit sopsFile;
+        format = "yaml";
+      };
+
+      "ldap/password" = {
+        inherit sopsFile;
+        format = "yaml";
+      };
+    };
 
   # Although I use Caddy's automatic HTTPS for most services,
   # we use the traditional ACME mechanisms on NixOS to get Prosody certificates.
-  security.acme = {
-    acceptTerms = true;
-    defaults.email = "johannes@rnold.online";
+  security.acme.certs."${domain}" = {
+    # TODO: These subdomains are hardcoded, maybe switch to a wildcard cert
+    # in the future.
+    extraDomainNames = [
+      "xmpp.${domain}"
+      "conference.${domain}"
+      "upload.${domain}"
+      "pubsub.${domain}"
+      "turn.${domain}"
+    ];
+    group = config.services.caddy.group;
+    postRun = ''
+      # set permission on dir
+      ${pkgs.acl}/bin/setfacl -m \
+      u:prosody:rx,u:turnserver:r \
+      /var/lib/acme/${domain}
 
-    defaults.webroot = "/var/lib/acme/acme-challenge/";
-    certs."${domain}" = {
-      # TODO: These subdomains are hardcoded, maybe switch to a wildcard cert
-      # in the future.
-      extraDomainNames = [
-        "xmpp.${domain}"
-        "conference.${domain}"
-        "upload.${domain}"
-        "pubsub.${domain}"
-        "turn.${domain}"
-      ];
-      group = config.services.caddy.group;
-      postRun = ''
-        # set permission on dir
-        ${pkgs.acl}/bin/setfacl -m \
-        u:prosody:rx,u:turnserver:r \
-        /var/lib/acme/${domain}
-
-        # set permission on key file
-        ${pkgs.acl}/bin/setfacl -m \
-        u:prosody:r,u:turnserver:r \
-        /var/lib/acme/${domain}/*.pem
-      '';
-      reloadServices = [
-        "prosody"
-        "coturn"
-      ];
-    };
+      # set permission on key file
+      ${pkgs.acl}/bin/setfacl -m \
+      u:prosody:r,u:turnserver:r \
+      /var/lib/acme/${domain}/*.pem
+    '';
+    reloadServices = [
+      "prosody"
+      "coturn"
+    ];
   };
 
   services.caddy.virtualHosts = {
-    # Unencrypted HTTPS Server on :80 is required for ACME challenges
-    # All other queries are redirected to HTTPS
-    "http://${domain}" = {
-      serverAliases = [ "http://*.fiducit.net" ];
-      extraConfig = ''
-        handle /.well-known/* {
-          root * /var/lib/acme/acme-challenge/
-          file_server
-        }
-
-        handle {
-          redir https://${domain}{uri}
-        }
-      '';
-    };
-
-    "https://${domain}" = {
+    "${domain}" = {
       extraConfig = ''
         # Use our custom ACME certificates as a reverse proxy endpoint
         tls ${sslCertDir}/fullchain.pem ${sslCertDir}/key.pem
@@ -127,10 +126,17 @@ in
       allowedUDPPortRanges = coturnRelayPorts;
     };
 
-  # Define a template for TURN Server credentials
-  sops.templates."turn-config.lua" = {
+  # Define a template with additional credentials
+  sops.templates."extra-config.lua" = {
     owner = "prosody";
     content = ''
+      -- LDAP Settings
+      ldap_base = "ou=people,dc=jka,dc=one"
+      ldap_server = "localhost:3890"
+      ldap_rootdn = "${config.sops.placeholder."ldap/rootdn"}"
+      ldap_password = "${config.sops.placeholder."ldap/password"}"
+
+      -- TURN Settings
       turn_external_host = "turn.${domain}"
       turn_external_secret = "${config.sops.placeholder."turn/auth-secret"}"
     '';
@@ -161,6 +167,7 @@ in
           luaevent
           luabitop
           luaunbound
+          lualdap
           readline
         ];
     };
@@ -168,7 +175,8 @@ in
     admins = [
       "johannes@${domain}"
     ];
-    allowRegistration = true;
+    allowRegistration = false;
+    authentication = "ldap";
     s2sSecureAuth = true;
     c2sRequireEncryption = true;
     modules = {
@@ -176,6 +184,7 @@ in
       limits = true;
       server_contact_info = true;
       bosh = true;
+      groups = true;
       motd = true;
       admin_adhoc = true;
       welcome = true;
@@ -185,6 +194,7 @@ in
     };
     extraModules = [
       "turn_external"
+      "auth_ldap"
     ];
 
     xmppComplianceSuite = true;
@@ -208,7 +218,7 @@ in
             ["prosody:registered"] = { "pubsub:create-node" }
           }
 
-          Include "${config.sops.templates."turn-config.lua".path}"
+          Include "${config.sops.templates."extra-config.lua".path}"
         '';
       };
     };
