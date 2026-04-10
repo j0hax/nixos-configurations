@@ -99,10 +99,10 @@
             # ./modules/server/navidrome.nix
             ./modules/server/matrix.nix
             ./modules/server/wireguard.nix
-            ./modules/server/ntfy.nix
+            # ./modules/server/ntfy.nix
             # ./modules/server/uptime.nix
-            # ./modules/server/minecraft.nix
             ./modules/server/xmpp.nix
+            ./modules/server/auth.nix
           ];
         };
 
