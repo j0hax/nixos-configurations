@@ -4,6 +4,7 @@
 }:
 {
   imports = [
+    ./services/default.nix
     ./maintenance.nix
     ./networking.nix
     ./tmpfs.nix
