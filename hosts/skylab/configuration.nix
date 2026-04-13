@@ -252,4 +252,10 @@ in
       '';
     };
   };
+
+  services.journalwatch = {
+    enable = true;
+    mailTo = "johannes@rnold.online";
+    priority = 4; # = warning
+  };
 }
