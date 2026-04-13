@@ -6,6 +6,7 @@
 }:
 let
   domainBase = "jka.one";
+  ldapDomain = "ldap.${domainBase}";
   port = 1411;
 in
 {
@@ -13,25 +14,35 @@ in
 
   # LLDAP is used as a centralized user database
 
-  services.caddy.virtualHosts."ldap.${domainBase}" = {
+  services.caddy.virtualHosts.${ldapDomain} = {
     extraConfig = ''
-      reverse_proxy ${config.services.lldap.settings.http_url}:${toString config.services.lldap.settings.http_port}
+      reverse_proxy 127.0.0.1:${toString config.services.lldap.settings.http_port}
     '';
   };
-
-  sops.secrets."ldap_user_pass" = {
-    sopsFile = ../../secrets/lldap.yaml;
+  
+  # LLDAP suppprts passwords being set via environment variables,
+  # but NixOS doesn't....
+  sops.secrets."lldap-pass" = {
+    sopsFile = ../../secrets/lldap-pass.txt;
     owner = "lldap";
     group = "lldap";
+    key = "";
+  };
+
+  sops.secrets.lldap = {
+    sopsFile = ../../secrets/lldap.env;
+    format = "dotenv";
   };
 
   services.lldap = {
     enable = true;
     settings = {
+      http_url = "https://${ldapDomain}";
       ldap_base_dn = "dc=jka,dc=one";
-      ldap_user_pass_file = config.sops.secrets."ldap_user_pass".path;
+      ldap_user_pass_file = config.sops.secrets."lldap-pass".path;
       force_ldap_user_pass_reset = "always";
     };
+    environmentFile = config.sops.secrets.lldap.path;
   };
 
   # Pocket ID is used to provide OIDC login

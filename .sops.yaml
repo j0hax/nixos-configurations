@@ -5,7 +5,7 @@ keys:
   - &skylab age10xe92n8usl6mseaq82xmy7ym0ku764drkz6czezkt2eq95mgupaseet220
   - &kneippweg age175jtrqchwh2xkn5f8anhfv3whjdtccg3std4x2xdf8hhhzj5wuesakf9zn
 creation_rules:
-  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini|txt)$
     key_groups:
     - age:
       - *johannes
