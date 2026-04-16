@@ -142,6 +142,8 @@ in
     '';
   };
 
+  boot.kernel.sysctl."net.ipv4.tcp_fastopen" = 3;
+
   services.prosody = {
     enable = true;
 
@@ -235,6 +237,11 @@ in
       sql = {
         driver = "SQLite3";
         database = "prosody.sqlite";
+      }
+
+      -- https://blog.prosody.im/fast-auth/
+      network_settings = {
+        tcp_fastopen = 256;
       }
 
       -- Keep messages
