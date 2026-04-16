@@ -151,6 +151,7 @@ in
     };
   };
 
+  services.spice-vdagentd.enable = true;
   environment.systemPackages = with pkgs; [
     rclone
     yt-dlp-light
@@ -256,6 +257,6 @@ in
   services.journalwatch = {
     enable = true;
     mailTo = "johannes@rnold.online";
-    priority = 4; # = warning
+    priority = 3;
   };
 }
