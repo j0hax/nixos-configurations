@@ -22,12 +22,12 @@ in
   
   # LLDAP suppprts passwords being set via environment variables,
   # but NixOS doesn't....
-  sops.secrets."lldap-pass" = {
+  /*sops.secrets."lldap-pass" = {
     sopsFile = ../../secrets/lldap-pass.txt;
     owner = "lldap";
     group = "lldap";
     key = "";
-  };
+  };*/
 
   sops.secrets.lldap = {
     sopsFile = ../../secrets/lldap.env;
@@ -39,7 +39,9 @@ in
     settings = {
       http_url = "https://${ldapDomain}";
       ldap_base_dn = "dc=jka,dc=one";
-      ldap_user_pass_file = config.sops.secrets."lldap-pass".path;
+      # ldap_user_pass_file = config.sops.secrets."lldap-pass".path;
+      ldap_user_pass_file = "/etc/lldap-pass";
+      silenceForceUserPassResetWarning = false;
       force_ldap_user_pass_reset = "always";
     };
     environmentFile = config.sops.secrets.lldap.path;
