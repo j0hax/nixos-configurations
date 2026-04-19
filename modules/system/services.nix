@@ -3,10 +3,15 @@
   ...
 }:
 {
-  # Generally useful services.
+
+  # Generally useful system services
   services = lib.mkDefault {
+    fstrim.enable = true;
     locate.enable = true;
     fwupd.enable = true;
+    tuptime.enable = true;
+    smartd.enable = true;
+
     openssh = {
       enable = true;
       settings = {
@@ -15,7 +20,5 @@
         ChallengeResponseAuthentication = false;
       };
     };
-    tuptime.enable = true;
-    smartd.enable = true;
   };
 }

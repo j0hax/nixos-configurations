@@ -8,7 +8,7 @@
   sops.secrets."restic/repository" = { };
   sops.secrets."restic/password" = { };
   sops.secrets.rclone = {
-    sopsFile = ../../../secrets/rclone-system.ini;
+    sopsFile = ../../secrets/rclone-system.ini;
     format = "ini";
   };
 

@@ -5,7 +5,7 @@
 }:
 {
   sops.secrets.nullmailer = {
-    sopsFile = ../../../secrets/nullmailer-remotes.txt;
+    sopsFile = ../../secrets/nullmailer-remotes.txt;
     format = "binary";
     owner = "nullmailer";
   };

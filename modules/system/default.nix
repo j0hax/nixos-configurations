@@ -4,8 +4,8 @@
 }:
 {
   imports = [
-    ./services/default.nix
     ./maintenance.nix
+    ./power.nix
     ./networking.nix
     ./tmpfs.nix
     ./kernel.nix
@@ -15,6 +15,9 @@
     ./documentation.nix
     ./environment.nix
     ./security.nix
+    ./restic.nix
+    ./services.nix
+    ./mta.nix
   ];
 
   nix.settings = {
@@ -39,22 +42,6 @@
   zramSwap = {
     enable = true;
     algorithm = "zstd";
-  };
-
-  services = {
-    fstrim.enable = true;
-
-    # Replace ppd and tlp with tuned
-    power-profiles-daemon.enable = lib.mkDefault false;
-    tlp.enable = false;
-
-    tuned = {
-      enable = true;
-      ppdSupport = true;
-      settings = {
-        dynamic_tuning = true;
-      };
-    };
   };
 
   # Causes problems with Firefox/Thunderbird
