@@ -12,6 +12,12 @@
     tuptime.enable = true;
     smartd.enable = true;
 
+    journalwatch = {
+      enable = true;
+      mailTo = "johannes@rnold.online";
+      priority = 2;
+    };
+
     openssh = {
       enable = true;
       settings = {
