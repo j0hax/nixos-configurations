@@ -1,4 +1,16 @@
 { pkgs, lib, ... }:
+let
+  banner = pkgs.writeTextFile {
+    name = "sshd-banner";
+    text = ''
+      ┌──────────────────────────────────────────────────────────────────────────┐
+      │ This system is for authorized users only. All activities on this system  │
+      │ are monitored and logged. Unauthorized access is strictly prohibited and │
+      │ will be prosecuted to the full extent of the law.                        │
+      └──────────────────────────────────────────────────────────────────────────┘
+    '';
+  };
+in
 {
   security = {
     sudo.enable = false;
@@ -16,14 +28,8 @@
     settings = {
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;
+      Banner = "${banner}";
     };
-    banner = ''
-      ┌──────────────────────────────────────────────────────────────────────────┐
-      │ This system is for authorized users only. All activities on this system  │
-      │ are monitored and logged. Unauthorized access is strictly prohibited and │
-      │ will be prosecuted to the full extent of the law.                        │
-      └──────────────────────────────────────────────────────────────────────────┘
-    '';
   };
 
   services.endlessh-go = {
