@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 let
   banner = pkgs.writeTextFile {
-    name = "sshd-banner";
+    name = "ssh_banner";
     text = ''
       ┌──────────────────────────────────────────────────────────────────────────┐
       │ This system is for authorized users only. All activities on this system  │
