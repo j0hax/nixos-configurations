@@ -19,15 +19,17 @@ in
       reverse_proxy 127.0.0.1:${toString config.services.lldap.settings.http_port}
     '';
   };
-  
+
   # LLDAP suppprts passwords being set via environment variables,
   # but NixOS doesn't....
-  /*sops.secrets."lldap-pass" = {
-    sopsFile = ../../secrets/lldap-pass.txt;
-    owner = "lldap";
-    group = "lldap";
-    key = "";
-  };*/
+  /*
+    sops.secrets."lldap-pass" = {
+      sopsFile = ../../secrets/lldap-pass.txt;
+      owner = "lldap";
+      group = "lldap";
+      key = "";
+    };
+  */
 
   sops.secrets.lldap = {
     sopsFile = ../../secrets/lldap.env;
