@@ -195,6 +195,8 @@ in
         "vfs_cache_mode=full"
         "cache_dir=/var/cache/media"
         "vfs_cache_min_free_space=10G"
+        "syslog"
+        "v"
       ];
     };
   };
