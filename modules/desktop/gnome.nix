@@ -33,6 +33,7 @@
 
   # Additional GTK Packages
   environment.systemPackages = with pkgs; [
+    file-roller
     transmission_4-gtk
     gnome-network-displays
     impression # Bootable Drive Tool
