@@ -21,7 +21,7 @@
 
   boot = {
     # Use a tweaked Kernel by default
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_latest;
 
     # Use a pretty boot screen
     loader = {
