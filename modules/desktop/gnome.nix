@@ -44,7 +44,7 @@
     shortwave # Internet radio
     video-trimmer
     varia
-    bottles
+    # bottles
     gnome-2048
     gnome-firmware
     gnome-solanum # Pomodoro timer

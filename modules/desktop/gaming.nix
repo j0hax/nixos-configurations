@@ -4,6 +4,8 @@
     steam.enable = true;
   };
 
+  boot.kernelModules = [ "ntsync" ];
+
   environment.systemPackages = with pkgs; [
     mindustry-wayland
     # discord
@@ -16,7 +18,7 @@
     sauerbraten
     beyond-all-reason
     prismlauncher
-    lutris
+    # lutris
     mangohud
   ];
 }
