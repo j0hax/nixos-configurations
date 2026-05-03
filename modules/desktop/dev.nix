@@ -15,6 +15,7 @@
     jq
     yamlfmt
     cloc
+    hyperfine
 
     # LSPs and tools
     nil

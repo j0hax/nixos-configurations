@@ -72,7 +72,7 @@
       enable = true;
       binfmt = true;
     };
-    wireshark.enable = true;
+    # wireshark.enable = true;
     obs-studio.enable = true;
     wavemon.enable = true;
   };
