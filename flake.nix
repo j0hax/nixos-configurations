@@ -63,6 +63,7 @@
           ];
         };
 
+        # MacBook Pro
         clay = {
           modules = [
             nixos-hardware.nixosModules.common-pc-laptop-ssd
@@ -71,6 +72,7 @@
           ];
         };
 
+        # Work Laptop
         aptenodytes = {
           modules = [
             nixos-hardware.nixosModules.tuxedo-infinitybook-pro14-gen9-intel
@@ -81,6 +83,8 @@
             ./modules/desktop/gaming.nix
           ];
         };
+
+        # Mac Mini Server
         kneippweg = {
           modules = [
             nixos-hardware.nixosModules.common-pc-laptop-ssd
@@ -88,6 +92,8 @@
             ./modules/server/minecraft.nix
           ];
         };
+
+        # Hetzner VPS
         skylab = {
           system = "aarch64-linux";
           modules = [
@@ -120,8 +126,10 @@
     {
       formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
 
-      # Include everything from our general folder
+      # Expose all modules for re-use
       nixosModules = (modulesFrom ./modules);
+
+      # Expose all NixOS configurations for the defined hosts
       nixosConfigurations = nixpkgs.lib.mapAttrs mkSystem systems;
     };
 }
