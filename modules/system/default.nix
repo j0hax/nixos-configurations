@@ -46,7 +46,7 @@
   };
 
   users.motd = "Welcome to ${config.networking.hostName}!";
-  
+
   # Causes problems with Firefox/Thunderbird
   #environment.memoryAllocator.provider = "mimalloc";
 }
