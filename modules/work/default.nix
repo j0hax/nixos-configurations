@@ -21,6 +21,7 @@
     awscli2
     rustdesk
     squashfsTools
+    apache-directory-studio
   ];
 
   programs = {
