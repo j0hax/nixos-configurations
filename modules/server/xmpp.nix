@@ -131,6 +131,7 @@ in
     owner = "prosody";
     content = ''
       -- LDAP Settings
+      -- ldap_mode = "getpasswd"
       ldap_base = "ou=people,dc=jka,dc=one"
       ldap_server = "localhost:3890"
       ldap_rootdn = "${config.sops.placeholder."ldap/rootdn"}"
@@ -182,7 +183,6 @@ in
     s2sSecureAuth = true;
     c2sRequireEncryption = true;
     modules = {
-      http_files = true;
       limits = true;
       server_contact_info = true;
       bosh = true;
