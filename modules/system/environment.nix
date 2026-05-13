@@ -1,5 +1,9 @@
 { ... }:
 {
+
+  # Fix shebangs
+  services.envfs.enable = true;
+  
   # US-American English as a language,
   # but with normal units and German money/phones/dates/adresses
 
