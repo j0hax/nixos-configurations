@@ -98,16 +98,12 @@
           system = "aarch64-linux";
           modules = [
             ./modules/user/johannes
+            ./modules/server/auth.nix
             ./modules/server/jellyfin.nix
             ./modules/server/glance.nix
-            # ./modules/server/bin.nix
-            # ./modules/server/navidrome.nix
             ./modules/server/matrix.nix
             ./modules/server/wireguard.nix
-            # ./modules/server/ntfy.nix
-            # ./modules/server/uptime.nix
             ./modules/server/xmpp.nix
-            ./modules/server/auth.nix
           ];
         };
 
