@@ -7,11 +7,12 @@
   imports = [
     #./greetd.nix
     #./sway.nix
-    ./gnome.nix
+    # ./gnome.nix
     #./cosmic.nix
-    # ./plasma.nix
+    ./plasma.nix
     # ./niri.nix
 
+    ./location.nix
     ./services.nix
     ./packages.nix
     ./dev.nix

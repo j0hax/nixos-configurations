@@ -19,6 +19,7 @@
         junicode
         font-awesome
         vt323
+        cantarell-fonts
 
         # Utilitarian
         atkinson-hyperlegible-next

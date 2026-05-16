@@ -40,8 +40,10 @@
     # usbmuxd.enable = true;
 
     # Automatic timezone
-    #tzupdate.enable = true;
-    automatic-timezoned.enable = true;
+    # tzupdate.enable = true;
+    # automatic-timezoned.enable = true;
+    # localtimed.enable = true;
+    
 
     # Enable CUPS to print documents.
     printing.enable = true;
