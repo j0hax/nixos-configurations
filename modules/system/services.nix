@@ -15,7 +15,7 @@
     journalwatch = {
       enable = true;
       mailTo = "johannes@rnold.online";
-      priority = 2;
+      priority = 1;
     };
 
     openssh = {
