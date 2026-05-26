@@ -194,7 +194,7 @@ in
         "nofail"
         "x-systemd.automount"
         "_netdev"
-        
+
         # Standard options
         "allow_other"
         "args2env"

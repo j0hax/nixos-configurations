@@ -43,7 +43,6 @@
     # tzupdate.enable = true;
     # automatic-timezoned.enable = true;
     # localtimed.enable = true;
-    
 
     # Enable CUPS to print documents.
     printing.enable = true;
