@@ -10,6 +10,7 @@
   system.autoUpgrade.enable = false;
 
   environment.systemPackages = with pkgs; [
+    awscli
     zulip
     kemai
     drawio
