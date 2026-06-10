@@ -119,7 +119,7 @@
 
       cp -v -- "$a" "$tmp" || { exit 1; }
       mv -v -- "$b" "$a" || { exit 1; }
-      mv -v -- "$tmp" "$a" || { exit 1; }
+      mv -v -- "$tmp" "$b" || { exit 1; }
     '')
   ];
 }
