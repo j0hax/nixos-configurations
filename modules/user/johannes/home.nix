@@ -45,27 +45,17 @@
     };
 
     # For gaming on the go
-    "org/gnome/desktop/peripherals/touchpad" = {
-      disable-while-typing = false;
-    };
+    /*
+      "org/gnome/desktop/peripherals/touchpad" = {
+        disable-while-typing = false;
+      };
+    */
 
     # Vanilla tweaks
     "org/gnome/desktop/interface" = {
       accent-color = "green";
-      color-scheme = "prefer-dark";
       clock-show-seconds = true;
-      clock-show-date = false;
-      clock-show-weekday = false;
-    };
-
-    "org/gnome/mutter" = {
-      experimental-features = [
-        "scale-monitor-framebuffer"
-        "kms-modifiers"
-        "autoclose-xwayland"
-        "variable-refresh-rate"
-        "xwayland-native-scaling"
-      ];
+      gtk-enable-primary-paste = true;
     };
 
     "org/gnome/settings-daemon/plugins/color" = {
