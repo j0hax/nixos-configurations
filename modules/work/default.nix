@@ -23,6 +23,7 @@
     rustdesk
     squashfsTools
     apache-directory-studio
+    marp-cli
   ];
 
   programs = {
