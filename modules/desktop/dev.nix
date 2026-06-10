@@ -6,6 +6,7 @@
 
   environment.systemPackages = with pkgs; [
     nixfmt
+    nixpkgs-review
     ripgrep
     # silicon
     gcc
