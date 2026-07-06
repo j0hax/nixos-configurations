@@ -100,6 +100,7 @@
             ./modules/server/matrix.nix
             ./modules/server/wireguard.nix
             ./modules/server/xmpp.nix
+            ./modules/server/cryptpad.nix
           ];
         };
 
