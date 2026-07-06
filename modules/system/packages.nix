@@ -47,6 +47,7 @@
     lsof
     ripgrep
     nix-output-monitor
+    nixfmt
     tree
     rclone
     bc
@@ -97,7 +98,7 @@
           exit 1
         }
       }
-      
+
       if [ "$#" -ne 2 ]; then
         usage
         exit 1
