@@ -69,20 +69,22 @@ in
     ];
   };
 
-  services.caddy.virtualHosts = {
-    "${domain}" = {
-      extraConfig = ''
-        # Use our custom ACME certificates as a reverse proxy endpoint
-        tls ${sslCertDir}/fullchain.pem ${sslCertDir}/key.pem
-        encode zstd gzip
+  /*
+    services.caddy.virtualHosts = {
+      "${domain}" = {
+        extraConfig = ''
+          # Use our custom ACME certificates as a reverse proxy endpoint
+          tls ${sslCertDir}/fullchain.pem ${sslCertDir}/key.pem
+          encode zstd gzip
 
-        # Strip the Converse.js-specific path on BOSH
-        rewrite * /conversejs{uri}
+          # Strip the Converse.js-specific path on BOSH
+          rewrite * /conversejs{uri}
 
-        reverse_proxy 127.0.0.1:5280
-      '';
+          reverse_proxy 127.0.0.1:5280
+        '';
+      };
     };
-  };
+  */
 
   networking.firewall =
     let
