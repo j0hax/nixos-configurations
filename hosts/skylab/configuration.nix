@@ -236,6 +236,40 @@ in
     allowedTCPPorts = [ yggPort ];
   };
 
+  # Radio Recording Service
+  systemd.services.dlf-record =
+    let
+      dlf-recorder = pkgs.writeShellScriptBin "dlf-recorder" ''
+        exec ${pkgs.ffmpeg}/bin/ffmpeg \
+          -reconnect 1 \
+          -reconnect_streamed 1 \
+          -reconnect_delay_max 10 \
+          -re \
+          -i 'https://st01.sslstream.dlf.de/dlf/01/high/opus/stream.opus?aggregator=web' \
+          -c copy \
+          -f segment \
+          -segment_atclocktime 1 \
+          -segment_time 3600 \
+          -strftime 1 \
+          -strftime_mkdir 1 \
+          './%Y-%m-%d_%H:%M:%S.opus'
+      '';
+    in
+    {
+      description = "DLF Recording Daemon";
+      wantedBy = [ "multi-user.target" ];
+      after = [ "network.target" ];
+
+      path = with pkgs; [ ffmpeg ];
+      environment.TZ = "Europe/Berlin";
+
+      serviceConfig = {
+        Type = "simple";
+        WorkingDirectory = "/mnt/media/Radio";
+        ExecStart = "${dlf-recorder}/bin/dlf-recorder";
+      };
+    };
+
   services.caddy.virtualHosts = {
     # Yay wedding
     "clara-und-johannes.de" = {
@@ -244,6 +278,22 @@ in
         root * /srv/http/clara-und-johannes.de
         encode zstd gzip
         file_server
+      '';
+    };
+
+    "arnold.onl" = {
+      extraConfig = ''
+        handle {
+          redir https://johannes.arnold.onl{uri}
+        }
+      '';
+    };
+
+    "radio.jka.one" = {
+      extraConfig = ''
+        encode
+        root /mnt/media/Radio
+        file_server browse
       '';
     };
 
@@ -261,11 +311,5 @@ in
         reverse_proxy 127.0.0.1:8080
       '';
     };
-  };
-
-  services.journalwatch = {
-    enable = true;
-    mailTo = "johannes@rnold.online";
-    priority = 3;
   };
 }
