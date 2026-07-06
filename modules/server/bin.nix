@@ -1,37 +1,31 @@
 { config, ... }:
+let
+  port = 8153;
+  host = "bin.jka.one";
+in
 {
   imports = [ ./caddy.nix ];
 
-  services.caddy.virtualHosts.${config.services.wastebin.settings.WASTEBIN_BASE_URL}.extraConfig = ''
-    reverse_proxy ${config.services.wastebin.settings.WASTEBIN_ADDRESS_PORT}
+  services.caddy.virtualHosts.${host}.extraConfig = ''
     encode zstd gzip
     header X-Robots-Tag "noindex, nofollow"
-    cache
+    reverse_proxy 127.0.0.1:${toString port}
   '';
 
-  /*
-    services.microbin = {
-      enable = true;
-      settings = {
-        MICROBIN_PORT = 2345;
-        # Plattdeutsch
-        MICROBIN_TITLE = "De Tünn";
-        MICROBIN_ENABLE_BURN_AFTER = true;
-        MICROBIN_ENABLE_READONLY = true;
-        MICROBIN_ENCRYPTION_CLIENT_SIDE = true;
-        MICROBIN_ENCRYPTION_SERVER_SIDE = true;
-        MICROBIN_HASH_IDS = true;
-        MICROBIN_FOOTER_TEXT = "<b><i>Tünn</i></b> (n): low german for bin.";
-      };
-    };
-  */
-
-  services.wastebin = {
+  services.microbin = {
     enable = true;
     settings = {
-      WASTEBIN_TITLE = "De Tünn";
-      WASTEBIN_BASE_URL = "https://bin.jka.one";
-      WASTEBIN_ADDRESS_PORT = "127.0.0.1:8234";
+      MICROBIN_PORT = port;
+      MICROBIN_HASH_IDS = true;
+      MICROBIN_HIGHLIGHTSYNTAX = true;
+      MICROBIN_PUBLIC_PATH = "https://${host}";
+      MICROBIN_ENABLE_READONLY = true;
+      MICROBIN_QR = true;
+      MICROBIN_ENCRYPTION_CLIENT_SIDE = true;
+      MICROBIN_ENCRYPTION_SERVER_SIDE = true;
+      MICROBIN_FOOTER_TEXT = "<b><i>Tünn</i></b> (n): low german for bin.";
+      MICROBIN_SHOW_READ_STATS = true;
+      MICROBIN_EDITABLE = true;
     };
   };
 }
