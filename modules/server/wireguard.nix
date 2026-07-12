@@ -15,6 +15,7 @@ in
   services.caddy.virtualHosts."wg.${domainBase}" = {
     serverAliases = [ "wireguard.${domainBase}" ];
     extraConfig = ''
+      encode
       reverse_proxy 127.0.0.1:${toString port}
     '';
   };

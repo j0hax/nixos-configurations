@@ -2,7 +2,7 @@
   description = "Johannes' NixOS Configurations";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05-small";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -101,6 +101,7 @@
             ./modules/server/wireguard.nix
             ./modules/server/xmpp.nix
             ./modules/server/cryptpad.nix
+            ./modules/server/mealie.nix
           ];
         };
 

@@ -6,8 +6,9 @@ in
   imports = [ ./caddy.nix ];
 
   services.caddy.virtualHosts."jellyfin.${domainBase}" = {
-    serverAliases = [ "flix.${domainBase}" ];
+    serverAliases = [ "flix.${domainBase}" "jellyfin.arnold.onl" "flix.arnold.onl" ];
     extraConfig = ''
+      encode
       reverse_proxy 127.0.0.1:8096
     '';
   };

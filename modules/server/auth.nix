@@ -16,6 +16,7 @@ in
 
   services.caddy.virtualHosts.${ldapDomain} = {
     extraConfig = ''
+      encode
       reverse_proxy 127.0.0.1:${toString config.services.lldap.settings.http_port}
     '';
   };
@@ -53,6 +54,7 @@ in
 
   services.caddy.virtualHosts."auth.${domainBase}" = {
     extraConfig = ''
+      encode
       reverse_proxy 127.0.0.1:${toString port}
     '';
   };
