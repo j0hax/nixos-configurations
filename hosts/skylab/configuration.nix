@@ -239,7 +239,7 @@ in
   # Radio Recording Service
   systemd.services.dlf-record =
     let
-      dlf-recorder = pkgs.writeShellScriptBin "dlf-recorder" ''
+      dlf-recorder = pkgs.writeShellScript "dlf-recorder" ''
         exec ${pkgs.ffmpeg}/bin/ffmpeg \
           -reconnect 1 \
           -reconnect_streamed 1 \
@@ -266,9 +266,83 @@ in
       serviceConfig = {
         Type = "simple";
         WorkingDirectory = "/mnt/media/Radio";
-        ExecStart = "${dlf-recorder}/bin/dlf-recorder";
+        ExecStart = "${dlf-recorder}";
       };
     };
+
+  # Gold Price Recording Service
+  systemd.services.degussa-tracker =
+    let
+      script = pkgs.writeShellApplication {
+        name = "degussa";
+        runtimeInputs = with pkgs; [
+          curl
+          jq
+          pup
+        ];
+        text = ''
+          OUT="prices.csv"
+
+          html=$(curl -fsSL https://degussa.com/de-de/header_navigation/preise/preisliste/)
+          timestamp=$(date --iso-8601=seconds)
+
+          printf '%s' "$html" |
+          	pup 'a.priceListTableRow json{}' |
+          	jq -r --arg ts "$timestamp" '
+              .[] |
+              (.children | map(.text // "" | gsub("^\\s+|\\s+$"; ""))) as $f |
+              [
+                $ts,
+                $f[0],
+                $f[2],
+                (
+                  $f[3]
+                  | gsub("[^0-9,.]"; "")
+                  | gsub("\\."; "")
+                  | gsub(","; ".")
+                ),
+                (
+                  $f[4]
+                  | gsub("[^0-9,.]"; "")
+                  | gsub("\\."; "")
+                  | gsub(","; ".")
+                )
+              ] |
+              flatten |
+              @csv
+            ' >>"$OUT"
+        '';
+      };
+    in
+    {
+      description = "Degussa gold price scraper";
+      wantedBy = [ "multi-user.target" ];
+      after = [ "network.target" ];
+
+      environment.TZ = "Europe/Berlin";
+
+      serviceConfig = {
+        Type = "oneshot";
+        WorkingDirectory = "/var/lib/degussa";
+        ExecStart = "${script}/bin/degussa";
+      };
+    };
+
+  systemd.timers.degussa-tracker = {
+    description = "Update Degussa price tracker";
+
+    wantedBy = [ "timers.target" ];
+
+    timerConfig = {
+      OnCalendar = "*:0/5";
+      Unit = "degussa-tracker.service";
+    };
+  };
+
+  # Ensure goldprice data is present
+  systemd.tmpfiles.rules = [
+    "d /var/lib/degussa 0755 root root -"
+  ];
 
   services.caddy.virtualHosts = {
     # Yay wedding
@@ -293,6 +367,14 @@ in
       extraConfig = ''
         encode
         root /mnt/media/Radio
+        file_server browse
+      '';
+    };
+
+    "gold.jka.one" = {
+      extraConfig = ''
+        encode
+        root /var/lib/degussa
         file_server browse
       '';
     };
