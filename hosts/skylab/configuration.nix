@@ -282,6 +282,7 @@ in
         ];
         text = ''
           OUT="prices.csv"
+          LIGHT="krugerrand.csv"
 
           html=$(curl -fsSL https://degussa.com/de-de/header_navigation/preise/preisliste/)
           timestamp=$(date --iso-8601=seconds)
@@ -311,6 +312,9 @@ in
               flatten |
               @csv
             ' >>"$OUT"
+
+            # Create lightweight CSV
+            grep -F '"1 oz Krügerrand Goldmünze - Südafrika 2026"' "$OUT" > "$LIGHT"
         '';
       };
     in
