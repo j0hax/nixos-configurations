@@ -311,10 +311,9 @@ in
               ] |
               flatten |
               @csv
-            ' >>"$OUT"
-
-            # Create lightweight CSV
-            grep -F '"1 oz Krügerrand Goldmünze - Südafrika 2026"' "$OUT" > "$LIGHT"
+            ' |
+            tee -a "$OUT" |
+            grep -F '"1 oz Krügerrand Goldmünze - Südafrika 2026"' >> "$LIGHT"
         '';
       };
     in
