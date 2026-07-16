@@ -375,6 +375,7 @@ in
     };
 
     "gold.jka.one" = {
+      serverAliases = [ "gold.arnold.onl" ];
       extraConfig = ''
         encode
         root /var/lib/degussa
