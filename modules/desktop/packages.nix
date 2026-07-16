@@ -19,7 +19,7 @@
     speedtest-cli
     mat2
     imagemagick
-    bitwarden-desktop
+    # bitwarden-desktop
     spotify
     signal-desktop
     backgroundremover

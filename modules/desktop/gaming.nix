@@ -13,7 +13,7 @@
     # frozen-bubble
     supertux
     supertuxkart
-    urbanterror
+    # urbanterror
     xonotic
     sauerbraten
     beyond-all-reason
