@@ -24,6 +24,7 @@
     squashfsTools
     apache-directory-studio
     marp-cli
+    openstackclient-full
   ];
 
   programs = {
