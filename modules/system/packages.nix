@@ -122,5 +122,13 @@
       mv -v -- "$b" "$a" || { exit 1; }
       mv -v -- "$tmp" "$b" || { exit 1; }
     '')
+
+    # SSH wrapper
+    (pkgs.writeShellScriptBin "ssh" ''
+      exec ${pkgs.systemd}/bin/systemd-inhibit \
+        --what=sleep \
+        --why="Active SSH session" \
+        ${pkgs.openssh}/bin/ssh "$@"
+    '')
   ];
 }
