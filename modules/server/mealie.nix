@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, sops, ... }:
 {
   imports = [ ./caddy.nix ];
 
@@ -10,12 +10,21 @@
     '';
   };
 
+  sops.secrets.mealie = {
+    sopsFile = ../../secrets/mealie.env;
+    format = "dotenv";
+  };
+
   services.mealie = {
     enable = true;
     # database.createLocally = true;
     settings = {
-      BASE_URL = "mealie.arnold.onl";
+      BASE_URL = "https://mealie.arnold.onl";
       SQLITE_MIGRATE_JOURNAL_WAL = true;
     };
+    extraOptions = [
+      "--forwarded-allow-ips=127.0.0.1"
+    ];
+    credentialsFile = config.sops.secrets.mealie.path;
   };
 }

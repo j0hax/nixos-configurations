@@ -345,6 +345,7 @@ in
   # Ensure goldprice data is present
   systemd.tmpfiles.rules = [
     "d /var/lib/degussa 0755 root root -"
+    "R /mnt/media/Radio  - - - 7d *.opus"
   ];
 
   services.caddy.virtualHosts = {
