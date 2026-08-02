@@ -7,15 +7,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1785531816,
-        "narHash": "sha256-vkMnV0JIyw+g/NmcfoajlGaAO+9a0ezia+FZohQJrik=",
+        "lastModified": 1785119570,
+        "narHash": "sha256-Rgs2xKnGLFWQscxUaXX07oyZeuMDOHEbqDOsgliLFGM=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "bf9ce9fec78f95f374e8dd3b503863a3ec128ebe",
+        "rev": "d4fd24667c8cbef124bb70a20380cab75ec8474d",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
+        "ref": "release-26.05",
         "repo": "home-manager",
         "type": "github"
       }
@@ -68,11 +69,32 @@
         "type": "github"
       }
     },
+    "noctalia": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1785642474,
+        "narHash": "sha256-RU1hfXKCJw+tmHC0x2Xf9EqNJx/nXvJAKyOuGuyW3P8=",
+        "owner": "noctalia-dev",
+        "repo": "noctalia",
+        "rev": "c7abdb8e72b1a80bd6f1d8e096b0a93eeb0b32ff",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "noctalia",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
+        "noctalia": "noctalia",
         "sops-nix": "sops-nix"
       }
     },
