@@ -16,6 +16,7 @@
       "adbusers"
       "pcap"
       "lp"
+      "ydotool"
     ];
   };
 

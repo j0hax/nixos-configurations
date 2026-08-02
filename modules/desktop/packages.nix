@@ -75,6 +75,7 @@
     # wireshark.enable = true;
     obs-studio.enable = true;
     wavemon.enable = true;
+    ydotool.enable = true;
   };
 
   # Enable Logitech devices

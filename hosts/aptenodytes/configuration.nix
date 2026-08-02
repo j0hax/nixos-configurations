@@ -173,13 +173,11 @@
     "d /snapshots 0755 root root"
   ];
 
-  /*
-    hardware.tuxedo-drivers.settings = {
-      charging-priority = "performance";
-      charging-profile = "stationary";
-      fn-lock = true;
-    };
-  */
+  hardware.tuxedo-drivers.settings = {
+    charging-priority = "performance";
+    charging-profile = "stationary";
+    fn-lock = true;
+  };
 
   # from https://wiki.nixos.org/wiki/Intel_Graphics
   hardware.graphics = {
@@ -208,4 +206,6 @@
     "i915.force_probe=!7d55"
     "xe.force_probe=7d55"
   ];
+
+  networking.hosts."127.0.0.1" = ["fritz.box"];
 }
