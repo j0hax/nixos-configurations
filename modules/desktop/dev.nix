@@ -31,6 +31,7 @@
     shellcheck
     harper
     vscode-css-languageserver
+    aider-chat-full
 
     # Go Stuff
     go
