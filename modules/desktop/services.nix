@@ -52,8 +52,6 @@
       enable = true;
       enableExcludeWrapper = true;
     };
-
-    yggdrasil.settings.peers = [ "quic://skylab.jka.one:1234" ];
   };
 
   # Workaround to split-tunnel Yggdrasil when Mullvad is running

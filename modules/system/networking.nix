@@ -1,12 +1,8 @@
 {
-  config,
   pkgs,
   lib,
   ...
 }:
-let
-  yggdrasilPort = 1234;
-in
 {
 
   networking = {
@@ -42,10 +38,15 @@ in
   services.yggdrasil = lib.mkDefault {
     enable = true;
     persistentKeys = true;
-    settings.Peers = [
-      "quic://skylab.jka.one:1234"
-      "quic://fvm.mywire.org:443?key=000000000143db657d1d6f80b5066dd109a4cb31f7dc6cb5d56050fffb014217"
-    ];
+    settings = {
+      IfName = "ygg0";
+      Peers = [
+        "quic://skylab.jka.one:1234"
+
+        # Fallback
+        "tls://ygg.mkg20001.io:443"
+      ];
+    };
     openMulticastPort = true;
   };
 
