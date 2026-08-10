@@ -218,15 +218,25 @@ in
     ];
 
     # This VPS is located in southeast Germany, so we peer it with neighboring
-    # Yggdrasil nodes. We use TCP to reduce overhead, as it is implemented in the
+    # Yggdrasil nodes. We use TCP/TLS to reduce overhead, as it is implemented in the
     # Kernel, unlike QUIC, which is good for general/mobile uses.
     Peers = [
       # Germany/Nuremberg
       "tcp://ygg1.mk16.de:1337?key=0000000087ee9949eeab56bd430ee8f324cad55abf3993ed9b9be63ce693e18a"
       "tcp://ygg2.mk16.de:1337?key=000000d80a2d7b3126ea65c8c08fc751088c491a5cdd47eff11c86fa1e4644ae"
 
-      # Czechia
-      "tls://[2a03:3b40:fe:ab::1]:993"
+      # Germany/Frankfurt
+      "tcp://ip4.fvm.mywire.org:8080?key=000000000143db657d1d6f80b5066dd109a4cb31f7dc6cb5d56050fffb014217"
+      "tcp://ip6.fvm.mywire.org:8080?key=000000000143db657d1d6f80b5066dd109a4cb31f7dc6cb5d56050fffb014217"
+
+      # Netherlands/Kerkrade
+      "tcp://cirno.nadeko.net:44441"
+
+      # Austria/Vienna
+      "tcp://ygg7.mk16.de:1337?key=000000086278b5f3ba1eb63acb5b7f6e406f04ce83990dee9c07f49011e375ae"
+      
+      # Czechia/Prague
+      "tls://[2a03:3b40:fe:ab::1]:993?key=0009e16b9e3afe7b13c3612560410434d3dfc70c8a8a0a63e51e0470cb8124f6"
     ];
   };
 
