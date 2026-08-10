@@ -246,40 +246,6 @@ in
     allowedTCPPorts = [ yggPort ];
   };
 
-  # Radio Recording Service
-  systemd.services.dlf-record =
-    let
-      dlf-recorder = pkgs.writeShellScript "dlf-recorder" ''
-        exec ${pkgs.ffmpeg}/bin/ffmpeg \
-          -reconnect 1 \
-          -reconnect_streamed 1 \
-          -reconnect_delay_max 10 \
-          -re \
-          -i 'https://st01.sslstream.dlf.de/dlf/01/high/opus/stream.opus?aggregator=web' \
-          -c copy \
-          -f segment \
-          -segment_atclocktime 1 \
-          -segment_time 3600 \
-          -strftime 1 \
-          -strftime_mkdir 1 \
-          './%Y-%m-%d_%H:%M:%S.opus'
-      '';
-    in
-    {
-      description = "DLF Recording Daemon";
-      wantedBy = [ "multi-user.target" ];
-      after = [ "network.target" ];
-
-      path = with pkgs; [ ffmpeg ];
-      environment.TZ = "Europe/Berlin";
-
-      serviceConfig = {
-        Type = "simple";
-        WorkingDirectory = "/mnt/media/Radio";
-        ExecStart = "${dlf-recorder}";
-      };
-    };
-
   # Gold Price Recording Service
   systemd.services.degussa-tracker =
     let
