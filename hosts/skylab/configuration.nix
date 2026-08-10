@@ -374,5 +374,19 @@ in
         reverse_proxy 127.0.0.1:8080
       '';
     };
+
+    "status.ksh.jka.one" = {
+      extraConfig = ''
+        encode
+        reverse_proxy http://200:8671:465a:5c0:d2ba:b3e7:3a51:7d07:4000 {
+          transport http {
+            dial_timeout 5s
+            response_header_timeout 10s
+            read_timeout 30s
+            write_timeout 30s
+        }
+        }
+      '';
+    };
   };
 }
