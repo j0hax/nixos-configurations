@@ -104,10 +104,9 @@
             ./modules/server/glance.nix
             ./modules/server/jellyfin.nix
             ./modules/server/matrix.nix
-            ./modules/server/mealie.nix
+            # ./modules/server/mealie.nix
             ./modules/server/wireguard.nix
             ./modules/server/xmpp.nix
-            ./modules/server/cryptpad.nix
           ];
         };
       };
