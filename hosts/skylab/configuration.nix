@@ -199,9 +199,9 @@ in
         "allow_other"
         "args2env"
         "config=${config.sops.secrets.rclone.path}"
-        "vfs_cache_mode=full"
-        "cache_dir=/var/cache/media"
-        "vfs_cache_min_free_space=10G"
+        "vfs-cache_mode=full"
+        "cache-dir=/var/cache/media"
+        "vfs-cache-max-size=10G"
         "syslog"
         "v"
       ];
@@ -321,33 +321,15 @@ in
   # Ensure goldprice data is present
   systemd.tmpfiles.rules = [
     "d /var/lib/degussa 0755 root root -"
-    "R /mnt/media/Radio  - - - 7d *.opus"
   ];
 
   services.caddy.virtualHosts = {
-    # Yay wedding
-    "clara-und-johannes.de" = {
-      serverAliases = [ "www.clara-und-johannes.de" ];
-      extraConfig = ''
-        root * /srv/http/clara-und-johannes.de
-        encode zstd gzip
-        file_server
-      '';
-    };
 
     "arnold.onl" = {
       extraConfig = ''
         handle {
           redir https://johannes.arnold.onl{uri}
         }
-      '';
-    };
-
-    "radio.jka.one" = {
-      extraConfig = ''
-        encode
-        root /mnt/media/Radio
-        file_server browse
       '';
     };
 
@@ -369,23 +351,15 @@ in
       '';
     };
 
-    "fmd.jka.one" = {
-      extraConfig = ''
-        reverse_proxy 127.0.0.1:8080
-      '';
-    };
-
-    "status.ksh.jka.one" = {
+    "status.jka.one" = {
+      serverAliases = [ "status.ksh.jka.one" ];
       extraConfig = ''
         encode
-        reverse_proxy http://200:8671:465a:5c0:d2ba:b3e7:3a51:7d07:4000 {
-          transport http {
-            dial_timeout 5s
-            response_header_timeout 10s
-            read_timeout 30s
-            write_timeout 30s
-        }
-        }
+
+        @ksh host status.ksh.jka.one
+        redir @ksh https://status.jka.one{uri} permanent
+
+        reverse_proxy kneippweg.ygg.jka.one:4000
       '';
     };
   };
