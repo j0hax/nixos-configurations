@@ -207,5 +207,5 @@
     "xe.force_probe=7d55"
   ];
 
-  networking.hosts."127.0.0.1" = ["fritz.box"];
+  networking.hosts."127.0.0.1" = [ "fritz.box" ];
 }
