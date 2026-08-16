@@ -1,21 +1,20 @@
 {
   pkgs,
-  noctalia,
+  inputs,
   ...
 }:
 {
-  /*
-    services.greetd = {
-      enable = true;
-      settings = {
-        default_session = {
-          command = "${pkgs.tuigreet}/bin/tuigreet --time --asterisks --cmd niri-session";
-        };
-      };
-    };
-  */
+
+  imports = [
+    inputs.noctalia.nixosModules.default
+  ];
 
   programs = {
+    noctalia = {
+      enable = true;
+      # Enables NetworkManager, Bluetooth, UPower, and a power profile service.
+      recommendedServices.enable = true;
+    };
     niri.enable = true;
     foot = {
       enable = true;
@@ -29,13 +28,7 @@
   };
 
   # Polkit authentication
-  security.soteria.enable = true;
-
-  # Recommended services for Noctalia
-  services.upower.enable = true;
-  services.gnome.gnome-keyring.enable = true;
-  networking.networkmanager.enable = true;
-  hardware.bluetooth.enable = true;
+  # security.soteria.enable = true;
 
   # Required for Nautilus to fully function
   services.gvfs.enable = true;
@@ -44,7 +37,6 @@
     ddcutil
     xwayland-satellite
     posy-cursors
-    noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     quickshell
     kdlfmt
     libnotify
@@ -57,11 +49,5 @@
     file-roller
     adwaita-icon-theme
     transmission_4-gtk
-
-    (writeShellScriptBin "noctalia-restart" ''
-      kill $(pgrep quickshell)
-      noctalia-shell > /dev/null & disown
-    '')
   ];
-
 }
