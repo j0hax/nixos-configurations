@@ -234,7 +234,7 @@ in
 
       # Austria/Vienna
       "tcp://ygg7.mk16.de:1337?key=000000086278b5f3ba1eb63acb5b7f6e406f04ce83990dee9c07f49011e375ae"
-      
+
       # Czechia/Prague
       "tls://[2a03:3b40:fe:ab::1]:993?key=0009e16b9e3afe7b13c3612560410434d3dfc70c8a8a0a63e51e0470cb8124f6"
     ];
