@@ -168,23 +168,6 @@ in
   };
 
   fileSystems = {
-    /*
-      "/media/nextcloud" = {
-        device = "nextcloud:media";
-        fsType = "rclone";
-        options = [
-          "nodev"
-          "nofail"
-          "allow_other"
-          "args2env"
-          "config=/home/johannes/.config/rclone/rclone.conf"
-          "vfs_cache_mode=full"
-          "cache_dir=/var/cache/rclone"
-          "vfs_cache_min_free_space=10G"
-        ];
-      };
-    */
-
     "/mnt/media" = {
       device = "media:";
       fsType = "rclone";
