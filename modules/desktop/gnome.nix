@@ -35,6 +35,7 @@
   environment.systemPackages = with pkgs; [
     file-roller
     transmission_4-gtk
+    apostrophe # Markdown editor
     gnome-network-displays
     impression # Bootable Drive Tool
     gnome-decoder # QR Code Generator
