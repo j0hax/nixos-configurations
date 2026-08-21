@@ -2,7 +2,7 @@
 {
   services.minecraft-server = {
     enable = true;
-    package = pkgs.papermc;
+    package = pkgs.unstable.minecraft-server;
     eula = true;
     openFirewall = true; # Opens the port the server is running on (by default 25565 but in this case 43000)
     declarative = true;

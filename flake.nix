@@ -39,6 +39,16 @@
       # Bundle of common modules applied to every host
       commonModules = name: [
         { networking.hostName = name; }
+        {
+          nixpkgs.overlays = [
+            (final: prev: {
+              unstable = import inputs.nixpkgs-unstable {
+                inherit (final.stdenv.hostPlatform) system;
+                inherit (final) config;
+              };
+            })
+          ];
+        }
         ./hosts/${name}/configuration.nix
         ./modules/system
         ./modules/user/johannes
