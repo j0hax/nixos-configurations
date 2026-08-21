@@ -129,6 +129,7 @@ in
   system.stateVersion = "25.05"; # Did you read the comment?
 
   services.smartd.enable = false;
+  services.journald.storage = "volatile";
 
   networking = {
     interfaces.enp1s0 = {
