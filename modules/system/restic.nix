@@ -41,6 +41,7 @@
         "--tag nix"
         "--one-file-system"
         "--verbose"
+        "--retry-lock 1h"
       ];
 
       paths = [
@@ -62,6 +63,11 @@
         "*.iso"
         "*.img"
         "*.qcow2"
+        "*.png"
+      ];
+
+      checkOpts = [
+        "--retry-lock 1h"
       ];
 
       pruneOpts = [
@@ -72,6 +78,7 @@
         "--repack-uncompressed"
         "--max-unused 0"
         "--keep-tag keep"
+        "--retry-lock 1h"
       ];
     };
   };
