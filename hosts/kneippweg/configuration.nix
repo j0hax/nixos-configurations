@@ -128,8 +128,9 @@
   services.yggdrasil.settings = {
     Peers = [
       "quic://skylab.jka.one:1234"
-      "tls://helium.avevad.com:1337"
       "tls://ygg.mkg20001.io:443"
+      "tls://yggdrasil.neilalexander.dev:64648?key=ecbbcb3298e7d3b4196103333c3e839cfe47a6ca47602b94a6d596683f6bb358"
+      "quic://des.8px.sk:4321"
     ];
   };
 
@@ -144,8 +145,16 @@
     bash
   ];
 
-  services.ollama = {
+  services.uptime-kuma = {
     enable = true;
-    loadModels = [ "llama3.2:1b" ];
+    settings = {
+      PORT = "4000";
+      HOST = "200:8671:465a:5c0:d2ba:b3e7:3a51:7d07";
+      UPTIME_KUMA_WS_ORIGIN_CHECK = "bypass";
+      UPTIME_KUMA_DISABLE_FRAME_SAMEORIGIN = "true";
+    };
   };
+
+  networking.firewall.allowedTCPPorts = [ 4000 ];
+  networking.firewall.allowedUDPPorts = [ 4000 ];
 }
