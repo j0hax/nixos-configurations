@@ -94,13 +94,19 @@ in
       passwordFile = config.sops.secrets."restic/password".path;
       rcloneConfigFile = config.sops.secrets.rclone.path;
 
+      
+      extraBackupArgs = [
+        "--tag nix"
+        "--tag minecraft"
+      ];
+
       backupPrepareCommand = ''
         echo "say Starting backup..." > /run/minecraft-server.stdin
         echo "save-all flush" > /run/minecraft-server.stdin
       '';
 
       backupCleanupCommand = ''
-        echo "say Backup finished!" > /run/minecraft-server.stdin
+        echo "say Backup finished." > /run/minecraft-server.stdin
       '';
 
       timerConfig = {
