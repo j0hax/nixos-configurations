@@ -2,8 +2,13 @@
   config,
   sops,
   lib,
+  pkgs,
   ...
 }:
+let
+  minecraft = config.services.minecraft-server;
+in
+
 {
   sops.secrets."restic/repository" = { };
   sops.secrets."restic/password" = { };
@@ -81,5 +86,52 @@
         "--retry-lock 1h"
       ];
     };
+
+    services.restic.backups.minecraft = lib.mkIf minecraft.enable {
+      paths = [
+        minecraft.dataDir
+      ];
+
+      repositoryFile = config.sops.secrets."restic/repository".path;
+      passwordFile = config.sops.secrets."restic/password".path;
+      rcloneConfigFile = config.sops.secrets.rclone.path;
+
+      timerConfig = {
+        OnCalendar = "hourly";
+        RandomizedDelaySec = "6h";
+        persistent = "true";
+      };
+
+      # Make the Restic service wait for the Minecraft save service.
+      depends = [ "minecraft-save-before-backup.service" ];
+    };
   };
+
+  systemd.services.minecraft-save-before-backup =
+    lib.mkIf minecraft.enable {
+      description = "Flush Minecraft world before Restic backup";
+
+      before = [ "restic-backups-minecraft.service" ];
+
+      serviceConfig = {
+        Type = "oneshot";
+        User = "minecraft";
+      };
+
+      script = ''
+        if ${pkgs.systemd}/bin/systemctl is-active --quiet minecraft-server.service; then
+          echo "Flushing Minecraft world before backup..."
+          echo "say Starting Backup..." > /run/minecraft-server.stdin
+          echo "save-all flush" > /run/minecraft-server.stdin
+        else
+          echo "Minecraft server is not running; skipping save."
+        fi
+      '';
+    };
+
+  systemd.services.restic-backups-minecraft =
+    lib.mkIf minecraft.enable {
+      requires = [ "minecraft-save-before-backup.service" ];
+      after = [ "minecraft-save-before-backup.service" ];
+    };
 }
