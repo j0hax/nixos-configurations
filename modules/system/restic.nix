@@ -80,8 +80,6 @@ in
         "--keep-weekly 5"
         "--keep-monthly 12"
         "--keep-yearly 10"
-        "--repack-uncompressed"
-        "--max-unused 0"
         "--keep-tag keep"
         "--retry-lock 1h"
       ];
