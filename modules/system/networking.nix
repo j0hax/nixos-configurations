@@ -7,7 +7,7 @@
 
   boot = {
     kernelModules = [ "tcp_bbr" ];
-    boot.kernel.sysctl = {
+    kernel.sysctl = {
       "net.ipv4.tcp_syncookies" = 1;
       "net.ipv4.tcp_congestion_control" = "bbr";
       "net.ipv4.tcp_mtu_probing" = 1;
