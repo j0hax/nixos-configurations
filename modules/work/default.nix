@@ -16,8 +16,6 @@
     drawio
     # shell-gpt
     gopass
-    teams-for-linux
-    zoom-us
     pwgen
     awscli2
     rustdesk
