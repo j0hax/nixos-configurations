@@ -23,12 +23,8 @@
     apache-directory-studio
     marp-cli
     openstackclient-full
+    k3s
   ];
-
-  services.k3s = {
-    enable = true;
-    role = "server";
-  };
 
   programs = {
     noisetorch.enable = true;
