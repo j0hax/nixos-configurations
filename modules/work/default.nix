@@ -25,6 +25,11 @@
     openstackclient-full
   ];
 
+  services.k3s = {
+    enable = true;
+    role = "server";
+  };
+
   programs = {
     noisetorch.enable = true;
     openvpn3.enable = true;
