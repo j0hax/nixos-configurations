@@ -102,6 +102,7 @@ in
       settings = {
         global = {
           server_name = domain;
+          unix_socket_path = "/run/tuwunel/tuwunel.sock";
           allow_registration = false;
           trusted_servers = [
             "matrix.org"
@@ -139,6 +140,8 @@ in
           ];
         };
       };
+
+      group = "caddy";
     };
 
     systemd =
