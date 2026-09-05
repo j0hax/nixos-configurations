@@ -101,12 +101,12 @@ in
       ];
 
       backupPrepareCommand = ''
-        echo "say Starting backup..." > /run/minecraft-server.stdin
+        echo "me is starting backup..." > /run/minecraft-server.stdin
         echo "save-all flush" > /run/minecraft-server.stdin
       '';
 
       backupCleanupCommand = ''
-        echo "say Backup finished." > /run/minecraft-server.stdin
+        echo "me finished backup." > /run/minecraft-server.stdin
       '';
 
       timerConfig = {

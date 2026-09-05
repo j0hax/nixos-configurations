@@ -13,7 +13,7 @@ in
 
     jvmOpts = lib.mkOption {
       type = lib.types.str;
-      default = "-Xms4096M -Xmx6114M";
+      default = "-Xms4096M -Xmx7168M";
       description = "JVM options for the Minecraft server.";
     };
   };
