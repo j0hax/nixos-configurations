@@ -1,30 +1,38 @@
 {
+  lib,
   config,
   pkgs,
   ...
 }:
+let
+  cfg = config.jka.users.johannes;
+in
 {
-  users.users.johannes = {
-    description = "Johannes Karl Arnold";
-    isNormalUser = true;
-    shell = pkgs.fish;
-    extraGroups = [
-      "wheel"
-      "video"
-      "libvirtd"
-      "dialout"
-      "adbusers"
-      "pcap"
-      "lp"
-      "ydotool"
-    ];
+  options.jka.users.johannes = {
+    enable = lib.mkEnableOption "user account for Johannes" // {
+      default = true;
+    };
   };
 
-  nix.settings.trusted-users = [ "johannes" ];
+  config = lib.mkIf cfg.enable {
+    users.users.johannes = {
+      description = "Johannes Karl Arnold";
+      isNormalUser = true;
+      shell = pkgs.fish;
+      extraGroups = [
+        "wheel"
+        "video"
+        "libvirtd"
+        "dialout"
+        "adbusers"
+        "pcap"
+        "lp"
+        "ydotool"
+      ];
+    };
 
-  home-manager.users.johannes = import ./home.nix;
+    nix.settings.trusted-users = [ "johannes" ];
 
-  # Enable decryption of Secrets with my key
-  # age.identityPaths = [ "${config.users.users.johannes.home}/.ssh/id_ed25519" ];
-
+    home-manager.users.johannes = import ./home.nix;
+  };
 }
