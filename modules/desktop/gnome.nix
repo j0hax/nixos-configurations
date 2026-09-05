@@ -1,60 +1,63 @@
 {
+  lib,
   pkgs,
+  config,
   ...
 }:
+let
+  cfg = config.jka.desktop;
+in
 {
-  services = {
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
+  options.jka.desktop.gnome = {
+    enable = lib.mkEnableOption "GNOME desktop environment";
   };
 
-  programs.kdeconnect = {
-    enable = true;
-    package = pkgs.gnomeExtensions.gsconnect;
+  config = lib.mkIf (cfg.enable && cfg.gnome.enable) {
+    services = {
+      displayManager.gdm.enable = true;
+      desktopManager.gnome.enable = true;
+    };
+
+    programs.kdeconnect = {
+      enable = true;
+      package = pkgs.gnomeExtensions.gsconnect;
+    };
+
+    services.xrdp.enable = true;
+    services.xrdp.defaultWindowManager = "${pkgs.gnome-session}/bin/gnome-session";
+
+    services.gnome.gnome-remote-desktop.enable = true;
+
+    systemd.services.gnome-remote-desktop = {
+      wantedBy = [ "graphical.target" ];
+    };
+
+    networking.firewall.allowedTCPPorts = [ 3389 ];
+
+    services.displayManager.autoLogin.enable = false;
+    services.getty.autologinUser = null;
+
+    environment.systemPackages = with pkgs; [
+      file-roller
+      transmission_4-gtk
+      apostrophe
+      gnome-network-displays
+      impression
+      gnome-decoder
+      metadata-cleaner
+      gnome-obfuscate
+      eyedropper
+      shortwave
+      video-trimmer
+      varia
+      gnome-2048
+      gnome-firmware
+      gnome-solanum
+      crosspipe
+      foliate
+      fractal
+      gradia
+      quadrapassel
+    ];
   };
-
-  services.xrdp.enable = true;
-  services.xrdp.defaultWindowManager = "${pkgs.gnome-session}/bin/gnome-session"; # gnome wayland session
-
-  # Enable the GNOME RDP components
-  services.gnome.gnome-remote-desktop.enable = true;
-
-  # Ensure the service starts automatically at boot so the settings panel appears
-  systemd.services.gnome-remote-desktop = {
-    wantedBy = [ "graphical.target" ];
-  };
-
-  # Open the default RDP port (3389)
-  networking.firewall.allowedTCPPorts = [ 3389 ];
-
-  # Disable autologin to avoid session conflicts
-  services.displayManager.autoLogin.enable = false;
-  services.getty.autologinUser = null;
-
-  # Additional GTK Packages
-  environment.systemPackages = with pkgs; [
-    file-roller
-    transmission_4-gtk
-    apostrophe # Markdown editor
-    gnome-network-displays
-    impression # Bootable Drive Tool
-    gnome-decoder # QR Code Generator
-    metadata-cleaner
-    gnome-obfuscate # Redaction tool
-    eyedropper
-    shortwave # Internet radio
-    video-trimmer
-    varia
-    # bottles
-    gnome-2048
-    gnome-firmware
-    gnome-solanum # Pomodoro timer
-    # helvum # Patchbay
-    crosspipe
-    foliate # E-Reader
-    fractal # Matrix messenger
-    gradia # Screenshot annotation
-
-    quadrapassel
-  ];
 }

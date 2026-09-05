@@ -36,7 +36,9 @@
 
       forAllSystems = lib.genAttrs lib.systems.flakeExposed;
 
-      # Bundle of common modules applied to every host
+      # Bundle of common modules applied to every host.
+      # All option-based modules are always imported so their options are
+      # available everywhere; hosts enable only what they need.
       commonModules = name: [
         { networking.hostName = name; }
         {
@@ -51,6 +53,9 @@
         }
         ./hosts/${name}/configuration.nix
         ./modules/system
+        ./modules/desktop
+        ./modules/server
+        ./modules/work
         ./modules/user/johannes
         sops-nix.nixosModules.sops
         home-manager.nixosModules.home-manager
@@ -77,52 +82,67 @@
         kirby.modules = [
           nixos-hardware.nixosModules.lenovo-thinkpad-x230
           nixos-hardware.nixosModules.common-pc-laptop-ssd
-          ./modules/desktop
-          ./modules/user/johannes
+          {
+            jka.desktop = {
+              enable = true;
+              gnome.enable = true;
+            };
+          }
         ];
 
         # MacBook Pro
         clay.modules = [
           nixos-hardware.nixosModules.common-pc-laptop-ssd
-          ./modules/desktop
-          ./modules/user/johannes
+          {
+            jka.desktop = {
+              enable = true;
+              gnome.enable = true;
+            };
+          }
         ];
 
         # Work laptop
         aptenodytes.modules = [
           nixos-hardware.nixosModules.tuxedo-infinitybook-pro14-gen9-intel
-          ./modules/desktop
-          ./modules/desktop/gaming.nix
-          ./modules/system/virtualisation.nix
-          ./modules/user/johannes
-          ./modules/work
+          {
+            jka = {
+              desktop = {
+                enable = true;
+                gnome.enable = true;
+                gaming.enable = true;
+              };
+              virtualisation.enable = true;
+              work.enable = true;
+            };
+          }
         ];
 
         # Mac Mini home server
         kneippweg.modules = [
           nixos-hardware.nixosModules.common-pc-laptop-ssd
-          ./modules/user/johannes
-          ./modules/server/minecraft.nix
+          { jka.services.minecraft.enable = true; }
         ];
 
         # Hetzner ARM VPS
         skylab = {
           system = "aarch64-linux";
           modules = [
-            ./modules/user/johannes
-            ./modules/server/auth.nix
-            ./modules/server/cryptpad.nix
-            ./modules/server/glance.nix
-            ./modules/server/jellyfin.nix
-            ./modules/server/matrix.nix
-            # ./modules/server/mealie.nix
-            ./modules/server/wireguard.nix
-            ./modules/server/xmpp.nix
+            {
+              jka.services = {
+                auth.enable = true;
+                cryptpad.enable = true;
+                glance.enable = true;
+                jellyfin.enable = true;
+                matrix.enable = true;
+                wireguard.enable = true;
+                xmpp.enable = true;
+              };
+            }
           ];
         };
       };
 
-      # Import every .nix file in `dir` as an attrset entry keyed by its basename
+      # Import every directory with a default.nix as a module
       modulesFrom =
         dir:
         let
@@ -159,7 +179,7 @@
             '';
       });
 
-      # Re-usable modules (auto-imported from ./modules/*.nix)
+      # Re-usable modules (auto-imported from ./modules/*)
       nixosModules = modulesFrom ./modules;
 
       # NixOS hosts

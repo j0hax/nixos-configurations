@@ -1,18 +1,19 @@
 {
-  pkgs,
   lib,
+  pkgs,
   config,
   ...
 }:
 let
-  domain = "docs.jka.one";
-  sandboxDomain = "sandbox.${domain}";
+  cfg = config.jka.services.cryptpad;
+
   ssoPlugin = pkgs.fetchFromGitHub {
     owner = "cryptpad";
     repo = "sso";
     rev = "0.4.0";
     hash = "sha256-WkiWnRwXSvGJt0pMV5kAreqGlyj7aMO5RLHBZK4+CII=";
   };
+
   package = pkgs.cryptpad.overrideAttrs (oldAttrs: {
     postInstall = (oldAttrs.postInstall or "") + ''
       mkdir -p "$out/lib/node_modules/cryptpad/lib/plugins/sso"
@@ -21,52 +22,71 @@ let
   });
 in
 {
-  imports = [ ./caddy.nix ];
+  options.jka.services.cryptpad = {
+    enable = lib.mkEnableOption "CryptPad collaborative document editing";
 
-  services.caddy.virtualHosts = {
-    "pad.jka.one" = {
-      extraConfig = ''
-        redir https://${domain}{uri}
-      '';
+    domain = lib.mkOption {
+      type = lib.types.str;
+      default = "docs.jka.one";
+      description = "Primary domain for CryptPad.";
     };
 
-    "${domain}" = {
-      serverAliases = [ sandboxDomain ];
-      extraConfig = ''
-        encode
-
-
-
-        # Main app traffic
-        handle /* {
-            reverse_proxy localhost:${toString config.services.cryptpad.settings.httpPort}
-        }
-
-        # Real-time WebSocket traffic
-        handle /cryptpad_websocket {
-            reverse_proxy localhost:${toString config.services.cryptpad.settings.websocketPort}
-        }      
-      '';
+    redirectFrom = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [ "pad.jka.one" ];
+      description = "Domains that redirect to the primary CryptPad domain.";
     };
   };
 
-  services.cryptpad = {
-    enable = true;
-    inherit package;
-    settings = {
-      httpSafeOrigin = "https://${sandboxDomain}";
-      httpUnsafeOrigin = "https://${domain}";
-      AppConfig.loginSalt = "9b7c431413375d28f0f881241c0ea3a1693531d2c03af77214eba31ae279e8e8";
-      AppConfig.minimumPasswordLength = 8;
-    };
-  };
+  config = lib.mkIf cfg.enable {
+    jka.services.caddy.enable = true;
 
-  # HACK HACK HACK: Required for SSO to work
-  systemd.services.cryptpad = {
-    confinement.enable = lib.mkForce false;
-    serviceConfig = {
-      IPAddressAllow = lib.mkForce [ "any" ];
-      IPAddressDeny = lib.mkForce [ ];
+    services.caddy.virtualHosts = lib.listToAttrs (
+      map (d: {
+        name = d;
+        value = {
+          extraConfig = ''
+            redir https://${cfg.domain}{uri}
+          '';
+        };
+      }) cfg.redirectFrom
+    ) // {
+      "${cfg.domain}" = {
+        serverAliases = [ "sandbox.${cfg.domain}" ];
+        extraConfig = ''
+          encode
+
+          # Main app traffic
+          handle /* {
+              reverse_proxy localhost:${toString config.services.cryptpad.settings.httpPort}
+          }
+
+          # Real-time WebSocket traffic
+          handle /cryptpad_websocket {
+              reverse_proxy localhost:${toString config.services.cryptpad.settings.websocketPort}
+          }
+        '';
+      };
+    };
+
+    services.cryptpad = {
+      enable = true;
+      inherit package;
+      settings = {
+        httpSafeOrigin = "https://sandbox.${cfg.domain}";
+        httpUnsafeOrigin = "https://${cfg.domain}";
+        AppConfig.loginSalt = "9b7c431413375d28f0f881241c0ea3a1693531d2c03af77214eba31ae279e8e8";
+        AppConfig.minimumPasswordLength = 8;
+      };
+    };
+
+    # HACK: Required for SSO to work
+    systemd.services.cryptpad = {
+      confinement.enable = lib.mkForce false;
+      serviceConfig = {
+        IPAddressAllow = lib.mkForce [ "any" ];
+        IPAddressDeny = lib.mkForce [ ];
+      };
     };
   };
 }

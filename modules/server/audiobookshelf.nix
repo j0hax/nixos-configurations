@@ -1,16 +1,38 @@
-{ ... }:
+{
+  lib,
+  config,
+  ...
+}:
 let
-  port = 6268;
+  cfg = config.jka.services.audiobookshelf;
 in
 {
-  imports = [ ./caddy.nix ];
+  options.jka.services.audiobookshelf = {
+    enable = lib.mkEnableOption "Audiobookshelf audiobook server";
 
-  services.caddy.virtualHosts."audio.jka.one".extraConfig = ''
-    reverse_proxy 127.0.0.1:${toString port}
-  '';
+    domain = lib.mkOption {
+      type = lib.types.str;
+      default = "audio.jka.one";
+      description = "Domain for Audiobookshelf.";
+    };
 
-  services.audiobookshelf = {
-    enable = true;
-    inherit port;
+    port = lib.mkOption {
+      type = lib.types.port;
+      default = 6268;
+      description = "Internal port for Audiobookshelf.";
+    };
+  };
+
+  config = lib.mkIf cfg.enable {
+    jka.services.caddy.enable = true;
+
+    services.caddy.virtualHosts.${cfg.domain}.extraConfig = ''
+      reverse_proxy 127.0.0.1:${toString cfg.port}
+    '';
+
+    services.audiobookshelf = {
+      enable = true;
+      port = cfg.port;
+    };
   };
 }

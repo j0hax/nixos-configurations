@@ -1,15 +1,21 @@
 {
+  lib,
   pkgs,
   config,
   ...
 }:
+let
+  cfg = config.jka.desktop;
+in
 {
-  # Useless must-haves
-  environment.systemPackages = with pkgs; [
-    cbonsai
-    cmatrix
-    pipes-rs
-    tty-clock
-    fastfetch
-  ];
+  config = lib.mkIf cfg.enable {
+    # Useless must-haves
+    environment.systemPackages = with pkgs; [
+      cbonsai
+      cmatrix
+      pipes-rs
+      tty-clock
+      fastfetch
+    ];
+  };
 }

@@ -1,86 +1,78 @@
 {
+  lib,
   pkgs,
+  config,
   ...
 }:
+let
+  cfg = config.jka.desktop;
+in
 {
-  # Generic GUI packages
-  environment.systemPackages = with pkgs; [
-    mpv
-    libreoffice
-    texlive.combined.scheme-full
-    texmaker
-    tectonic
-    # handbrake
-    chromium
-    gimp
-    kepubify
-    xournalpp
-    prusa-slicer
-    speedtest-cli
-    mat2
-    imagemagick
-    # bitwarden-desktop
-    spotify
-    signal-desktop
-    backgroundremover
-    # rembg
-    openscad-unstable
-    aria2
-    inkscape
-    pandoc
-    just
-    typst
-    typstyle
-    tinymist
-    pwsafe
-    shellcheck
-    shfmt
-    wl-clipboard
-    # calibre
-    gramps
-    unzip
-    /*
-      Although we use PipeWire,
-      this is still needed for userspace
-      configuration, especially for loading
-      RAOP modules:
-      pulseaudio
-      pavucontrol
-    */
-    # kdePackages.kdenlive
-    virt-viewer
-    languagetool
-    libva-utils
-    pdfpc
-    gnome-network-displays
-    dino
-    android-tools
-  ];
+  config = lib.mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      mpv
+      libreoffice
+      texlive.combined.scheme-full
+      texmaker
+      tectonic
+      chromium
+      gimp
+      kepubify
+      xournalpp
+      prusa-slicer
+      speedtest-cli
+      mat2
+      imagemagick
+      spotify
+      signal-desktop
+      backgroundremover
+      openscad-unstable
+      aria2
+      inkscape
+      pandoc
+      just
+      typst
+      typstyle
+      tinymist
+      pwsafe
+      shellcheck
+      shfmt
+      wl-clipboard
+      gramps
+      unzip
+      virt-viewer
+      languagetool
+      libva-utils
+      pdfpc
+      gnome-network-displays
+      dino
+      android-tools
+    ];
 
-  # Run Windows programs natively
-  boot.binfmt.emulatedSystems = [
-    "x86_64-windows"
-    "i686-windows" # Optional: for 32-bit Windows
-  ];
+    # Run Windows programs natively
+    boot.binfmt.emulatedSystems = [
+      "x86_64-windows"
+      "i686-windows"
+    ];
 
-  programs = {
-    localsend.enable = true;
-    ausweisapp.enable = true;
-    thunderbird.enable = true;
-    chromium.enable = true;
-    appimage = {
-      enable = true;
-      binfmt = true;
+    programs = {
+      localsend.enable = true;
+      ausweisapp.enable = true;
+      thunderbird.enable = true;
+      chromium.enable = true;
+      appimage = {
+        enable = true;
+        binfmt = true;
+      };
+      obs-studio.enable = true;
+      wavemon.enable = true;
+      ydotool.enable = true;
     };
-    # wireshark.enable = true;
-    obs-studio.enable = true;
-    wavemon.enable = true;
-    ydotool.enable = true;
-  };
 
-  # Enable Logitech devices
-  hardware.logitech.wireless = {
-    enable = true;
-    enableGraphical = true;
+    # Enable Logitech devices
+    hardware.logitech.wireless = {
+      enable = true;
+      enableGraphical = true;
+    };
   };
 }

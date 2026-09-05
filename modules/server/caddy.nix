@@ -4,29 +4,32 @@
   config,
   ...
 }:
+let
+  cfg = config.jka.services.caddy;
+in
 {
-  services.caddy = {
-    enable = true;
-    email = "johannes@rnold.online";
+  options.jka.services.caddy = {
+    enable = lib.mkEnableOption "Caddy reverse proxy";
 
-    # Remove www subdomain
-    /*
-      virtualHosts."www.*".extraConfig = ''
-        handle {
-          redir https://{host[4:]}{uri}
-        }
-      '';
-
-        TODO: Map virtualhosts attrs, filter by www.*, redirect to them
-    */
-
+    email = lib.mkOption {
+      type = lib.types.str;
+      default = "johannes@rnold.online";
+      description = "ACME email for Caddy.";
+    };
   };
 
-  networking.firewall = {
-    allowedTCPPorts = [
-      80
-      443
-    ];
-    allowedUDPPorts = [ 443 ];
+  config = lib.mkIf cfg.enable {
+    services.caddy = {
+      enable = true;
+      inherit (cfg) email;
+    };
+
+    networking.firewall = {
+      allowedTCPPorts = [
+        80
+        443
+      ];
+      allowedUDPPorts = [ 443 ];
+    };
   };
 }

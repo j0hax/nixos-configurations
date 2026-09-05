@@ -1,17 +1,33 @@
-{ config, ... }:
+{
+  lib,
+  config,
+  ...
+}:
 let
-  domain = "translate.jka.one";
+  cfg = config.jka.services.translate;
 in
 {
-  imports = [ ./caddy.nix ];
+  options.jka.services.translate = {
+    enable = lib.mkEnableOption "LibreTranslate translation server";
 
-  services.caddy.virtualHosts.${domain}.extraConfig = ''
-    reverse_proxy 127.0.0.1:${toString config.services.libretranslate.port}
-    cache
-  '';
+    domain = lib.mkOption {
+      type = lib.types.str;
+      default = "translate.jka.one";
+      description = "Domain for LibreTranslate.";
+    };
+  };
 
-  services.libretranslate = {
-    enable = true;
-    inherit domain;
+  config = lib.mkIf cfg.enable {
+    jka.services.caddy.enable = true;
+
+    services.caddy.virtualHosts.${cfg.domain}.extraConfig = ''
+      reverse_proxy 127.0.0.1:${toString config.services.libretranslate.port}
+      cache
+    '';
+
+    services.libretranslate = {
+      enable = true;
+      domain = cfg.domain;
+    };
   };
 }

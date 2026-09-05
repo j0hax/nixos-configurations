@@ -1,62 +1,62 @@
 {
-  config,
+  lib,
   pkgs,
+  config,
   ...
 }:
+let
+  cfg = config.jka.desktop;
+in
 {
-  fonts = {
-    packages =
-      with pkgs;
-      [
-        # Generally nice
-        inter
-        libertinus
-        crimson-pro
-        eb-garamond
-        libre-caslon
-        cardo
-        gentium
-        junicode
-        font-awesome
-        vt323
-        cantarell-fonts
+  config = lib.mkIf cfg.enable {
+    fonts = {
+      packages =
+        with pkgs;
+        [
+          inter
+          libertinus
+          crimson-pro
+          eb-garamond
+          libre-caslon
+          cardo
+          gentium
+          junicode
+          font-awesome
+          vt323
+          cantarell-fonts
 
-        # Utilitarian
-        atkinson-hyperlegible-next
-        atkinson-hyperlegible-mono
+          atkinson-hyperlegible-next
+          atkinson-hyperlegible-mono
 
-        # Frisia
-        montserrat
-        gyre-fonts
+          montserrat
+          gyre-fonts
 
-        # Company
-        paratype-pt-sans
+          paratype-pt-sans
 
-        # Source
-        source-sans
-        source-serif
-        source-code-pro
+          source-sans
+          source-serif
+          source-code-pro
 
-        # Good collections
-        league-of-moveable-type
-        open-fonts
-        dotcolon-fonts
-        inriafonts
-      ]
-      ++ builtins.map (v: iosevka-bin.override { variant = v; }) [
-        ""
-        "Aile"
-        "Curly"
-        "CurlySlab"
-        "Etoile"
-        "SGr-IosevkaTerm"
-      ];
+          league-of-moveable-type
+          open-fonts
+          dotcolon-fonts
+          inriafonts
+        ]
+        ++ builtins.map (v: iosevka-bin.override { variant = v; }) [
+          ""
+          "Aile"
+          "Curly"
+          "CurlySlab"
+          "Etoile"
+          "SGr-IosevkaTerm"
+        ];
 
-    fontconfig = {
-      defaultFonts = {
-        serif = [ "Libertinus" ];
-        sansSerif = [ "Inter" ];
-        monospace = [ "Iosevka" ];
+      fontconfig = {
+        defaultFonts = {
+          serif = [ "Libertinus" ];
+          sansSerif = [ "Inter" ];
+          monospace = [ "Iosevka" ];
+        };
       };
     };
   };

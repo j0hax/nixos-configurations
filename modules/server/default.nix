@@ -1,0 +1,24 @@
+{
+  imports = [
+    ./acme.nix
+    ./audiobookshelf.nix
+    ./auth.nix
+    ./bin.nix
+    ./caddy.nix
+    ./collabora.nix
+    ./cryptpad.nix
+    ./glance.nix
+    ./jellyfin.nix
+    ./listmonk.nix
+    ./matrix.nix
+    ./mealie.nix
+    ./minecraft.nix
+    ./navidrome.nix
+    ./ntfy.nix
+    ./translate.nix
+    ./ttyd.nix
+    ./uptime.nix
+    ./wireguard.nix
+    ./xmpp.nix
+  ];
+}

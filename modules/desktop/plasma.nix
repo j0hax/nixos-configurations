@@ -1,28 +1,37 @@
 {
+  lib,
   pkgs,
+  config,
   ...
 }:
+let
+  cfg = config.jka.desktop;
+in
 {
-  services = {
-    displayManager.plasma-login-manager = {
-      enable = true;
-    };
-    desktopManager.plasma6.enable = true;
+  options.jka.desktop.plasma = {
+    enable = lib.mkEnableOption "KDE Plasma desktop environment";
   };
 
-  environment.systemPackages =
-    with pkgs.kdePackages;
-    [
-      yakuake
-      kcalc
-      kclock
-      ksystemlog
-      kcolorchooser
-      kolourpaint
-    ]
-    ++ (with pkgs; [
-      transmission_4-qt
-    ]);
+  config = lib.mkIf (cfg.enable && cfg.plasma.enable) {
+    services = {
+      displayManager.plasma-login-manager.enable = true;
+      desktopManager.plasma6.enable = true;
+    };
 
-  programs.kdeconnect.enable = true;
+    environment.systemPackages =
+      with pkgs.kdePackages;
+      [
+        yakuake
+        kcalc
+        kclock
+        ksystemlog
+        kcolorchooser
+        kolourpaint
+      ]
+      ++ (with pkgs; [
+        transmission_4-qt
+      ]);
+
+    programs.kdeconnect.enable = true;
+  };
 }
