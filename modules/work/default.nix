@@ -24,6 +24,8 @@
     marp-cli
     openstackclient-full
     k3s
+    openbao
+    opencode
   ];
 
   programs = {

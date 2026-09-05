@@ -4,6 +4,8 @@ let
 in
 {
   programs = {
+    direnv.enable = true;
+    
     bat = {
       enable = true;
       config = {
