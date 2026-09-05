@@ -12,7 +12,7 @@ in
 
     email = lib.mkOption {
       type = lib.types.str;
-      default = "johannes@rnold.online";
+      default = "johannes@arnold.onl";
       description = "Email address for ACME registration.";
     };
   };

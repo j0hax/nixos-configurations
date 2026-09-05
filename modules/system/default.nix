@@ -3,6 +3,9 @@
   config,
   ...
 }:
+let
+  cfg = config.jka;
+in
 {
   imports = [
     ./maintenance.nix
@@ -21,35 +24,35 @@
     ./mta.nix
   ];
 
-  nix.settings = {
-    # When using a tmpfs, /tmp is often too small:
-    # https://github.com/NixOS/nixpkgs/issues/293114#issuecomment-2663470083
-    # build-dir = "/var/tmp";
-
-    # Needed for flakes
-    experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
+  options.jka.flakePath = lib.mkOption {
+    type = lib.types.str;
+    default = "/etc/nixos";
+    description = "Path to the flake used by nh and auto-upgrade.";
   };
 
-  # Essential tool for helping
-  programs.nh = {
-    enable = true;
-    flake = "/etc/nixos";
-    clean = {
-      enable = true;
-      dates = "daily";
+  config = {
+    nix.settings = {
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
     };
+
+    # Essential tool for helping
+    programs.nh = {
+      enable = true;
+      flake = cfg.flakePath;
+      clean = {
+        enable = true;
+        dates = "daily";
+      };
+    };
+
+    zramSwap = {
+      enable = true;
+      algorithm = "zstd";
+    };
+
+    users.motd = "Welcome to ${config.networking.hostName}!";
   };
-
-  zramSwap = {
-    enable = true;
-    algorithm = "zstd";
-  };
-
-  users.motd = "Welcome to ${config.networking.hostName}!";
-
-  # Causes problems with Firefox/Thunderbird
-  #environment.memoryAllocator.provider = "mimalloc";
 }

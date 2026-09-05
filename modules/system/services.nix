@@ -14,7 +14,7 @@
 
     journalwatch = {
       enable = true;
-      mailTo = "johannes@rnold.online";
+      mailTo = "johannes@arnold.onl";
       priority = 1;
     };
 

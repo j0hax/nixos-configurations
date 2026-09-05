@@ -1,13 +1,13 @@
 {
   lib,
+  config,
   ...
 }:
 {
-
   # https://wiki.nixos.org/wiki/Automatic_system_upgrades
   system.autoUpgrade = lib.mkDefault {
     enable = true;
-    flake = "/etc/nixos";
+    flake = config.jka.flakePath;
     allowReboot = true;
     rebootWindow = {
       lower = "01:00";
