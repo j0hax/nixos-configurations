@@ -135,7 +135,6 @@
                 jellyfin.enable = true;
                 matrix.enable = true;
                 wireguard.enable = true;
-                xmpp.enable = true;
               };
             }
           ];
