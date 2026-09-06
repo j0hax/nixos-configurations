@@ -118,7 +118,7 @@ in
       '';
 
       timerConfig = {
-        OnCalendar = "hourly";
+        OnCalendar = "*-*-* 00/4:00:00";
         persistent = "true";
       };
     };
