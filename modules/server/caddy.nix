@@ -23,7 +23,7 @@ in
       enable = true;
       package = pkgs.caddy.withPlugins {
         plugins = [ "github.com/caddyserver/cache-handler@v0.16.0" ];
-        hash = "sha256-HVWRoOxiR7jmBqDJS0vxA6Pgw6HDgAMalBYoppZGPno=";
+        hash = "sha256-41uiGaunQpwi2vpK+Kuy4eGpbTqjSdRhekPT1UeT9AY=";
       };
       inherit (cfg) email;
       globalConfig = ''
