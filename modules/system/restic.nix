@@ -47,6 +47,7 @@ in
         "--one-file-system"
         "--verbose"
         "--retry-lock 1h"
+        "--skip-if-unchanged"
       ];
 
       paths = [
@@ -98,10 +99,12 @@ in
       extraBackupArgs = [
         "--tag nix"
         "--tag minecraft"
+        "--skip-if-unchanged"
       ];
 
       backupPrepareCommand = ''
         echo "me is starting backup..." > /run/minecraft-server.stdin
+        sleep 1
         echo "save-all flush" > /run/minecraft-server.stdin
       '';
 
