@@ -3,6 +3,9 @@
   config,
   ...
 }:
+let
+  hasBtrfs = lib.any (fs: fs.fsType == "btrfs") (lib.attrValues config.fileSystems);
+in
 {
   # https://wiki.nixos.org/wiki/Automatic_system_upgrades
   system.autoUpgrade = lib.mkDefault {
@@ -18,4 +21,10 @@
 
   # Prevent boot from filling up
   boot.loader.grub.configurationLimit = 5;
+
+  # Scrub btrfs filesystems monthly if any are present
+  services.btrfs.autoScrub = lib.mkIf hasBtrfs {
+    enable = true;
+    interval = "monthly";
+  };
 }
