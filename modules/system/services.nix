@@ -1,7 +1,11 @@
 {
   lib,
+  config,
   ...
 }:
+let
+  hasBtrfs = lib.any (fs: fs.fsType == "btrfs") (lib.attrValues config.fileSystems);
+in
 {
 
   # Generally useful system services
@@ -25,6 +29,11 @@
         PasswordAuthentication = false;
         ChallengeResponseAuthentication = false;
       };
+    };
+
+    btrfs.autoScrub = lib.mkIf hasBtrfs {
+      enable = true;
+      interval = "monthly";
     };
   };
 }
