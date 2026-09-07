@@ -103,18 +103,21 @@ in
       ];
 
       backupPrepareCommand = ''
-        cat <<'EOF' > /run/minecraft-server.stdin
-        say [§4WARN§r] Starting backup...
+        echo "say [§6WARN§r] Starting backup..." > /run/minecraft-server.stdin
+        sleep 1
+        cat <<EOF > /run/minecraft-server.stdin
         save-off
         save-all flush
         EOF
       '';
 
       backupCleanupCommand = ''
-        cat <<'EOF' > /run/minecraft-server.stdin
-        save-on
-        say [§bINFO§r] Finished backup.
-        EOF
+        echo 'save-on' > /run/minecraft-server.stdin
+        if [ "$SERVICE_RESULT" = "success" ]; then
+          echo "say [§3INFO§r] Backup completed." > /run/minecraft-server.stdin
+        else
+          echo "say [§4ERROR§r] Backup had issues! ($SERVICE_RESULT: $EXIT_STATUS)" > /run/minecraft-server.stdin
+        fi
       '';
 
       timerConfig = {
