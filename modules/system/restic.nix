@@ -121,7 +121,7 @@ in
       '';
 
       timerConfig = {
-        OnCalendar = "*-*-* 00/4:00:00";
+        OnCalendar = "*-*-* 00/4:00:00 Europe/Berlin";
         persistent = "true";
       };
     };
