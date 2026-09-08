@@ -60,6 +60,8 @@
     e2fsprogs
     sqlite
     sysstat
+    lnav
+    btop
 
     age
     sops
