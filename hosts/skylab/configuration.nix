@@ -201,7 +201,7 @@ in
         # Minecraft server proxy
         tcp/:1902 {
           route {
-            proxy kneippweg.ygg.jka.one:${config.jka.services.minecraft.port}
+            proxy kneippweg.ygg.jka.one:${toString config.jka.services.minecraft.port}
           }
         }
       }
