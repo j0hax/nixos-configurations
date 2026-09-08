@@ -118,33 +118,6 @@ in
     allowedTCPPorts = [ yggPort 1902 ];
   };
 
-  # Minecraft proxy: open internet <-> kneippweg over Yggdrasil
-  services.haproxy = {
-    enable = true;
-
-    config = ''
-      global
-        log stdout format raw local0
-
-      defaults
-        mode tcp
-        log global
-        option tcplog
-        retries 3
-        timeout connect 10s
-        timeout client  1h
-        timeout server  1h
-        timeout tunnel  24h
-
-      frontend minecraft
-        bind [::]:1902 v4v6
-        default_backend minecraft_backend
-
-      backend minecraft_backend
-        server kneippweg kneippweg.ygg.jka.one:25565
-    '';
-  };
-
   # Gold Price Recording Service
   systemd.services.degussa-tracker =
     let
@@ -222,51 +195,65 @@ in
     "d /var/lib/degussa 0755 root root -"
   ];
 
-  services.caddy.virtualHosts = {
-
-    "arnold.onl" = {
-      extraConfig = ''
-        handle {
-          redir https://johannes.arnold.onl{uri}
+  services.caddy = {
+    globalConfig = ''
+      layer4 {
+        # Minecraft server proxy
+        tcp/:1902 {
+          route {
+            proxy kneippweg.ygg.jka.one:25565
+          }
         }
-      '';
-    };
+      }
+    '';
 
-    "gold.jka.one" = {
-      serverAliases = [ "gold.arnold.onl" ];
-      extraConfig = ''
-        encode
-        root /var/lib/degussa
-        file_server browse
-      '';
-    };
+    # Websites hosted/redirected on this server
+    virtualHosts = {
+      "arnold.onl" = {
+        extraConfig = ''
+          handle {
+            redir https://johannes.arnold.onl{uri}
+          }
+        '';
+      };
 
-    "johannes.contact" = {
-      extraConfig = ''
-        root * /srv/http/johannes.contact
-        encode zstd gzip
-        file_server
-        try_files johannes.vcf
-      '';
-    };
+      "gold.jka.one" = {
+        serverAliases = [ "gold.arnold.onl" ];
+        extraConfig = ''
+          encode
+          cache
+          root /var/lib/degussa
+          file_server browse
+        '';
+      };
 
-    "status.jka.one" = {
-      serverAliases = [ "status.ksh.jka.one" ];
-      extraConfig = ''
-        encode
-        cache
+      "johannes.contact" = {
+        extraConfig = ''
+          root * /srv/http/johannes.contact
+          encode
+          file_server
+          try_files johannes.vcf
+        '';
+      };
 
-        @ksh host status.ksh.jka.one
-        redir @ksh https://status.jka.one{uri} permanent
+      "status.jka.one" = {
+        serverAliases = [ "status.ksh.jka.one" ];
+        extraConfig = ''
+          encode
+          cache
 
-        reverse_proxy kneippweg.ygg.jka.one:4000
-      '';
-    };
+          @ksh host status.ksh.jka.one
+          redir @ksh https://status.jka.one{uri} permanent
 
-    "mettbroetchen.com" = {
-      extraConfig = ''
-        redir https://mcstatus.io/status/java/mettbroetchen.com
-      '';
+          reverse_proxy kneippweg.ygg.jka.one:4000
+        '';
+      };
+
+      "mettbroetchen.com" = {
+        extraConfig = ''
+          redir https://mcstatus.io/status/java/mettbroetchen.com
+        '';
+      };
     };
   };
 }
