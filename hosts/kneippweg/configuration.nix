@@ -134,12 +134,6 @@
     ];
   };
 
-  services.node-red = {
-    enable = true;
-    openFirewall = true;
-    withNpmAndGcc = true;
-  };
-
   systemd.services.node-red.path = with pkgs; [
     git
     bash
