@@ -10,7 +10,14 @@ in
 {
   options.jka.services.minecraft = {
     enable = lib.mkEnableOption "Minecraft server";
-
+    port = lib.mkOption {
+      type = lib.types.port;
+      default = 1902;
+      example = 25565;
+      description = ''
+        The port the server is hosting (listening) on.
+      '';
+    };
     jvmOpts = lib.mkOption {
       type = lib.types.str;
       default = "-Xms4096M -Xmx7168M";
@@ -32,6 +39,7 @@ in
         motd = "\\u00a7f\\u2b22\\u00a78\\u2b22\\u00a72\\u2b22\\u00a7f\\u2b22\\u00a7r\\u00a7o Jetzt auch in Vegan!\\u00a7r";
         online-mode = false;
         view-distance = 16;
+        server-port = cfg.port;
       };
       inherit (cfg) jvmOpts;
     };
