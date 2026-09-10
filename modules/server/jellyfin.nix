@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 let
@@ -38,6 +39,9 @@ in
       '';
     };
 
-    services.jellyfin.enable = true;
+    services.jellyfin = {
+      enable = true;
+      package = pkgs.unstable.jellyfin;
+    };
   };
 }
