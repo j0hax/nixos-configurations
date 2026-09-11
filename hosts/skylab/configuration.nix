@@ -115,7 +115,10 @@ in
   # Open the respective firewall ports for the above Yggdrasil configurations
   networking.firewall = {
     allowedUDPPorts = [ yggPort ];
-    allowedTCPPorts = [ yggPort 1902 ];
+    allowedTCPPorts = [
+      yggPort
+      1902
+    ];
   };
 
   # Gold Price Recording Service

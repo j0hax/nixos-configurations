@@ -22,7 +22,10 @@ in
     services.caddy = {
       enable = true;
       package = pkgs.caddy.withPlugins {
-        plugins = [ "github.com/caddyserver/cache-handler@v0.16.0" "github.com/mholt/caddy-l4@v0.1.2" ];
+        plugins = [
+          "github.com/caddyserver/cache-handler@v0.16.0"
+          "github.com/mholt/caddy-l4@v0.1.2"
+        ];
         hash = "sha256-O3ogEauP1vl10xTCSuVYcx4tGGEM3BH0o+lJh861+XA=";
       };
       inherit (cfg) email;

@@ -95,7 +95,6 @@ in
       passwordFile = config.sops.secrets."restic/password".path;
       rcloneConfigFile = config.sops.secrets.rclone.path;
 
-      
       extraBackupArgs = [
         "--tag nix"
         "--tag minecraft"

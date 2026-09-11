@@ -88,23 +88,22 @@ in
         ];
       in
       {
-        allowedTCPPorts =
+        allowedTCPPorts = [
+          80
+          443
+          5222
+          5269
+          5280
+          5281
+        ]
+        ++ lib.concatLists (
+          with config.services.prosody;
           [
-            80
-            443
-            5222
-            5269
-            5280
-            5281
+            httpPorts
+            httpsPorts
           ]
-          ++ lib.concatLists (
-            with config.services.prosody;
-            [
-              httpPorts
-              httpsPorts
-            ]
-          )
-          ++ coturnPorts;
+        )
+        ++ coturnPorts;
 
         allowedUDPPorts = coturnPorts;
         allowedUDPPortRanges = coturnRelayPorts;

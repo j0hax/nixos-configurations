@@ -41,33 +41,35 @@ in
   config = lib.mkIf cfg.enable {
     jka.services.caddy.enable = true;
 
-    services.caddy.virtualHosts = lib.listToAttrs (
-      map (d: {
-        name = d;
-        value = {
+    services.caddy.virtualHosts =
+      lib.listToAttrs (
+        map (d: {
+          name = d;
+          value = {
+            extraConfig = ''
+              redir https://${cfg.domain}{uri}
+            '';
+          };
+        }) cfg.redirectFrom
+      )
+      // {
+        "${cfg.domain}" = {
+          serverAliases = [ "sandbox.${cfg.domain}" ];
           extraConfig = ''
-            redir https://${cfg.domain}{uri}
+            encode
+
+            # Main app traffic
+            handle /* {
+                reverse_proxy localhost:${toString config.services.cryptpad.settings.httpPort}
+            }
+
+            # Real-time WebSocket traffic
+            handle /cryptpad_websocket {
+                reverse_proxy localhost:${toString config.services.cryptpad.settings.websocketPort}
+            }
           '';
         };
-      }) cfg.redirectFrom
-    ) // {
-      "${cfg.domain}" = {
-        serverAliases = [ "sandbox.${cfg.domain}" ];
-        extraConfig = ''
-          encode
-
-          # Main app traffic
-          handle /* {
-              reverse_proxy localhost:${toString config.services.cryptpad.settings.httpPort}
-          }
-
-          # Real-time WebSocket traffic
-          handle /cryptpad_websocket {
-              reverse_proxy localhost:${toString config.services.cryptpad.settings.websocketPort}
-          }
-        '';
       };
-    };
 
     services.cryptpad = {
       enable = true;
