@@ -7,6 +7,15 @@
 
 let
   yggPort = 1234;
+  site = pkgs.runCommand "minecraft-site" {
+    nativeBuildInputs = [ pkgs.pandoc ];
+  } ''
+    mkdir -p $out
+
+    pandoc ${./mettbroetchen.md} \
+      --standalone \
+      -o $out/index.html
+  '';
 in
 {
   imports = [
@@ -254,7 +263,11 @@ in
 
       "mettbroetchen.com" = {
         extraConfig = ''
-          redir https://mcstatus.io/status/java/mettbroetchen.com
+          encode
+          cache
+          header X-Robots-Tag "none"
+          root * ${site}
+          file_server
         '';
       };
     };
