@@ -40,10 +40,6 @@ in
         online-mode = false;
         view-distance = 16;
         server-port = cfg.port;
-
-        # RCON settings
-        enable-rcon = true;
-        "rcon.password" = "l5zGtqSk";
       };
       inherit (cfg) jvmOpts;
     };
