@@ -47,11 +47,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789772415,
-        "narHash": "sha256-x9ueWjhAROFofVeO2HJzi4LtPh7mtZmZ+s1f28Jl4lI=",
+        "lastModified": 1789772700,
+        "narHash": "sha256-UAE+CkiYBSxy2mObpjTPqo1+E7CqEtLCws7z6rsCHMM=",
         "owner": "j0hax",
         "repo": "mmbridge",
-        "rev": "442110a2fe599d16d7ffddc30472e8a78cf7b67c",
+        "rev": "95a9a83c879e4ca78df41ff4cd7b67609d6986e6",
         "type": "github"
       },
       "original": {
