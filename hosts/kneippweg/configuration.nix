@@ -151,4 +151,22 @@
 
   networking.firewall.allowedTCPPorts = [ 4000 ];
   networking.firewall.allowedUDPPorts = [ 4000 ];
+
+  services.mmbridge = {
+    enable = true;
+
+    minecraft = {
+      rconAddress = "localhost:25575";
+      rconPasswordFile = "/tmp/rconpw";
+      logFile = "/var/lib/minecraft/logs/latest.log";
+    };
+
+    matrix = {
+      homeserver = "https://matrix.fiducit.net";
+      domain = "fiducit.net";
+      appserviceTokenFile = "/tmp/astoken";
+      homeserverTokenFile = "/tmp/hstoken";
+      roomId = "!QwjhnMYXHivnBnOAXJ:fiducit.net";
+    };
+  };
 }

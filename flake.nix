@@ -5,6 +5,10 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05-small";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    mmbridge = {
+      url = "github:j0hax/mmbridge";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -120,6 +124,7 @@
         # Mac Mini home server
         kneippweg.modules = [
           nixos-hardware.nixosModules.common-pc-laptop-ssd
+          inputs.mmbridge.nixosModules.default
           { jka.services.minecraft.enable = true; }
         ];
 
