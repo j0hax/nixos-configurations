@@ -6,6 +6,7 @@
   config,
   lib,
   pkgs,
+  sops,
   ...
 }:
 
@@ -152,14 +153,19 @@
   networking.firewall.allowedTCPPorts = [ 4000 ];
   networking.firewall.allowedUDPPorts = [ 4000 ];
 
+  sops.secrets.mmbridge = {
+    sopsFile = ../../secrets/mmbridge.yaml;
+    format = "yaml";
+  };
+
   services.mmbridge = {
     enable = true;
 
     matrix = {
       homeserver = "https://matrix.fiducit.net";
       domain = "fiducit.net";
-      appserviceTokenFile = "/tmp/astoken";
-      homeserverTokenFile = "/tmp/hstoken";
+      appserviceTokenFile = config.sops.secrets.mmbridge.as_token.path;
+      homeserverTokenFile = config.sops.secrets.mmbridge.hs_token.path;
       roomId = "!QwjhnMYXHivnBnOAXJ:fiducit.net";
     };
   };
