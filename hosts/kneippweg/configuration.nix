@@ -126,6 +126,8 @@
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "25.11"; # Did you read the comment?
 
+  services.journald.storage = "volatile";
+
   services.yggdrasil.settings = {
     Peers = [
       "quic://skylab.jka.one:1234"
