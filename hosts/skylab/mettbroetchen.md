@@ -13,6 +13,7 @@ Server Adresse: `mettbroetchen.com`
 
 * [Server Status](https://mcstatus.io/status/java/mettbroetchen.com)
 * [BigBlueButton](https://b1.b1-athome.de/rooms/ddv-5dq-icj-wuk/join) (Voice Chat)
+* [Chat Room](https://matrix.to/#/#mettbroetchen:fiducit.net) (Allgemeiner Chat)
 
 ## Regeln
 
