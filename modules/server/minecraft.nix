@@ -38,6 +38,7 @@ in
         max-players = 69;
         motd = "\\u00a7f\\u2b22\\u00a78\\u2b22\\u00a72\\u2b22\\u00a7f\\u2b22\\u00a7r\\u00a7o Jetzt auch in Vegan!\\u00a7r";
         online-mode = false;
+        white-list = false;
         view-distance = 16;
         server-port = cfg.port;
       };
