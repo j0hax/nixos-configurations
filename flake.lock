@@ -119,7 +119,7 @@
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-26.05-small",
+        "ref": "nixos-26.05",
         "repo": "nixpkgs",
         "type": "github"
       }
