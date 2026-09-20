@@ -141,7 +141,7 @@
   ];
 
   services.uptime-kuma = {
-    enable = true;
+    enable = false;
     settings = {
       PORT = "4000";
       HOST = "200:8671:465a:5c0:d2ba:b3e7:3a51:7d07";
@@ -150,12 +150,18 @@
     };
   };
 
-  networking.firewall.allowedTCPPorts = [ 4000 ];
-  networking.firewall.allowedUDPPorts = [ 4000 ];
+  networking.firewall.allowedTCPPorts = [ 8009 ];
 
-  sops.secrets.mmbridge = {
+  sops.secrets.mmbridge-as = {
     sopsFile = ../../secrets/mmbridge.yaml;
     format = "yaml";
+    key = "as_token";
+  };
+
+  sops.secrets.mmbridge-hs = {
+    sopsFile = ../../secrets/mmbridge.yaml;
+    format = "yaml";
+    key = "hs_token";
   };
 
   services.mmbridge = {
@@ -164,8 +170,8 @@
     matrix = {
       homeserver = "https://matrix.fiducit.net";
       domain = "fiducit.net";
-      appserviceTokenFile = config.sops.secrets.mmbridge.as_token.path;
-      homeserverTokenFile = config.sops.secrets.mmbridge.hs_token.path;
+      appserviceTokenFile = config.sops.secrets.mmbridge-as.path;
+      homeserverTokenFile = config.sops.secrets.mmbridge-hs.path;
       roomId = "!QwjhnMYXHivnBnOAXJ:fiducit.net";
     };
   };
