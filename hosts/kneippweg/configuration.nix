@@ -169,6 +169,9 @@
   services.mmbridge = {
     enable = true;
 
+    # Disable annoying backup messages
+    bridge.relayServerMessages = false;
+
     matrix = {
       homeserver = "https://matrix.fiducit.net";
       domain = "fiducit.net";
