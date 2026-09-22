@@ -104,6 +104,7 @@ in
           server_name = domain;
           unix_socket_path = "/run/tuwunel/tuwunel.sock";
           allow_registration = false;
+          allow_legacy_media = true;
           trusted_servers = [
             "matrix.org"
             "matrix.uni-hannover.de"
