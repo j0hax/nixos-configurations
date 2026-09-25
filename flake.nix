@@ -26,6 +26,15 @@
     };
   };
 
+  # Specific Nix configuration for this setup.
+  nixConfig = {
+    accept-flake-config = true;
+    auto-optimise-store = true;
+    # Prevent router from getting overloaded :(
+    http-connections = 2;
+    max-substitution-jobs = 2;
+  };
+
   outputs =
     inputs@{
       self,
