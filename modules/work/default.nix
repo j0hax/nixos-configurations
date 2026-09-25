@@ -36,7 +36,6 @@ in
       openstackclient-full
       k3s
       openbao
-      opencode
     ];
 
     programs = {

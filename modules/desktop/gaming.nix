@@ -22,9 +22,6 @@ in
       mumble
       supertux
       supertuxkart
-      xonotic
-      sauerbraten
-      beyond-all-reason
       prismlauncher
       mangohud
     ];

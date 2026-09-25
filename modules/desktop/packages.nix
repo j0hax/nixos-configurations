@@ -15,7 +15,6 @@ in
       texlive.combined.scheme-full
       texmaker
       tectonic
-      chromium
       gimp
       kepubify
       xournalpp
@@ -25,7 +24,6 @@ in
       imagemagick
       spotify
       signal-desktop
-      backgroundremover
       openscad-unstable
       aria2
       inkscape
@@ -64,7 +62,7 @@ in
         enable = true;
         binfmt = true;
       };
-      obs-studio.enable = true;
+      # obs-studio.enable = true;
       wavemon.enable = true;
       ydotool.enable = true;
     };

@@ -35,7 +35,6 @@ in
       shellcheck
       harper
       vscode-css-languageserver
-      aider-chat-full
 
       # Go
       go
