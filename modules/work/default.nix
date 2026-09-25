@@ -18,6 +18,14 @@ in
       jarnold@b1-systems.de
     '';
 
+    # Enable cross-compiling containers for different architectures
+    boot.binfmt = {
+      emulatedSystems = [
+        "aarch64-linux"
+      ];
+      preferStaticEmulators = true;
+    };
+
     # Disable automatic updates for work laptops
     system.autoUpgrade.enable = false;
 
