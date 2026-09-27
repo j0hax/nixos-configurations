@@ -36,7 +36,8 @@ in
         difficulty = "normal";
         gamemode = "survival";
         max-players = 69;
-        motd = "\\u00a7f\\u2b22\\u00a78\\u2b22\\u00a72\\u2b22\\u00a7f\\u2b22\\u00a7r\\u00a7o Jetzt auch in Vegan!\\u00a7r";
+        # motd = "\\u00a7f\\u2b22\\u00a78\\u2b22\\u00a72\\u2b22\\u00a7f\\u2b22\\u00a7r\\u00a7o Jetzt auch in Vegan!\\u00a7r";
+        motd="Willkommen, Linus §c♥";
         online-mode = false;
         white-list = false;
         view-distance = 16;
