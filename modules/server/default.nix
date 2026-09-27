@@ -20,5 +20,6 @@
     ./uptime.nix
     ./wireguard.nix
     ./xmpp.nix
+    ./warpgate.nix
   ];
 }
