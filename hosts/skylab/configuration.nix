@@ -130,83 +130,6 @@ in
     ];
   };
 
-  # Gold Price Recording Service
-  systemd.services.degussa-tracker =
-    let
-      script = pkgs.writeShellApplication {
-        name = "degussa";
-        runtimeInputs = with pkgs; [
-          curl
-          jq
-          pup
-        ];
-        text = ''
-          OUT="prices.csv"
-          LIGHT="krugerrand.csv"
-
-          html=$(curl -fsSL https://degussa.com/de-de/header_navigation/preise/preisliste/)
-          timestamp=$(date --iso-8601=seconds)
-
-          printf '%s' "$html" |
-          	pup 'a.priceListTableRow json{}' |
-          	jq -r --arg ts "$timestamp" '
-              .[] |
-              (.children | map(.text // "" | gsub("^\\s+|\\s+$"; ""))) as $f |
-              [
-                $ts,
-                $f[0],
-                $f[2],
-                (
-                  $f[3]
-                  | gsub("[^0-9,.]"; "")
-                  | gsub("\\."; "")
-                  | gsub(","; ".")
-                ),
-                (
-                  $f[4]
-                  | gsub("[^0-9,.]"; "")
-                  | gsub("\\."; "")
-                  | gsub(","; ".")
-                )
-              ] |
-              flatten |
-              @csv
-            ' |
-            tee -a "$OUT" |
-            grep -F '"1 oz Krügerrand Goldmünze - Südafrika 2026"' >> "$LIGHT"
-        '';
-      };
-    in
-    {
-      description = "Degussa gold price scraper";
-      wantedBy = [ "multi-user.target" ];
-      after = [ "network.target" ];
-
-      environment.TZ = "Europe/Berlin";
-
-      serviceConfig = {
-        Type = "oneshot";
-        WorkingDirectory = "/var/lib/degussa";
-        ExecStart = "${script}/bin/degussa";
-      };
-    };
-
-  systemd.timers.degussa-tracker = {
-    description = "Update Degussa price tracker";
-
-    wantedBy = [ "timers.target" ];
-
-    timerConfig = {
-      OnCalendar = "*:0/5";
-      Unit = "degussa-tracker.service";
-    };
-  };
-
-  # Ensure goldprice data is present
-  systemd.tmpfiles.rules = [
-    "d /var/lib/degussa 0755 root root -"
-  ];
-
   services.caddy = {
     globalConfig = ''
       layer4 {
@@ -228,18 +151,7 @@ in
           }
         '';
       };
-
-      "gold.jka.one" = {
-        serverAliases = [ "gold.arnold.onl" ];
-        extraConfig = ''
-          encode
-          cache
-          root /var/lib/degussa
-          file_server browse
-        '';
-      };
-
-      "johannes.contact" = {
+     "johannes.contact" = {
         extraConfig = ''
           root * /srv/http/johannes.contact
           encode
