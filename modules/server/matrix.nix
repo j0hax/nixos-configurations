@@ -99,6 +99,7 @@ in
 
     services.matrix-tuwunel = {
       enable = true;
+      package = pkgs.unstable.matrix-tuwunel;
       settings = {
         global = {
           server_name = domain;
@@ -165,5 +166,49 @@ in
           group = "tuwunel";
         };
       };
+
+    sops.secrets.hookshot-reg = {
+      sopsFile = ../../secrets/hookshot.yaml;
+      key = "";
+    };
+
+    # Hookshot bot
+    services.matrix-hookshot = {
+      enable = true;
+      registrationFile = config.sops.secrets.hookshot-reg.path;
+      settings = {
+        bridge = {
+          bindAddress = "127.0.0.1";
+          domain = domain;
+          port = 9993;
+          url = "https://matrix.fiducit.net:443";
+        };
+        bot = {
+          displayname = "Hookshot";
+          avatar = "mxc://half-shot.uk/2876e89ccade4cb615e210c458e2a7a6883fe17d";
+        };
+        listeners = [
+          {
+            bindAddress = "0.0.0.0";
+            port = 9002;
+            resources = [
+              "widgets"
+            ];
+          }
+
+          {
+            bindAddress = "0.0.0.0";
+            port = 9000;
+            resources = [
+              "webhooks"
+            ];
+          }
+        ];
+        feeds = {
+          enabled = true;
+          pollIntervalSeconds = 600;
+        };
+      };
+    };
   };
 }
