@@ -34,7 +34,7 @@ in
     jka.services.caddy.enable = true;
 
     services.caddy.virtualHosts.${cfg.domain} = {
-      serverAliases = ["*.${cfg.domain}"];
+      serverAliases = [ "*.${cfg.domain}" ];
       extraConfig = ''
         encode
         reverse_proxy https://127.0.0.1:8888 {

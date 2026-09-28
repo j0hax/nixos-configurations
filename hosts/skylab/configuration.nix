@@ -7,15 +7,18 @@
 
 let
   yggPort = 1234;
-  site = pkgs.runCommand "minecraft-site" {
-    nativeBuildInputs = [ pkgs.pandoc ];
-  } ''
-    mkdir -p $out
+  site =
+    pkgs.runCommand "minecraft-site"
+      {
+        nativeBuildInputs = [ pkgs.pandoc ];
+      }
+      ''
+        mkdir -p $out
 
-    pandoc ${./mettbroetchen.md} \
-      --standalone \
-      -o $out/index.html
-  '';
+        pandoc ${./mettbroetchen.md} \
+          --standalone \
+          -o $out/index.html
+      '';
 in
 {
   imports = [
@@ -151,7 +154,7 @@ in
           }
         '';
       };
-     "johannes.contact" = {
+      "johannes.contact" = {
         extraConfig = ''
           root * /srv/http/johannes.contact
           encode
