@@ -85,11 +85,15 @@ in
         extraConfig = ''
           encode
 
-          # Route all Matrix-related paths to tuwunel
-          @matrix path /_matrix/* /_synapse/* /_tuwunel/* /.well-known/*
-          reverse_proxy @matrix unix/${socketPath}
+          # Route all traffic to tuwunel
+          reverse_proxy unix/${socketPath}
+        '';
+      };
 
+      "web.${matrixDomain}" = {
+        extraConfig = ''
           # Serve Element Web Interface
+          encode
           cache
           root * ${element-web}
           file_server
