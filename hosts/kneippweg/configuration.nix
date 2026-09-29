@@ -177,7 +177,7 @@
       domain = "fiducit.net";
       appserviceTokenFile = config.sops.secrets.mmbridge-as.path;
       homeserverTokenFile = config.sops.secrets.mmbridge-hs.path;
-      roomId = "!QwjhnMYXHivnBnOAXJ:fiducit.net";
+      roomId = "!KJgw6O_PXvTMg4-Lk_FA0eAnkcFoHPO4R9Dx4-HZ9y4";
     };
   };
 }
