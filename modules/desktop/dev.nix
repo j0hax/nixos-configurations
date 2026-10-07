@@ -21,6 +21,8 @@ in
       yamlfmt
       cloc
       hyperfine
+      openssl
+      xxd
 
       # LSPs and tools
       nil
