@@ -30,6 +30,18 @@ in
       default = "fiducit.net";
       description = "Primary Matrix server domain.";
     };
+
+    webhookDomain = lib.mkOption {
+      type = lib.types.str;
+      default = "events.fiducit.net";
+      description = "Domain for Webhook Events";
+    };
+
+    webhookPort = lib.mkOption {
+      type = lib.types.port;
+      default = 9000;
+      description = "Internal port used for webhooks.";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -80,23 +92,35 @@ in
         '';
       };
 
+      # Pure Matrix communication subdomain
       ${matrixDomain} = {
         serverAliases = [ "${matrixDomain}:8448" ];
         extraConfig = ''
           encode
-
-          # Route all traffic to tuwunel
           reverse_proxy unix/${socketPath}
         '';
       };
 
+      # Serve Element Web Interface
       "web.${matrixDomain}" = {
         extraConfig = ''
-          # Serve Element Web Interface
           encode
+
+          handle /webhook/* {
+            reverse_proxy localhost:9000
+          }
+          
           cache
           root * ${element-web}
           file_server
+        '';
+      };
+
+      # Reverse proxy to hookshot events
+      ${cfg.webhookDomain} = {
+        extraConfig = ''
+          encode
+          reverse_proxy localhost:9000
         '';
       };
     };
@@ -177,20 +201,30 @@ in
     };
 
     # Hookshot bot
+    jka.services.redis.enable = true;
     services.matrix-hookshot = {
       enable = true;
       registrationFile = config.sops.secrets.hookshot-reg.path;
       settings = {
         bridge = {
           bindAddress = "127.0.0.1";
-          domain = domain;
+          inherit domain;
           port = 9993;
-          url = "https://matrix.fiducit.net:443";
+          url = "https://${matrixDomain}";
         };
         bot = {
           displayname = "Hookshot";
           avatar = ./1F916.svg;
         };
+        encryption.storagePath = "./cryptostore/";
+        cache.redisUri = "redis://127.0.0.1:6379";
+        serviceBots = [{
+          localpart = "feeds";
+          displayname = "Feeds";
+          avatar = ./E381.svg;
+          prefix = "!feeds";
+          service = "feeds";
+        }];
         listeners = [
           {
             bindAddress = "0.0.0.0";
@@ -199,7 +233,6 @@ in
               "widgets"
             ];
           }
-
           {
             bindAddress = "0.0.0.0";
             port = 9000;
@@ -211,6 +244,14 @@ in
         feeds = {
           enabled = true;
           pollIntervalSeconds = 600;
+        };
+        generic = {
+          enabled = true;
+          outbound = true;
+          urlPrefix = "https://${cfg.webhookDomain}";
+          waitForComplete = true;
+          webhookResponse = true;
+          allowJsTransformationFunctions= true;
         };
       };
     };

@@ -1,6 +1,7 @@
 {
   imports = [
     ./acme.nix
+    ./redis.nix
     ./audiobookshelf.nix
     ./auth.nix
     ./bin.nix
