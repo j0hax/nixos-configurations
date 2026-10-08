@@ -151,6 +151,10 @@ in
             # livekit_url = rtcDomain;
           };
 
+          auto_join_rooms = [
+            "#lounge:fiducit.net"
+          ];
+
           ip_source = "rightmost_x_forwarded_for";
           rocksdb_allow_fallocate = false; # btrfs
           database_backup_path = "/var/backups/tuwunel";
