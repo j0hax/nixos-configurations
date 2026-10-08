@@ -14,8 +14,8 @@ in
 
   config = lib.mkIf cfg.enable {
     services.redis = {
-      enable = true;
       package = lib.mkDefault pkgs.valkey;
+      servers."".enable = true;
     };
   };
 }
