@@ -3,6 +3,7 @@
     ./acme.nix
     ./redis.nix
     ./audiobookshelf.nix
+    ./restic.nix
     ./auth.nix
     ./bin.nix
     ./caddy.nix
