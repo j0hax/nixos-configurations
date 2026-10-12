@@ -12,9 +12,9 @@ in
 {
   sops.secrets."restic/repository" = { };
   sops.secrets."restic/password" = { };
-  sops.secrets."restic/http/user" = { };    
+  sops.secrets."restic/http/user" = { };
   sops.secrets."restic/http/password" = { };
-  
+
   sops.templates."restic-rest.env".content = ''
     RESTIC_REST_USERNAME=${config.sops.placeholder."restic/http/user"}
     RESTIC_REST_PASSWORD=${config.sops.placeholder."restic/http/password"}

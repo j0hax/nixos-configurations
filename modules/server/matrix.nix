@@ -109,7 +109,7 @@ in
           handle /webhook/* {
             reverse_proxy localhost:9000
           }
-          
+
           cache
           root * ${element-web}
           file_server
@@ -224,13 +224,15 @@ in
         };
         encryption.storagePath = "./cryptostore/";
         cache.redisUri = "redis://127.0.0.1:6379";
-        serviceBots = [{
-          localpart = "feeds";
-          displayname = "Feeds";
-          avatar = ./E381.svg;
-          prefix = "!feeds";
-          service = "feeds";
-        }];
+        serviceBots = [
+          {
+            localpart = "feeds";
+            displayname = "Feeds";
+            avatar = ./E381.svg;
+            prefix = "!feeds";
+            service = "feeds";
+          }
+        ];
         listeners = [
           {
             bindAddress = "0.0.0.0";
@@ -257,7 +259,7 @@ in
           urlPrefix = "https://${cfg.webhookDomain}";
           waitForComplete = true;
           webhookResponse = true;
-          allowJsTransformationFunctions= true;
+          allowJsTransformationFunctions = true;
         };
       };
     };

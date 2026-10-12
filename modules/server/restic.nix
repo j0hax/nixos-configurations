@@ -22,7 +22,7 @@ in
     jka.services.caddy.enable = true;
 
     # Grab shared HTTP user and password
-    sops.secrets."restic/http/user" = { };    
+    sops.secrets."restic/http/user" = { };
     sops.secrets."restic/http/password" = { };
     sops.secrets."rclone-restic" = {
       sopsFile = ../../secrets/rclone-restic.ini;
@@ -49,31 +49,34 @@ in
         RemoveOnStop = true;
       };
     };
-    
+
     systemd.services.rclone-restic = {
       description = "Restic REST server backed by Rclone";
 
       after = [ "network-online.target" ];
       wants = [ "network-online.target" ];
 
-      
       serviceConfig = {
         DynamicUser = true;
-  
+
         LoadCredential = [
           "rclone.conf:${config.sops.secrets."rclone-restic".path}"
         ];
 
         EnvironmentFile = config.sops.templates."rclone-restic.env".path;
-    
+
         ExecStart = lib.escapeShellArgs [
           "${pkgs.rclone}/bin/rclone"
-          "--config" "%d/rclone.conf"
-          "serve" "restic"
+          "--config"
+          "%d/rclone.conf"
+          "serve"
+          "restic"
           "backups:."
-          "--append-only"
+          # "--append-only"
+          "--syslog"
+          "-vv"
         ];
-  
+
         Restart = "on-failure";
         RestartSec = "5s";
         UMask = "0077";
@@ -81,7 +84,7 @@ in
         PrivateTmp = true;
       };
     };
-  
+
     services.caddy.virtualHosts."backups.${cfg.domain}" = {
       # inherit (cfg) serverAliases;
       extraConfig = ''
@@ -97,7 +100,7 @@ in
       rcloneConfigFile = config.sops.secrets."rclone-restic".path;
 
       # Empty paths means no backup command is run.
-      paths = [];
+      paths = [ ];
 
       pruneOpts = [
         # Retention policy
