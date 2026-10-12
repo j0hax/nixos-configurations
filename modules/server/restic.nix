@@ -72,7 +72,7 @@ in
           "serve"
           "restic"
           "backups:."
-          # "--append-only"
+          "--append-only"
           "--syslog"
           "-vv"
         ];
@@ -104,10 +104,11 @@ in
 
       pruneOpts = [
         # Retention policy
-        "--keep-daily 7"
-        "--keep-weekly 5"
-        "--keep-monthly 12"
-        "--keep-yearly 10"
+        "--keep-within 48h"
+        "--keep-within-daily 7d"
+        "--keep-within-weekly 35d"
+        "--keep-within-monthly 12m"
+        "--keep-within-yearly 10y"
         "--keep-tag keep"
         # Aggressive compaction
         "--max-unused 0"
