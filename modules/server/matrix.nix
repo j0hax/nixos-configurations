@@ -155,6 +155,8 @@ in
             "#lounge:fiducit.net"
           ];
 
+          oidc_native_auth = true;
+
           ip_source = "rightmost_x_forwarded_for";
           rocksdb_allow_fallocate = false; # btrfs
           database_backup_path = "/var/backups/tuwunel";
