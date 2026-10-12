@@ -71,7 +71,6 @@ in
           "--config" "%d/rclone.conf"
           "serve" "restic"
           "backups:."
-          # "--private-repos"
           "--append-only"
         ];
   
@@ -90,5 +89,37 @@ in
         reverse_proxy unix//run/rclone-restic.sock
       '';
     };
+
+    ## REPOSITORY MAINTENANCE ##
+    services.restic.backups.repo-maintenance = {
+      repositoryFile = "rclone:backups:.";
+      passwordFile = config.sops.secrets."restic/password".path;
+      rcloneConfigFile = config.sops.secrets."rclone-restic".path;
+
+      # Empty paths means no backup command is run.
+      paths = [];
+
+      pruneOpts = [
+        # Retention policy
+        "--keep-daily 7"
+        "--keep-weekly 5"
+        "--keep-monthly 12"
+        "--keep-yearly 10"
+        "--keep-tag keep"
+        # Aggressive compaction
+        "--max-unused 0"
+        "--repack-uncompressed"
+        "--compression max"
+      ];
+
+      # Check repository integrity and read a sample of pack data.
+      checkOpts = [
+        "--read-data-subset=10%"
+      ];
+
+      timerConfig = {
+        OnCalendar = "Sun *-*-* 06:00:00 Europe/Berlin";
+        persistent = "true";
+      };
   };
 }
