@@ -12,41 +12,32 @@ in
 {
   sops.secrets."restic/repository" = { };
   sops.secrets."restic/password" = { };
-  sops.secrets.rclone = {
-    sopsFile = ../../secrets/rclone-system.ini;
-    format = "ini";
-  };
+  sops.secrets."restic/http/user" = { };    
+  sops.secrets."restic/http/password" = { };
+  
+  sops.templates."restic-rest.env".content = ''
+    RESTIC_REST_USERNAME=${config.sops.placeholder."restic/http/user"}
+    RESTIC_REST_PASSWORD=${config.sops.placeholder."restic/http/password"}
+  '';
 
   services.restic.backups = {
-    storagebox = {
+    system = {
       repositoryFile = config.sops.secrets."restic/repository".path;
       passwordFile = config.sops.secrets."restic/password".path;
-      rcloneConfigFile = config.sops.secrets.rclone.path;
+      environmentFile = config.sops.templates."restic-rest.env".path;
 
       timerConfig = {
         OnCalendar = "daily";
-        RandomizedDelaySec = "6h";
         persistent = "true";
       };
 
       inhibitsSleep = true;
       runCheck = true;
 
-      # https://github.com/NixOS/nixpkgs/issues/196547
-      backupPrepareCommand = ''
-        while ! /run/current-system/sw/bin/ping -c 1 1.0.0.1; do
-          echo "Waiting for internet connection..."
-          sleep 60
-        done
-
-        echo "Internet is up, uploading backups!"
-      '';
-
       extraBackupArgs = [
         "--tag nix"
         "--one-file-system"
         "--verbose"
-        "--retry-lock 1h"
         "--skip-if-unchanged"
       ];
 
@@ -71,19 +62,6 @@ in
         "*.qcow2"
         "*.png"
       ];
-
-      checkOpts = [
-        "--retry-lock 1h"
-      ];
-
-      pruneOpts = [
-        "--keep-daily 7"
-        "--keep-weekly 5"
-        "--keep-monthly 12"
-        "--keep-yearly 10"
-        "--keep-tag keep"
-        "--retry-lock 1h"
-      ];
     };
 
     minecraft = lib.mkIf minecraft.enable {
@@ -93,7 +71,7 @@ in
 
       repositoryFile = config.sops.secrets."restic/repository".path;
       passwordFile = config.sops.secrets."restic/password".path;
-      rcloneConfigFile = config.sops.secrets.rclone.path;
+      environmentFile = config.sops.templates."restic-rest.env".path;
 
       extraBackupArgs = [
         "--tag nix"
