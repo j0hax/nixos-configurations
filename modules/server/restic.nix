@@ -92,7 +92,7 @@ in
 
     ## REPOSITORY MAINTENANCE ##
     services.restic.backups.repo-maintenance = {
-      repositoryFile = "rclone:backups:.";
+      repository = "rclone:backups:.";
       passwordFile = config.sops.secrets."restic/password".path;
       rcloneConfigFile = config.sops.secrets."rclone-restic".path;
 
@@ -121,5 +121,6 @@ in
         OnCalendar = "Sun *-*-* 06:00:00 Europe/Berlin";
         persistent = "true";
       };
+    };
   };
 }
