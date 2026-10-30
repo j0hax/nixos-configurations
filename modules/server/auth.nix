@@ -42,6 +42,17 @@ in
     # LLDAP — centralized user database
     services.caddy.virtualHosts."${cfg.ldapSubdomain}.${cfg.domain}" = {
       extraConfig = ''
+        rate_limit {
+          zone lldap {
+            match {
+              method POST
+            }
+            key         {remote_host}
+            events      10
+            window      1m
+            ipv6_prefix 64
+          }
+        }
         encode
         reverse_proxy 127.0.0.1:${toString config.services.lldap.settings.http_port}
       '';

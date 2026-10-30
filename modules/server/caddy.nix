@@ -25,8 +25,9 @@ in
         plugins = [
           "github.com/caddyserver/cache-handler@v0.17.0"
           "github.com/mholt/caddy-l4@v0.1.2"
+          "github.com/mholt/caddy-ratelimit@v0.1.0"
         ];
-        hash = "sha256-nfcK5Dz8gtZoqxu2hNnZVruwY3C1BF0mKPNTH3v7iX8=";
+        hash = "sha256-cySEbJGkz0sNFMXLdShVmEUFwId0QCSLELWnZYL4xC4=";
       };
       inherit (cfg) email;
       globalConfig = ''
