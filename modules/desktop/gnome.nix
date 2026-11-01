@@ -58,6 +58,7 @@ in
       fractal
       gradia
       quadrapassel
+      unstable.typesetter
     ];
   };
 }
