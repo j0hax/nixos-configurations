@@ -66,11 +66,5 @@ in
       wavemon.enable = true;
       ydotool.enable = true;
     };
-
-    # Enable Logitech devices
-    hardware.logitech.wireless = {
-      enable = true;
-      enableGraphical = true;
-    };
   };
 }
