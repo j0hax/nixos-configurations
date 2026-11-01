@@ -199,12 +199,15 @@
     # VDPAU_DRIVER = "va_gl";      # Only if using libvdpau-va-gl
   };
 
-  # May help if FFmpeg/VAAPI/QSV init fails (esp. on Arc with i915):
   hardware.enableRedistributableFirmware = true;
   boot.kernelParams = [
+    # May help if FFmpeg/VAAPI/QSV init fails (esp. on Arc with i915):
     "i915.enable_guc=3"
     "i915.force_probe=!7d55"
     "xe.force_probe=7d55"
+
+    # Deep sleep support?
+    # "mem_sleep_default=deep"
   ];
 
   networking.hosts."127.0.0.1" = [ "fritz.box" ];
