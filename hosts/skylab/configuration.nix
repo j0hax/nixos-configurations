@@ -55,7 +55,7 @@ in
   services.spice-vdagentd.enable = true;
   environment.systemPackages = with pkgs; [
     rclone
-    yt-dlp-light
+    yt-dlp
   ];
 
   fileSystems."/".options = [
