@@ -25,6 +25,8 @@ Hosts are defined in `flake.nix` under `systems`; each has `hosts/<name>/configu
 
 ## Module conventions
 
+- Prefer the dendritic pattern: keep each feature in a self-contained module under `modules/`, import module trees globally, and let hosts enable behavior through `jka.*` options instead of importing individual module files.
+- Prefer simple, effective solutions over clever abstractions; avoid unnecessary indirection.
 - Every module tree is imported on every host via `commonModules` in `flake.nix`. Features activate only through `jka.*` options or explicit host config; a host "not using" a module still evaluates its options.
 - Adding a service: create `modules/server/<name>.nix` with `options.jka.services.<name>` and `config = lib.mkIf cfg.enable { ... }`, then add it to the explicit `imports` list in `modules/server/default.nix`. The same explicit-import pattern applies to `modules/system/default.nix` and `modules/desktop/default.nix`.
 - Most server modules set `jka.services.caddy.enable = true` and add `services.caddy.virtualHosts."..."`; follow that pattern for public HTTP services.
