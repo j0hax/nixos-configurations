@@ -54,6 +54,8 @@ in
       rust-analyzer
       rustfmt
       clippy
+
+      unstable.opencode
     ];
   };
 }
