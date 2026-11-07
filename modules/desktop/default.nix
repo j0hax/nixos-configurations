@@ -58,6 +58,9 @@ in
       };
       ethernet.macAddress = "stable";
       dns = "systemd-resolved";
+      plugins = with pkgs; [
+        networkmanager-openvpn
+      ];
     };
 
     # Limit how many resources Nix can eat up
