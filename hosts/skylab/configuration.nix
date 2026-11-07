@@ -85,7 +85,6 @@ in
         "config=${config.sops.secrets.rclone.path}"
         "vfs-cache_mode=full"
         "cache-dir=/var/cache/media"
-        "vfs-cache-max-size=10G"
         "syslog"
         "v"
       ];
