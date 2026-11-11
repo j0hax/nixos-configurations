@@ -27,6 +27,11 @@ in
       default = 0; # 0 means auto-detect
       description = "Number of CPU cores for Nix to use";
     };
+    flakePath = lib.mkOption {
+      type = lib.types.str;
+      default = "/etc/nixos";
+      description = "Path to the flake used by nh and auto-upgrade";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -44,11 +49,15 @@ in
       # Desktop-specific: limit resource usage and prioritize interactive work
       daemonIOSchedClass = lib.mkIf isDesktop "idle";
       daemonCPUSchedPolicy = lib.mkIf isDesktop "idle";
+    };
 
-      # Garbage collection settings
-      gc = {
-        automatic = true;
-        options = "--delete-older-than 30d";
+    # Essential tool for helping
+    programs.nh = {
+      enable = true;
+      flake = cfg.flakePath;
+      clean = {
+        enable = true;
+        dates = "daily";
       };
     };
   };

@@ -25,23 +25,7 @@ in
     ./nix.nix
   ];
 
-  options.jka.flakePath = lib.mkOption {
-    type = lib.types.str;
-    default = "/etc/nixos";
-    description = "Path to the flake used by nh and auto-upgrade.";
-  };
-
   config = {
-    # Essential tool for helping
-    programs.nh = {
-      enable = true;
-      flake = cfg.flakePath;
-      clean = {
-        enable = true;
-        dates = "daily";
-      };
-    };
-
     zramSwap = {
       enable = true;
       algorithm = "zstd";
