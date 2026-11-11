@@ -22,6 +22,7 @@ in
     ./restic.nix
     ./services.nix
     ./mta.nix
+    ./nix.nix
   ];
 
   options.jka.flakePath = lib.mkOption {
@@ -31,13 +32,6 @@ in
   };
 
   config = {
-    nix.settings = {
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-    };
-
     # Essential tool for helping
     programs.nh = {
       enable = true;

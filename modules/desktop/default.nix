@@ -63,15 +63,7 @@ in
       ];
     };
 
-    # Limit how many resources Nix can eat up
-    nix = {
-      settings = {
-        cores = 8;
-        max-jobs = 2;
-      };
-      daemonIOSchedClass = "idle";
-      daemonCPUSchedPolicy = "idle";
-    };
+    # Nix settings are managed by modules/system/nix.nix
 
     security.rtkit.enable = true;
 

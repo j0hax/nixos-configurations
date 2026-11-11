@@ -31,8 +31,6 @@ in
       ];
     };
 
-    nix.settings.trusted-users = [ "johannes" ];
-
     home-manager.users.johannes = import ./home.nix;
   };
 }
