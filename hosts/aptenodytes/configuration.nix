@@ -134,10 +134,12 @@
   security.tpm2.tctiEnvironment.enable = true; # TPM2TOOLS_TCTI and TPM2_PKCS11_TCTI env variables
   users.users.johannes.extraGroups = [ "tss" ]; # tss group has access to TPM devices
 
+  /*
   hardware.tuxedo-rs = {
     enable = true;
     tailor-gui.enable = true;
   };
+  */
 
   boot.initrd.luks.devices."crypted".allowDiscards = true;
   fileSystems."/".options = [ "compress=zstd" ];
@@ -173,11 +175,13 @@
     "d /snapshots 0755 root root"
   ];
 
+  /*
   hardware.tuxedo-drivers.settings = {
     charging-priority = "performance";
     charging-profile = "stationary";
     fn-lock = true;
   };
+  */
 
   # from https://wiki.nixos.org/wiki/Intel_Graphics
   hardware.graphics = {

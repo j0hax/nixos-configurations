@@ -10,7 +10,7 @@ in
   # https://wiki.nixos.org/wiki/Automatic_system_upgrades
   system.autoUpgrade = lib.mkDefault {
     enable = true;
-    flake = config.jka.flakePath;
+    flake = config.jka.nix.flakePath;
     allowReboot = true;
     rebootWindow = {
       lower = "01:00";

@@ -13,7 +13,6 @@ in
     ./sway.nix
     ./cosmic.nix
     ./plasma.nix
-    ./niri.nix
     ./gaming.nix
 
     ./location.nix

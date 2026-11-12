@@ -56,6 +56,7 @@ in
       clippy
 
       unstable.opencode
+      unstable.pi-coding-agent
     ];
   };
 }

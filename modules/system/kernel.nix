@@ -4,21 +4,9 @@
   lib,
   ...
 }:
-let
-  # Definitely required: Tux Logo
-  bootlogo = {
-    name = "logo-config";
-    patch = null;
-    extraConfig = ''
-      LOGO y
-      FRAMEBUFFER_CONSOLE_DEFERRED_TAKEOVER n
-    '';
-  };
-in
 {
+    services.bootvine.enable = true;
   boot = {
-    initrd.systemd.enable = true;
-
     # Add Bcachefs support
     supportedFilesystems = {
       # bcachefs = true;

@@ -20,8 +20,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    noctalia = {
-      url = "github:noctalia-dev/noctalia";
+    bootvine = {
+      url = "git+https://codeberg.org/wvhulle/bootvine";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -33,6 +33,7 @@
       nixos-hardware,
       sops-nix,
       home-manager,
+      bootvine,
       ...
     }:
     let
@@ -62,6 +63,7 @@
         ./modules/work
         ./modules/user/johannes
         sops-nix.nixosModules.sops
+        bootvine.nixosModules.default
         home-manager.nixosModules.home-manager
         {
           sops.defaultSopsFile = ./secrets/secrets.yaml;
@@ -87,9 +89,12 @@
           nixos-hardware.nixosModules.lenovo-thinkpad-x230
           nixos-hardware.nixosModules.common-pc-laptop-ssd
           {
-            jka.desktop = {
-              enable = true;
-              gnome.enable = true;
+            jka = {
+              nix.enable = true;
+              desktop = {
+                enable = true;
+                gnome.enable = true;
+              };
             };
           }
         ];
@@ -98,18 +103,22 @@
         clay.modules = [
           nixos-hardware.nixosModules.common-pc-laptop-ssd
           {
-            jka.desktop = {
-              enable = true;
-              gnome.enable = true;
+            jka = {
+              nix.enable = true;
+              desktop = {
+                enable = true;
+                gnome.enable = true;
+              };
             };
           }
         ];
 
         # Work laptop
         aptenodytes.modules = [
-          nixos-hardware.nixosModules.tuxedo-infinitybook-pro14-gen9-intel
+          # nixos-hardware.nixosModules.tuxedo-infinitybook-pro14-gen9-intel
           {
             jka = {
+              nix.enable = true;
               desktop = {
                 enable = true;
                 gnome.enable = true;
@@ -125,7 +134,12 @@
         kneippweg.modules = [
           nixos-hardware.nixosModules.common-pc-laptop-ssd
           inputs.mmbridge.nixosModules.default
-          { jka.services.minecraft.enable = true; }
+          {
+            jka = {
+              nix.enable = true;
+              services.minecraft.enable = true;
+            };
+          }
         ];
 
         # Hetzner ARM VPS
@@ -133,14 +147,17 @@
           system = "aarch64-linux";
           modules = [
             {
-              jka.services = {
-                auth.enable = true;
-                cryptpad.enable = true;
-                glance.enable = true;
-                jellyfin.enable = true;
-                matrix.enable = true;
-                wireguard.enable = true;
-                restic-server.enable = true;
+              jka = {
+                nix.enable = true;
+                services = {
+                  auth.enable = true;
+                  cryptpad.enable = true;
+                  glance.enable = true;
+                  jellyfin.enable = true;
+                  matrix.enable = true;
+                  wireguard.enable = true;
+                  restic-server.enable = true;
+                };
               };
             }
           ];
