@@ -55,6 +55,7 @@ in
     security.pki.certificateFiles = [
       ./DigiCertGlobalRootG2.crt.pem
       ./RapidSSLTLSRSACAG1.crt.pem
+      ./ekom21_RootCA.crt
     ];
   };
 }
