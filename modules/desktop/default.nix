@@ -41,7 +41,6 @@ in
           netbootxyz.enable = true;
         };
       };
-      plymouth.enable = true;
 
       kernelParams = [
         "quiet"
@@ -59,6 +58,7 @@ in
       dns = "systemd-resolved";
       plugins = with pkgs; [
         networkmanager-openvpn
+        networkmanager-openconnect
       ];
     };
 
