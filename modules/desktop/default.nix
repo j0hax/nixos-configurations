@@ -59,6 +59,9 @@ in
       plugins = with pkgs; [
         networkmanager-openvpn
         networkmanager-openconnect
+        networkmanager-ssh
+        networkmanager-l2tp
+        networkmanager-libreswan
       ];
     };
 
