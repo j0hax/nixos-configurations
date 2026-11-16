@@ -7,7 +7,7 @@
 let
   cfg = config.jka.nix;
   isDesktop = config.jka.desktop.enable or false;
-  isServer = config.jka.services or {} != {};
+  isServer = config.jka.services or { } != { };
 in
 {
   options.jka.nix = {

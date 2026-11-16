@@ -135,10 +135,10 @@
   users.users.johannes.extraGroups = [ "tss" ]; # tss group has access to TPM devices
 
   /*
-  hardware.tuxedo-rs = {
-    enable = true;
-    tailor-gui.enable = true;
-  };
+    hardware.tuxedo-rs = {
+      enable = true;
+      tailor-gui.enable = true;
+    };
   */
 
   boot.initrd.luks.devices."crypted".allowDiscards = true;
@@ -176,11 +176,11 @@
   ];
 
   /*
-  hardware.tuxedo-drivers.settings = {
-    charging-priority = "performance";
-    charging-profile = "stationary";
-    fn-lock = true;
-  };
+    hardware.tuxedo-drivers.settings = {
+      charging-priority = "performance";
+      charging-profile = "stationary";
+      fn-lock = true;
+    };
   */
 
   # from https://wiki.nixos.org/wiki/Intel_Graphics

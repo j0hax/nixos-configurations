@@ -5,7 +5,7 @@
   ...
 }:
 {
-    services.bootvine.enable = true;
+  services.bootvine.enable = true;
   boot = {
     # Add Bcachefs support
     supportedFilesystems = {
