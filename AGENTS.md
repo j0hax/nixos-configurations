@@ -17,7 +17,7 @@ Hosts are defined in `flake.nix` under `systems`; each has `hosts/<name>/configu
 ## Commands
 
 - `nix develop` — dev shell with `nixfmt`, `nil`, `sops`, `age`, `ssh-to-age`.
-- `nix flake check` — CI gate: evaluates every `nixosConfigurations` host and builds the formatting check. `--no-build` skips building.
+- `nix flake check` — CI gate: builds the formatting check for each exposed system only. It does **not** evaluate or build any `nixosConfigurations` host, so a broken host config passes CI. `--no-build` skips building.
 - `nixfmt .` / `nixfmt --check .` — format / verify formatting (`nixfmt-rfc-style`; CI uses `--check`).
 - `nix build .#nixosConfigurations.<host>.config.system.build.toplevel` — build one host without activating.
 - `nh os switch .#<host>` / `nh os boot .#<host>` — build and activate; `nh` defaults to `/etc/nixos`.
@@ -31,6 +31,7 @@ Hosts are defined in `flake.nix` under `systems`; each has `hosts/<name>/configu
 - Adding a service: create `modules/server/<name>.nix` with `options.jka.services.<name>` and `config = lib.mkIf cfg.enable { ... }`, then add it to the explicit `imports` list in `modules/server/default.nix`. The same explicit-import pattern applies to `modules/system/default.nix` and `modules/desktop/default.nix`.
 - Most server modules set `jka.services.caddy.enable = true` and add `services.caddy.virtualHosts."..."`; follow that pattern for public HTTP services.
 - `nixosModules` in `flake.nix` auto-imports only directories under `modules/` that contain a `default.nix`; hosts do not consume modules that way.
+- Third-party flake inputs provide NixOS modules: `bootvine` (boot menu, enabled in `modules/system/kernel.nix`) and `mmbridge` (kneippweg only, configured in `hosts/kneippweg/configuration.nix`); both are wired into `commonModules`/host modules, not `nixosModules`.
 - Home Manager config is under `modules/user/johannes/` and is enabled by default.
 - Host-level desktop/work/service choices usually live in `flake.nix`; host-specific hardware and one-off settings live in `hosts/<name>/configuration.nix`.
 - Treat `flake.nix` and the `options.jka.*` definitions as source of truth; `README.md` is descriptive and can lag behind modules.
@@ -45,7 +46,8 @@ Hosts are defined in `flake.nix` under `systems`; each has `hosts/<name>/configu
 ## Gotchas
 
 - Flakes only see git-tracked files. `git add` new modules or host files before `nix flake check`/build, otherwise Nix evaluates the older tree.
-- `modules/desktop/default.nix` sets `boot.kernelPackages` without `lib.mkDefault`; host overrides need `lib.mkForce`. `hosts/clay/configuration.nix` currently defines it again, so `nix flake check` fails evaluating `clay` with "defined multiple times".
+- `modules/desktop/default.nix` sets `boot.kernelPackages` without `lib.mkDefault`; host overrides need `lib.mkForce`. `hosts/clay/configuration.nix` currently defines it again, so evaluating `clay` fails with "defined multiple times". CI won't catch this — `nix flake check` doesn't evaluate hosts; verify with `nix build .#nixosConfigurations.<host>.config.system.build.toplevel` before deploying.
+- Modules reference non-Nix assets by relative path: matrix avatars live in `modules/server/*.svg` and work root CAs in `modules/work/*.crt.pem`. Don't treat these as stray files.
 - `pkgs.unstable` is the `nixos-unstable-small` overlay from `flake.nix`.
 - Changing Caddy plugins in `modules/server/caddy.nix` requires updating its `hash`; the build error prints the expected value.
 - Don't change a host's `system.stateVersion` as part of unrelated work.

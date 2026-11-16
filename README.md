@@ -27,13 +27,12 @@ All module trees are imported on every host via `commonModules`. Nothing activat
 
 | Option | Description |
 |---|---|
-| `jka.flakePath` | Path to the flake for `nh` and auto-upgrade (default: `/etc/nixos`) |
+| `jka.nix.flakePath` | Path to the flake for `nh` and auto-upgrade (default: `/etc/nixos`) |
 | `jka.desktop.enable` | Desktop environment, GUI apps, fonts, dev tools |
 | `jka.desktop.gnome.enable` | GNOME desktop |
 | `jka.desktop.plasma.enable` | KDE Plasma desktop |
 | `jka.desktop.cosmic.enable` | COSMIC desktop |
 | `jka.desktop.sway.enable` | Sway window manager |
-| `jka.desktop.niri.enable` | Niri compositor with Noctalia |
 | `jka.desktop.gaming.enable` | Steam and games |
 | `jka.virtualisation.enable` | QEMU/KVM with libvirt |
 | `jka.work.enable` | Work laptop packages and config |
@@ -58,6 +57,9 @@ All module trees are imported on every host via `commonModules`. Nothing activat
 | `jka.services.audiobookshelf.enable` | Audiobookshelf |
 | `jka.services.collabora.enable` | Collabora Online |
 | `jka.services.listmonk.enable` | Listmonk mailing lists |
+| `jka.services.redis.enable` | Redis (Valkey) |
+| `jka.services.restic-server.enable` | Restic REST backup server (rclone) |
+| `jka.services.warpgate.enable` | Warpgate SSH bastion |
 
 ## Hosts
 
@@ -67,13 +69,13 @@ All module trees are imported on every host via `commonModules`. Nothing activat
 | **clay** | x86_64 | MacBook Pro | `desktop`, `gnome` |
 | **aptenodytes** | x86_64 | TUXEDO work laptop | `desktop`, `gnome`, `gaming`, `virtualisation`, `work` |
 | **kneippweg** | x86_64 | Mac Mini home server | `minecraft` |
-| **skylab** | aarch64 | Hetzner ARM VPS | `auth`, `cryptpad`, `glance`, `jellyfin`, `matrix`, `wireguard`, `xmpp` |
+| **skylab** | aarch64 | Hetzner ARM VPS | `auth`, `cryptpad`, `glance`, `jellyfin`, `matrix`, `restic-server`, `wireguard` |
 
 ## Always-on modules (`modules/system/`)
 
 These are imported unconditionally on every host:
 
-- **restic** -- Daily backups to storage box; hourly Minecraft backups when enabled
+- **restic** -- Daily backups to storage box; Minecraft backups every 4 hours when enabled
 - **security** -- SSH on port 484, endlessh honeypot on 22, fail2ban, sudo-rs
 - **networking** -- TCP BBR, Quad9/Cloudflare DNS-over-TLS, Yggdrasil mesh
 - **maintenance** -- Auto-upgrade with reboot window, garbage collection
