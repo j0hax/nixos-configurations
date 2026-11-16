@@ -10,33 +10,50 @@ in
 {
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      nixfmt
-      nixpkgs-review
+      # General tools
       ripgrep
-      gcc
       gnumake
       helix
-      yq
-      jq
-      yamlfmt
       cloc
       hyperfine
       openssl
       xxd
 
-      # LSPs and tools
+      # Nix
+      nixfmt
+      nixpkgs-review
       nil
       nixd
+
+      # TOML
       taplo
+
+      # YAML
       yaml-language-server
+      yamlfmt
+      yq
+
+      # JSON
+      jq
+
+      # C / C++
+      gcc
       clang-tools
-      texlab
-      marksman
-      markdown-oxide
       lldb
+
+      # Shell
       shfmt
       shellcheck
+
+      # LaTeX
+      texlab
+
+      # Markdown
+      marksman
+      markdown-oxide
       harper
+
+      # CSS
       vscode-css-languageserver
 
       # Go
@@ -61,8 +78,10 @@ in
       intelephense
       phpPackages.composer
 
+      # JavaScript
       nodejs
 
+      # Coding agents
       unstable.opencode
       unstable.pi-coding-agent
     ];

@@ -33,8 +33,6 @@ in
       typstyle
       tinymist
       pwsafe
-      shellcheck
-      shfmt
       wl-clipboard
       gramps
       unzip
