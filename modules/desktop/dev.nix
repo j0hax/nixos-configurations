@@ -55,6 +55,13 @@ in
       rustfmt
       clippy
 
+      # PHP
+      php
+      intelephense
+      phpPackages.composer
+
+      nodejs
+
       unstable.opencode
       unstable.pi-coding-agent
     ];
