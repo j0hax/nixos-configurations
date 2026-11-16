@@ -24,7 +24,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    jka.services.caddy.enable = true;
+    jka.services.caddy.enable = lib.mkDefault true;
 
     services.caddy.virtualHosts.${cfg.domain}.extraConfig = ''
       reverse_proxy 127.0.0.1:${toString cfg.port}

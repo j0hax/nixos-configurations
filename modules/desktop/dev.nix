@@ -26,6 +26,7 @@ in
 
       # LSPs and tools
       nil
+      nixd
       taplo
       yaml-language-server
       clang-tools

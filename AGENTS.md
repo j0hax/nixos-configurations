@@ -29,7 +29,8 @@ Hosts are defined in `flake.nix` under `systems`; each has `hosts/<name>/configu
 - Prefer simple, effective solutions over clever abstractions; avoid unnecessary indirection.
 - Every module tree is imported on every host via `commonModules` in `flake.nix`. Features activate only through `jka.*` options or explicit host config; a host "not using" a module still evaluates its options.
 - Adding a service: create `modules/server/<name>.nix` with `options.jka.services.<name>` and `config = lib.mkIf cfg.enable { ... }`, then add it to the explicit `imports` list in `modules/server/default.nix`. The same explicit-import pattern applies to `modules/system/default.nix` and `modules/desktop/default.nix`.
-- Most server modules set `jka.services.caddy.enable = true` and add `services.caddy.virtualHosts."..."`; follow that pattern for public HTTP services.
+- Most server modules set `jka.services.caddy.enable` and add `services.caddy.virtualHosts."..."`; follow that pattern for public HTTP services.
+- Shared modules must set `jka.*` option values with `lib.mkDefault` (e.g. `jka.services.caddy.enable = lib.mkDefault true;`). Shared modules are imported *after* `hosts/<name>/configuration.nix`, so a plain definition in a module silently beats the host's; `lib.mkDefault` keeps host overrides in `hosts/<name>/configuration.nix` working. The per-host `modules` attrset in `flake.nix` is imported last and wins either way.
 - `nixosModules` in `flake.nix` auto-imports only directories under `modules/` that contain a `default.nix`; hosts do not consume modules that way.
 - Third-party flake inputs provide NixOS modules: `bootvine` (boot menu, enabled in `modules/system/kernel.nix`) and `mmbridge` (kneippweg only, configured in `hosts/kneippweg/configuration.nix`); both are wired into `commonModules`/host modules, not `nixosModules`.
 - Home Manager config is under `modules/user/johannes/` and is enabled by default.

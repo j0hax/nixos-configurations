@@ -19,7 +19,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    jka.services.caddy.enable = true;
+    jka.services.caddy.enable = lib.mkDefault true;
 
     # Grab shared HTTP user and password
     sops.secrets."restic/http/user" = { };

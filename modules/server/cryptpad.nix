@@ -39,7 +39,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    jka.services.caddy.enable = true;
+    jka.services.caddy.enable = lib.mkDefault true;
 
     services.caddy.virtualHosts =
       lib.listToAttrs (

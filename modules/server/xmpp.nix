@@ -21,8 +21,8 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    jka.services.caddy.enable = true;
-    jka.services.acme.enable = true;
+    jka.services.caddy.enable = lib.mkDefault true;
+    jka.services.acme.enable = lib.mkDefault true;
 
     sops.secrets =
       let

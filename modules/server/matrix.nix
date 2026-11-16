@@ -45,7 +45,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    jka.services.caddy.enable = true;
+    jka.services.caddy.enable = lib.mkDefault true;
 
     # Aside from HTTP, open the old standard Matrix ports as well
     networking.firewall = {
@@ -207,7 +207,7 @@ in
     };
 
     # Hookshot bot
-    jka.services.redis.enable = true;
+    jka.services.redis.enable = lib.mkDefault true;
     services.matrix-hookshot = {
       enable = true;
       registrationFile = config.sops.secrets.hookshot-reg.path;

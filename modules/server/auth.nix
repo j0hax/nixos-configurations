@@ -37,7 +37,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    jka.services.caddy.enable = true;
+    jka.services.caddy.enable = lib.mkDefault true;
 
     # LLDAP — centralized user database
     services.caddy.virtualHosts."${cfg.ldapSubdomain}.${cfg.domain}" = {
