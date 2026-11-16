@@ -44,6 +44,7 @@ in
       openstackclient-full
       k3s
       openbao
+      teams-for-linux
     ];
 
     programs = {
