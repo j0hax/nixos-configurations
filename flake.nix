@@ -155,7 +155,7 @@
                   glance.enable = true;
                   jellyfin.enable = true;
                   matrix.enable = true;
-                  wireguard.enable = true;
+                  # wireguard.enable = true;
                   restic-server.enable = true;
                 };
               };
