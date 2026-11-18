@@ -12,6 +12,8 @@
     tuptime.enable = true;
     smartd.enable = true;
 
+    timesyncd.servers = [ "ntp-01.jeffgeerling.com" ];
+
     journalwatch = {
       enable = true;
       mailTo = "johannes@arnold.onl";
