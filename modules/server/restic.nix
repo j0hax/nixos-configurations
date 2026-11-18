@@ -71,7 +71,7 @@ in
           "%d/rclone.conf"
           "serve"
           "restic"
-          "backups:."
+          "backups:"
           "--append-only"
           "--syslog"
           "-vv"
@@ -95,7 +95,7 @@ in
 
     ## REPOSITORY MAINTENANCE ##
     services.restic.backups.repo-maintenance = {
-      repository = "rclone:backups:.";
+      repository = "rclone:backups:";
       passwordFile = config.sops.secrets."restic/password".path;
       rcloneConfigFile = config.sops.secrets."rclone-restic".path;
 
