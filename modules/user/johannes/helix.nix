@@ -2,6 +2,8 @@
   ...
 }:
 {
+  # Language servers and formatters are the user's dev packages,
+  # see modules/user/johannes/dev.nix
   programs.helix = {
     enable = true;
     defaultEditor = true;

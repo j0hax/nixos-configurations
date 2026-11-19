@@ -1,6 +1,5 @@
 {
   lib,
-  pkgs,
   config,
   ...
 }:
@@ -29,23 +28,8 @@ in
     # Disable automatic updates for work laptops
     system.autoUpgrade.enable = false;
 
-    environment.systemPackages = with pkgs; [
-      awscli
-      zulip
-      kemai
-      drawio
-      gopass
-      pwgen
-      awscli2
-      rustdesk
-      squashfsTools
-      apache-directory-studio
-      marp-cli
-      openstackclient-full
-      k3s
-      openbao
-      teams-for-linux
-    ];
+    # Work applications are installed as user packages, see
+    # modules/user/johannes/work.nix
 
     programs = {
       noisetorch.enable = true;

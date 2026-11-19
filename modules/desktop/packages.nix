@@ -9,41 +9,9 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      mpv
-      libreoffice
-      texlive.combined.scheme-full
-      texmaker
-      tectonic
-      gimp
-      kepubify
-      xournalpp
-      prusa-slicer
-      speedtest-cli
-      mat2
-      imagemagick
-      spotify
-      signal-desktop
-      openscad-unstable
-      aria2
-      inkscape
-      pandoc
-      just
-      typst
-      typstyle
-      tinymist
-      pwsafe
-      wl-clipboard
-      gramps
-      unzip
-      virt-viewer
-      languagetool
-      libva-utils
-      pdfpc
-      gnome-network-displays
-      dino
-      android-tools
-    ];
+    # Codec support for video and audio playback, the mpv frontend lives in
+    # the user profile (modules/user/johannes/desktop.nix)
+    environment.systemPackages = [ pkgs.mpv ];
 
     # Run Windows programs natively
     boot.binfmt.emulatedSystems = [

@@ -18,19 +18,49 @@ in
     ./location.nix
     ./services.nix
     ./packages.nix
-    ./dev.nix
-    ./fun.nix
     ./fonts.nix
   ];
 
   options.jka.desktop = {
     enable = lib.mkEnableOption "desktop environment and GUI applications";
+
+    packages = {
+      enable = lib.mkOption {
+        type = lib.types.bool;
+        default = true;
+        description = "Install desktop applications as user packages (home-manager).";
+      };
+      gnome = lib.mkOption {
+        type = lib.types.bool;
+        default = cfg.gnome.enable;
+        defaultText = lib.literalExpression "config.jka.desktop.gnome.enable";
+        description = "Install GNOME applications.";
+      };
+      plasma = lib.mkOption {
+        type = lib.types.bool;
+        default = cfg.plasma.enable;
+        defaultText = lib.literalExpression "config.jka.desktop.plasma.enable";
+        description = "Install Plasma applications.";
+      };
+      sway = lib.mkOption {
+        type = lib.types.bool;
+        default = cfg.sway.enable;
+        defaultText = lib.literalExpression "config.jka.desktop.sway.enable";
+        description = "Install Sway utilities.";
+      };
+      gaming = lib.mkOption {
+        type = lib.types.bool;
+        default = cfg.gaming.enable;
+        defaultText = lib.literalExpression "config.jka.desktop.gaming.enable";
+        description = "Install games.";
+      };
+    };
   };
 
   config = lib.mkIf cfg.enable {
     boot = {
-      # Use a tweaked Kernel by default
-      kernelPackages = pkgs.linuxPackages_latest;
+      # Use a tweaked Kernel by default, the host may override this
+      kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
       # Use a pretty boot screen
       loader = {

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   # Enable common container config files in /etc/containers
   virtualisation.containers.enable = true;
@@ -11,9 +11,6 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    podman-tui
-    podman-compose
-    podlet
-  ];
+  # The podman CLI helpers are installed as user packages, see
+  # modules/user/johannes/dev.nix
 }

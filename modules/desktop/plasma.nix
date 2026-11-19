@@ -1,6 +1,5 @@
 {
   lib,
-  pkgs,
   config,
   ...
 }:
@@ -18,20 +17,9 @@ in
       desktopManager.plasma6.enable = true;
     };
 
-    environment.systemPackages =
-      with pkgs.kdePackages;
-      [
-        yakuake
-        kcalc
-        kclock
-        ksystemlog
-        kcolorchooser
-        kolourpaint
-      ]
-      ++ (with pkgs; [
-        transmission_4-qt
-      ]);
-
     programs.kdeconnect.enable = true;
+
+    # Plasma applications are installed as user packages, see
+    # modules/user/johannes/desktop.nix
   };
 }

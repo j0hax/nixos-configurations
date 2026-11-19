@@ -1,6 +1,5 @@
 {
   lib,
-  pkgs,
   config,
   ...
 }:
@@ -15,15 +14,15 @@ in
   config = lib.mkIf (cfg.enable && cfg.gaming.enable) {
     programs.steam.enable = true;
 
+    # Steam and Wine need a graphics driver with 32-bit userspace support
+    hardware.graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
+
     boot.kernelModules = [ "ntsync" ];
 
-    environment.systemPackages = with pkgs; [
-      mindustry-wayland
-      mumble
-      supertux
-      supertuxkart
-      prismlauncher
-      mangohud
-    ];
+    # Games are installed as user packages, see
+    # modules/user/johannes/desktop.nix
   };
 }

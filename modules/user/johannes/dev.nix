@@ -1,29 +1,32 @@
 {
-  lib,
   pkgs,
-  config,
+  lib,
+  osConfig,
   ...
 }:
 let
-  cfg = config.jka.desktop;
+  isDesktop = osConfig.jka.desktop.enable;
 in
 {
-  config = lib.mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
+  home.packages = lib.optionals isDesktop (
+    with pkgs;
+    [
       # General tools
       ripgrep
+      fd
       gnumake
-      helix
       cloc
       hyperfine
       openssl
       xxd
+      tree
 
       # Nix
       nixfmt
       nixpkgs-review
       nil
       nixd
+      nix-output-monitor
 
       # TOML
       taplo
@@ -81,10 +84,15 @@ in
       # JavaScript
       nodejs
 
+      # Containers
+      podman-tui
+      podman-compose
+      podlet
+
       # Coding agents
       unstable.opencode
       unstable.pi-coding-agent
       unstable.crush
-    ];
-  };
+    ]
+  );
 }

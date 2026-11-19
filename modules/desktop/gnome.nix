@@ -37,28 +37,7 @@ in
     services.displayManager.autoLogin.enable = false;
     services.getty.autologinUser = null;
 
-    environment.systemPackages = with pkgs; [
-      file-roller
-      transmission_4-gtk
-      apostrophe
-      gnome-network-displays
-      impression
-      gnome-decoder
-      metadata-cleaner
-      gnome-obfuscate
-      eyedropper
-      shortwave
-      video-trimmer
-      varia
-      gnome-2048
-      gnome-firmware
-      gnome-solanum
-      crosspipe
-      foliate
-      fractal
-      gradia
-      quadrapassel
-      unstable.typesetter
-    ];
+    # GNOME applications are installed as user packages, see
+    # modules/user/johannes/desktop.nix
   };
 }

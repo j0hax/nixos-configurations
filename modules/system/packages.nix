@@ -41,27 +41,23 @@
     # uutils-diffutils
     uutils-findutils
 
+    # Interactive tools (ripgrep, tree, btop, ...) are user packages, see
+    # modules/user/johannes/
     killall
     pstree
     lsof
-    ripgrep
-    nix-output-monitor
-    nixfmt
-    tree
     rclone
     bc
     file
-    ncdu
     pv
     wget
+    curl
     usbutils
     pciutils
     smartmontools
     e2fsprogs
     sqlite
     sysstat
-    lnav
-    btop
 
     age
     sops

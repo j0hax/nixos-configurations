@@ -1,6 +1,5 @@
 {
   lib,
-  pkgs,
   config,
   ...
 }:
@@ -20,12 +19,7 @@ in
       wrapperFeatures.gtk = true;
     };
 
-    environment.systemPackages = with pkgs; [
-      grim
-      slurp
-      wl-clipboard
-      mako
-      gammastep
-    ];
+    # Sway utilities are installed as user packages, see
+    # modules/user/johannes/desktop.nix
   };
 }

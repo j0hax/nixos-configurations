@@ -16,6 +16,9 @@
     ./helix.nix
     ./shell.nix
     ./gnome.nix
+    ./dev.nix
+    ./desktop.nix
+    ./work.nix
   ];
 
   home.sessionVariables.MANPAGER = "${lib.getExe pkgs.bat} -plman --paging=always";
