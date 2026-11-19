@@ -149,4 +149,11 @@
 
   hardware.sensor.iio.enable = true;
   powerManagement.powertop.enable = true;
+
+  # The Broadcom wireless driver (wl) is the only way this MacBook gets WiFi
+  # and is declared with known vulnerabilities upstream. Permit that exact
+  # package, not insecure packages in general.
+  nixpkgs.config.permittedInsecurePackages = [
+    "broadcom-sta-6.30.223.271-59-7.3.4"
+  ];
 }

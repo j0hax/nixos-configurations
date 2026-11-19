@@ -4,6 +4,11 @@
   lib,
   ...
 }:
+let
+  # Trading CPU security mitigations for performance is acceptable on local
+  # desktops, but not on servers that are reachable from the internet.
+  isDesktop = config.jka.desktop.enable;
+in
 {
   services.bootvine.enable = true;
   boot = {
@@ -15,8 +20,10 @@
 
     # Custom Kernel Parameters
     kernelParams = [
-      "mitigations=off"
       "kernel.task_delayacct=1"
+    ]
+    ++ lib.optionals isDesktop [
+      "mitigations=off"
     ];
 
     # Linux Kernel Modules

@@ -43,6 +43,7 @@ in
         80
         443
       ];
+      # Caddy listens for HTTP/3 on UDP 443 when the site uses h1 h2 h3
       allowedUDPPorts = [ 443 ];
     };
   };

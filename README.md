@@ -85,6 +85,7 @@ These are imported unconditionally on every host:
 - **restic** -- Daily backups to storage box; Minecraft backups every 4 hours when enabled
 - **security** -- SSH on port 484, endlessh honeypot on 22, fail2ban, sudo-rs
 - **networking** -- TCP BBR, Quad9/Cloudflare DNS-over-TLS, Yggdrasil mesh
+- **kernel** -- bootvine boot menu, Btrfs, `perf`; `mitigations=off` only on desktop hosts
 - **maintenance** -- Auto-upgrade with reboot window, garbage collection
 - **mta** -- nullmailer for system email
 - **containers** -- Podman with Docker compat

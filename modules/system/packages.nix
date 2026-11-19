@@ -37,9 +37,10 @@
   };
 
   environment.systemPackages = with pkgs; [
-    uutils-coreutils-noprefix
-    # uutils-diffutils
-    uutils-findutils
+    # GNU coreutils and findutils. The uutils replacements shadow `find`,
+    # `grep` and `killall` for every user, so keep the mainstream tools.
+    coreutils
+    findutils
 
     # Interactive tools (ripgrep, tree, btop, ...) are user packages, see
     # modules/user/johannes/packages.nix
@@ -120,12 +121,18 @@
       mv -v -- "$tmp" "$b" || { exit 1; }
     '')
 
-    # SSH wrapper
+    # SSH wrapper. Only interactive terminal sessions with an agent
+    # (a graphical login) inhibit sleep; scp, rsync, git and other callers
+    # run ssh directly so they do not spawn a systemd-inhibit per call.
     (pkgs.writeShellScriptBin "ssh" ''
-      exec ${pkgs.systemd}/bin/systemd-inhibit \
-        --what=sleep \
-        --why="Active SSH session" \
-        ${pkgs.openssh}/bin/ssh "$@"
+      if [ -t 0 ] && [ -t 1 ] && [ -n "''${SSH_AUTH_SOCK:-}" ]; then
+        exec ${pkgs.systemd}/bin/systemd-inhibit \
+          --what=sleep \
+          --why="Active SSH session" \
+          ${pkgs.openssh}/bin/ssh "$@"
+      fi
+
+      exec ${pkgs.openssh}/bin/ssh "$@"
     '')
   ];
 }

@@ -39,6 +39,9 @@ Hosts are defined in `flake.nix` under `systems`; each has `hosts/<name>/configu
 - `modules/desktop/default.nix` declares `jka.desktop.*` options unconditionally, so every option default must include `cfg.enable` (e.g. `default = cfg.enable && cfg.gnome.enable`). A bare `default = true` silently installs desktop packages on headless servers.
 - Host-level desktop/work/service choices usually live in `flake.nix`; host-specific hardware and one-off settings live in `hosts/<name>/configuration.nix`.
 - Treat `flake.nix` and the `options.jka.*` definitions as source of truth; `README.md` is descriptive and can lag behind modules.
+- Verify each set of changes by evaluating the affected hosts with `nix eval .#nixosConfigurations.<host>.config.system.build.toplevel.drvPath` (or `nix build --no-link` for a full build); do not report a change as done without checking that at least one affected host still evaluates. `clay` needs the insecure permission below.
+- Do not install Rust reimplementations of core tools (`uutils-coreutils`, `uutils-findutils`, `uutils-diffutils`) into the system profile. They shadow `find`, `grep`, `killall` and friends in `PATH` for every user and have bitten tooling before.
+- Keep `mitigations=off` desktop-only (`modules/system/kernel.nix`). Internet-facing hosts keep CPU mitigations enabled.
 
 ## Secrets
 
@@ -53,6 +56,7 @@ Hosts are defined in `flake.nix` under `systems`; each has `hosts/<name>/configu
 - `modules/desktop/default.nix` sets `boot.kernelPackages` with `lib.mkDefault`, so hosts may define it plainly (as `hosts/clay/configuration.nix` does). CI won't catch host-level eval errors: `nix flake check` doesn't evaluate hosts, so verify with `nix build .#nixosConfigurations.<host>.config.system.build.toplevel` before deploying.
 - Building a home-manager profile surfaces conflicts that system profiles hide: two packages providing the same binary fail the build with "conflicting subpath" (e.g. `awscli` and `awscli2` both provide `aws`). Check `home.packages` for duplicates before adding.
 - `nix eval` refuses unfree/insecure packages; `nix build` does not. Evaluate packages with `nix build --no-link` to match what deployment will do.
+- `clay` needs `boot.extraModulePackages = [ pkgs.linuxPackages_latest.broadcom_sta ]` (from its generated `hardware-configuration.nix`) for WiFi. That package carries `knownVulnerabilities`, so `hosts/clay/configuration.nix` must list its exact name and version in `nixpkgs.config.permittedInsecurePackages`; a kernel update on clay changes the suffix and requires updating that string.
 - Modules reference non-Nix assets by relative path: matrix avatars live in `modules/server/*.svg` and work root CAs in `modules/work/*.crt.pem`. Don't treat these as stray files.
 - Home-manager man-page caching forces every `home.packages` entry on every host, so desktop-only packages marked unavailable on aarch64 (e.g. `spotify`) must be guarded by platform, or `skylab` fails to evaluate.
 - `pkgs.unstable` is the `nixos-unstable-small` overlay from `flake.nix`.
