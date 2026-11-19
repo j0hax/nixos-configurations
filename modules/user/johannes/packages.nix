@@ -3,8 +3,18 @@ let
   isGraphical = osConfig.services.displayManager.enable;
 in
 {
-  # brotli is needed by the bat MANPAGER set in home.nix
-  home.packages = [ pkgs.brotli ];
+  home.packages = with pkgs; [
+    # brotli is needed by the bat MANPAGER set in home.nix
+    brotli
+
+    # Interactive shell helpers, available on servers as well
+    btop
+    lnav
+    ncdu
+    tree
+    fd
+    ripgrep
+  ];
 
   programs = {
     direnv.enable = true;

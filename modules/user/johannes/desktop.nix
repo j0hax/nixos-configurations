@@ -6,19 +6,13 @@
 }:
 let
   cfg = osConfig.jka.desktop;
-  graphical = cfg.packages.enable;
+  graphical = cfg.enable && cfg.packages.enable;
 in
 {
   home.packages =
     lib.optionals graphical (
       with pkgs;
       [
-        # Shell helpers
-        btop
-        lnav
-        ncdu
-        tree
-
         # Media and graphics
         gimp
         imagemagick

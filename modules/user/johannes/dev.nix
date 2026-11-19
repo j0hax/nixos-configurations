@@ -12,8 +12,6 @@ in
     with pkgs;
     [
       # General tools
-      ripgrep
-      fd
       gnumake
       cloc
       hyperfine

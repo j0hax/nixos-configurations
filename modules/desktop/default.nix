@@ -24,34 +24,38 @@ in
   options.jka.desktop = {
     enable = lib.mkEnableOption "desktop environment and GUI applications";
 
+    # Options are declared unconditionally, so every default must follow
+    # jka.desktop.enable: servers import this module too and must not get
+    # desktop applications.
     packages = {
       enable = lib.mkOption {
         type = lib.types.bool;
-        default = true;
+        default = cfg.enable;
+        defaultText = lib.literalExpression "config.jka.desktop.enable";
         description = "Install desktop applications as user packages (home-manager).";
       };
       gnome = lib.mkOption {
         type = lib.types.bool;
-        default = cfg.gnome.enable;
-        defaultText = lib.literalExpression "config.jka.desktop.gnome.enable";
+        default = cfg.enable && cfg.gnome.enable;
+        defaultText = lib.literalExpression "config.jka.desktop.enable && config.jka.desktop.gnome.enable";
         description = "Install GNOME applications.";
       };
       plasma = lib.mkOption {
         type = lib.types.bool;
-        default = cfg.plasma.enable;
-        defaultText = lib.literalExpression "config.jka.desktop.plasma.enable";
+        default = cfg.enable && cfg.plasma.enable;
+        defaultText = lib.literalExpression "config.jka.desktop.enable && config.jka.desktop.plasma.enable";
         description = "Install Plasma applications.";
       };
       sway = lib.mkOption {
         type = lib.types.bool;
-        default = cfg.sway.enable;
-        defaultText = lib.literalExpression "config.jka.desktop.sway.enable";
+        default = cfg.enable && cfg.sway.enable;
+        defaultText = lib.literalExpression "config.jka.desktop.enable && config.jka.desktop.sway.enable";
         description = "Install Sway utilities.";
       };
       gaming = lib.mkOption {
         type = lib.types.bool;
-        default = cfg.gaming.enable;
-        defaultText = lib.literalExpression "config.jka.desktop.gaming.enable";
+        default = cfg.enable && cfg.gaming.enable;
+        defaultText = lib.literalExpression "config.jka.desktop.enable && config.jka.desktop.gaming.enable";
         description = "Install games.";
       };
     };

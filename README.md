@@ -36,11 +36,11 @@ Applications Johannes uses (desktop apps, development tools, work programs) are 
 | `jka.desktop.cosmic.enable` | COSMIC desktop |
 | `jka.desktop.sway.enable` | Sway window manager |
 | `jka.desktop.gaming.enable` | Steam and games |
-| `jka.desktop.packages.enable` | Install desktop applications in the user profile (default: `true`) |
-| `jka.desktop.packages.gnome` | GNOME applications (default: `jka.desktop.gnome.enable`) |
-| `jka.desktop.packages.plasma` | Plasma applications (default: `jka.desktop.plasma.enable`) |
-| `jka.desktop.packages.sway` | Sway utilities (default: `jka.desktop.sway.enable`) |
-| `jka.desktop.packages.gaming` | Games (default: `jka.desktop.gaming.enable`) |
+| `jka.desktop.packages.enable` | Install desktop applications in the user profile (default: `jka.desktop.enable`) |
+| `jka.desktop.packages.gnome` | GNOME applications (default: `jka.desktop.enable && jka.desktop.gnome.enable`) |
+| `jka.desktop.packages.plasma` | Plasma applications (default: `jka.desktop.enable && jka.desktop.plasma.enable`) |
+| `jka.desktop.packages.sway` | Sway utilities (default: `jka.desktop.enable && jka.desktop.sway.enable`) |
+| `jka.desktop.packages.gaming` | Games (default: `jka.desktop.enable && jka.desktop.gaming.enable`) |
 | `jka.virtualisation.enable` | QEMU/KVM with libvirt |
 | `jka.work.enable` | Work laptop config and work applications |
 | `jka.users.johannes.enable` | Johannes user account + Home Manager (default: `true`) |
@@ -88,4 +88,4 @@ These are imported unconditionally on every host:
 - **maintenance** -- Auto-upgrade with reboot window, garbage collection
 - **mta** -- nullmailer for system email
 - **containers** -- Podman with Docker compat
-- **packages** -- System CLI tools and editors (htop, neovim, git, fish, etc.); interactive tools such as ripgrep and btop belong to the user profile
+- **packages** -- System CLI tools and editors (htop, neovim, git, fish, etc.); interactive tools such as ripgrep, fd and btop come from the user profile (`modules/user/johannes/packages.nix`) so servers get them too

@@ -42,7 +42,7 @@
     uutils-findutils
 
     # Interactive tools (ripgrep, tree, btop, ...) are user packages, see
-    # modules/user/johannes/
+    # modules/user/johannes/packages.nix
     killall
     pstree
     lsof
