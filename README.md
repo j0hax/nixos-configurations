@@ -14,28 +14,35 @@ hosts/                   # Per-host hardware & host-specific config
     hardware-configuration.nix
 modules/
   system/                # Always-on base (networking, security, restic, etc.)
-  desktop/               # Desktop environment, GUI apps, fonts, dev tools
+  desktop/               # Desktop environments (GNOME, Plasma, Sway), fonts, program options
   server/                # Self-hosted services (Caddy, Matrix, Jellyfin, ...)
   work/                  # Work laptop configuration
-  user/johannes/         # User account + Home Manager (git, helix, shell, ...)
+  user/johannes/         # User account + Home Manager (git, helix, shell, dev, desktop, work apps)
 secrets/                 # SOPS-encrypted secrets
 ```
 
 All module trees are imported on every host via `commonModules`. Nothing activates unless explicitly enabled through the `jka` option namespace.
+
+Applications Johannes uses (desktop apps, development tools, work programs) are installed through Home Manager, not `environment.systemPackages`. System modules keep only what the system itself needs: services, drivers, codecs and packages other modules depend on.
 
 ## `jka` options
 
 | Option | Description |
 |---|---|
 | `jka.nix.flakePath` | Path to the flake for `nh` and auto-upgrade (default: `/etc/nixos`) |
-| `jka.desktop.enable` | Desktop environment, GUI apps, fonts, dev tools |
+| `jka.desktop.enable` | Desktop environment, fonts, GUI program options |
 | `jka.desktop.gnome.enable` | GNOME desktop |
 | `jka.desktop.plasma.enable` | KDE Plasma desktop |
 | `jka.desktop.cosmic.enable` | COSMIC desktop |
 | `jka.desktop.sway.enable` | Sway window manager |
 | `jka.desktop.gaming.enable` | Steam and games |
+| `jka.desktop.packages.enable` | Install desktop applications in the user profile (default: `true`) |
+| `jka.desktop.packages.gnome` | GNOME applications (default: `jka.desktop.gnome.enable`) |
+| `jka.desktop.packages.plasma` | Plasma applications (default: `jka.desktop.plasma.enable`) |
+| `jka.desktop.packages.sway` | Sway utilities (default: `jka.desktop.sway.enable`) |
+| `jka.desktop.packages.gaming` | Games (default: `jka.desktop.gaming.enable`) |
 | `jka.virtualisation.enable` | QEMU/KVM with libvirt |
-| `jka.work.enable` | Work laptop packages and config |
+| `jka.work.enable` | Work laptop config and work applications |
 | `jka.users.johannes.enable` | Johannes user account + Home Manager (default: `true`) |
 | `jka.services.caddy.enable` | Caddy reverse proxy (auto-enabled by services that need it) |
 | `jka.services.acme.enable` | ACME certificates via Porkbun DNS |
@@ -81,4 +88,4 @@ These are imported unconditionally on every host:
 - **maintenance** -- Auto-upgrade with reboot window, garbage collection
 - **mta** -- nullmailer for system email
 - **containers** -- Podman with Docker compat
-- **packages** -- Core CLI tools (ripgrep, htop, neovim, git, fish, etc.)
+- **packages** -- System CLI tools and editors (htop, neovim, git, fish, etc.); interactive tools such as ripgrep and btop belong to the user profile

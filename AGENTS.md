@@ -33,7 +33,9 @@ Hosts are defined in `flake.nix` under `systems`; each has `hosts/<name>/configu
 - Shared modules must set `jka.*` option values with `lib.mkDefault` (e.g. `jka.services.caddy.enable = lib.mkDefault true;`). Shared modules are imported *after* `hosts/<name>/configuration.nix`, so a plain definition in a module silently beats the host's; `lib.mkDefault` keeps host overrides in `hosts/<name>/configuration.nix` working. The per-host `modules` attrset in `flake.nix` is imported last and wins either way.
 - `nixosModules` in `flake.nix` auto-imports only directories under `modules/` that contain a `default.nix`; hosts do not consume modules that way.
 - Third-party flake inputs provide NixOS modules: `bootvine` (boot menu, enabled in `modules/system/kernel.nix`) and `mmbridge` (kneippweg only, configured in `hosts/kneippweg/configuration.nix`); both are wired into `commonModules`/host modules, not `nixosModules`.
-- Home Manager config is under `modules/user/johannes/` and is enabled by default.
+- Home Manager config is under `modules/user/johannes/` and is enabled by default. It is imported explicitly in `home.nix`; add new user modules to that `imports` list.
+- Applications belong in Home Manager (`modules/user/johannes/dev.nix`, `desktop.nix`, `work.nix`), not `environment.systemPackages`. System modules keep services, drivers, codecs and packages other modules/programs depend on (e.g. `mpv` for codecs, `guestfs-tools`, `rclone`).
+- Home-manager modules can read NixOS settings via the `osConfig` argument. User modules gate on `osConfig.jka.desktop.enable`, `osConfig.jka.desktop.packages.*` (which default to the corresponding `jka.desktop.<de>.enable`), and `osConfig.jka.work.enable`; `work.nix` has no NixOS counterpart, so `osConfig.jka.work.enable` is its only gate.
 - Host-level desktop/work/service choices usually live in `flake.nix`; host-specific hardware and one-off settings live in `hosts/<name>/configuration.nix`.
 - Treat `flake.nix` and the `options.jka.*` definitions as source of truth; `README.md` is descriptive and can lag behind modules.
 
@@ -47,8 +49,11 @@ Hosts are defined in `flake.nix` under `systems`; each has `hosts/<name>/configu
 ## Gotchas
 
 - Flakes only see git-tracked files. `git add` new modules or host files before `nix flake check`/build, otherwise Nix evaluates the older tree.
-- `modules/desktop/default.nix` sets `boot.kernelPackages` without `lib.mkDefault`; host overrides need `lib.mkForce`. `hosts/clay/configuration.nix` currently defines it again, so evaluating `clay` fails with "defined multiple times". CI won't catch this — `nix flake check` doesn't evaluate hosts; verify with `nix build .#nixosConfigurations.<host>.config.system.build.toplevel` before deploying.
+- `modules/desktop/default.nix` sets `boot.kernelPackages` with `lib.mkDefault`, so hosts may define it plainly (as `hosts/clay/configuration.nix` does). CI won't catch host-level eval errors: `nix flake check` doesn't evaluate hosts, so verify with `nix build .#nixosConfigurations.<host>.config.system.build.toplevel` before deploying.
+- Building a home-manager profile surfaces conflicts that system profiles hide: two packages providing the same binary fail the build with "conflicting subpath" (e.g. `awscli` and `awscli2` both provide `aws`). Check `home.packages` for duplicates before adding.
+- `nix eval` refuses unfree/insecure packages; `nix build` does not. Evaluate packages with `nix build --no-link` to match what deployment will do.
 - Modules reference non-Nix assets by relative path: matrix avatars live in `modules/server/*.svg` and work root CAs in `modules/work/*.crt.pem`. Don't treat these as stray files.
+- Home-manager man-page caching forces every `home.packages` entry on every host, so desktop-only packages marked unavailable on aarch64 (e.g. `spotify`) must be guarded by platform, or `skylab` fails to evaluate.
 - `pkgs.unstable` is the `nixos-unstable-small` overlay from `flake.nix`.
 - Changing Caddy plugins in `modules/server/caddy.nix` requires updating its `hash`; the build error prints the expected value.
 - Don't change a host's `system.stateVersion` as part of unrelated work.
