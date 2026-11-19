@@ -25,6 +25,18 @@ All module trees are imported on every host via `commonModules`. Nothing activat
 
 Applications Johannes uses (desktop apps, development tools, work programs) are installed through Home Manager, not `environment.systemPackages`. System modules keep only what the system itself needs: services, drivers, codecs and packages other modules depend on.
 
+## Continuous integration
+
+`.github/workflows/ci.yml` runs on every push to `main` and on pull requests:
+
+- **Formatting** -- `nixfmt --check` on all tracked Nix files, plus `actionlint` on the workflow files.
+- **Evaluate all hosts** -- `nix flake check --no-build` evaluates every host, including the aarch64 server, so option conflicts, renamed options and platform errors fail before merging.
+- **Build** -- a matrix job builds the full closure of each x86_64 host.
+
+`skylab` is evaluate-only: building an aarch64 system on an x86_64 runner means cross-building the whole closure from source (about 1700 derivations without a binary cache), so it is validated by evaluation and by `nh os switch` on the server itself.
+
+`update-lock.yml` refreshes `flake.lock` weekly and commits it when dependencies changed.
+
 ## `jka` options
 
 | Option | Description |

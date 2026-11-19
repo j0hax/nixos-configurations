@@ -1,25 +1,31 @@
 name: "Lock Updater"
+
 on:
+  schedule:
+    - cron: "0 4 * * 1"
   workflow_dispatch:
+
+permissions:
+  contents: write
+
 jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2.3.4
-    - name: Install nix
-      uses: cachix/install-nix-action@v14
-      with:
-        install_url: https://github.com/numtide/nix-unstable-installer/releases/latest/download/install
-        extra_nix_config: |
-          experimental-features = nix-command flakes
-          access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-          system-features = nixos-test benchmark big-parallel kvm
-    - name: Set up git
-      run: |
-        git config user.name github-actions
-        git config user.email github-actions@github.com
-    - name: Update lock file
-      run: nix flake update --commit-lock-file
-    - name: Push changes
-      run: git push
-      
+      - uses: actions/checkout@v7
+      - uses: cachix/install-nix-action@v31
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Update lock file
+        run: nix flake update
+      - name: Commit and push if changed
+        run: |
+          if git diff --quiet flake.lock; then
+            echo "flake.lock is up to date"
+            exit 0
+          fi
+          git add flake.lock
+          git commit -m "flake.lock: Update"
+          git push

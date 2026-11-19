@@ -41,6 +41,13 @@
 
       forAllSystems = lib.genAttrs lib.systems.flakeExposed;
 
+      # Hosts whose configuration is exercised by `nix flake check`. Every
+      # host is evaluated; only those whose platform is a build platform on
+      # the checking machine are also built, so `nix flake check` stays usable
+      # on x86_64 without cross-compiling aarch64 (skylab) from source.
+      checkedHosts =
+        system: lib.attrNames (lib.filterAttrs (_: cfg: (cfg.system or system) == system) systems);
+
       # Bundle of common modules applied to every host.
       # All option-based modules are always imported so their options are
       # available everywhere; hosts enable only what they need.
@@ -189,17 +196,26 @@
         };
       });
 
-      # Checks: `nix flake check` will build every host + verify formatting
-      checks = forAllSystems (system: {
-        formatting =
-          nixpkgs.legacyPackages.${system}.runCommand "check-formatting"
-            { nativeBuildInputs = [ nixpkgs.legacyPackages.${system}.nixfmt-rfc-style ]; }
-            ''
-              cd ${self}
-              nixfmt --check .
-              touch $out
-            '';
-      });
+      # Checks: `nix flake check` verifies formatting and builds every host
+      # that runs on the checking system. Merge conflicts, renamed options,
+      # insecure or unfree packages and platform errors all fail here.
+      checks = forAllSystems (
+        system:
+        let
+          hosts = checkedHosts system;
+        in
+        {
+          formatting =
+            nixpkgs.legacyPackages.${system}.runCommand "check-formatting"
+              { nativeBuildInputs = [ nixpkgs.legacyPackages.${system}.nixfmt-rfc-style ]; }
+              ''
+                cd ${self}
+                nixfmt --check .
+                touch $out
+              '';
+        }
+        // lib.genAttrs hosts (host: self.nixosConfigurations.${host}.config.system.build.toplevel)
+      );
 
       # Re-usable modules (auto-imported from ./modules/*)
       nixosModules = modulesFrom ./modules;

@@ -29,7 +29,7 @@ in
   };
 
   # Clean /var/tmp files older than 1 week
-  systemd.tmpfiles.rules =  [
+  systemd.tmpfiles.rules = [
     "d /var/tmp 1777 root root"
     "e /var/tmp - - - 1w"
   ];

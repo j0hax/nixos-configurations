@@ -17,7 +17,7 @@ Hosts are defined in `flake.nix` under `systems`; each has `hosts/<name>/configu
 ## Commands
 
 - `nix develop` — dev shell with `nixfmt`, `nil`, `sops`, `age`, `ssh-to-age`.
-- `nix flake check` — CI gate: builds the formatting check for each exposed system only. It does **not** evaluate or build any `nixosConfigurations` host, so a broken host config passes CI. `--no-build` skips building.
+- `nix flake check` — CI gate. Checks formatting and builds every `nixosConfigurations` host whose platform matches the current system (`checkedHosts` in `flake.nix`); on x86_64 that is everything except `skylab`. `--no-build` evaluates every host, including `skylab`, without building.
 - `nixfmt .` / `nixfmt --check .` — format / verify formatting (`nixfmt-rfc-style`; CI uses `--check`).
 - `nix build .#nixosConfigurations.<host>.config.system.build.toplevel` — build one host without activating.
 - `nh os switch .#<host>` / `nh os boot .#<host>` — build and activate; `nh` defaults to `/etc/nixos`.
@@ -25,7 +25,7 @@ Hosts are defined in `flake.nix` under `systems`; each has `hosts/<name>/configu
 
 ## Module conventions
 
-- Prefer the dendritic pattern: keep each feature in a self-contained module under `modules/`, import module trees globally, and let hosts enable behavior through `jka.*` options instead of importing individual module files.
+- Prefer [the dendritic pattern](https://raw.githubusercontent.com/mightyiam/dendritic/refs/heads/master/README.md): keep each feature in a self-contained module under `modules/`, import module trees globally, and let hosts enable behavior through `jka.*` options instead of importing individual module files.
 - Prefer simple, effective solutions over clever abstractions; avoid unnecessary indirection.
 - Every module tree is imported on every host via `commonModules` in `flake.nix`. Features activate only through `jka.*` options or explicit host config; a host "not using" a module still evaluates its options.
 - Adding a service: create `modules/server/<name>.nix` with `options.jka.services.<name>` and `config = lib.mkIf cfg.enable { ... }`, then add it to the explicit `imports` list in `modules/server/default.nix`. The same explicit-import pattern applies to `modules/system/default.nix` and `modules/desktop/default.nix`.
@@ -60,5 +60,6 @@ Hosts are defined in `flake.nix` under `systems`; each has `hosts/<name>/configu
 - Modules reference non-Nix assets by relative path: matrix avatars live in `modules/server/*.svg` and work root CAs in `modules/work/*.crt.pem`. Don't treat these as stray files.
 - Home-manager man-page caching forces every `home.packages` entry on every host, so desktop-only packages marked unavailable on aarch64 (e.g. `spotify`) must be guarded by platform, or `skylab` fails to evaluate.
 - `pkgs.unstable` is the `nixos-unstable-small` overlay from `flake.nix`.
+- CI (`.github/workflows/ci.yml`) evaluates every host via `nix flake check --no-build` and builds the x86_64 hosts. `skylab` is evaluate-only because it is aarch64; a change to `modules/server/` or `flake.nix` must be verified against it with `nix flake check --no-build` locally, since no CI job builds it.
 - Changing Caddy plugins in `modules/server/caddy.nix` requires updating its `hash`; the build error prints the expected value.
 - Don't change a host's `system.stateVersion` as part of unrelated work.
