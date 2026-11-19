@@ -84,6 +84,7 @@ in
       # Coding agents
       unstable.opencode
       unstable.pi-coding-agent
+      unstable.crush
     ];
   };
 }
