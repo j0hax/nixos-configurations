@@ -33,6 +33,7 @@ in
       yaml-language-server
       yamlfmt
       yq
+      python3Packages.pyyaml
 
       # JSON
       jq
