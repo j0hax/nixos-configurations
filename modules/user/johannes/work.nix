@@ -20,6 +20,11 @@ in
       openbao
       squashfsTools
 
+      # Config management
+      ansible
+      ansible-lint
+      salt-lint
+
       # Communication
       zulip
       kemai
