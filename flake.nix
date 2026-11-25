@@ -164,6 +164,16 @@
                   matrix.enable = true;
                   # wireguard.enable = true;
                   restic-server.enable = true;
+                  radio-recorder = {
+                    enable = true;
+                    streams.sunny = {
+                      # iHeart serves HE-AAC, so copy into ADTS instead of mp3
+                      format = "adts";
+                      url = "https://stream.revma.ihrhls.com/zc2273";
+                      path = "/var/media/Radio/sunny";
+                      timezone = "America/Chicago";
+                    };
+                  };
                 };
               };
             }

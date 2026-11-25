@@ -17,6 +17,7 @@
     ./minecraft.nix
     ./navidrome.nix
     ./ntfy.nix
+    ./radio-recorder.nix
     ./translate.nix
     ./ttyd.nix
     ./uptime.nix
