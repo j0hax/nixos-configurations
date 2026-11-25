@@ -154,6 +154,6 @@
   # and is declared with known vulnerabilities upstream. Permit that exact
   # package, not insecure packages in general.
   nixpkgs.config.permittedInsecurePackages = [
-    "broadcom-sta-6.30.223.271-59-7.3.4"
+    "broadcom-sta-6.30.223.271-59-7.3.5"
   ];
 }
