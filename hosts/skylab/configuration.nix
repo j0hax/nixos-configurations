@@ -184,6 +184,15 @@ in
           file_server
         '';
       };
+
+      
+      "radio.jka.one" = {
+        extraConfig = ''
+          encode
+          root /mnt/media/Radio
+          file_server browse
+        '';
+      };
     };
   };
 }
