@@ -124,7 +124,7 @@ in
             # ExecStart undergoes systemd specifier expansion, where %Y is
             # unknown and %m/%d expand to the machine id and credential dir.
             # Escaping the strftime pattern keeps ffmpeg's own %-formatting.
-            "${toString stream.path}/radio-%%Y-%%m-%%d.${extensions.${stream.format}}"
+            "${toString stream.path}/${name}-%%Y-%%m-%%d.${extensions.${stream.format}}"
           ];
 
           Restart = "always";
